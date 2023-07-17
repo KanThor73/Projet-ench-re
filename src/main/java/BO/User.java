@@ -13,127 +13,130 @@ public class User {
 	private String ville;
 	private String motDePasse;
 	private int credit;
-	// admin sera converti en booleen
-	private int administrateur;
-	
-    public User() {
-    }
+	private boolean administrateur;
 
+	// Constructeur sans noUser ni credit, utilisé lorsque créé par l'utilisateur
     public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal,
-            String ville, String motDePasse, int administrateur) {
+            String ville, String motDePasse, boolean administrateur) {
         this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-        this.motDePasse = motDePasse;
-        this.administrateur = administrateur;
-    }
-
-    public User(int noUser, String pseudo, String nom, String prenom, String email, String telephone, String rue,
-            String codePostal, String ville, String motDePasse, int administrateur) {
-        this.noUser = noUser;
-        this.pseudo = pseudo;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-        this.motDePasse = motDePasse;
-        this.administrateur = administrateur;
+        setEmail(email);
+        setTelephone(telephone); // peut être null
+        setRue(rue);
+        setCodePostal(codePostal);
+        setVille(ville);
+        setMotDePasse(motDePasse);
+        this.credit = 0;
+        setAdministrateur(administrateur);
     }
     
+    // Constructeur avec noUser et credit, utilisé lors de la lecture de la bdd
     public User(int noUser, String pseudo, String nom, String prenom, String email, String telephone, String rue,
             String codePostal, String ville, String motDePasse, int credit, int administrateur) {
-        this.noUser = noUser;
-        this.pseudo = pseudo;
+    	this.noUser = noUser;
+    	this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-        this.rue = rue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-        this.motDePasse = motDePasse;
+        setEmail(email);
+        setTelephone(telephone); // peut être null
+        setRue(rue);
+        setCodePostal(codePostal);
+        setVille(ville);
+        setMotDePasse(motDePasse);
         this.credit = credit;
-        this.administrateur = administrateur;
+        setAdministrateur(administrateur == 1); // convert l'entier en booléen
     }
     
+    /*
+     * Accesseurs
+     * Il n'y a un setter que lorsque la donnée est modifiable après la création de l'objet
+     */
+    
+    // No User
     public int getNoUser() {
         return noUser;
     }
-    public void setNoUser(int noUser) {
-        this.noUser = noUser;
-    }
+    
+    // Pseudo
     public String getPseudo() {
         return pseudo;
     }
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
-    }
+    
+    // Nom
     public String getNom() {
         return nom;
     }
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    
+    // Prenom
     public String getPrenom() {
         return prenom;
     }
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+    
+    // Email
     public String getEmail() {
         return email;
     }
     public void setEmail(String email) {
+    	if (email == null) {
+    		// TODO lancer une exception
+    	}
         this.email = email;
     }
+    
+    // Telephone
     public String getTelephone() {
-        return telephone;
+        return telephone; // Peut retourner null
     }
     public void setTelephone(String telephone) {
-        this.telephone = telephone;
+        this.telephone = telephone; // Peut être null
     }
+    public void rmTelephone() { // pour supprimer directement le numéro de téléphone
+    	setTelephone(null);
+    }
+    
+    // Rue
     public String getRue() {
         return rue;
     }
     public void setRue(String rue) {
         this.rue = rue;
     }
+    
+    // Code Postal
     public String getCodePostal() {
         return codePostal;
     }
     public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
+    
+    // Ville
     public String getVille() {
         return ville;
     }
     public void setVille(String ville) {
         this.ville = ville;
     }
+    
+    // Mot de passe
     public String getMotDePasse() {
         return motDePasse;
     }
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
+    
+    // Credit
     public int getCredit() {
         return credit;
     }
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
-    public int getAdministrateur() {
+    
+    // Administrateur
+    public boolean estAdministrateur() { // Attention syntaxe
         return administrateur;
     }
-    public void setAdministrateur(int administrateur) {
+    public void setAdministrateur(boolean administrateur) {
         this.administrateur = administrateur;
     }
 
