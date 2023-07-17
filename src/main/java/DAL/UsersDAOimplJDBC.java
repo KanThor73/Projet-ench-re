@@ -37,7 +37,7 @@ public class UsersDAOimplJDBC implements DAO<User> {
 						rs.getInt("administrateur"));
 			}
 		} catch (Exception e) {
-			e.getStackTrace();
+			e.printStackTrace();
 		}
 		return users;
 		
