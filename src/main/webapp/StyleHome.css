@@ -1,0 +1,70 @@
+@charset "UTF-8";
+body{
+	display: flex ;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+h2{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 20px;
+	}
+
+form{
+	text-align: center;
+}
+div{
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.remember-me{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-bottom: 3px;
+	margin-right: 20px;
+}
+.remember-me input[type="checkbox"]{
+	margin-right:5px;
+}
+
+.forgot-password {
+	margin-left: 155px;
+	margin-top: -1cm;
+	}
+	
+.create-account-button{
+	margin-top: 30px;
+	display: flex;
+	height: 100px;
+	width: 300px;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+	
+
+div.button-container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: -30px;
+}
+
+input[type="submit"]{
+	margin: 10px 0 0 10px;
+	height: 50px;
+	width: 100px;
+	}
+
+input[type="text"], input[type="password"]{
+	display: block;
+	margin: 0 auto;
+	align-items: center;
+}
