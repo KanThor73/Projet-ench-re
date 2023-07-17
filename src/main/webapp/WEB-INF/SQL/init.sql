@@ -18,7 +18,12 @@ CREATE TABLE Users (
     ville            VARCHAR(30) NOT NULL,
     mot_de_passe     VARCHAR(30) NOT NULL,
     credit           INT NOT NULL,
-    administrateur   BIT NOT NULL, /* BIT = 0 ou 1 */
+    administrateur   INT NOT NULL, /* c'est un booléen */
 
-    CONSTRAINT user_pk PRIMARY KEY (no_user)
+    CONSTRAINT user_pk PRIMARY KEY (no_user),
 );
+
+/* Users default Values */
+
+ALTER TABLE Users
+ALTER credit SET DEFAULT 0;
