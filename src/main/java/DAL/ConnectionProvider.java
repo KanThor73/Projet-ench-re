@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 public class ConnectionProvider {
 	public static Connection cnx ;
 	
-	public static Connection getConnection ()throws NamingException, SQLException{
+	public static Connection getConnection () throws NamingException, SQLException{
 		Context context = new InitialContext();
 		DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");
 		cnx = dataSource.getConnection();

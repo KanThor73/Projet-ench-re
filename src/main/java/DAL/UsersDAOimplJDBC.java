@@ -12,11 +12,11 @@ public class UsersDAOimplJDBC implements DAO<User> {
 	
 	// declaration des constantes pour les requetes SQL
 
-	public static final String USER_SQL_INSERT = "INSERT INTO users (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,motDePasse,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String USER_SQL_UPDATE = "UPDATE users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,codePostal = ? ,ville = ? ,motDePasse = ? ,credit = ? ,administrateur = ? WHERE id = ?";
-	public static final String USER_SQL_DELETE = "DELETE FROM users WHERE id = ?";
-	public static final String USER_SQL_SELECTALL = "SELECT * FROM users";
-	public static final String USER_SQL_SELECTBYID = "SELECT users FROM ? where no_user = ? ";
+	public static final String USER_SQL_INSERT = "INSERT INTO Users (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String USER_SQL_UPDATE = "UPDATE Users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,code_postal = ? ,ville = ? ,motDePasse = ? ,credit = ? ,administrateur = ? WHERE no_user = ?";
+	public static final String USER_SQL_DELETE = "DELETE FROM Users WHERE no_user = ?";
+	public static final String USER_SQL_SELECTALL = "SELECT * FROM Users";
+	public static final String USER_SQL_SELECTBYID = "SELECT Users FROM ? where no_user = ? ";
 	
 	//Selectionner tout les utilisateurs
 
@@ -28,16 +28,16 @@ public class UsersDAOimplJDBC implements DAO<User> {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			stmt = cnx.prepareStatement(USER_SQL_SELECTALL);
 			ResultSet rs = stmt.executeQuery();
-			User user = null;
 			
 			while (rs.next()) {
-				user = new User(rs.getInt("noUsers"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
-						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"),
-						rs.getString("ville"), rs.getString("motDePasse"), rs.getInt("credit"),
+				User user = new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
+						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
 						rs.getInt("administrateur"));
+				users.add(user);
 			}
 		} catch (Exception e) {
-			e.getStackTrace();
+			e.printStackTrace();
 		}
 		return users;
 		
@@ -54,9 +54,9 @@ public class UsersDAOimplJDBC implements DAO<User> {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				user = new User(rs.getInt("noUsers"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
-						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"),
-						rs.getString("ville"), rs.getString("motDePasse"), rs.getInt("credit"),
+				user = new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
+						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
 						rs.getInt("administrateur"));
 			}
 		} catch (Exception e) {

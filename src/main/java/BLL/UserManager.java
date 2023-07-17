@@ -8,11 +8,12 @@ import DAL.Factory;
 
 public class UserManager {
 
-		public static void main (String []args) {
+		public static String test() {
 			DAO<User> userDAO = Factory.getUserDAO();
 			List<User> userList = userDAO.selectAll();
 			for (User user : userList) {
-				System.out.println(user.toString());
+				return user.toString();
 			}
+			return "";
 		}
 }
