@@ -13,6 +13,7 @@ public class User {
 	private String ville;
 	private String motDePasse;
 	private int credit;
+	// admin sera converti en booleen
 	private int administrateur;
 	
     public User() {
@@ -44,6 +45,22 @@ public class User {
         this.codePostal = codePostal;
         this.ville = ville;
         this.motDePasse = motDePasse;
+        this.administrateur = administrateur;
+    }
+    
+    public User(int noUser, String pseudo, String nom, String prenom, String email, String telephone, String rue,
+            String codePostal, String ville, String motDePasse, int credit, int administrateur) {
+        this.noUser = noUser;
+        this.pseudo = pseudo;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.telephone = telephone;
+        this.rue = rue;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.motDePasse = motDePasse;
+        this.credit = credit;
         this.administrateur = administrateur;
     }
     
