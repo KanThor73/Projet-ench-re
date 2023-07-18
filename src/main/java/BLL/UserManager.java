@@ -74,7 +74,6 @@ public class UserManager {
 			
 		}else if (user.getMotDePasse() == null | user.getMotDePasse().isEmpty()) {
 			throw new BLLException("Le mot de passe doit obligatoirement etre renseigne");
-
 		}
 	}
 

@@ -39,7 +39,6 @@ public class UsersDAOimplJDBC implements DAO<User> {
 			e.printStackTrace();
 		}
 		return users;
-		
 	}
 	
 	//Selectionner un utilisateur par son numero
@@ -113,7 +112,6 @@ public class UsersDAOimplJDBC implements DAO<User> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	//Supprimer un utilisateur
@@ -131,5 +129,4 @@ public class UsersDAOimplJDBC implements DAO<User> {
 			e.printStackTrace();
 		}
 	}
-
 }

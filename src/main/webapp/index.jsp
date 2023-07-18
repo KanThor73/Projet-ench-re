@@ -5,7 +5,6 @@
 <head>
 <link href="style/styleAccueil.css" rel="stylesheet">
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
-<meta charset="UTF-8">
 <title>Accueil</title>
 </head>
 <body>
