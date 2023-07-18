@@ -3,15 +3,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-<%@ include file="/WEB-INF/jspf/meta.html" %>
+<%@ include file="/WEB-INF/jspf/meta.jspf" %>
 		<link href="style/index.css" rel="stylesheet">
-		<title>Projet</title>
+		<title>Les objets sont nos amis</title>
 	</head>
 	
 	<body>
-<%@ include file="/WEB-INF/jspf/header.html" %>
-
-		<h2>Eni-Enchères</h2>
+<%@ include file="/WEB-INF/jspf/header.jspf"%>
 		
 		<form>
 			<!--label utilisateur + input="txt" -->
@@ -48,6 +46,6 @@
 			</div>
 		</form>
 
-<%@ include file="/WEB-INF/jspf/footer.html" %>
+<%@ include file="/WEB-INF/jspf/footer.jspf" %>
 	</body>
 </html>
