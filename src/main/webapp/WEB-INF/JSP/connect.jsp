@@ -10,45 +10,48 @@
 
 <body>
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
-	<form action="LoginServlet" method="post">
-		<!--label utilisateur + input="txt" -->
-		<div>
-			<label for="username">Utilisateur :</label> <input type="text"
-				id="username" name="username" required>
-		</div>
+	<div class="container">
+		<form action="LoginServlet" method="post">
+			<!--label utilisateur + input="txt" -->
+			<div>
+				<label for="username">Utilisateur :</label> <input type="text"
+					id="username" name="username" required>
+			</div>
 
-		<!--label password + input="txt" -->
-		<div>
-			<label for="password">Mot de passe :</label> <input type="text"
-				id="password" name="password" required>
-		</div>
+			<!--label password + input="txt" -->
+			<div>
+				<label for="password">Mot de passe :</label> <input type="text"
+					id="password" name="password" required>
+			</div>
 
-		<!--label "se souvenir de moi" + input="Checkbox" -->
-		<div class="remember-me">
-			<input type="checkbox" id="remember" name="remember"> <label
-				for="remember">Se souvenir de moi</label>
-		</div>
+			<!--label "se souvenir de moi" + input="Checkbox" -->
+			<div class="remember-me">
+				<input type="checkbox" id="remember" name="remember"> <label
+					for="remember">Se souvenir de moi</label>
+			</div>
 
-		<!--Bouton connexion -->
-		<div class="button-container">
-			<input type="submit" value="Connexion">
-		</div>
+			<!--Bouton connexion -->
+			<div class="button-container">
+				<input type="submit" value="Connexion">
+			</div>
 
-		<!--lien "mot de passe oublié" -->
-		<div class="forgot-password">
-			<a href="#">Mot de passe oublié</a>
-		</div>
+			<!--lien "mot de passe oublié" -->
+			<div class="forgot-password">
+				<a href="#">Mot de passe oublié</a>
+			</div>
 
-		<!--bouton "" -->
-		<div class="create-account-button">
-			<a href="#"><button class="create-account-button">Créer
-					un compte</button></a>
-		</div>
-		
-		<div>
-			<label>${msgErreur}</label>
-		</div>
-	</form>
+			<!--bouton "" -->
+			<div class="create-account-button">
+				<a href="#"><button class="create-account-button">Créer
+						un compte</button></a>
+			</div>
+
+			<div>
+				<label>${msgErreur}</label>
+			</div>
+		</form>
+
+	</div>
 	<%@ include file="/WEB-INF/jspf/footer.jspf"%>
 </body>
 </html>

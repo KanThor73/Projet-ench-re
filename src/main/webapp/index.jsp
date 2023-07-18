@@ -22,7 +22,6 @@
 		<input type="text" name="recherche"
 			placeholder="Le nom de l'article contient">
 	</div>
-
 	<div class="categories">
 		<label for="categorie">Catégorie :</label> <select id="categorie"
 			name="categorie">
@@ -32,11 +31,9 @@
 			<option value="Sport&Loisir">Sport&Loisir</option>
 		</select>
 	</div>
-
 	<div class="search-button">
 		<button>Rechercher</button>
 	</div>
-
 	<div class="encadrer">
 		<img src="#" alt="img1">
 		<div class="infos">
@@ -46,7 +43,6 @@
 			<div class="vendeur">Vendeur : JOJO 44</div>
 		</div>
 	</div>
-
 	<div class="encadrer">
 		<img src="#" alt="image2">
 		<div class="infos">

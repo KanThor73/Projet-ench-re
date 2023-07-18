@@ -1,23 +1,19 @@
 @charset "UTF-8";
 
+/* Header */
 
 header {
-	position: absolute;
-	top: 0;
-	left: 0;
+	display: flex;
 	margin: 20px;
-	
-	
+	justify-content: space-between;
+	align-items: center;
 }
 
 header a{
 	font-size: 2rem ;
-	position: relative ;
 	border: 3px red;
-	left: 5px;
 	color:rebeccapurple;
 	margin: 0px ;
 	padding: 0px 10px 0px 10px;
 	text-decoration: none;
-	
 }
