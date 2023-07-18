@@ -10,10 +10,6 @@
 	<body>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
 	
-		<div class="login">
-			<a href="<%=request.getContextPath()%>/Connect">S'inscrire - Se connecter</a>
-		</div>
-	
 		<h2>Liste des enchères</h2>
 	
 		<div class="filters">
