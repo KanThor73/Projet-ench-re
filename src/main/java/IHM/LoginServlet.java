@@ -26,25 +26,25 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		session.setAttribute("userOk",false); // a placer dans la page d'acceuil
 
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
 		User user = new User(login, mdps); // a tester car comparaison uniquement de ces deux champs pour la connexion
-		System.out.println(user.toString());
 		List<User> users = userManag.selectAll();
-		request.setAttribute("msgErreur", " ");
+//		request.setAttribute("msgErreur", " ");
 
 		// change l'attribut de session en true si l'identifiant fait parti de la bdd
 
 		if (mdps == null || mdps.isEmpty() == true || login == null || login.isEmpty() == true) {
-			request.setAttribute("msgErreur", "Les deux champs doivent obliogatoirement etre renseignes");
+			request.setAttribute("msgErreur", "Les deux champs doivent obligatoirement etre renseignes");
 		} else {
 			for (User userCheck : users) {
 				if (user.getPseudo().equals(userCheck.getPseudo())
 						&& user.getMotDePasse().equals(userCheck.getMotDePasse())) {
 					session.setAttribute("userOk", true);
 					int userId = userCheck.getNoUser();
-					System.out.println("Utilisateur" + userId + "connecte");
+					System.out.println("Utilisateur : " + userId + " connecte");
 				} else {
 					request.setAttribute("msgErreur","Utilisateur non valide, veuillez vous creer un profil de connexion");
 					System.out.println("Aucune correspondance avec la BDD");
