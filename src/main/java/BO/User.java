@@ -48,6 +48,12 @@ public class User {
         setAdministrateur(administrateur == 1); // convert l'entier en booléen
     }
     
+    // constructeur pour le control du login
+    public User(String pseudo, String motDePasse) {
+        this.pseudo = pseudo;
+        this.motDePasse = motDePasse;
+    }
+    
     /*
      * Accesseurs
      * Il n'y a un setter que lorsque la donnée est modifiable après la création de l'objet
