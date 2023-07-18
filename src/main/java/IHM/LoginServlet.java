@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 		String login = request.getParameter("username");
 		User user = new User(login, mdps); // a tester car comparaison uniquement de ces deux champs pour la connexion
 		List<User> users = userManag.selectAll();
-//		request.setAttribute("msgErreur", " ");
+		//request.setAttribute("msgErreur", " ");
 
 		// change l'attribut de session en true si l'identifiant fait parti de la bdd
 

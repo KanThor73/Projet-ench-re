@@ -11,6 +11,12 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 	
+	<!-- Index -->
+	<servlet>
+		<servlet-name>Index</servlet-name>
+		<jsp-file>/index.jsp</jsp-file>
+	</servlet>
+	
 	<!-- Se connecter -->
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
