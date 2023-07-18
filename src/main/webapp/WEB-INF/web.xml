@@ -24,4 +24,18 @@
 		<servlet-name>Connect</servlet-name>
 		<url-pattern>/Connect</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Créer un compte -->
+	<servlet>
+		<servlet-name>NewAccount</servlet-name>
+		<servlet-class>IHM.NewAccountServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>NewAccountJSP</servlet-name>
+		<jsp-file>/WEB-INF/JSP/newAccount.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewAccount</servlet-name>
+		<url-pattern>/NewAccount</url-pattern>
+	</servlet-mapping>
 </web-app>
