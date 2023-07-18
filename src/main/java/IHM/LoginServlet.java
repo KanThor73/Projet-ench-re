@@ -41,8 +41,9 @@ public class LoginServlet extends HttpServlet {
 				if (user.getPseudo().equals(userCheck.getPseudo())
 						&& user.getMotDePasse().equals(userCheck.getMotDePasse())) {
 					session.setAttribute("isConnected", true);
-					request.setAttribute("pseudo", "Connecte en tant que " + login);
+					session.setAttribute("pseudo",login);
 					int userId = userCheck.getNoUser();
+					
 					System.out.println("Utilisateur : " + userId + " connecte");
 				} else {
 					request.setAttribute("msgErreur","Utilisateur non valide, veuillez vous creer un profil de connexion");

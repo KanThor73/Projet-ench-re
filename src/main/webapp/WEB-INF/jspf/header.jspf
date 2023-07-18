@@ -1,11 +1,10 @@
 		<header>
 		<a href="<%=request.getContextPath()%>">ENI-Enchères</a>
-		<label>${pseudo}</label>
 		<%
 		if (request.getSession().getAttribute("isConnected") != null) {
 			
 			if (request.getSession().getAttribute("isConnected").toString() == "true") {
-			%>Se déconnecter<%
+			%><label>${pseudo}</label>Se déconnecter<%
 			} else {
 			%><a href="<%=request.getContextPath()%>/Connect">S'inscrire - Se connecter</a><%
 			}
