@@ -17,4 +17,12 @@
   	<servlet-name>FirstServlet</servlet-name>
   	<url-pattern>/FirstServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Connect</servlet-name>
+    <jsp-file>/WEB-INF/JSP/connect.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Connect</servlet-name>
+    <url-pattern>/Connect</url-pattern>
+</servlet-mapping>
 </web-app>
