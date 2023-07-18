@@ -10,7 +10,7 @@
 <body>
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<div class="login">
-		<a href="#">S'inscrire - Se connecter</a>
+		<a href="LoginServlet">S'inscrire - Se connecter</a>
 	</div>
 
 	<h2>Liste des enchères</h2>
