@@ -80,14 +80,13 @@ public class UserManager {
 		}
 	}
 
+	public static String test() {
+		DAO<User> userDAO = Factory.getUserDAO();
+		List<User> userList = userDAO.selectAll();
+		for (User user : userList) {
+			return user.toString();
+		}
+		return "";
+	}
 
 }
-
-//	public static String test() {
-//		DAO<User> userDAO = Factory.getUserDAO();
-//		List<User> userList = userDAO.selectAll();
-//		for (User user : userList) {
-//			return user.toString();
-//		}
-//		return "";
-//	}
