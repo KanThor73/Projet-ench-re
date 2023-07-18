@@ -2,11 +2,18 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+<%@ include file="/WEB-INF/jspf/meta.jspf"%>
+		<link href="/style/base.css" rel="stylesheet">
+		<title>Créer un compte</title>
+	</head>
+	<body>
+<%@ include file="/WEB-INF/jspf/header.jspf"%>
+		
+		<h2>Mon profil</h2>
+		
+		<form action="<%=request.getContextPath()%>" method="post">
+			
+		</form>
+	</body>
 </html>

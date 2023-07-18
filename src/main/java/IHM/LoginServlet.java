@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 
 		// change l'attribut de session en true si l'identifiant fait parti de la bdd
 
-		if (mdps == null || mdps.isEmpty() == true || login == null || login.isEmpty() == true) {
+		if (mdps == null || mdps.isEmpty() || login == null || login.isEmpty()) {
 			request.setAttribute("msgErreur", "Les deux champs doivent obligatoirement etre renseignes");
 		} else {
 			for (User userCheck : users) {

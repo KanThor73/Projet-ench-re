@@ -13,7 +13,7 @@
 	
 	<!-- Se connecter -->
 	<servlet>
-		<servlet-name>Connect</servlet-name>
+		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>IHM.LoginServlet</servlet-class>
 	</servlet>
 	<servlet>
@@ -21,7 +21,7 @@
 		<jsp-file>/WEB-INF/JSP/connect.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Connect</servlet-name>
+		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/Connect</url-pattern>
 	</servlet-mapping>
 	
@@ -35,7 +35,7 @@
 		<jsp-file>/WEB-INF/JSP/newAccount.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>NewAccount</servlet-name>
+		<servlet-name>NewAccountJSP</servlet-name>
 		<url-pattern>/NewAccount</url-pattern>
 	</servlet-mapping>
 </web-app>
