@@ -2,15 +2,16 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<link href="style/styleAccueil.css" rel="stylesheet">
+	<head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
-<title>Accueil</title>
-</head>
+		<link href="style/styleAccueil.css" rel="stylesheet">
+		<title>Les objets sont nos amis</title>
+	</head>
 <body>
-	<%@ include file="/WEB-INF/jspf/header.jspf"%>
+<%@ include file="/WEB-INF/jspf/header.jspf"%>
+
 	<div class="login">
-		<a href="LoginServlet">S'inscrire - Se connecter</a>
+		<a href="/Connect">S'inscrire - Se connecter</a>
 	</div>
 
 	<h2>Liste des enchères</h2>
