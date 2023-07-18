@@ -21,9 +21,7 @@ public class UserManager {
 	public static UserManager getInstanceOf() {
 
 		if (instance == null) {
-
 			instance = new UserManager();
-
 		}
 		return instance;
 	}
@@ -76,7 +74,6 @@ public class UserManager {
 			
 		}else if (user.getMotDePasse() == null | user.getMotDePasse().isEmpty()) {
 			throw new BLLException("Le mot de passe doit obligatoirement etre renseigne");
-
 		}
 	}
 
