@@ -29,7 +29,7 @@ body {
 
         .search-bar {
             margin-top: 10px;
-            
+             border-radius: 10px; /* Arrondir les bords */
             overflow: hidden; /* Masquer le dépassement du contenu */
         }
 
@@ -40,7 +40,7 @@ body {
             padding: 5px 10px; /* Ajouter un espacement intérieur */
             border: none; /* Supprimer la bordure */
             background-color: #f0f0f0; /* Ajouter une couleur de fond */
-            border-radius: 10px; /* Arrondir les bords */
+           
         }
 
         .search-button-container {

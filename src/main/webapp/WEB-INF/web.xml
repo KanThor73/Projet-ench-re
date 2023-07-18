@@ -9,7 +9,6 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  
   <servlet>
   	<servlet-name>FirstServlet</servlet-name>
   	<servlet-class>IHM.FirstServlet</servlet-class>
