@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/JSP/connect.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 		}
 
 		System.out.println("Le statut de connexion est : " + session.getAttribute("isConnected"));
-		request.getRequestDispatcher("index.jsp").forward(request, response); // Renseigner la jsp acceuil quand elle
+		request.getRequestDispatcher("/WEB-INF/JSP/connect.jsp").forward(request, response); // Renseigner la jsp acceuil quand elle
 																				// sera cree
 	}
 }
