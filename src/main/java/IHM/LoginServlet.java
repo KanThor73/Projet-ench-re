@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("userOk",false); // a placer dans la page d'acceuil
+		session.setAttribute("isConnected",false); // a placer dans la page d'acceuil
 
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 			for (User userCheck : users) {
 				if (user.getPseudo().equals(userCheck.getPseudo())
 						&& user.getMotDePasse().equals(userCheck.getMotDePasse())) {
-					session.setAttribute("userOk", true);
+					session.setAttribute("isConnected", true);
 					int userId = userCheck.getNoUser();
 					System.out.println("Utilisateur : " + userId + " connecte");
 				} else {
@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 
-		System.out.println("Le statut de connexion est : " + session.getAttribute("userOk"));
+		System.out.println("Le statut de connexion est : " + session.getAttribute("isConnected"));
 		request.getRequestDispatcher("index.jsp").forward(request, response); // Renseigner la jsp acceuil quand elle
 																				// sera cree
 	}

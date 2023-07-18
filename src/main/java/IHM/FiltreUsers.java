@@ -30,7 +30,7 @@ public class FiltreUsers implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 
-		if (String.valueOf(session.getAttribute("userOk")) == "false") {
+		if (String.valueOf(session.getAttribute("isConnected")) == "false") {
 			httpRequest.getRequestDispatcher(httpRequest.getRequestURL().toString()).forward(httpRequest,httpResponse);
 		}else {			
 			chain.doFilter(httpRequest, httpResponse);

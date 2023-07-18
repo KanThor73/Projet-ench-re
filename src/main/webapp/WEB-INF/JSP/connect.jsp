@@ -10,8 +10,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
-
-	<form>
+	<form action="LoginServlet" method="post">
 		<!--label utilisateur + input="txt" -->
 		<div>
 			<label for="username">Utilisateur :</label> <input type="text"
@@ -45,8 +44,11 @@
 			<a href="#"><button class="create-account-button">Créer
 					un compte</button></a>
 		</div>
+		
+		<div>
+			<label>${msgErreur}</label>
+		</div>
 	</form>
-
 	<%@ include file="/WEB-INF/jspf/footer.jspf"%>
 </body>
 </html>

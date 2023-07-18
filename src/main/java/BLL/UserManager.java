@@ -21,9 +21,7 @@ public class UserManager {
 	public static UserManager getInstanceOf() {
 
 		if (instance == null) {
-
 			instance = new UserManager();
-
 		}
 		return instance;
 	}
