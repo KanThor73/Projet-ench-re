@@ -31,6 +31,7 @@ public class FiltreUsers implements Filter {
 		HttpSession session = httpRequest.getSession();
 
 		if (String.valueOf(session.getAttribute("isConnected")) == "false") {
+			// laisse l'utilisateur sur la meme page s'il n''est pas connecte
 			httpRequest.getRequestDispatcher(httpRequest.getRequestURL().toString()).forward(httpRequest,httpResponse);
 		}else {			
 			chain.doFilter(httpRequest, httpResponse);

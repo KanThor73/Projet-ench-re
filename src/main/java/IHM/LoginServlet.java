@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 				if (user.getPseudo().equals(userCheck.getPseudo())
 						&& user.getMotDePasse().equals(userCheck.getMotDePasse())) {
 					session.setAttribute("isConnected", true);
+					request.setAttribute("pseudo", "Connecte en tant que " + login);
 					int userId = userCheck.getNoUser();
 					System.out.println("Utilisateur : " + userId + " connecte");
 				} else {
