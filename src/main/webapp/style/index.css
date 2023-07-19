@@ -2,10 +2,10 @@
 
 body {
 	position: relative;
-	padding-top: 60px; /* Ajuster l'espace pour éviter de cacher le lien */
+	padding-top: 6rem; /* Ajuster l'espace pour éviter de cacher le lien */
 	min-height: 100vh;
 	margin: 0;
-	padding: 20px;
+	padding: 2rem;
 }
 
 h2 {
@@ -15,12 +15,12 @@ h2 {
 
 .login {
 	position: absolute;
-	top: 20px;
-	right: 20px;
+	top: 2rem;
+	right: 2rem;
 }
 
 .filters {
-	margin-top: 20px;
+	margin-top: 2rem;
 	font-weight: bold;
 }
 
@@ -29,16 +29,16 @@ h2 {
 }
 
 .search-bar {
-	margin-top: 10px;
-	border-radius: 10px; /* Arrondir les bords */
+	margin-top: 1rem;
+	border-radius: 1rem; /* Arrondir les bords */
 	overflow: hidden; /* Masquer le dépassement du contenu */
 }
 
 .search-bar input {
 	width: 100%; /* Ajuster la largeur */
-	height: 50px; /* Ajuster la hauteur */
-	font-size: 18px; /* Ajuster la taille de la police */
-	padding: 5px 10px; /* Ajouter un espacement intérieur */
+	height: 5rem; /* Ajuster la hauteur */
+	font-size: 1,8rem; /* Ajuster la taille de la police */
+	padding: 0.5rem 1rem; /* Ajouter un espacement intérieur */
 	border: none; /* Supprimer la bordure */
 	background-color: #f0f0f0; /* Ajouter une couleur de fond */
 }
@@ -46,12 +46,12 @@ h2 {
 .search-button-container {
 	display: flex;
 	justify-content: center; /* Centrer horizontalement */
-	margin-top: 20px;
+	margin-top: 2rem;
 }
 
 .search-button {
-	font-size: 20px; /* Ajuster la taille de la police */
-	padding: 10px 20px; /* Ajouter un espacement intérieur */
+	font-size: 2rem; /* Ajuster la taille de la police */
+	padding: 1rem 2rem; /* Ajouter un espacement intérieur */
 }
 
 .encadrer-container {
@@ -65,19 +65,19 @@ h2 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 2rem;
 	width: 48%; /* Ajuster la largeur des encadrés */
-	padding: 10px;
+	padding: 1rem;
 	border: 1px solid black;
-	border-radius: 10px;
+	border-radius: 1rem;
 }
 
 .encadrer img {
-	width: 100px;
-	height: 100px;
-	margin-bottom: 10px;
-	border: 2px solid black;
-	border-radius: 10px;
+	width: 10rem;
+	height: 10rem;
+	margin-bottom: 1rem;
+	border: 0.2rem solid black;
+	border-radius: 1rem;
 }
 
 .encadrer h4 {
@@ -85,5 +85,5 @@ h2 {
 }
 
 .encadrer .prix, .encadrer .enchere, .encadrer .vendeur {
-	margin-top: 5px;
+	margin-top: 0.5rem;
 }
