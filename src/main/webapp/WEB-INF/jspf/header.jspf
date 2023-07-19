@@ -5,6 +5,6 @@
 			request.getSession().getAttribute("isConnected").toString() == "false") {
 			%><a href="<%=request.getContextPath()%>/Connect">S'inscrire - Se connecter</a><%
 		} else {
-			%><label>${pseudo}</label> Se déconnecter<%
+			%><label>${pseudo}</label> <a href="DisconnectServlet">Se déconnecter</a><%
 		}%>
 		</header>

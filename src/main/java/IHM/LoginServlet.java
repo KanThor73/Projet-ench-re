@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 		if (UserManag.checkMdp(login, mdps)) {
 			session.setAttribute("isConnected", true);
 			request.setAttribute("pseudo", "Connecte en tant que " + login);
+			getServletContext().getNamedDispatcher("Index").forward(request, response);
 			int userId = user.getNoUser();
 			System.out.println("Utilisateur : " + userId + " connecte");
 		} else {
