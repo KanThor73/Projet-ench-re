@@ -44,4 +44,15 @@
 		<servlet-name>NewAccountJSP</servlet-name>
 		<url-pattern>/NewAccount</url-pattern>
 	</servlet-mapping>
+	
+	<!-- affiche utilisateur -->
+	
+	<servlet>
+		<servlet-name>SeeUser</servlet-name>
+		<jsp-file>/WEB-INF/JSP/SeeUser.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SeeUser</servlet-name>
+		<url-pattern>/SeeUser</url-pattern>
+	</servlet-mapping>
 </web-app>
