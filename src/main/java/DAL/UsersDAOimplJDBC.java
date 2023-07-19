@@ -160,7 +160,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 	public boolean checkPseudo(String pseudo) {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMAIL);
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKPSEUDO);
 			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			

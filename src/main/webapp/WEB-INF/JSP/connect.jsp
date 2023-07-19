@@ -14,12 +14,12 @@
 				<form action="<%=request.getContextPath()%>/Connexion" method="post">
 					<!--label utilisateur + input="txt" -->
 					<div class="user">
-						<label for="username">Utilisateur :</label> <input type="text"
-							id="username" name="username" required />
+						<label for="username">Utilisateur :</label>
+						<input type="text" id="username" name="username" required />
 					</div>
 					<div class="password">
-						<label for="password">Mot de passe :</label> <input type="text"
-							id="password" name="password" required />
+						<label for="password">Mot de passe :</label>
+						<input type="password" id="password" name="password" required />
 					</div>
 	
 					<div class="cnx">
@@ -28,8 +28,8 @@
 						</div>
 						<div class="forgot-password">
 							<div class="remember-me">
-								<input type="checkbox" id="remember" name="remember" /> <label
-									for="remember">Se souvenir de moi</label>
+								<input type="checkbox" id="remember" name="remember" />
+								<label for="remember">Se souvenir de moi</label>
 							</div>
 							<a href="#">Mot de passe oublié</a>
 						</div>

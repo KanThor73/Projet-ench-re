@@ -14,9 +14,6 @@ public class User {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
-	
-    public User() {}
-    
 
 	// Constructeur sans noUser ni credit, utilisé lorsque créé par l'utilisateur
     public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal,
@@ -49,12 +46,6 @@ public class User {
         setMotDePasse(motDePasse);
         this.credit = credit;
         setAdministrateur(administrateur == 1); // convert l'entier en booléen
-    }
-    
-    // constructeur pour le control du login
-    public User(String pseudo, String motDePasse) {
-        this.pseudo = pseudo;
-        this.motDePasse = motDePasse;
     }
     
     /*
