@@ -17,9 +17,6 @@
 					<label for="username">Utilisateur :</label> <input type="text"
 						id="username" name="username" required />
 				</div>
-
-				<<<<<<< HEAD
-				<!--label password + input="txt" -->
 				<div class="password">
 					<label for="password">Mot de passe :</label> <input type="text"
 						id="password" name="password" required />

@@ -30,12 +30,12 @@ input[type="submit"] {
 }
 
 label {
-  font-size: 1rem;
-  margin: 1rem;
+  font-size: 2rem;
+  margin: 2rem;
 }
 
 input {
-  font-size: 1rem;
+  font-size: 2rem;
 }
 
 .user {
@@ -45,8 +45,8 @@ input {
 }
 
 .user input {
-  height: 1.5rem;
-  width: 12rem;
+  height: 3rem;
+  width: 24rem;
 }
 
 .password {
@@ -55,14 +55,14 @@ input {
   align-items: center;
 }
 .password input {
-  width: 12rem;
+  width: 24rem;
 }
 
 .cnx {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem 0rem;
+  margin: 4rem 0rem;
 }
 
 .remember-me {
@@ -70,18 +70,18 @@ input {
 }
 
 .remember-me label {
-  margin: 1rem 0.2rem;
+  margin: 2rem 0.4rem;
 }
 
 .forgot-password {
   display: flex;
   flex-direction: column;
   align-items: end;
-  margin-left: 2rem;
+  margin-left: 4rem;
 }
 
 a {
-  font-size: 1rem;
+  font-size: 2rem;
 }
 
 .button-container input {
@@ -90,5 +90,5 @@ a {
 }
 
 .create-account-button a {
-  font-size: 1.5rem;
+  font-size: 3rem;
 }
