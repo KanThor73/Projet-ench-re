@@ -9,10 +9,8 @@
 	</head>
 	<body>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
-		
 		<h2>Créer un compte</h2>
-		
-		<form action="<%=request.getContextPath()%>/NewAccount" method="post">
+		<form action="<%=request.getContextPath()%>/NewAccountServlet" method="post">
 			<div id="formBody">
 				<div class="formFragment">
 					<label for="pseudo">Pseudo : </label>
@@ -55,7 +53,6 @@
 					<input type="password" name="mdp2" id="mdp2" size="40" required>
 				</div>
 			</div> <!-- formBody / Corps formulaire -->
-			
 			<div id="formFooter">
 				<input type="submit" value="Créer">
 				<a href="<%=request.getContextPath()%>">Annuler</a>

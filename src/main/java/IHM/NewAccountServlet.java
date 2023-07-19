@@ -1,7 +1,9 @@
 package IHM;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,7 @@ import BLL.UserManager;
 import BO.User;
 import Exceptions.BLLException;
 
+@WebServlet("/NewAccountServlet")
 public class NewAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserManager UserMgr = UserManager.getInstanceOf();
@@ -35,6 +38,8 @@ public class NewAccountServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String mdp = request.getParameter("mdp");
 		String mdp2 = request.getParameter("mdp2");
+		
+		System.out.println(mdp + mdp2);
 		
 		// Vérification des paramètres suivant les conditions de la base de données
 		StringBuilder errorMsg = new StringBuilder("");
@@ -63,7 +68,7 @@ public class NewAccountServlet extends HttpServlet {
 			errorMsg.append("Ville incorrect<br>");
 		}
 		if (mdp == null || mdp.isEmpty() || mdp.length() > 40 ||
-			mdp2 == null || mdp2.isEmpty() || mdp2.length() > 40 ||
+			mdp2 == null || mdp2.isEmpty() || mdp2.length() > 40 || //pas sur d'avoir besoin de celui ci comme les deux doivent etre identique?
 			mdp != mdp2) { // si la confirmation est incorrecte
 			errorMsg.append("Mot de passe incorrect<br>");
 		}
@@ -77,7 +82,10 @@ public class NewAccountServlet extends HttpServlet {
 		}
 		
 		HttpSession session = request.getSession();
-		if (errorMsg.isEmpty()) { // s'il n'y a aucune erreur
+		
+//		if (errorMsg.isEmpty()) {  n'accepte pas les SB
+		
+		if (errorMsg.length() == 0) { // s'il n'y a aucune erreur
 			User newUser = new User(pseudo, nom, prenom, email, telNum, rue, codePoste, ville, mdp, false); // pas administrateur
 			
 			try {
@@ -102,5 +110,6 @@ public class NewAccountServlet extends HttpServlet {
 			session.setAttribute("msgErreur", errorMsg.toString()); // envoi du message d'erreur
 			request.getRequestDispatcher("/WEB-INF/JSP/newAccount.jsp").forward(request, response);
 		}
+		request.getRequestDispatcher("/WEB-INF/JSP/newAccount.jsp").forward(request, response);
 	}
 }
