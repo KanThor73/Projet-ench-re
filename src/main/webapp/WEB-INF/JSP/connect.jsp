@@ -37,7 +37,7 @@
 			</form>
 			<div class="create-account-button">
 				<button>
-					<a>Créer un compte</a>
+					<a href="NewAccountServlet">Créer un compte</a>
 				</button>
 			</div>
 			<div>

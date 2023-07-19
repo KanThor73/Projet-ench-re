@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+  body {
+            font-family: Arial, sans-serif;
+        }
+        
+        h3 {
+            text-align: center;
+            color: rebeccapurple;
+        }
+        
+        .user-info {
+            max-width: 60rem;
+            margin: 0 auto;
+            padding: 2rem;
+            font-size: 1rem;
+           
+        }
+        
+        .user-info label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+ 		label{
+			margin: 0;
+            border: 1px solid rgb(0, 0, 2);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            display: flex;
+		 }
+  		
+  		

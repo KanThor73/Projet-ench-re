@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
 
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
+		System.out.println("mot de passe : "+ mdps + "login : " + login);
 		User user = new User(login, mdps); // a tester car comparaison uniquement de ces deux champs pour la connexion
 		
 		if (UserManag.checkMdp(login, mdps)) {

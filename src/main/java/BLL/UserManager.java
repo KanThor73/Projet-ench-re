@@ -40,6 +40,13 @@ public class UserManager {
 	public List<User> selectAll(){
 		return userDAO.selectAll();
 	}
+
+	//recuperer un utilisateur par son ID
+	
+	public User selectByID(int id){
+		return userDAO.selectByID(id);
+	}
+	
 	
 	/*
 	 * Controls

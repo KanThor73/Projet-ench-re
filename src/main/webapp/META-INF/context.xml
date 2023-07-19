@@ -9,9 +9,9 @@
 		driverClassName="com.mysql.jdbc.Driver"
 		type="javax.sql.DataSource"
 
-		url="jdbc:mysql://localhost:3306/Encheres"
-		username="java"
-		password="wow java"
+		url="jdbc:mysql://localhost:3306/trocencheres"
+		username="root"
+		password="828588"
 		
 		maxTotal="100"
 		maxIdle="30"
