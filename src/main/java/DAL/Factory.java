@@ -1,10 +1,8 @@
 package DAL;
 
-import BO.User;
-
 public class Factory {
 
-	public static DAO<User> getUserDAO(){
+	public static UserDAO getUserDAO(){
 		return new UsersDAOimplJDBC();
 	}
 }

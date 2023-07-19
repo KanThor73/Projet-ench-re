@@ -8,7 +8,7 @@ import java.util.List;
 
 import BO.User;
 
-public class UsersDAOimplJDBC implements DAO<User> {
+public class UsersDAOimplJDBC implements UserDAO {
 	
 	// declaration des constantes pour les requetes SQL
 
@@ -16,7 +16,11 @@ public class UsersDAOimplJDBC implements DAO<User> {
 	public static final String USER_SQL_UPDATE = "UPDATE Users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,code_postal = ? ,ville = ? ,mot_de_passe = ? ,credit = ? ,administrateur = ? WHERE no_user = ?";
 	public static final String USER_SQL_DELETE = "DELETE FROM Users WHERE no_user = ?";
 	public static final String USER_SQL_SELECTALL = "SELECT * FROM Users";
-	public static final String USER_SQL_SELECTBYID = "SELECT Users FROM ? where no_user = ? ";
+	public static final String USER_SQL_SELECTBYID = "SELECT Users FROM ? WHERE no_user = ? ";
+	
+	public static final String USER_SQL_CHECKPSEUDO = "SELECT COUNT(*) AS cnt FROM Users WHERE pseudo = ?";
+	public static final String USER_SQL_CHECKMAIL = "SELECT COUNT(*) AS cnt FROM Users WHERE email = ?";
+	public static final String USER_SQL_CHECKMDP = "SELECT COUNT(*) AS cnt FROM Users WHERE pseudo = ? AND mot_de_passe = ?";
 	
 	//Selectionner tout les utilisateurs
 	@Override
@@ -115,7 +119,6 @@ public class UsersDAOimplJDBC implements DAO<User> {
 	}
 	
 	//Supprimer un utilisateur
-
 	@Override
 	public void delete(int id) {
 
@@ -127,6 +130,70 @@ public class UsersDAOimplJDBC implements DAO<User> {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	// Vérifie la disponibilité d'un pseudo et d'un email
+		@Override
+		public boolean checkPseudo(String pseudo) {
+			try (Connection cnx = ConnectionProvider.getConnection()) {
+
+				PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMAIL);
+				stmt.setString(1, pseudo);
+				ResultSet rs = stmt.executeQuery();
+				
+				if (rs.next()) {
+					return (rs.getInt("cnt") == 1); // si le mail a été trouvé
+				} else {
+					return false;
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+	
+	// Vérifie la disponibilité d'un pseudo et d'un email
+	@Override
+	public boolean checkEmail(String email) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMAIL);
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				return (rs.getInt("cnt") == 1); // si le mail a été trouvé
+			} else {
+				return false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	// Vérifie la véracité du mdp selon le pseudo
+	@Override
+	public boolean checkMdp(String pseudo, String mdp) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMDP);
+			stmt.setString(1, pseudo);
+			stmt.setString(2, mdp);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				return (rs.getInt("cnt") == 1); // si le couple a été trouvé
+			} else {
+				return false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 }
