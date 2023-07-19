@@ -10,25 +10,25 @@
         }
         
         .user-info {
-            max-width: 600px;
+            max-width: 60rem;
             margin: 0 auto;
-            padding: 20px;
-            font-size: 10px;
+            padding: 2rem;
+            font-size: 1rem;
            
         }
         
         .user-info label {
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
         }
         
  		label{
 			margin: 0;
             border: 1px solid rgb(0, 0, 2);
-            padding: 5px;
-            border-radius: 5px;
-            margin-top: 20px;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
             display: flex;
 		 }
   		
