@@ -11,12 +11,11 @@ import BO.User;
 
 public class SeeUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserManager userManager = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idUser = Integer.parseInt(request.getParameter("id"));
 		
-		System.out.println(idUser);
-		UserManager userManager = UserManager.getInstanceOf();
 		User user = userManager.selectByID(idUser);
 		
 		request.setAttribute("pseudo", user.getPseudo());

@@ -78,7 +78,7 @@ public class UserManager {
 		return userDAO.checkMdp(pseudo, mdp);
 	}
 	
-	private boolean checkPseudo(String pseudo) { // le pseudo est-il présent dans la bdd ?
+	public boolean checkPseudo(String pseudo) { // le pseudo est-il présent dans la bdd ?
 		return userDAO.checkPseudo(pseudo);
 	}
 	

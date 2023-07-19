@@ -33,8 +33,8 @@ public class NewAccountServlet extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String telNum = request.getParameter("telephone");
-		if (telNum != null && telNum.isEmpty()) {
-			telNum = null;
+		if (telNum != null && telNum.isEmpty()) { // si telNum est vide
+			telNum = null; // passage du telNum à null pour bdd
 		}
 		String rue = request.getParameter("rue");
 		String codePoste = request.getParameter("postal");
@@ -45,7 +45,7 @@ public class NewAccountServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if (!mdp.equals(mdp2)) {
-			session.setAttribute("msgErreur", "Les mots de passe ne concordent pas");
+			session.setAttribute("msgErreur", "Les mots de passe ne coïncident pas");
 			getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
 		} else {
 			
@@ -54,7 +54,7 @@ public class NewAccountServlet extends HttpServlet {
 			try {
 				userMgr.insert(newUser); // ajout de l'utilisateur
 				try {
-					int id = userMgr.getId(pseudo);
+					int id = userMgr.getId(pseudo); // récupération de l'id
 					request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
 					getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
 				} catch (DALException e) {

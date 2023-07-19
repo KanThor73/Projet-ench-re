@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe concordent
 			try {
-				int id = userMgr.getId(login);
+				int id = userMgr.getId(login); // récupération de l'id
 				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
 				getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
 			} catch (DALException e) {
@@ -41,8 +41,12 @@ public class LoginServlet extends HttpServlet {
 				getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response);
 			}
 		} else {
-			request.setAttribute("msgErreur","Utilisateur non valide, veuillez vous creer un profil de connexion");
-			getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response);
+			if (userMgr.checkPseudo(login)) { // si le login est correct
+				request.setAttribute("msgErreur","Mauvais mot de passe");
+			} else {
+				request.setAttribute("msgErreur","Utilisateur inconnu, veuillez créer un compte");
+			}
+			getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response); // retourne à la connexion
 		}
 	}
 }

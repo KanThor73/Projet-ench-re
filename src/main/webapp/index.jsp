@@ -12,7 +12,6 @@
 	</head>
 	<body>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
-	
 		<h2>Liste des enchères</h2>
 		<div class="container">
 			<h3>Filtres :</h3>

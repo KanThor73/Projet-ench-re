@@ -58,8 +58,8 @@
 				<a href="<%=request.getContextPath()%>">Annuler</a>
 			</div>
 		</form>
-		<p>
-			${msgErreur}<br>
-		</p>
+		<div class="errorBox">
+			<p>${msgErreur}</p>
+		</div>
 	</body>
 </html>
