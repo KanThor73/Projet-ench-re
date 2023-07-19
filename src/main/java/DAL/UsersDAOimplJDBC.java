@@ -83,7 +83,6 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(9, user.getMotDePasse());
 			stmt.setInt(10, user.getCredit());
 			stmt.setInt(11, user.estAdministrateur() ? 1 : 0); // convertit le booléen en entier
-			stmt.setInt(12, user.getNoUser());
 			
 			stmt.executeUpdate();
 
@@ -110,6 +109,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(9, user.getMotDePasse());
 			stmt.setInt(10, user.getCredit());
 			stmt.setInt(11, user.estAdministrateur() ? 1 : 0); // convertit le booléen en entier
+			stmt.setInt(12, user.getNoUser());
 
 			stmt.executeUpdate();
 

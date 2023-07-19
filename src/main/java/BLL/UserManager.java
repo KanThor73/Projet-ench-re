@@ -80,9 +80,6 @@ public class UserManager {
 		}else if (user.getEmail() == null | user.getEmail().isEmpty()) {
 			throw new BLLException("L'email doit obligatoirement etre renseigne");
 			
-		}else if (user.getTelephone() == null | user.getTelephone().isEmpty()) {
-			throw new BLLException("Le telephone doit obligatoirement etre renseigne");
-			
 		}else if (user.getRue() == null | user.getRue().isEmpty()) {
 			throw new BLLException("La rue doit obligatoirement etre renseignee");
 			

@@ -67,9 +67,9 @@ public class NewAccountServlet extends HttpServlet {
 		if (ville == null || ville.isEmpty() || ville.length() > 30) {
 			errorMsg.append("Ville incorrect<br>");
 		}
-		if (mdp == null || mdp.isEmpty() || mdp.length() > 40 ||
-			mdp2 == null || mdp2.isEmpty() || mdp2.length() > 40 || //pas sur d'avoir besoin de celui ci comme les deux doivent etre identique?
-			mdp != mdp2) { // si la confirmation est incorrecte
+		if (mdp == null || mdp.length() < 1 || mdp.length() > 40 ||
+			mdp2 == null || mdp2.length() < 1 || mdp2.length() > 40 || //pas sur d'avoir besoin de celui ci comme les deux doivent etre identique?
+			!mdp.toString().equals(mdp2.toString())) { // si la confirmation est incorrecte
 			errorMsg.append("Mot de passe incorrect<br>");
 		}
 		
@@ -110,6 +110,5 @@ public class NewAccountServlet extends HttpServlet {
 			session.setAttribute("msgErreur", errorMsg.toString()); // envoi du message d'erreur
 			request.getRequestDispatcher("/WEB-INF/JSP/newAccount.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("/WEB-INF/JSP/newAccount.jsp").forward(request, response);
 	}
 }
