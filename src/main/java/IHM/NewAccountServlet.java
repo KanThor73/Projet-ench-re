@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import BLL.UserManager;
 import BO.User;
 import Exceptions.BLLException;
+import Exceptions.DALException;
 
 /*
  * TODO empêcher un utilisateur connecté de venir ici
@@ -52,8 +53,14 @@ public class NewAccountServlet extends HttpServlet {
 			
 			try {
 				userMgr.insert(newUser); // ajout de l'utilisateur
-				session.setAttribute("isConnected", true); // connexion automatique
-				session.setAttribute("pseudo", pseudo);
+				try {
+					int id = userMgr.getId(pseudo);
+					request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
+					getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
+				} catch (DALException e) {
+					request.setAttribute("msgErreur","Problème d'accès aux données");
+					getServletContext().getNamedDispatcher("NewAccount").forward(request, response);
+				}
 				getServletContext().getNamedDispatcher("Index").forward(request, response); // retourne à l'accueil si ok
 			} catch (BLLException e) {
 				session.setAttribute("msgErreur", e.getSuperMessage());

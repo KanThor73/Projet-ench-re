@@ -15,7 +15,7 @@ public class ConnectionProvider {
 		Context context = new InitialContext();
 		DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");
 		cnx = dataSource.getConnection();
-		System.out.println("La connexion est " + (cnx.isClosed() ? "ferme" : "ouverte") + ".");
+		// System.out.println("La connexion est " + (cnx.isClosed() ? "ferme" : "ouverte") + ".");
 		return cnx;
 	}
 }
