@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class BLLException extends Exception{
+public class BLLException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,5 +18,9 @@ public class BLLException extends Exception{
 
 	public String getMessage() {
 		return "BLLException - " + super.getMessage();
+	}
+	
+	public String getSuperMessage() {
+		return super.getMessage();
 	}
 }

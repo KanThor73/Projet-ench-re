@@ -11,7 +11,7 @@
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<div class="sub-contain">
 		<div class="container">
-			<form action="<%=request.getContextPath()%>/Connect" method="post">
+			<form action="<%=request.getContextPath()%>/Connexion" method="post">
 				<!--label utilisateur + input="txt" -->
 				<div class="user">
 					<label for="username">Utilisateur :</label> <input type="text"
@@ -37,7 +37,7 @@
 			</form>
 			<div class="create-account-button">
 				<button>
-					<a href="NewAccountServlet">Créer un compte</a>
+					<a href="<%=request.getContextPath()%>/CreerCompte">Créer un compte</a>
 				</button>
 			</div>
 			<div>

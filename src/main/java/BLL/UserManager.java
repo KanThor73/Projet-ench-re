@@ -6,6 +6,7 @@ import BO.User;
 import DAL.UserDAO;
 import DAL.Factory;
 import Exceptions.BLLException;
+import Exceptions.DALException;
 
 public class UserManager {
 
@@ -46,7 +47,7 @@ public class UserManager {
 			throw new BLLException("email déjà utilisé");
 		}
 		
-		userDAO.insert(user); // ajoute l'utilisateur à la bdd
+		userDAO.insert(user); // ajoute l'utilisateur à la bdd TODO pas d'exception à try ?
 	}
 	
 	// modifier un utilisateur
@@ -62,6 +63,11 @@ public class UserManager {
 	// récupérer un utilisateur par son ID
 	public User selectByID(int id){
 		return userDAO.selectByID(id);
+	}
+	
+	// récupérer un ID depuis un pseudo (pour connexion par exemple)
+	public int getId(String pseudo) throws DALException {
+		return userDAO.getId(pseudo);
 	}
 	
 	/*************

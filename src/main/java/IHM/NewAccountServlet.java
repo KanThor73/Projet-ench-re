@@ -12,12 +12,15 @@ import BLL.UserManager;
 import BO.User;
 import Exceptions.BLLException;
 
+/*
+ * TODO empêcher un utilisateur connecté de venir ici
+ */
+
 public class NewAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserManager userMgr = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().removeAttribute("msgErreur"); // reset message erreur
 		getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
 	}
 
@@ -39,7 +42,6 @@ public class NewAccountServlet extends HttpServlet {
 		String mdp2 = request.getParameter("mdp2");
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute("msgErreur"); // reset
 		
 		if (!mdp.equals(mdp2)) {
 			session.setAttribute("msgErreur", "Les mots de passe ne concordent pas");
@@ -54,7 +56,7 @@ public class NewAccountServlet extends HttpServlet {
 				session.setAttribute("pseudo", pseudo);
 				getServletContext().getNamedDispatcher("Index").forward(request, response); // retourne à l'accueil si ok
 			} catch (BLLException e) {
-				session.setAttribute("msgErreur", e.getMessage()); // ajoute "BLLException - " TODO à enlever
+				session.setAttribute("msgErreur", e.getSuperMessage());
 				getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
 			}
 		}

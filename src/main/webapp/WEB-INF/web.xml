@@ -28,7 +28,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/Connect</url-pattern>
+		<url-pattern>/Connexion</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Créer un compte -->
@@ -42,17 +42,21 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>NewAccount</servlet-name>
-		<url-pattern>/NewAccount</url-pattern>
+		<url-pattern>/CreerCompte</url-pattern>
 	</servlet-mapping>
 	
 	<!-- affiche utilisateur -->
 	
 	<servlet>
 		<servlet-name>SeeUser</servlet-name>
+		<servlet-class>IHM.SeeUserServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SeeUserJSP</servlet-name>
 		<jsp-file>/WEB-INF/JSP/SeeUser.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SeeUser</servlet-name>
-		<url-pattern>/SeeUser</url-pattern>
+		<url-pattern>/Profil</url-pattern>
 	</servlet-mapping>
 </web-app>

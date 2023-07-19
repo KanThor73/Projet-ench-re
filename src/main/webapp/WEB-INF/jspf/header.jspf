@@ -1,10 +1,14 @@
+<%@ page import="BO.User"%>
+<%@ page import="BLL.UserManager"%>
 		<header>
-		<a href="<%=request.getContextPath()%>">ENI-Enchères</a>
-		<%
-		if (request.getSession().getAttribute("isConnected") == null ||
-			request.getSession().getAttribute("isConnected").toString() == "false") {
-			%><a href="<%=request.getContextPath()%>/Connect">S'inscrire - Se connecter</a><%
-		} else {
-			%><label>${pseudo}</label> Se déconnecter<%
-		}%>
+			<a href="<%=request.getContextPath()%>">ENI-Enchères</a>
+			<%
+			if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
+				%><a href="<%=request.getContextPath()%>/Connexion">S'inscrire - Se connecter</a><%
+			} else {
+				UserManager userMgr = UserManager.getInstanceOf();
+				int id = Integer.parseInt(session.getAttribute("id").toString());
+				User user = userMgr.selectByID(id);
+				%><label><%=user.getPseudo()%></label> Se déconnecter<%
+			}%>
 		</header>

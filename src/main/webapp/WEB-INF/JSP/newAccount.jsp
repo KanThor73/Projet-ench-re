@@ -10,7 +10,7 @@
 	<body>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
 		<h2>Créer un compte</h2>
-		<form action="<%=request.getContextPath()%>/NewAccountServlet" method="post">
+		<form action="<%=request.getContextPath()%>/CreerCompte" method="post">
 			<div id="formBody">
 				<div class="formFragment">
 					<label for="pseudo">Pseudo : </label>
@@ -59,8 +59,7 @@
 			</div>
 		</form>
 		<p>
-			${erreurMsg}<br>
-			${request.getSession().getAttribute("erreurMsg")}
+			${msgErreur}<br>
 		</p>
 	</body>
 </html>

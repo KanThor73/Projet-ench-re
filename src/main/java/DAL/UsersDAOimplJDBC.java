@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import BO.User;
+import Exceptions.DALException;
 
 public class UsersDAOimplJDBC implements UserDAO {
 	
@@ -18,6 +19,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 	public static final String USER_SQL_SELECTALL = "SELECT * FROM Users";
 	public static final String USER_SQL_SELECTBYID = "SELECT * FROM Users WHERE no_user = ?";
 	
+	public static final String USER_SQL_GETID = "SELECT no_user FROM Users WHERE pseudo = ?";
 	public static final String USER_SQL_CHECKPSEUDO = "SELECT COUNT(*) AS cnt FROM Users WHERE pseudo = ?";
 	public static final String USER_SQL_CHECKMAIL = "SELECT COUNT(*) AS cnt FROM Users WHERE email = ?";
 	public static final String USER_SQL_CHECKMDP = "SELECT COUNT(*) AS cnt FROM Users WHERE pseudo = ? AND mot_de_passe = ?";
@@ -133,26 +135,46 @@ public class UsersDAOimplJDBC implements UserDAO {
 		}
 	}
 	
+	// retourne l'id d'un pseudo demandé
+	@Override
+	public int getId(String pseudo) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_GETID);
+			stmt.setString(1, pseudo);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (!rs.next()) {
+				throw new DALException("utilisateur non trouvé");
+			}
+			
+			return rs.getInt("no_user"); // si le mail a été trouvé
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+	}
+	
 	// Vérifie la disponibilité d'un pseudo et d'un email
-		@Override
-		public boolean checkPseudo(String pseudo) {
-			try (Connection cnx = ConnectionProvider.getConnection()) {
+	@Override
+	public boolean checkPseudo(String pseudo) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-				PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMAIL);
-				stmt.setString(1, pseudo);
-				ResultSet rs = stmt.executeQuery();
-				
-				if (rs.next()) {
-					return (rs.getInt("cnt") == 1); // si le mail a été trouvé
-				} else {
-					return false;
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMAIL);
+			stmt.setString(1, pseudo);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				return (rs.getInt("cnt") == 1); // si le mail a été trouvé
+			} else {
 				return false;
 			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
+	}
 	
 	// Vérifie la disponibilité d'un pseudo et d'un email
 	@Override

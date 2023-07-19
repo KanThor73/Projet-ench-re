@@ -3,6 +3,7 @@ package DAL;
 import java.util.List;
 
 import BO.User;
+import Exceptions.DALException;
 
 public interface UserDAO {
 
@@ -17,6 +18,8 @@ public interface UserDAO {
 	public void insert(User t);
 	
 	// Méthodes spécifiques à User
+	
+	public int getId(String pseudo) throws DALException;
 	
 	public boolean checkPseudo(String pseudo); // vérifie la présence dans la bdd
 	public boolean checkEmail(String email); // vérifie la présence dans la bdd

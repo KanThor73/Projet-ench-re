@@ -1,20 +1,23 @@
 package IHM;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import BLL.UserManager;
-import BO.User;
+import Exceptions.DALException;
+
+/*
+ * TODO empêcher un utilisateur connecté de venir ici
+ * Il risquerait de se déconnecter en tapant des logins incorrects
+ */
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserManager UserManag = UserManager.getInstanceOf();
+	private UserManager userMgr = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -23,26 +26,23 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.setAttribute("isConnected",false); // a placer dans la page d'acceuil
 
+		// Récupération des paramètres du formulaire de connect.jsp
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
-		System.out.println("mot de passe : "+ mdps + "login : " + login);
-		User user = new User(login, mdps); // a tester car comparaison uniquement de ces deux champs pour la connexion
 		
-		if (UserManag.checkMdp(login, mdps)) {
-			session.setAttribute("isConnected", true);
-			request.setAttribute("pseudo", "Connecte en tant que " + login);
-			int userId = user.getNoUser();
-			System.out.println("Utilisateur : " + userId + " connecte");
+		if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe concordent
+			try {
+				int id = userMgr.getId(login);
+				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
+				getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
+			} catch (DALException e) {
+				request.setAttribute("msgErreur","Problème d'accès aux données");
+				getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response);
+			}
 		} else {
 			request.setAttribute("msgErreur","Utilisateur non valide, veuillez vous creer un profil de connexion");
-			System.out.println("Aucune correspondance avec la BDD");
+			getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response);
 		}
-
-		System.out.println("Le statut de connexion est : " + session.getAttribute("isConnected"));
-		getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response); // Renseigner la jsp acceuil quand elle
-																				// sera cree
 	}
 }
