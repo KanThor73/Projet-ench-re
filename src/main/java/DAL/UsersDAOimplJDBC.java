@@ -16,7 +16,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 	public static final String USER_SQL_UPDATE = "UPDATE Users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,code_postal = ? ,ville = ? ,mot_de_passe = ? ,credit = ? ,administrateur = ? WHERE no_user = ?";
 	public static final String USER_SQL_DELETE = "DELETE FROM Users WHERE no_user = ?";
 	public static final String USER_SQL_SELECTALL = "SELECT * FROM Users";
-	public static final String USER_SQL_SELECTBYID = "SELECT *  FROM Users WHERE no_user = ? ";
+	public static final String USER_SQL_SELECTBYID = "SELECT * FROM Users WHERE no_user = ?";
 	
 	public static final String USER_SQL_CHECKPSEUDO = "SELECT COUNT(*) AS cnt FROM Users WHERE pseudo = ?";
 	public static final String USER_SQL_CHECKMAIL = "SELECT COUNT(*) AS cnt FROM Users WHERE email = ?";
@@ -83,7 +83,6 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(9, user.getMotDePasse());
 			stmt.setInt(10, user.getCredit());
 			stmt.setInt(11, user.estAdministrateur() ? 1 : 0); // convertit le booléen en entier
-			stmt.setInt(12, user.getNoUser());
 			
 			stmt.executeUpdate();
 
@@ -110,6 +109,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(9, user.getMotDePasse());
 			stmt.setInt(10, user.getCredit());
 			stmt.setInt(11, user.estAdministrateur() ? 1 : 0); // convertit le booléen en entier
+			stmt.setInt(12, user.getNoUser());
 
 			stmt.executeUpdate();
 
