@@ -24,7 +24,7 @@
 							<option value="Informatique">Informatique</option>
 							<option value="Ameublement">Ameublement</option>
 							<option value="Vêtement">Vêtement</option>
-							<option value="Sport&Loisir">Sport&Loisir</option>
+							<option value="SportEtLoisir">Sport et loisir</option>
 						</select>
 					</div>
 				</div>
@@ -69,10 +69,10 @@
 							</p>
 						</div>
 						<form class="vendeur">
-							<%!
-							private int id = 1;
-							private UserManager userManager = UserManager.getInstanceOf();
-							private User user = userManager.selectByID(id);
+							<%
+								int id = 1;
+								UserManager userManager = UserManager.getInstanceOf();
+								User user = userManager.selectByID(id);
 							%>
 							<p>
 								<strong>Vendeur :</strong><a href="<%=request.getContextPath()%>/Profil?id=<%=id%>"><%=user.getPseudo()%></a>
