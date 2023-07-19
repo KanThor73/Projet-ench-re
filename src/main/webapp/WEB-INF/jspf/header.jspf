@@ -9,6 +9,6 @@
 				UserManager userMgr = UserManager.getInstanceOf();
 				int id = Integer.parseInt(session.getAttribute("id").toString());
 				User user = userMgr.selectByID(id);
-				%><label><%=user.getPseudo()%></label> Se déconnecter<%
+				%><label><%=user.getPseudo()%></label><a href="<%=request.getContextPath()%>/Deconnexion">Se déconnecter</a><%
 			}%>
 		</header>
