@@ -35,10 +35,10 @@
 						</div>
 					</div>
 				</form>
-				<div class="create-account-button">
+				<div class="button">
 					<a href="<%=request.getContextPath()%>/CreerCompte">Créer un compte</a>
 				</div>
-				<div>
+				<div class="errorBox">
 					<label>${msgErreur}</label>
 				</div>
 			</div>

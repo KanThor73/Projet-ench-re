@@ -3,3 +3,5 @@ champ affichage des erreurs
 empêcher les personnes connectées de retourner sur connexion ou créer un compte ! (seulement les JSP)
 
 pourquoi <label> dans header et pour msgErreur de connect ?
+
+définir .button et .errorBox dans base.css
