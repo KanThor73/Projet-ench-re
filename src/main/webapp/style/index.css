@@ -1,65 +1,89 @@
 @import url("base.css");
 
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	position: relative;
+	padding-top: 6rem; /* Ajuster l'espace pour éviter de cacher le lien */
+	min-height: 100vh;
+	margin: 0;
+	padding: 2rem;
 }
 
-form {
+h2 {
 	text-align: center;
+	margin-top: 0;
 }
 
-div {
-	margin-bottom: 10px;
+.login {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+}
+
+.filters {
+	margin-top: 2rem;
+	font-weight: bold;
+}
+
+.filters label {
+	display: block;
+}
+
+.search-bar {
+	margin-top: 1rem;
+	border-radius: 1rem; /* Arrondir les bords */
+	overflow: hidden; /* Masquer le dépassement du contenu */
+}
+
+.search-bar input {
+	width: 100%; /* Ajuster la largeur */
+	height: 5rem; /* Ajuster la hauteur */
+	font-size: 1,8rem; /* Ajuster la taille de la police */
+	padding: 0.5rem 1rem; /* Ajouter un espacement intérieur */
+	border: none; /* Supprimer la bordure */
+	background-color: #f0f0f0; /* Ajouter une couleur de fond */
+}
+
+.search-button-container {
 	display: flex;
-	justify-content: flex-start;
-	align-items: center;
+	justify-content: center; /* Centrer horizontalement */
+	margin-top: 2rem;
 }
 
-.remember-me {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	margin-bottom: 3px;
-	margin-right: 20px;
+.search-button {
+	font-size: 2rem; /* Ajuster la taille de la police */
+	padding: 1rem 2rem; /* Ajouter un espacement intérieur */
 }
 
-.remember-me input[type="checkbox"] {
-	margin-right: 5px;
-}
-
-.forgot-password {
-	margin-left: 155px;
-	margin-top: -1cm;
-}
-
-.create-account-button {
-	margin-top: 30px;
-	display: flex;
-	height: 100px;
-	width: 300px;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-}
-
-div.button-container {
+.encadrer-container {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
-	margin-top: -30px;
+	/* Aligner les encadrés à l'horizontale */
+	flex-wrap: wrap; /* Permettre le passage à la ligne des encadrés */
 }
 
-input[type="submit"] {
-	margin: 10px 0 0 10px;
-	height: 50px;
-	width: 100px;
+.encadrer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+	width: 48%; /* Ajuster la largeur des encadrés */
+	padding: 1rem;
+	border: 1px solid black;
+	border-radius: 1rem;
 }
 
-input[type="text"], input[type="password"] {
-	display: block;
-	margin: 0 auto;
-	align-items: center;
+.encadrer img {
+	width: 10rem;
+	height: 10rem;
+	margin-bottom: 1rem;
+	border: 0.2rem solid black;
+	border-radius: 1rem;
+}
+
+.encadrer h4 {
+	margin: 0;
+}
+
+.encadrer .prix, .encadrer .enchere, .encadrer .vendeur {
+	margin-top: 0.5rem;
 }

@@ -76,14 +76,4 @@ public class UserManager {
 			throw new BLLException("Le mot de passe doit obligatoirement etre renseigne");
 		}
 	}
-
-	public static String test() {
-		DAO<User> userDAO = Factory.getUserDAO();
-		List<User> userList = userDAO.selectAll();
-		for (User user : userList) {
-			return user.toString();
-		}
-		return "";
-	}
-
 }

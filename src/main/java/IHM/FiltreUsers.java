@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 
 @WebFilter(urlPatterns = {}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
-		DispatcherType.FORWARD, DispatcherType.ERROR })// rensigner des que les pages sont faite
+		DispatcherType.FORWARD, DispatcherType.ERROR })// renseigner des que les pages sont faite
 
 public class FiltreUsers implements Filter {
 

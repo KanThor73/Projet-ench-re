@@ -1,23 +1,29 @@
 @charset "UTF-8";
 
+/* Mise a zero des parametres pour faciliter le calcul des margin/padding  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 62.5%; /* ==> convertion direct des unites relatives 1 rem = 10px  */
+  
+}
+
+/* Header */
 
 header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 20px;
-	
-	
+	display: flex;
+	margin: 2rem;
+	justify-content: space-between;
+	align-items: center;
 }
 
 header a{
 	font-size: 2rem ;
-	position: relative ;
-	border: 3px red;
-	left: 5px;
+	border: 0.3rem red;
 	color:rebeccapurple;
 	margin: 0px ;
-	padding: 0px 10px 0px 10px;
+	padding: 0px 1rem 0px 1rem;
 	text-decoration: none;
-	
 }
