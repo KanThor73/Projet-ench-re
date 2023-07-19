@@ -36,9 +36,7 @@
 					</div>
 				</form>
 				<div class="create-account-button">
-					<button>
-						<a href="<%=request.getContextPath()%>/CreerCompte">Créer un compte</a>
-					</button>
+					<a href="<%=request.getContextPath()%>/CreerCompte">Créer un compte</a>
 				</div>
 				<div>
 					<label>${msgErreur}</label>
