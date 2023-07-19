@@ -1,89 +1,131 @@
 @import url("base.css");
 
 body {
-	position: relative;
-	padding-top: 6rem; /* Ajuster l'espace pour éviter de cacher le lien */
-	min-height: 100vh;
-	margin: 0;
-	padding: 2rem;
+  padding-top: 6rem; /* Ajuster l'espace pour éviter de cacher le lien */
+  margin: 0;
+  padding: 2rem;
 }
 
-h2 {
-	text-align: center;
-	margin-top: 0;
-}
 
 .login {
-	position: absolute;
-	top: 2rem;
-	right: 2rem;
+  top: 2rem;
+  right: 2rem;
 }
 
 .filters {
-	margin-top: 2rem;
-	font-weight: bold;
+  margin-top: 2rem;
+  font-weight: bold;
 }
 
 .filters label {
-	display: block;
+  display: block;
+}
+
+.container {
+  margin: 0rem 5rem;
 }
 
 .search-bar {
-	margin-top: 1rem;
-	border-radius: 1rem; /* Arrondir les bords */
-	overflow: hidden; /* Masquer le dépassement du contenu */
+  margin-top: 1rem;
+  border-radius: 1rem; /* Arrondir les bords */
+  overflow: hidden; /* Masquer le dépassement du contenu */
 }
 
 .search-bar input {
-	width: 100%; /* Ajuster la largeur */
-	height: 5rem; /* Ajuster la hauteur */
-	font-size: 1,8rem; /* Ajuster la taille de la police */
-	padding: 0.5rem 1rem; /* Ajouter un espacement intérieur */
-	border: none; /* Supprimer la bordure */
-	background-color: #f0f0f0; /* Ajouter une couleur de fond */
+  width: 100%; /* Ajuster la largeur */
+  height: 5rem; /* Ajuster la hauteur */
+  font-size: 1, 8rem; /* Ajuster la taille de la police */
+  padding: 0.5rem 1rem; /* Ajouter un espacement intérieur */
+  border: none; /* Supprimer la bordure */
+  background-color: #f0f0f0; /* Ajouter une couleur de fond */
 }
 
 .search-button-container {
-	display: flex;
-	justify-content: center; /* Centrer horizontalement */
-	margin-top: 2rem;
-}
-
-.search-button {
-	font-size: 2rem; /* Ajuster la taille de la police */
-	padding: 1rem 2rem; /* Ajouter un espacement intérieur */
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  margin-top: 2rem;
 }
 
 .encadrer-container {
-	display: flex;
-	justify-content: space-between;
-	/* Aligner les encadrés à l'horizontale */
-	flex-wrap: wrap; /* Permettre le passage à la ligne des encadrés */
+  display: flex;
+  justify-content: space-between;
+  /* Aligner les encadrés à l'horizontale */
+  flex-wrap: wrap; /* Permettre le passage à la ligne des encadrés */
 }
 
 .encadrer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 2rem;
-	width: 48%; /* Ajuster la largeur des encadrés */
-	padding: 1rem;
-	border: 1px solid black;
-	border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 27rem;
+  width: 50rem;
+  margin-top: 5rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 1rem;
 }
 
 .encadrer img {
-	width: 10rem;
-	height: 10rem;
-	margin-bottom: 1rem;
-	border: 0.2rem solid black;
-	border-radius: 1rem;
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1rem;
+  border: 0.2rem solid black;
+  border-radius: 1rem;
 }
 
-.encadrer h4 {
-	margin: 0;
+.encadrer .prix,
+.encadrer .enchere,
+.encadrer .vendeur {
+  margin-top: 0.5rem;
 }
 
-.encadrer .prix, .encadrer .enchere, .encadrer .vendeur {
-	margin-top: 0.5rem;
+.command {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.categories {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 4rem;
+}
+
+.search-button {
+  display: flex;
+  font-size: 5rem; /* Ajuster la taille de la police */
+  flex: 1;
+  justify-content: center;
+}
+input[name="search"] {
+  padding: 4rem 8rem;
+  border-radius: 1rem;
+}
+
+.encheres {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cate_container {
+  display: flex;
+  width: 100%;
+}
+
+label {
+  margin: 1rem;
+  margin-left: 2rem;
+  flex: 1;
+}
+
+select {
+  flex: 3;
+  margin: 1rem;
+  margin-right: 0rem;
+}
+
+img {
+  height: 6rem;
 }

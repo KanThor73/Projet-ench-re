@@ -1,12 +1,13 @@
 		<header>
 		<a href="<%=request.getContextPath()%>">ENI-Enchères</a>
+		<a href="<%=request.getContextPath()%>/Connect">S'inscrire - Se connecter</a>
 		<%
 		if (request.getSession().getAttribute("isConnected") != null) {
 			
 			if (request.getSession().getAttribute("isConnected").toString() == "true") {
 			%><label>${pseudo}</label>Se déconnecter<%
 			} else {
-			%><a href="<%=request.getContextPath()%>/Connect">S'inscrire - Se connecter</a><%
+			%><%
 			}
 		}%>
 		</header>

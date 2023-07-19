@@ -6,24 +6,55 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 62.5%; /* ==> convertion direct des unites relatives 1 rem = 10px  */
-  
+  font-size: 62.5%;
+  /* ==> convertion direct des unites relatives 1 rem = 10px  */
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.6rem;
 }
 
 /* Header */
 
 header {
-	display: flex;
-	margin: 2rem;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
 }
 
-header a{
-	font-size: 2rem ;
-	border: 0.3rem red;
-	color:rebeccapurple;
-	margin: 0px ;
-	padding: 0px 1rem 0px 1rem;
-	text-decoration: none;
+header a {
+  font-size: 1rem;
+  border: 0.3rem red;
+  color: rebeccapurple;
+  margin: 0px;
+  padding: 0px 1rem 0px 1rem;
+  text-decoration: none;
+}
+
+
+h2,
+h3 {
+  text-align: center;
+  margin-top: 0;
+  font-size: 3rem;
+  margin: 2rem 0rem;
+}
+
+h3 {
+  text-align: start;
+}
+
+h4 {
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+p {
+  font-size: 1.5rem;
+}
+strong {
+  font-size: 1.7rem;
+  font-weight: 600;
 }
