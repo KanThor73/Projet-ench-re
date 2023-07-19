@@ -41,7 +41,7 @@
 		<jsp-file>/WEB-INF/JSP/newAccount.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>NewAccountJSP</servlet-name>
+		<servlet-name>NewAccount</servlet-name>
 		<url-pattern>/NewAccount</url-pattern>
 	</servlet-mapping>
 	

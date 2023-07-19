@@ -9,14 +9,17 @@ import Exceptions.BLLException;
 
 public class UserManager {
 
-	public static UserManager instance;
 	private static UserDAO userDAO = Factory.getUserDAO();
 
+	/*********************
+	 * Pattern singleton *
+	 *********************/
+	
+	public static UserManager instance;
+	
 	private UserManager() {
 
 	}
-
-	// singleton
 
 	public static UserManager getInstanceOf() {
 
@@ -26,71 +29,80 @@ public class UserManager {
 		return instance;
 	}
 	
-	// **************             Logique metier               ************************
+	/******************
+	 * Logique métier *
+	 ******************/
 	
-	//ajouter un utilisateur
-	
+	// ajouter un utilisateur
 	public void insert(User user) throws BLLException {
-		control(user);
-		userDAO.insert(user);
+		
+		control(user); // vérifie que les éléments soient en adéquation avec la bdd
+		
+		// vérifie que le pseudo et l'email ne soient pas déjà dans la bdd
+		if (checkPseudo(user.getPseudo())) {
+			throw new BLLException("pseudo déjà utilisé");
+		}
+		if (checkEmail(user.getEmail())) {
+			throw new BLLException("email déjà utilisé");
+		}
+		
+		userDAO.insert(user); // ajoute l'utilisateur à la bdd
 	}
 	
-	//recuperer tous les utilisateurs
+	// modifier un utilisateur
+	public void update(User user) {
+		userDAO.update(user);
+	}
 	
+	// récupérer tous les utilisateurs
 	public List<User> selectAll(){
 		return userDAO.selectAll();
 	}
 
-	//recuperer un utilisateur par son ID
-	
+	// récupérer un utilisateur par son ID
 	public User selectByID(int id){
 		return userDAO.selectByID(id);
 	}
 	
+	/*************
+	 * CONTROLES *
+	 *************/
 	
-	/*
-	 * Controls
-	 */
-	
-	public boolean checkPseudo(String pseudo) {
-		return userDAO.checkPseudo(pseudo);
-	}
-	
-	public boolean checkEmail(String email) {
-		return userDAO.checkEmail(email);
-	}
-	
-	public boolean checkMdp(String pseudo, String mdp) {
+	public boolean checkMdp(String pseudo, String mdp) { // le mdp est-il correct ?
 		return userDAO.checkMdp(pseudo, mdp);
 	}
 	
+	private boolean checkPseudo(String pseudo) { // le pseudo est-il présent dans la bdd ?
+		return userDAO.checkPseudo(pseudo);
+	}
+	
+	private boolean checkEmail(String email) { // l'email est-il présent dans la bdd ?
+		return userDAO.checkEmail(email);
+	}
+	
 	private static void control(User user) throws BLLException {
+		
 		if (user == null) {
-			throw new BLLException("L'utilisateur ne peut pas etre null");
-			
-		} else if (user.getPseudo() == null | user.getPseudo().isEmpty()) {
-			throw new BLLException("Le pseudo doit obligatoirement etre renseigne");
-			
-		} else if (user.getNom() == null | user.getNom().isEmpty()) {
-			throw new BLLException("Le nom doit obligatoirement etre renseigne");
-			
-		}else if (user.getPrenom() == null | user.getPrenom().isEmpty()) {
-			throw new BLLException("Le prenom doit obligatoirement etre renseigne");
-			
-		}else if (user.getEmail() == null | user.getEmail().isEmpty()) {
-			throw new BLLException("L'email doit obligatoirement etre renseigne");
-			
-		}else if (user.getRue() == null | user.getRue().isEmpty()) {
-			throw new BLLException("La rue doit obligatoirement etre renseignee");
-			
-		}else if (user.getCodePostal() == null | user.getCodePostal().isEmpty()) {
-			throw new BLLException("Le code postal doit obligatoirement etre renseigne");
-			
-		}else if (user.getVille() == null | user.getVille().isEmpty()) {
-			throw new BLLException("La ville doit obligatoirement etre renseignee");
-			
-		}else if (user.getMotDePasse() == null | user.getMotDePasse().isEmpty()) {
-			throw new BLLException("Le mot de passe doit obligatoirement etre renseigne");
+			throw new BLLException("utilisateur");
+		} else if (user.getPseudo() == null || user.getPseudo().isEmpty() || user.getPseudo().length() > 30) {
+			throw new BLLException("saisie incorrecte du pseudo");
+		} else if (user.getNom() == null || user.getNom().isEmpty() || user.getNom().length() > 30) {
+			throw new BLLException("saisie incorrecte du nom");
+		} else if (user.getPrenom() == null || user.getPrenom().isEmpty() || user.getPrenom().length() > 30) {
+			throw new BLLException("saisie incorrecte du prénom");
+		} else if (user.getEmail() == null || user.getEmail().isEmpty() || user.getEmail().length() > 50) {
+			throw new BLLException("saisie incorrecte de l'email");
+		} else if (user.getTelephone() != null && (user.getTelephone().isEmpty() || user.getTelephone().length() > 15)){
+			// le telephone peut être null
+			throw new BLLException("saisie incorrecte du numéro de téléphone");
+		} else if (user.getRue() == null || user.getRue().isEmpty() || user.getRue().length() > 30) {
+			throw new BLLException("saisie incorrecte de la rue");
+		} else if (user.getCodePostal() == null || user.getCodePostal().isEmpty() || user.getCodePostal().length() > 10) {
+			throw new BLLException("saisie incorrecte du code postal");
+		} else if (user.getVille() == null || user.getVille().isEmpty() || user.getVille().length() > 30) {
+			throw new BLLException("saisie incorrecte de la ville");
+		} else if (user.getMotDePasse() == null || user.getMotDePasse().isEmpty() || user.getMotDePasse().length() > 40) {
+			throw new BLLException("saisie incorrecte du mot de passe");
 		}
 	}
 }
