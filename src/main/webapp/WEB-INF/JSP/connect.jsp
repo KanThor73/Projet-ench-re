@@ -34,7 +34,7 @@
 				<input type="submit" value="Connexion">
 			</div>
 		</form>
-		<form action="<%=request.getContextPath()%>/NewAccount">
+		<form action="<%=request.getContextPath()%>/NewAccount" method="get">
 			<!--lien "mot de passe oublié" -->
 			<div class="forgot-password">
 				<a href="#">Mot de passe oublié</a>

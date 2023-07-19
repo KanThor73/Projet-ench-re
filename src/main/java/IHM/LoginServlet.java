@@ -14,7 +14,7 @@ import BO.User;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserManager userManag = UserManager.getInstanceOf();
+	private UserManager UserManag = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,26 +29,15 @@ public class LoginServlet extends HttpServlet {
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
 		User user = new User(login, mdps); // a tester car comparaison uniquement de ces deux champs pour la connexion
-		List<User> users = userManag.selectAll();
-		//request.setAttribute("msgErreur", " ");
-
-		// change l'attribut de session en true si l'identifiant fait parti de la bdd
-
-		if (mdps == null || mdps.isEmpty() || login == null || login.isEmpty()) {
-			request.setAttribute("msgErreur", "Les deux champs doivent obligatoirement etre renseignes");
+		
+		if (UserManag.checkMdp(login, mdps)) {
+			session.setAttribute("isConnected", true);
+			request.setAttribute("pseudo", "Connecte en tant que " + login);
+			int userId = user.getNoUser();
+			System.out.println("Utilisateur : " + userId + " connecte");
 		} else {
-			for (User userCheck : users) {
-				if (user.getPseudo().equals(userCheck.getPseudo())
-						&& user.getMotDePasse().equals(userCheck.getMotDePasse())) {
-					session.setAttribute("isConnected", true);
-					request.setAttribute("pseudo", "Connecte en tant que " + login);
-					int userId = userCheck.getNoUser();
-					System.out.println("Utilisateur : " + userId + " connecte");
-				} else {
-					request.setAttribute("msgErreur","Utilisateur non valide, veuillez vous creer un profil de connexion");
-					System.out.println("Aucune correspondance avec la BDD");
-				}
-			}
+			request.setAttribute("msgErreur","Utilisateur non valide, veuillez vous creer un profil de connexion");
+			System.out.println("Aucune correspondance avec la BDD");
 		}
 
 		System.out.println("Le statut de connexion est : " + session.getAttribute("isConnected"));

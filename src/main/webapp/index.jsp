@@ -9,7 +9,7 @@
 	</head>
 	<body>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
-	
+
 		<h2>Liste des enchères</h2>
 	
 		<div class="filters">
@@ -22,10 +22,10 @@
 		<div class="categories">
 			<label for="categorie">Catégorie :</label>
 			<select id="categorie" name="categorie">
-				<option value="Informatique">Informatique</option>
-				<option value="Ameublement">Ameublement</option>
-				<option value="Vêtement">Vêtement</option>
-				<option value="Sport&Loisir">Sport&Loisir</option>
+				<option value="informatique">Informatique</option>
+				<option value="ameublement">Ameublement</option>
+				<option value="vetement">Vêtement</option>
+				<option value="sportLoisir">Sport&Loisir</option>
 			</select>
 		</div>
 	

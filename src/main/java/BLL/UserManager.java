@@ -3,14 +3,14 @@ package BLL;
 import java.util.List;
 
 import BO.User;
-import DAL.DAO;
+import DAL.UserDAO;
 import DAL.Factory;
 import Exceptions.BLLException;
 
 public class UserManager {
 
 	public static UserManager instance;
-	private static DAO<User> userDAO = Factory.getUserDAO();
+	private static UserDAO userDAO = Factory.getUserDAO();
 
 	private UserManager() {
 
@@ -41,8 +41,21 @@ public class UserManager {
 		return userDAO.selectAll();
 	}
 	
+	/*
+	 * Controls
+	 */
 	
-	// control
+	public boolean checkPseudo(String pseudo) {
+		return userDAO.checkPseudo(pseudo);
+	}
+	
+	public boolean checkEmail(String email) {
+		return userDAO.checkEmail(email);
+	}
+	
+	public boolean checkMdp(String pseudo, String mdp) {
+		return userDAO.checkMdp(pseudo, mdp);
+	}
 	
 	private static void control(User user) throws BLLException {
 		if (user == null) {
