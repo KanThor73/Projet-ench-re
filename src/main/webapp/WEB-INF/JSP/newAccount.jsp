@@ -4,7 +4,7 @@
 <html>
 	<head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
-		<link href="/style/newAccount.css" rel="stylesheet">
+		<link href="style/newAccount.css" rel="stylesheet">
 		<title>Créer un compte</title>
 	</head>
 	<body>

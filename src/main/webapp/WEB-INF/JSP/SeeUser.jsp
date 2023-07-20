@@ -20,6 +20,12 @@
 			<label for="rue">Rue : ${rue}</label>
 			<label for="codePostal">Code Postal : ${codePostal}</label>
 			<label for="ville">Ville : ${ville}</label>
+			
+			<div class="formFooter">
+				<input type="submit" value="Modifier">
+				<div class="button">
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

@@ -1,5 +1,5 @@
-@charset "UTF-8";
 
+@import url("base.css");
   body {
             font-family: Arial, sans-serif;
         }
@@ -7,13 +7,15 @@
         h3 {
             text-align: center;
             color: rebeccapurple;
+            font-size: 4rem;
+            margin-left: 7rem;
         }
         
         .user-info {
             max-width: 60rem;
             margin: 0 auto;
             padding: 2rem;
-            font-size: 1rem;
+            display: flex;
            
         }
         
@@ -21,15 +23,56 @@
             font-weight: bold;
             display: block;
             margin-bottom: 0.5rem;
+            max-width: 60rem;
+   			margin: 0 auto;
+    		padding: 2rem;
+   			
+    		flex-direction: column;
+   			align-items: center; 
+   			justify-content: center; 
+            
         }
         
  		label{
-			margin: 0;
-            border: 1px solid rgb(0, 0, 2);
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            margin-top: 2rem;
-            display: flex;
+			 
+		font-weight: bold;
+    	display: block;
+   		margin-bottom: 0.5rem;
+   		padding: 0.3rem 0.9rem; 
+    	font-size: 2rem;
+    	color: rgb(0, 0, 0);
+    	border: 1px solid rgb(0, 0, 0);
+    	border-radius: 0.5rem;
+    	border-width: 0.5rem; 
+    	margin-top: 2rem;
+    	width: 35rem;
+    	text-align: center;
+    	margin-left: 82rem;
+         }
+         
+         .formFooter {
+			 
+			 margin-left: 94rem;
+			 
 		 }
+		 
+		 .formFooter input[type="submit"] {
+    
+    font-size: 2rem; 
+    padding: 1rem 2rem; 
+    border: none;
+    background-color: rebeccapurple;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.formFooter input[type="submit"]:hover {
+    background-color: white; 
+    color: rebeccapurple; 
+}
+         
+         
   		
   		
