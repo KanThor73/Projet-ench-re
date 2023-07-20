@@ -9,16 +9,21 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
-	<div class="user-infos">
-		<h3>Afficher profil</h3>
-		<div class="container">
-			<label for="pseudo">Pseudo : ${pseudo}</label> <label for="nom">Nom
-				: ${nom}</label> <label for="prenom">Prénom : ${prenom}</label> <label
-				for="email">Email : ${email}</label> <label for="telephone">Téléphone
-				: ${telephone}</label> <label for="rue">Rue : ${rue}</label> <label
-				for="codePostal">Code Postal : ${codePostal}</label> <label
-				for="ville">Ville : ${ville}</label>
+	<div class="user-container">
+		<div class="user-infos">
+			<h3>Afficher profil</h3>
+
+			<div class="container">
+				<label for="pseudo">Pseudo : ${pseudo}</label> <label for="nom">Nom
+					: ${nom}</label> <label for="prenom">Prénom : ${prenom}</label> <label
+					for="email">Email : ${email}</label> <label for="telephone">Téléphone
+					: ${telephone}</label> <label for="rue">Rue : ${rue}</label> <label
+					for="codePostal">Code Postal : ${codePostal}</label> <label
+					for="ville">Ville : ${ville}</label>
+
+			</div>
 		</div>
+
 		<div class="formFooter">
 			<input type="submit" value="Modifier">
 		</div>

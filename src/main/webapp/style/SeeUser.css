@@ -15,10 +15,28 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			background: linear-gradient(var(--gradiantGold));
+			padding: 2rem;
+			border-radius: 1rem;
+			padding: 2rem;
+  			background-position: center ;
+  			align-items: center;
+  			margin-top: 3rem;
+			
 		}
+		
+		
+		
+		.user-container{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		
         
         .user-info {
-            max-width: 60rem;
+           
             margin: 0 auto;
             padding: 2rem;
             display: flex;
@@ -30,7 +48,7 @@
             font-weight: bold;
             display: block;
             margin-bottom: 0.5rem;
-            max-width: 60rem;
+           
    			margin: 0 auto;
     		padding: 2rem;
    			
@@ -43,7 +61,6 @@
  		label{
 			 
 		font-weight: bold;
-    	display: block;
    		margin-bottom: 0.5rem;
    		padding: 0.3rem 0.9rem; 
     	font-size: 2rem;
@@ -83,7 +100,8 @@
     background-color: white; 
     color: rebeccapurple; 
 }
-         
+  
+  ,       
          
   		
   		
