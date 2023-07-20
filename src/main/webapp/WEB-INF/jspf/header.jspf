@@ -1,20 +1,23 @@
 <%@ page import="BO.User"%>
 <%@ page import="BLL.UserManager"%>
 <header>
-	 <a
-		href="<%=request.getContextPath()%>"><img class="logo" src="img/LogoTest7.svg" alt="logo_Enchere" />ENI-ENCHERES</a>
-	<%
-	if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
-	%><a href="<%=request.getContextPath()%>/Connexion">S'inscrire -
-		Se connecter</a>
-	<%
-	} else {
-	UserManager userMgr = UserManager.getInstanceOf();
-	int id = Integer.parseInt(session.getAttribute("id").toString());
-	User user = userMgr.selectByID(id);
-	%><a href="<%=request.getContextPath()%>/Profil?id=<%=id%>"><%=user.getPseudo()%></a><a
-		href="<%=request.getContextPath()%>/Deconnexion">Se déconnecter</a>
-	<%
-	}
+	<a href="<%=request.getContextPath()%>"><img class="logo"
+		src="img/LogoTest7.svg" alt="logo_Enchere" />ENI-ENCHERES</a>
+	<%if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
+	%><a href="<%=request.getContextPath()%>/Connexion">S'inscrire - Se connecter</a>
+	<%} else { // recuperer l'id ici
+		UserManager userMgr = UserManager.getInstanceOf();
+		int id = Integer.parseInt(session.getAttribute("id").toString());
+		User user = userMgr.selectByID(id);
 	%>
+	<div class= nav>
+	<a href="#">ENCHERES</a>
+	<div class="separator"></div>
+	<a href="#">VENDRE</a>
+	<div class="separator"></div>
+	<a href="<%=request.getContextPath()%>/Profil?id=<%=id%>">MON PROFIL</a>
+	<div class="separator"></div>
+	<a href="<%=request.getContextPath()%>/Deconnexion">DECONNEXION</a>
+	</div>
+	<%}%>
 </header>
