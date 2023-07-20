@@ -1,8 +1,14 @@
 package DAL;
 
+import BO.Article;
+
 public class Factory {
 
-	public static UserDAO getUserDAO(){
+	public static UserDAO getUserDAO() {
 		return new UsersDAOimplJDBC();
+	}
+	
+	public static DAO<Article> getArticleDAO() {
+		return new ArticleDAOimplJDBC();
 	}
 }
