@@ -5,22 +5,27 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
-		<link href="style/index.css" rel="stylesheet" />
-		<title>Les objets sont nos amis</title>
-	</head>
-	<body>
-<%@ include file="/WEB-INF/jspf/header.jspf"%>
-		<h2>Liste des enchères</h2>
+<link href="style/index.css" rel="stylesheet" />
+<title>Les objets sont nos amis</title>
+</head>
+<body>
+	<%@ include file="/WEB-INF/jspf/header.jspf"%>
+	<div class="sub-contain">
+
+		<div class="title">>
+			<h1>Liste des enchères</h1>
+		</div>
 		<div class="container">
 			<h3>Filtres :</h3>
 			<form class="command">
 				<div class="categories">
-					<input type="text" name="recherche" placeholder="Le nom de l'article contient" />
+					<input type="text" name="recherche"
+						placeholder="Le nom de l'article contient" />
 					<div class="cate_container">
-						<label for="categorie">Catégorie :</label>
-						<select id="categorie" name="categorie">
+						<label for="categorie">Catégorie :</label> <select id="categorie"
+							name="categorie">
 							<option value="Informatique">Informatique</option>
 							<option value="Ameublement">Ameublement</option>
 							<option value="Vêtement">Vêtement</option>
@@ -70,18 +75,20 @@
 						</div>
 						<form class="vendeur">
 							<%
-								int id = 1;
-								UserManager userManager = UserManager.getInstanceOf();
-								User user = userManager.selectByID(id);
+							int id = 1;
+							UserManager userManager = UserManager.getInstanceOf();
+							User user = userManager.selectByID(id);
 							%>
 							<p>
-								<strong>Vendeur :</strong><a href="<%=request.getContextPath()%>/Profil?id=<%=id%>"><%=user.getPseudo()%></a>
+								<strong>Vendeur :</strong><a
+									href="<%=request.getContextPath()%>/Profil?id=<%=id%>"><%=user.getPseudo()%></a>
 							</p>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
 </html>
 
