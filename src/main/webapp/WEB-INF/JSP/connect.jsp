@@ -39,7 +39,7 @@
 					<a href="<%=request.getContextPath()%>/CreerCompte">Créer un compte</a>
 				</div>
 				<div class="errorBox">
-					<label>${msgErreur}</label>
+					<p>${msgErreur}</p>
 				</div>
 			</div>
 		</div>
