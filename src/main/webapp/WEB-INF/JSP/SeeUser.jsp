@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="BLL.UserManager"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +26,19 @@
 		</div>
 
 		<div class="formFooter">
-			<form action="EditProfile.jsp" method="get">
+			<%
+			String pseudo = request.getAttribute("pseudo").toString();
+			UserManager userMgr = UserManager.getInstanceOf();
+			int id = Integer.parseInt(session.getAttribute("id").toString()); // conversion en entier
+			if (session.getAttribute("id") != null && id == userMgr.getId(pseudo)) { // profil du user connecté
+			%>
+			<form action="/Editer" method="get">
 				<input type="submit" value="Modifier">
 			</form>
+			<form action="/SupprimerCompte" method="get">
+				<input type="submit" value="Supprimer le compte">
+			</form>
+			<%}%>
 		</div>
 	</div>
 
