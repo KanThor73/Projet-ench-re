@@ -45,7 +45,7 @@ public class NewAccountServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if (!mdp.equals(mdp2)) {
-			session.setAttribute("msgErreur", "Les mots de passe ne coïncident pas");
+			request.setAttribute("msgErreur", "Les mots de passe ne coïncident pas");
 			getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
 		} else {
 			
@@ -63,7 +63,7 @@ public class NewAccountServlet extends HttpServlet {
 				}
 				getServletContext().getNamedDispatcher("Index").forward(request, response); // retourne à l'accueil si ok
 			} catch (BLLException e) {
-				session.setAttribute("msgErreur", e.getSuperMessage());
+				request.setAttribute("msgErreur", e.getSuperMessage());
 				getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
 			}
 		}
