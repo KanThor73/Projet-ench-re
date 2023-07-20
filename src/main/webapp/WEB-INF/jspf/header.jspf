@@ -1,14 +1,20 @@
 <%@ page import="BO.User"%>
 <%@ page import="BLL.UserManager"%>
-		<header>
-			<a href="<%=request.getContextPath()%>">ENI-Enchères</a>
-			<%
-			if (request.getSession().getAttribute("id") == null) { // utilisateur non connecté
-				%><a href="<%=request.getContextPath()%>/Connexion">S'inscrire - Se connecter</a><%
-			} else {
-				UserManager userMgr = UserManager.getInstanceOf();
-				int id = Integer.parseInt(session.getAttribute("id").toString());
-				User user = userMgr.selectByID(id);
-				%><a href="<%=request.getContextPath()%>/Profil?id=<%=id%>"><%=user.getPseudo()%></a><a href="<%=request.getContextPath()%>/Deconnexion">Se déconnecter</a><%
-			}%>
-		</header>
+<header>
+	 <a
+		href="<%=request.getContextPath()%>"><img class="logo" src="img/LogoTest7.svg" alt="logo_Enchere" />ENI-ENCHERES</a>
+	<%
+	if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
+	%><a href="<%=request.getContextPath()%>/Connexion">S'inscrire -
+		Se connecter</a>
+	<%
+	} else {
+	UserManager userMgr = UserManager.getInstanceOf();
+	int id = Integer.parseInt(session.getAttribute("id").toString());
+	User user = userMgr.selectByID(id);
+	%><a href="<%=request.getContextPath()%>/Profil?id=<%=id%>"><%=user.getPseudo()%></a><a
+		href="<%=request.getContextPath()%>/Deconnexion">Se déconnecter</a>
+	<%
+	}
+	%>
+</header>

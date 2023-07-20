@@ -7,3 +7,5 @@ pourquoi <label> dans header et pour msgErreur de connect ?
 définir .button et .errorBox dans base.css
 
 lorsqu'on remplit mal un formulaire, ne pas tout avoir à retaper (retourner les attributs)
+
+virer 2ieme forward loginservlet
