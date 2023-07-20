@@ -1,11 +1,5 @@
 @import url("base.css");
 
-body {
-  padding-top: 6rem; /* Ajuster l'espace pour éviter de cacher le lien */
-  margin: 0;
-  padding: 2rem;
-}
-
 h2,
 h3 {
   text-align: center;
@@ -30,7 +24,6 @@ strong {
   font-size: 1.7rem;
   font-weight: 600;
 }
-
 
 .login {
   top: 2rem;
@@ -85,10 +78,11 @@ strong {
   justify-content: space-around;
   height: 27rem;
   width: 50rem;
-  margin-top: 5rem;
   padding: 1rem;
-  border: 1px solid black;
+  border: 1px solid;
   border-radius: 1rem;
+  background: var(--background);
+  box-shadow: var(--box_shadow);
 }
 
 .encadrer img {
@@ -109,6 +103,15 @@ strong {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-radius: 1rem;
+  border: 1px solid;
+  padding: 2rem 6rem;
+  background: linear-gradient(var(--gradiantgray));
+  box-shadow: var(--box_shadow);
+}
+
+.command label {
+  color: var(--background);
 }
 
 .categories {
@@ -124,14 +127,34 @@ strong {
   flex: 1;
   justify-content: center;
 }
+
 input[name="search"] {
   padding: 4rem 8rem;
   border-radius: 1rem;
+  transition: 0.5s ease-out;
+}
+
+input[name="search"]:hover {
+  color: var(--background);
+  background: linear-gradient(var(--gradiantgray));
+  box-shadow: var(--box_shadowWhite);
+  cursor: pointer;
+}
+
+input[name="recherche"] {
+  border-radius: 1rem;
+  padding-left: 2rem;
 }
 
 .encheres {
   display: flex;
   justify-content: space-around;
+  border-radius: 1rem;
+  border: 1px solid black;
+  margin: 2rem 0rem;
+  padding: 3rem;
+  background: linear-gradient(var(--gradiantgray));
+  box-shadow: var(--box_shadow);
 }
 
 .cate_container {
@@ -149,8 +172,12 @@ select {
   flex: 3;
   margin: 1rem;
   margin-right: 0rem;
+  border-radius: 1rem;
+  padding-left: 2rem;
 }
 
-img {
-  height: 6rem;
+label {
+  margin: 1rem;
+  margin-left: 2rem;
+  font-size: 2rem;
 }

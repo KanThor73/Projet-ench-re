@@ -1,34 +1,69 @@
 @charset "UTF-8";
 
-/* Mise a zero des parametres pour faciliter le calcul des margin/padding  */
+@import url("variables.css");
 
+/* Mise a zero des parametres pour faciliter le calcul des margin/padding  */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 62.5%;
-  /* ==> convertion direct des unites relatives 1 rem = 10px  */
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 62.5%;
+	/* ==> convertion direct des unites relatives 1 rem = 10px  */
 }
 
 body {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.6rem;
+	font-family: "Roboto", sans-serif;
+	font-size: 1.6rem;
+	background: var(--background);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background: url(../img/pexels-todd-trapani-1420440.jpg) center center/cover;
+	background-attachment: fixed;
 }
 
 /* Header */
-
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem;
+	padding-right: 3rem;
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+	border-bottom: 1px solid;
+	margin: 0;
+	margin-bottom: 3rem;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
 }
 
 header a {
-  font-size: 2rem;
-  border: 0.3rem red;
-  color: rebeccapurple;
-  margin: 0px;
-  padding: 0px 1rem 0px 1rem;
-  text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.5rem;
+	font-weight: 700;
+	border: 0.3rem red;
+	color: var(--dark);
+	margin: 0px;
+	padding: 0px 1rem 0px 1rem;
+	text-decoration: none;
+	transition: 0.5s ease-out;
+}
+
+header a:hover {
+	transform: scale(1.1);
+	text-shadow: var(--text_shadow);
+}
+
+.logo {
+	size: 4rem;
+}
+
+img {
+	display: block;
+	height: 6rem;
+	height: 10rem;
+	width: 10rem;
 }
