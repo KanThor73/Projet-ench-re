@@ -18,6 +18,7 @@ public class SeeUserServlet extends HttpServlet {
 		
 		User user = userManager.selectByID(idUser);
 		
+		request.setAttribute("id", idUser);
 		request.setAttribute("pseudo", user.getPseudo());
 		request.setAttribute("nom", user.getNom());
 		request.setAttribute("prenom", user.getPrenom());

@@ -27,17 +27,11 @@
 
 		<div class="formFooter">
 			<%
-			String pseudo = request.getAttribute("pseudo").toString();
-			UserManager userMgr = UserManager.getInstanceOf();
-			int id = Integer.parseInt(session.getAttribute("id").toString()); // conversion en entier
-			if (session.getAttribute("id") != null && id == userMgr.getId(pseudo)) { // profil du user connecté
+			if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) { // profil du user connecté
 			%>
-			<form action="/Editer" method="get">
-				<input type="submit" value="Modifier">
-			</form>
-			<form action="/SupprimerCompte" method="get">
-				<input type="submit" value="Supprimer le compte">
-			</form>
+				<form action="/Editer" method="get">
+					<input type="submit" value="Modifier">
+				</form>
 			<%}%>
 		</div>
 	</div>
