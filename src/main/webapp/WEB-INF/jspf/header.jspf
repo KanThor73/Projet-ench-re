@@ -3,7 +3,7 @@
 		<header>
 			<a href="<%=request.getContextPath()%>">ENI-Enchères</a>
 			<%
-			if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
+			if (request.getSession().getAttribute("id") == null) { // utilisateur non connecté
 				%><a href="<%=request.getContextPath()%>/Connexion">S'inscrire - Se connecter</a><%
 			} else {
 				UserManager userMgr = UserManager.getInstanceOf();

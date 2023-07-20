@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		} else {
 			if (userMgr.checkPseudo(login)) { // si le login est correct
-				request.setAttribute("msgErreur","Mauvais mot de passe");
+				request.setAttribute("msgErreur","Mot de passe incorrect");
 			} else {
 				request.setAttribute("msgErreur","Utilisateur inconnu, veuillez créer un compte");
 			}
