@@ -165,7 +165,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			if (rs.next()) {
-				return (rs.getInt("cnt") == 1); // si le mail a été trouvé
+				return (rs.getInt("cnt") == 1); // si le pseudo a été trouvé
 			} else {
 				return false;
 			}
