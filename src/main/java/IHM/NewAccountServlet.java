@@ -61,7 +61,7 @@ public class NewAccountServlet extends HttpServlet {
 					request.setAttribute("msgErreur","Problème d'accès aux données");
 					getServletContext().getNamedDispatcher("NewAccount").forward(request, response);
 				}
-				getServletContext().getNamedDispatcher("Index").forward(request, response); // retourne à l'accueil si ok
+				response.sendRedirect("Index"); // retourne à l'accueil si bon déroulement
 			} catch (BLLException e) {
 				request.setAttribute("msgErreur", e.getSuperMessage());
 				getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
