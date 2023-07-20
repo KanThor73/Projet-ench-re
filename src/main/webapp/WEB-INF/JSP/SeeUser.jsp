@@ -25,8 +25,11 @@
 		</div>
 
 		<div class="formFooter">
-			<input type="submit" value="Modifier">
+			<form action="EditProfile.jsp" method="get">
+				<input type="submit" value="Modifier">
+			</form>
 		</div>
 	</div>
+
 </body>
 </html>

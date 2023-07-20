@@ -21,13 +21,17 @@
 			padding: 2rem;
   			background-position: center ;
   			align-items: center;
+  			margin-top: 3rem;
 			
 		}
 		
 		
 		
-		user-container{
+		.user-container{
 			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 		}
 		
         
