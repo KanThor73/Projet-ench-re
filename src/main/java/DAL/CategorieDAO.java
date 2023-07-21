@@ -8,7 +8,6 @@ public interface CategorieDAO {
 	
 	public void insert(String name) throws DALException;
 	public void delete(String name) throws DALException;
-	public void deleteAll() throws DALException;
 	public List<String> selectAll() throws DALException;
 	public boolean check(String name) throws DALException;
 }

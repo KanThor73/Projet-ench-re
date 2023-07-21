@@ -40,10 +40,6 @@ public class CategorieManager {
 		catDAO.delete(name);
 	}
 	
-	public void deleteAll() throws DALException {
-		catDAO.deleteAll();
-	}
-	
 	public List<String> selectAll() throws DALException {
 		return catDAO.selectAll();
 	}

@@ -14,7 +14,6 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 	
 	public static final String CAT_SQL_INSERT = "INSERT INTO Categories(libelle) VALUES (?)";
 	public static final String CAT_SQL_DELETE = "DELETE FROM Categories WHERE libelle = ?";
-	public static final String CAT_SQL_DELETEALL = "DELETE FROM Categories";
 	public static final String CAT_SQL_SELECTALL = "SELECT libelle FROM Categories";
 	public static final String CAT_SQL_SELECTBYLIBELLE = "SELECT count(*) AS cnt FROM Categories WHERE libelle = ?";
 	
@@ -38,19 +37,6 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 			
 			PreparedStatement stmt = cnx.prepareStatement(CAT_SQL_DELETE);
 			stmt.setString(1, name);
-			stmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new DALException("problème de connexion aux données");
-		}
-	}
-
-	@Override
-	public void deleteAll() throws DALException {
-		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
-			PreparedStatement stmt = cnx.prepareStatement(CAT_SQL_DELETEALL);
 			stmt.executeUpdate();
 			
 		} catch (Exception e) {
