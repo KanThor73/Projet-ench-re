@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="BLL.UserManager"%>
+	pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,16 +23,22 @@
 
 			</div>
 		</div>
-
-		<div class="formFooter">
+	</div>
+	<div class="formFooter">
+		<%
+		if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) { // profil du user connecté
+		%>
+		<form class="vendeur">
 			<%
-			if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) { // profil du user connecté
+			int id = Integer.parseInt(request.getParameter("id"));
+			UserManager userManager = UserManager.getInstanceOf();
+			User user = userManager.selectByID(id);
 			%>
-				<form action="/Editer" method="get">
-					<input type="submit" value="Modifier">
-				</form>
-			<%}%>
-		</div>
+			<a href="<%=request.getContextPath()%>/EditProfileServlet?id=<%=id%>">MODIFIER</a>
+		</form>
+		<%
+		}
+		%>
 	</div>
 
 </body>

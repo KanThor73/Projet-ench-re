@@ -1,4 +1,21 @@
 @import url("base.css");
+.sub-contain{
+	
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+h1{
+	
+	font-size: 4rem;
+	margin: 2rem 0rem;
+	text-align: center;
+	background: linear-gradient(var(--gradiantGold));
+	border-radius: 1rem;
+	padding: 1rem;
+	 box-shadow: var(--box_shadow);
+}
 
 h2,
 h3 {
@@ -83,6 +100,7 @@ strong {
   border-radius: 1rem;
   background: var(--background);
   box-shadow: var(--box_shadow);
+  margin: 0rem 5rem;
 }
 
 .encadrer img {
@@ -106,7 +124,7 @@ strong {
   border-radius: 1rem;
   border: 1px solid;
   padding: 2rem 6rem;
-  background: linear-gradient(var(--gradiantgray));
+  background: linear-gradient(var(--gradiantGold));
   box-shadow: var(--box_shadow);
 }
 
@@ -153,7 +171,7 @@ input[name="recherche"] {
   border: 1px solid black;
   margin: 2rem 0rem;
   padding: 3rem;
-  background: linear-gradient(var(--gradiantgray));
+  background: linear-gradient(var(--gradiantGold));
   box-shadow: var(--box_shadow);
 }
 
