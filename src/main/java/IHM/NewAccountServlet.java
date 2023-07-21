@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import BLL.UserManager;
 import BO.User;
@@ -42,8 +41,6 @@ public class NewAccountServlet extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		String mdp2 = request.getParameter("mdp2");
 		
-		HttpSession session = request.getSession();
-		
 		if (!mdp.equals(mdp2)) {
 			request.setAttribute("msgErreur", "Les mots de passe ne coïncident pas");
 			getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
@@ -53,15 +50,13 @@ public class NewAccountServlet extends HttpServlet {
 			
 			try {
 				userMgr.insert(newUser); // ajout de l'utilisateur
-				try {
-					int id = userMgr.getId(pseudo); // récupération de l'id
-					request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
-					getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
-				} catch (DALException e) {
-					request.setAttribute("msgErreur","Problème d'accès aux données");
-					getServletContext().getNamedDispatcher("NewAccount").forward(request, response);
-				}
+				int id = userMgr.getId(pseudo); // récupération de l'id
+				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
+				getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
 				response.sendRedirect("Index"); // retourne à l'accueil si bon déroulement
+			} catch (DALException e) {
+				request.setAttribute("msgErreur","Problème d'accès aux données");
+				getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
 			} catch (BLLException e) {
 				request.setAttribute("msgErreur", e.getSuperMessage());
 				getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);

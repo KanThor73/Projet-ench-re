@@ -26,54 +26,56 @@ public class UsersDAOimplJDBC implements UserDAO {
 	
 	//Selectionner tout les utilisateurs
 	@Override
-	public List<User> selectAll() {
-		List<User> users = new ArrayList<>();
-		PreparedStatement stmt;
-		
+	public List<User> selectAll() throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			stmt = cnx.prepareStatement(USER_SQL_SELECTALL);
+			
+			List<User> users = new ArrayList<>();
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_SELECTALL);
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
-				User user = new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+				users.add(new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
-						rs.getInt("administrateur"));
-				users.add(user);
+						rs.getInt("administrateur")));
 			}
+			return users;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
 		}
-		return users;
 	}
 	
 	//Selectionner un utilisateur par son numero
 	@Override
-	public User selectByID(int id) {
-		User user = null;
+	public User selectByID(int id) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
 			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_SELECTBYID);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				user = new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+				return new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
 						rs.getInt("administrateur"));
+			} else {
+				return null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
 		}
-		return user;
 	}
 	
 	// Inserer un utilisateur 
 	@Override
-	public void insert(User user) {
+	public void insert(User user) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(USER_SQL_INSERT);
-
+			
 			stmt.setString(1, user.getPseudo());
 			stmt.setString(2, user.getNom());
 			stmt.setString(3, user.getPrenom());
@@ -90,12 +92,13 @@ public class UsersDAOimplJDBC implements UserDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
 		}
 	}
 
 	//modifier un utilisateur
 	@Override
-	public void update(User user) {
+	public void update(User user) throws DALException {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_UPDATE);
@@ -117,12 +120,13 @@ public class UsersDAOimplJDBC implements UserDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
 		}
 	}
 	
 	//Supprimer un utilisateur
 	@Override
-	public void delete(int id) {
+	public void delete(int id) throws DALException {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -132,6 +136,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
 		}
 	}
 	
@@ -157,7 +162,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 	
 	// Vérifie la disponibilité d'un pseudo et d'un email
 	@Override
-	public boolean checkPseudo(String pseudo) {
+	public boolean checkPseudo(String pseudo) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKPSEUDO);
@@ -172,13 +177,13 @@ public class UsersDAOimplJDBC implements UserDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new DALException("problème de connexion aux données");
 		}
 	}
 	
 	// Vérifie la disponibilité d'un pseudo et d'un email
 	@Override
-	public boolean checkEmail(String email) {
+	public boolean checkEmail(String email) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMAIL);
@@ -193,13 +198,13 @@ public class UsersDAOimplJDBC implements UserDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new DALException("problème de connexion aux données");
 		}
 	}
 	
 	// Vérifie la véracité du mdp selon le pseudo
 	@Override
-	public boolean checkMdp(String pseudo, String mdp) {
+	public boolean checkMdp(String pseudo, String mdp) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_CHECKMDP);
@@ -215,7 +220,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			throw new DALException("problème de connexion aux données");
 		}
 	}
 }

@@ -31,22 +31,22 @@ public class LoginServlet extends HttpServlet {
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
 		
-		if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe concordent
-			try {
+		try {
+			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe concordent
 				int id = userMgr.getId(login); // récupération de l'id
 				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
 				getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
-			} catch (DALException e) {
-				request.setAttribute("msgErreur","Problème d'accès aux données");
-				getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response);
-			}
-		} else {
-			if (userMgr.checkPseudo(login)) { // si le login est correct
-				request.setAttribute("msgErreur","Mot de passe incorrect");
 			} else {
-				request.setAttribute("msgErreur","Utilisateur inconnu, veuillez créer un compte");
+				if (userMgr.checkPseudo(login)) { // si le login est correct
+					request.setAttribute("msgErreur","Mot de passe incorrect");
+				} else {
+					request.setAttribute("msgErreur","Utilisateur inconnu, veuillez créer un compte");
+				}
+				getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response); // retourne à la connexion
 			}
-			getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response); // retourne à la connexion
+		} catch (DALException e) {
+			request.setAttribute("msgErreur","Problème d'accès aux données");
+			getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response);
 		}
 	}
 }
