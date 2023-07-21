@@ -1,105 +1,95 @@
-
 @import url("base.css");
-  body {
-            font-family: Arial, sans-serif;
-        }
-        
-        h3 {
-            text-align: center;
-            color: rebeccapurple;
-            font-size: 4rem;
-            
-        }
-        
-        .container{
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			background: linear-gradient(var(--gradiantGold));
-			padding: 2rem;
-			border-radius: 1rem;
-			padding: 2rem;
-  			background-position: center ;
-  			align-items: center;
-  			margin-top: 3rem;
-			
-		}
-		
-		
-		
-		.user-container{
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-		}
-		
-        
-        .user-info {
-           
-            margin: 0 auto;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-           
-        }
-        
-        .user-info label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.5rem;
-           
-   			margin: 0 auto;
-    		padding: 2rem;
-   			
-    		flex-direction: column;
-   			align-items: center; 
-   			justify-content: center; 
-            
-        }
-        
- 		label{
-			 
-		font-weight: bold;
-   		margin-bottom: 0.5rem;
-   		padding: 0.3rem 0.9rem; 
-    	font-size: 2rem;
-    	color: rgb(0, 0, 0);
-    	border: 1px solid rgb(0, 0, 0);
-    	border-radius: 0.5rem;
-    	border-width: 0.5rem; 
-    	margin-top: 2rem;
-    	width: 35rem;
-    	text-align: center;
-    	
-         }
-         
-         .formFooter {
-			 
-			
-			 display: flex;
-			 justify-content: center;
-			 
-			 
-		 }
-		 
-		 .formFooter input[type="submit"] {
-    
-    font-size: 2rem; 
-    padding: 1rem 2rem; 
-    border: none;
-    background-color: rebeccapurple;
-    color: white;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 3rem;
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+h3 {
+	text-align: center;
+	color: rebeccapurple;
+	font-size: 4rem;
+}
+
+.vendeur a {
+	font-size: 2rem;
+	padding: 3rem;
+	margin: 3rem; 
+	background : linear-gradient( var( --gradiantGold));
+	color: var(--dark);
+	text-decoration: none;
+	border-radius: 1rem;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: linear-gradient(var(--gradiantGold));
+	padding: 2rem;
+	border-radius: 1rem;
+	padding: 2rem;
+	background-position: center;
+	align-items: center;
+	margin-top: 3rem;
+}
+
+.user-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.user-info {
+	margin: 0 auto;
+	padding: 2rem;
+	display: flex;
+	align-items: center;
+}
+
+.user-info label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 0.5rem;
+	margin: 0 auto;
+	padding: 2rem;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	padding: 0.3rem 0.9rem;
+	font-size: 2rem;
+	color: rgb(0, 0, 0);
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 0.5rem;
+	border-width: 0.5rem;
+	margin-top: 2rem;
+	width: 35rem;
+	text-align: center;
+}
+
+.formFooter {
+	display: flex;
+	justify-content: center;
+}
+
+.formFooter input[type="submit"] {
+	font-size: 2rem;
+	padding: 1rem 2rem;
+	border: none;
+	background-color: rebeccapurple;
+	color: white;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin-top: 3rem;
 }
 
 .formFooter input[type="submit"]:hover {
-    background-color: white; 
-    color: rebeccapurple; 
-}  
-         
-  		
-  		
+	background-color: white;
+	color: rebeccapurple;
+}
