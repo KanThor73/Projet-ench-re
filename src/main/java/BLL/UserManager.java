@@ -10,13 +10,13 @@ import Exceptions.DALException;
 
 public class UserManager {
 
-	private static UserDAO userDAO = Factory.getUserDAO();
+	private UserDAO userDAO = Factory.getUserDAO();
 
 	/*********************
 	 * Pattern singleton *
 	 *********************/
 	
-	public static UserManager instance;
+	private static UserManager instance;
 	
 	private UserManager() {
 
@@ -35,7 +35,7 @@ public class UserManager {
 	 ******************/
 	
 	// ajouter un utilisateur
-	public void insert(User user) throws BLLException {
+	public void insert(User user) throws BLLException, DALException {
 		
 		control(user); // vérifie que les éléments soient en adéquation avec la bdd
 		
@@ -51,17 +51,19 @@ public class UserManager {
 	}
 	
 	// modifier un utilisateur
-	public void update(User user) {
+	public void update(User user) throws DALException {
+		
+		// TODO vérifier que le potentiel nouvel email n'est pas celui d'un autre utilisateur
 		userDAO.update(user);
 	}
 	
 	// récupérer tous les utilisateurs
-	public List<User> selectAll(){
+	public List<User> selectAll() throws DALException {
 		return userDAO.selectAll();
 	}
 
 	// récupérer un utilisateur par son ID
-	public User selectByID(int id){
+	public User selectByID(int id) throws DALException {
 		return userDAO.selectByID(id);
 	}
 	
@@ -74,15 +76,15 @@ public class UserManager {
 	 * CONTROLES *
 	 *************/
 	
-	public boolean checkMdp(String pseudo, String mdp) { // le mdp est-il correct ?
+	public boolean checkMdp(String pseudo, String mdp) throws DALException { // le mdp est-il correct ?
 		return userDAO.checkMdp(pseudo, mdp);
 	}
 	
-	public boolean checkPseudo(String pseudo) { // le pseudo est-il présent dans la bdd ?
+	public boolean checkPseudo(String pseudo) throws DALException { // le pseudo est-il présent dans la bdd ?
 		return userDAO.checkPseudo(pseudo);
 	}
 	
-	private boolean checkEmail(String email) { // l'email est-il présent dans la bdd ?
+	private boolean checkEmail(String email) throws DALException { // l'email est-il présent dans la bdd ?
 		return userDAO.checkEmail(email);
 	}
 	
