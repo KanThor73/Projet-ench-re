@@ -48,6 +48,10 @@
 								<input type="text" name="ville" id="ville" size="30" required>
 							</div>
 							<div class="formFragment">
+								<label for="mdp">Mot de passe actuel : </label>
+								<input type="password" name="mdp" id="mdp" size="30" required>
+							</div>
+							<div class="formFragment">
 								<label for="mdp">Mot de passe : </label>
 								<input type="password" name="mdp" id="mdp" size="30" required>
 							</div>
