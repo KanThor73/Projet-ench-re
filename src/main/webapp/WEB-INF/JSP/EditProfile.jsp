@@ -109,16 +109,22 @@
 				</div>
 			</form>
 			<%
- 				if (request.getParameter("msgErreur") == null || request.getParameter("msgErreur") == "") {
+ 				if (request.getParameter("msg") != null || request.getParameter("msg") != "") {
 			%>
 			<div class="msgBox">
 				<p>${msg}</p>
 			</div>
 			<%
-			} else {
+			} else if (request.getParameter("msgErreur") != null || request.getParameter("msgErreur") != ""){
 			%>
 			<div class="errorBox">
 				<p>${msgErreur}</p>
+			</div>
+			<%
+			} else {
+			%>
+			<div class="holdBox">
+				<p>HOLDBOX</p>
 			</div>
 			<%}%>
 

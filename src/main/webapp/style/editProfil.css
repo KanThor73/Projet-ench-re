@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url("newAccount.css");
+
 
 .credit{
 	display: flex;
@@ -12,5 +14,9 @@ h3{
 	background: linear-gradient(var(--gradiantGold));
 	border-radius: 1rem;
 	padding: 1rem;
+	box-shadow: var(--box_shadow);
+}
+
+.container {
 	box-shadow: var(--box_shadow);
 }

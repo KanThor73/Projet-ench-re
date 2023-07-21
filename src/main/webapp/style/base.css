@@ -53,6 +53,22 @@ header a {
 	letter-spacing: 0.3rem;
 }
 
+input[type="submit"] {
+	border-radius: 0.5rem;
+	padding: 1rem;
+	font-weight: 600;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
+	cursor: pointer; 
+	transition: 0.5s ease-out;
+}
+
+input[type="submit"]:hover {
+	text-shadow: var(--text_shadow);
+	box-shadow: var(--box_shadowWhite);
+}
+
+
 .nav a {
 	
 	font-size: 1.5rem;
@@ -94,6 +110,14 @@ img {
 
 .msgBox{
 	color:var(--dark);
+	margin-top: 2rem;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.holdBox{
+	color:transparent;
 	margin-top: 2rem;
 	text-align: center;
 	font-size: 3rem;

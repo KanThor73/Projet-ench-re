@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%> 
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,20 +11,21 @@
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<div class="user-container">
 		<div class="user-infos">
-		<%
-		if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) {
-		%>
-		<h3>MON PROFIL</h3>
-		<% }else{
+			<%
+			if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) {
+			%>
+			<h3>MON PROFIL</h3>
+			<%
+			} else {
 			int id = Integer.parseInt(request.getParameter("id"));
 			UserManager userManager = UserManager.getInstanceOf();
 			User user = userManager.selectByID(id);
 			String pseudo = user.getPseudo();
-		%>
-		<h3>PROFIL DE ${pseudo}</h3>
-		<%
-		}
-		%>
+			%>
+			<h3>PROFIL DE ${pseudo}</h3>
+			<%
+			}
+			%>
 			<div class="container">
 				<label for="pseudo">Pseudo : ${pseudo}</label> <label for="nom">Nom
 					: ${nom}</label> <label for="prenom">Prénom : ${prenom}</label> <label
@@ -52,6 +53,5 @@
 		}
 		%>
 	</div>
-
 </body>
 </html>

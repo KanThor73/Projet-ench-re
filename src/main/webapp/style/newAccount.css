@@ -9,6 +9,7 @@ main {
 	padding: 2rem;
 	border-radius: 1rem;
 	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
 }
 
 h2 {

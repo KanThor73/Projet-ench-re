@@ -1,12 +1,9 @@
 @import url("base.css");
 
-body {
-	font-family: Arial, sans-serif;
-}
-
 h3{
-	font-size: 4rem;
-	margin: 2rem 0rem;
+	font-size: 3rem;
+	margin: 0rem;
+	margin-bottom: 2rem;
 	text-align: center;
 	background: linear-gradient(var(--gradiantGold));
 	border-radius: 1rem;
@@ -15,20 +12,28 @@ h3{
 }
 
 .vendeur a {
-	font-size: 2rem;
-	padding: 1rem;
-	margin: 1rem; 
-	background : linear-gradient( var( --gradiantGold));
-	color: var(--dark);
 	text-decoration: none;
-	border-radius: 1rem;
+	font-size: 2rem;
+	color: var(--dark);
+	border-radius: 0.5rem;
+	padding: 1rem;
+	font-weight: 600;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
+	cursor: pointer; 
+	transition: 0.5s ease-out;
 }
 
+.vendeur a:hover {
+	text-shadow: var(--text_shadow);
+	box-shadow: var(--box_shadowWhite);
+}
 .container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
 	padding: 2rem;
 	border-radius: 1rem;
 	padding: 2rem;
@@ -71,7 +76,7 @@ label {
 	border: 1px solid rgb(0, 0, 0);
 	border-radius: 0.5rem;
 	border-width: 0.5rem;
-	margin-top: 2rem;
+	margin-top: 0.5rem;
 	width: 35rem;
 	text-align: center;
 }
@@ -79,21 +84,6 @@ label {
 .formFooter {
 	display: flex;
 	justify-content: center;
-}
-
-.formFooter input[type="submit"] {
-	font-size: 2rem;
-	padding: 1rem 2rem;
-	border: none;
-	background-color: rebeccapurple;
-	color: white;
-	border-radius: 0.5rem;
-	cursor: pointer;
-	transition: background-color 0.3s;
-	margin-top: 3rem;
-}
-
-.formFooter input[type="submit"]:hover {
-	background-color: white;
-	color: rebeccapurple;
+	height:100%;
+	align-items: center;
 }
