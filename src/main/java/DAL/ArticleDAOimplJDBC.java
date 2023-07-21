@@ -53,7 +53,7 @@ public class ArticleDAOimplJDBC implements DAO<Article> {
 							rs.getString("categorie"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
 							rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("owner_id"));
 			} else {
-				throw new DALException("identifiant d'article incorrect");
+				return null;
 			}
 			
 		} catch (Exception e) {

@@ -35,15 +35,16 @@ public class ArticleManager {
 	 ******************/
 	
 	// ajouter un article
-	public void insert(Article article) throws DALException {
+	public void insert(Article article) throws BLLException, DALException {
 		
 		control(article); // vérifie que les éléments soient en adéquation avec la bdd
-		
-		articleDAO.insert(article); // ajoute l'article à la bdd TODO pas d'exception à try ?
+		articleDAO.insert(article);
 	}
 	
 	// modifier un article
-	public void update(Article article) throws DALException {
+	public void update(Article article) throws BLLException, DALException {
+		
+		control(article); // vérifie que les éléments soient en adéquation avec la bdd
 		articleDAO.update(article);
 	}
 	
@@ -61,7 +62,24 @@ public class ArticleManager {
 	 * Controles *
 	 *************/
 	
-	private void control(Article article) {
+	private void control(Article article) throws BLLException, DALException {
 		
+		UserManager userMgr = UserManager.getInstanceOf();
+		
+		if (article == null) {
+			throw new BLLException("article");
+		} else if (article.getNom() == null || article.getNom().isEmpty() || article.getNom().length() > 30) {
+			throw new BLLException("saisie incorrecte du nom");
+		} else if(article.getDescription() == null || article.getDescription().length() > 300) {
+			throw new BLLException("saisie incorrecte de la description");
+		} else if (article.getDateDebut().after(article.getDateFin())) {
+			throw new BLLException("dates incompatibles");
+		} else if (article.getPrixInit() != null && article.getPrixVente() != null && (article.getPrixInit().compareTo(article.getPrixVente()) > 0)) {
+			throw new BLLException("prix incompatibles");
+		} else if (userMgr.selectByID(article.getOwnerId()) == null) { // potentielle DALException
+			throw new BLLException("utilisateur inexistant");
+		}
+		
+		// TODO add check categorie (existe-t'elle ?)
 	}
 }
