@@ -5,6 +5,8 @@
 <%@ page import="BLL.CategorieManager"%>
 <%@ page import="BLL.ArticleManager"%>
 <%@ page import="BO.Article"%>
+<%@ page import="Exceptions.DALException"%>
+<%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
 <html>
@@ -22,13 +24,13 @@
 		</div>
 		<div class="container">
 			<h3>Filtres :</h3>
-			<form class="command">
+			<form class="command" action="<%=request.getContextPath()%>" method="get">
 				<div class="categories">
-					<input type="text" name="recherche"
+					<input type="text" name="search"
 						placeholder="Le nom de l'article contient" />
 					<div class="cate_container">
-						<label for="categorie">Catégorie :</label>
-						<select name="categorie" id="categorie" size="1">
+						<label for="cat">Catégorie :</label>
+						<select name="cat" id="cat" size="1">
 						<%
 						CategorieManager catMgr = CategorieManager.getInstanceOf();
 						for (String cat : catMgr.selectAll()) {
@@ -39,14 +41,18 @@
 					</div>
 				</div>
 				<div class="search-button">
-					<input type="submit" value="Rechercher" name="search" />
+					<input type="submit" value="Rechercher" />
 				</div>
 			</form>
 			<div class="encheres">
 			<%
-			ArticleManager articleMgr = ArticleManager.getInstanceOf();
-			UserManager userMgr = UserManager.getInstanceOf();
-			for (Article art : articleMgr.selectAll()) {
+			try {
+				ArticleManager articleMgr = ArticleManager.getInstanceOf();
+				UserManager userMgr = UserManager.getInstanceOf();
+				List<Article> articles = (request.getParameter("cat") == null) ?
+										articleMgr.selectAll() :
+										articleMgr.selectByCategory(request.getParameter("cat"));
+				for (Article art : articles) {
 			%>
 				<div class="encadrer">
 					<img src="#" alt="img1" />
@@ -59,7 +65,7 @@
 						</div>
 						<div class="enchere">
 							<p>
-								<strong>Fin de l'enchère :</strong> <%=art.getDateFin().toLocaleString()%>
+								<strong>Fin de l'enchère :</strong> <%=art.getDateFin().toString()%>
 							</p>
 						</div>
 						<div class="vendeur">
@@ -74,7 +80,10 @@
 						</div>
 					</div>
 				</div>
-				<%}%>
+				<%}
+				} catch (DALException e) {
+				/* ne rien faire */
+				}%>
 			</div>
 		</div>
 	</div>
