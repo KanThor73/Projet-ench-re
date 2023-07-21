@@ -160,7 +160,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 		}
 	}
 	
-	// Vérifie la disponibilité d'un pseudo et d'un email
+	// Vérifie la disponibilité d'un pseudo 
 	@Override
 	public boolean checkPseudo(String pseudo) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -181,7 +181,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 		}
 	}
 	
-	// Vérifie la disponibilité d'un pseudo et d'un email
+	// Vérifie la disponibilité d'un email
 	@Override
 	public boolean checkEmail(String email) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
