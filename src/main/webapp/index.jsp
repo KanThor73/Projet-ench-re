@@ -18,7 +18,6 @@
 <body>
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<div class="sub-contain">
-
 		<div class="title">>
 			<h1>Liste des enchères</h1>
 		</div>
@@ -26,11 +25,11 @@
 			<h3>Filtres :</h3>
 			<form class="command" action="<%=request.getContextPath()%>" method="get">
 				<div class="categories">
-					<input type="text" name="search"
+					<input type="text" name="recherche"
 						placeholder="Le nom de l'article contient" />
 					<div class="cate_container">
-						<label for="cat">Catégorie :</label>
-						<select name="cat" id="cat" size="1">
+						<label for="categorie">Catégorie :</label>
+						<select name="categorie" id="cat" size="1" >
 						<%
 						CategorieManager catMgr = CategorieManager.getInstanceOf();
 						for (String cat : catMgr.selectAll()) {
@@ -41,7 +40,7 @@
 					</div>
 				</div>
 				<div class="search-button">
-					<input type="submit" value="Rechercher" />
+					<input type="submit" value="Rechercher" name="search" />
 				</div>
 			</form>
 			<div class="encheres">

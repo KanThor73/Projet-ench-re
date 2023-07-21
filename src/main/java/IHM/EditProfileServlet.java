@@ -58,16 +58,17 @@ public class EditProfileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//recuperer le nouveau mot de passe et sa confirmation
-		String mdp = request.getParameter("mdp");
+		UserManager userMg = UserManager.getInstanceOf();
+		
+		String mdp = request.getParameter("mdp");// mot de passe actuel de l'utilisateur ==> utilise pour la suppression
 		String mdp1 = request.getParameter("mdp1");
 		String mdp2 = request.getParameter("mdp2");
+		String pseudo = request.getParameter("pseudo");
 		
 		if (request.getParameter("update") != null) {
 			
 			if(mdp1.isEmpty() && mdp2.isEmpty() || mdp1 == mdp2 && mdp1 != mdp) {// tester si l'utilisateur veut changer son mdp ou pas et tester si le mot de passe a changer est identique a sa confirmation et different de l'ancien
 				//recuperer les valeurs a mofifiees saisies par l'ulisateur et les valeurs non modifiees
-
-				String pseudo = request.getParameter("pseudo");
 				String nom = request.getParameter("nom");
 				String prenom = request.getParameter("prenom");
 				String email = request.getParameter("email");
@@ -75,9 +76,7 @@ public class EditProfileServlet extends HttpServlet {
 				String rue = request.getParameter("rue");
 				String cp = request.getParameter("postal");
 				String ville = request.getParameter("ville");
-				
-				UserManager userMg = UserManager.getInstanceOf();
-				
+
 				// a modifier quand nous auront la servlet index avec l'id de session
 				
 				try {
@@ -97,6 +96,18 @@ public class EditProfileServlet extends HttpServlet {
 			}
 			
 		} else if (request.getParameter("delete") != null) {
+			
+			if(mdp != null && mdp != "") {
+				try {
+					User user1 = userMg.selectByPseudo(pseudo);
+					userMg.delete(user1.getNoUser());
+					request.setAttribute("msg","Profil supprime avec succes!");
+//					response.sendRedirect()
+				} catch (DALException e) {
+					e.printStackTrace();
+					request.setAttribute("msgErreur",e.getMessage());
+				}
+			}
 
 		}
 		request.getRequestDispatcher("/WEB-INF/JSP/EditProfile.jsp").forward(request, response);

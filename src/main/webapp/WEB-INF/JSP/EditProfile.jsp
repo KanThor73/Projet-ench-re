@@ -109,7 +109,7 @@
 				</div>
 			</form>
 			<%
- 				if (request.getParameter("msgErreur") != null) {
+ 				if (request.getParameter("msgErreur") == null || request.getParameter("msgErreur") == "") {
 			%>
 			<div class="msgBox">
 				<p>${msg}</p>
@@ -118,9 +118,7 @@
 			} else {
 			%>
 			<div class="errorBox">
-
 				<p>${msgErreur}</p>
-
 			</div>
 			<%}%>
 

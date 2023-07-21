@@ -49,6 +49,11 @@ public class UserManager {
 
 		userDAO.insert(user); // ajoute l'utilisateur à la bdd TODO pas d'exception à try ?
 	}
+	
+	// supprimer un utilisateur
+	public void delete(int id) throws DALException {
+		userDAO.delete(id);
+	}
 
 	// modifier un utilisateur
 	public void update(User user) throws DALException {

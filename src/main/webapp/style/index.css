@@ -1,13 +1,13 @@
 @import url("base.css");
-.sub-contain{
-	
-	display:flex;
+
+.sub-contain {
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-h1{
-	
+
+h1 {
 	font-size: 4rem;
 	margin: 2rem 0rem;
 	text-align: center;
@@ -17,185 +17,181 @@ h1{
 	box-shadow: var(--box_shadow);
 }
 
-h2,
-h3 {
-  text-align: center;
-  margin-top: 0;
-  font-size: 3rem;
-  margin: 2rem 0rem;
+h2, h3 {
+	text-align: center;
+	margin-top: 0;
+	font-size: 3rem;
+	margin: 2rem 0rem;
 }
 
 h3 {
-  text-align: start;
+	text-align: start;
 }
 
 h4 {
-  font-size: 2rem;
-  text-decoration: underline;
+	font-size: 2rem;
+	text-decoration: underline;
 }
 
 p {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
+
 strong {
-  font-size: 1.7rem;
-  font-weight: 600;
+	font-size: 1.7rem;
+	font-weight: 600;
 }
 
 .login {
-  top: 2rem;
-  right: 2rem;
+	top: 2rem;
+	right: 2rem;
 }
 
 .filters {
-  margin-top: 2rem;
-  font-weight: bold;
+	margin-top: 2rem;
+	font-weight: bold;
 }
 
 .filters label {
-  display: block;
+	display: block;
 }
 
 .container {
-  margin: 0rem 5rem;
+	margin: 0rem 5rem;
+	max-width:1260px;
 }
 
 .search-bar {
-  margin-top: 1rem;
-  border-radius: 1rem; /* Arrondir les bords */
-  overflow: hidden; /* Masquer le dépassement du contenu */
+	margin-top: 1rem;
+	border-radius: 1rem; /* Arrondir les bords */
+	overflow: hidden; /* Masquer le dépassement du contenu */
 }
 
 .search-bar input {
-  width: 100%; /* Ajuster la largeur */
-  height: 5rem; /* Ajuster la hauteur */
-  font-size: 1, 8rem; /* Ajuster la taille de la police */
-  padding: 0.5rem 1rem; /* Ajouter un espacement intérieur */
-  border: none; /* Supprimer la bordure */
-  background-color: #f0f0f0; /* Ajouter une couleur de fond */
+	width: 100%; /* Ajuster la largeur */
+	height: 5rem; /* Ajuster la hauteur */
+	font-size: 1, 8rem; /* Ajuster la taille de la police */
+	padding: 0.5rem 1rem; /* Ajouter un espacement intérieur */
+	border: none; /* Supprimer la bordure */
+	background-color: #f0f0f0; /* Ajouter une couleur de fond */
 }
 
 .search-button-container {
-  display: flex;
-  justify-content: center; /* Centrer horizontalement */
-  margin-top: 2rem;
+	display: flex;
+	justify-content: center; /* Centrer horizontalement */
+	margin-top: 2rem;
 }
 
 .encadrer-container {
-  display: flex;
-  justify-content: space-between;
-  /* Aligner les encadrés à l'horizontale */
-  flex-wrap: wrap; /* Permettre le passage à la ligne des encadrés */
+	display: flex;
+	justify-content: space-between;
+	/* Aligner les encadrés à l'horizontale */
+	flex-wrap: wrap; /* Permettre le passage à la ligne des encadrés */
 }
 
 .encadrer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  height: 27rem;
-  width: 50rem;
-  padding: 1rem;
-  border: 1px solid;
-  border-radius: 1rem;
-  background: var(--background);
-  box-shadow: var(--box_shadow);
-  margin: 0rem 5rem;
+	display: flex;
+	flex:50%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	height: 27rem;
+	width: 50rem;
+	padding: 1rem;
+	border: 1px solid;
+	border-radius: 1rem;
+	background: var(--background);
+	box-shadow: var(--box_shadow);
+	margin: 0rem 5rem;
 }
 
 .encadrer img {
-  width: 10rem;
-  height: 10rem;
-  margin-bottom: 1rem;
-  border: 0.2rem solid black;
-  border-radius: 1rem;
+	width: 10rem;
+	height: 10rem;
+	margin-bottom: 1rem;
+	border: 0.2rem solid black;
+	border-radius: 1rem;
 }
 
-.encadrer .prix,
-.encadrer .enchere,
-.encadrer .vendeur {
-  margin-top: 0.5rem;
+.encadrer .prix, .encadrer .enchere, .encadrer .vendeur {
+	margin-top: 0.5rem;
 }
 
 .command {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 1rem;
-  border: 1px solid;
-  padding: 2rem 6rem;
-  background: linear-gradient(var(--gradiantGold));
-  box-shadow: var(--box_shadow);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 1rem;
+	border: 1px solid;
+	padding: 2rem 6rem;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
 }
 
 .command label {
-  color: var(--background);
+	color: var(--background);
 }
 
 .categories {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  font-size: 4rem;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	font-size: 4rem;
 }
 
 .search-button {
-  display: flex;
-  font-size: 5rem; /* Ajuster la taille de la police */
-  flex: 1;
-  justify-content: center;
+	display: flex;
+	font-size: 5rem; /* Ajuster la taille de la police */
+	flex: 1;
+	justify-content: center;
 }
 
 input[name="search"] {
-  padding: 4rem 8rem;
-  border-radius: 1rem;
-  transition: 0.5s ease-out;
+	padding: 4rem 8rem;
+	border-radius: 1rem;
+	transition: 0.5s ease-out;
 }
 
 input[name="search"]:hover {
-  color: var(--background);
-  background: linear-gradient(var(--gradiantgray));
-  box-shadow: var(--box_shadowWhite);
-  cursor: pointer;
+	color: var(--background);
+	background: linear-gradient(var(--gradiantgray));
+	box-shadow: var(--box_shadowWhite);
+	cursor: pointer;
 }
 
 input[name="recherche"] {
-  border-radius: 1rem;
-  padding-left: 2rem;
+	border-radius: 1rem;
+	padding-left: 2rem;
 }
 
 .encheres {
-  display: flex;
-  justify-content: space-around;
-  border-radius: 1rem;
-  border: 1px solid black;
-  margin: 2rem 0rem;
-  padding: 3rem;
-  background: linear-gradient(var(--gradiantGold));
-  box-shadow: var(--box_shadow);
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: space-around;
+	border-radius: 1rem;
+	border: 1px solid black;
+	margin: 2rem 0rem;
+	padding: 3rem;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
 }
 
 .cate_container {
-  display: flex;
-  width: 100%;
+	display: flex;
+	width: 100%;
 }
 
 label {
-  margin: 1rem;
-  margin-left: 2rem;
-  flex: 1;
+	margin: 1rem;
+	margin-left: 2rem;
+	font-size: 2rem;
+	flex: 1;
 }
 
 select {
-  flex: 3;
-  margin: 1rem;
-  margin-right: 0rem;
-  border-radius: 1rem;
-  padding-left: 2rem;
-}
-
-label {
-  margin: 1rem;
-  margin-left: 2rem;
-  font-size: 2rem;
+	flex: 3;
+	margin: 1rem;
+	margin-right: 0rem;
+	border-radius: 1rem;
+	padding-left: 2rem;
 }
