@@ -169,7 +169,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 
 	@Override
 	public List<Article> selectByCategory(String categorie) throws DALException {
-try (Connection cnx = ConnectionProvider.getConnection()) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
 			List<Article> articles = new ArrayList<>();
 			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_SELECTBYCAT);
