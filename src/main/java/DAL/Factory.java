@@ -11,4 +11,8 @@ public class Factory {
 	public static DAO<Article> getArticleDAO() {
 		return new ArticleDAOimplJDBC();
 	}
+	
+	public static CategorieDAO getCategorieDAO() {
+		return new CategorieDAOimplJDBC();
+	}
 }

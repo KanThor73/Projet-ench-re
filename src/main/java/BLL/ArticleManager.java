@@ -10,13 +10,13 @@ import Exceptions.DALException;
 
 public class ArticleManager {
 
-	private static DAO<Article> articleDAO = Factory.getArticleDAO();
+	private DAO<Article> articleDAO = Factory.getArticleDAO();
 
 	/*********************
 	 * Pattern singleton *
 	 *********************/
 	
-	public static ArticleManager instance;
+	private static ArticleManager instance;
 	
 	private ArticleManager() {
 
@@ -65,6 +65,7 @@ public class ArticleManager {
 	private void control(Article article) throws BLLException, DALException {
 		
 		UserManager userMgr = UserManager.getInstanceOf();
+		CategorieManager catMgr = CategorieManager.getInstanceOf();
 		
 		if (article == null) {
 			throw new BLLException("article");
@@ -78,8 +79,8 @@ public class ArticleManager {
 			throw new BLLException("prix incompatibles");
 		} else if (userMgr.selectByID(article.getOwnerId()) == null) { // potentielle DALException
 			throw new BLLException("utilisateur inexistant");
-		}
-		
-		// TODO add check categorie (existe-t'elle ?)
+		} else if(catMgr.check(article.getCategorie())) { // potentielle DALException
+			throw new BLLException("catégorie inexistante");
+		} 
 	}
 }

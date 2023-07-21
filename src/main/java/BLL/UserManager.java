@@ -10,13 +10,13 @@ import Exceptions.DALException;
 
 public class UserManager {
 
-	private static UserDAO userDAO = Factory.getUserDAO();
+	private UserDAO userDAO = Factory.getUserDAO();
 
 	/*********************
 	 * Pattern singleton *
 	 *********************/
 	
-	public static UserManager instance;
+	private static UserManager instance;
 	
 	private UserManager() {
 
