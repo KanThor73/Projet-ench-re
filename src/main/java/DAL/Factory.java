@@ -8,7 +8,7 @@ public class Factory {
 		return new UsersDAOimplJDBC();
 	}
 	
-	public static DAO<Article> getArticleDAO() {
+	public static ArticleDAO getArticleDAO() {
 		return new ArticleDAOimplJDBC();
 	}
 	

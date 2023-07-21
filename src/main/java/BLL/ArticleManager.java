@@ -3,14 +3,14 @@ package BLL;
 import java.util.List;
 
 import BO.Article;
-import DAL.DAO;
+import DAL.ArticleDAO;
 import DAL.Factory;
 import Exceptions.BLLException;
 import Exceptions.DALException;
 
 public class ArticleManager {
 
-	private DAO<Article> articleDAO = Factory.getArticleDAO();
+	private ArticleDAO articleDAO = Factory.getArticleDAO();
 
 	/*********************
 	 * Pattern singleton *
@@ -58,6 +58,11 @@ public class ArticleManager {
 		return articleDAO.selectByID(id);
 	}
 	
+	// récupérer tous les articles d'une catégorie
+	public List<Article> selectByCategory(String cat) throws DALException {
+		return articleDAO.selectByCategory(cat);
+	}
+	
 	/*************
 	 * Controles *
 	 *************/
@@ -79,8 +84,8 @@ public class ArticleManager {
 			throw new BLLException("prix incompatibles");
 		} else if (userMgr.selectByID(article.getOwnerId()) == null) { // potentielle DALException
 			throw new BLLException("utilisateur inexistant");
-		} else if(catMgr.check(article.getCategorie())) { // potentielle DALException
+		} else if(!catMgr.check(article.getCategorie())) { // potentielle DALException
 			throw new BLLException("catégorie inexistante");
-		} 
+		}
 	}
 }

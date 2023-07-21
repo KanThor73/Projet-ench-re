@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 		String login = request.getParameter("username");
 		
 		try {
-			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe concordent
+			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe coïncident
 				int id = userMgr.getId(login); // récupération de l'id
 				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
 				getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index

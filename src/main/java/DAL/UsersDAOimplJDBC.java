@@ -3,6 +3,7 @@ package DAL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,7 +107,11 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(2, user.getNom());
 			stmt.setString(3, user.getPrenom());
 			stmt.setString(4, user.getEmail());
-			stmt.setString(5, user.getTelephone());
+			if (user.getTelephone() != null) {
+				stmt.setString(5, user.getTelephone());
+			} else {
+				stmt.setNull(5, Types.VARCHAR);
+			}
 			stmt.setString(6, user.getRue());
 			stmt.setString(7, user.getCodePostal());
 			stmt.setString(8, user.getVille());
@@ -133,7 +138,11 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(2, user.getNom());
 			stmt.setString(3, user.getPrenom());
 			stmt.setString(4, user.getEmail());
-			stmt.setString(5, user.getTelephone());
+			if (user.getTelephone() != null) {
+				stmt.setString(5, user.getTelephone());
+			} else {
+				stmt.setNull(5, Types.VARCHAR);
+			}
 			stmt.setString(6, user.getRue());
 			stmt.setString(7, user.getCodePostal());
 			stmt.setString(8, user.getVille());
@@ -186,7 +195,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 		}
 	}
 	
-	// Vérifie la disponibilité d'un pseudo et d'un email
+	// Vérifie la disponibilité d'un pseudo 
 	@Override
 	public boolean checkPseudo(String pseudo) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -207,7 +216,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 		}
 	}
 	
-	// Vérifie la disponibilité d'un pseudo et d'un email
+	// Vérifie la disponibilité d'un email
 	@Override
 	public boolean checkEmail(String email) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
