@@ -74,11 +74,14 @@
 					<div class="formFooter">
 						<input type="submit" value="Enregistrer">
 						<div class="button">
-							<a>Annuler</a>
+							<a href="<%=request.getContextPath()%>">Annuler</a>
 						</div>
 					</div>
 				</div>
 			</form>
+			<div class="errorBox">
+				<p>${msgErreur}</p>
+			</div>
 		</div>
 	</main>
 </body>

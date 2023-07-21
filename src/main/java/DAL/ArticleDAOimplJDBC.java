@@ -3,6 +3,7 @@ package DAL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +14,11 @@ public class ArticleDAOimplJDBC implements DAO<Article> {
 	
 	// declaration des constantes pour les requetes SQL
 
-	public static final String ARTICLE_SQL_INSERT = "INSERT INTO Articles (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user, no_categorie) VALUES (?,?,?,?,?,?,?,(SELECT no_categorie from CATEGORIES WHERE libelle = ?))";
-	public static final String ARTICLE_SQL_UPDATE = "UPDATE Articles SET nom_article = ? , description = ? , date_debut_encheres = ? , date_fin_encheres = ? , prix_initial = ? , prix_vente = ? , no_user = ? , no_categorie = (SELECT no_categorie from CATEGORIES WHERE libelle = ?)  WHERE no_article = ?";
-	public static final String ARTICLE_SQL_DELETE = "DELETE FROM Articles WHERE no_article = ?";
-	public static final String ARTICLE_SQL_SELECTALL = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM Articles JOIN Categories WHERE Articles.no_categorie = Categories.no_categorie";
-	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM Articles JOIN Categories WHERE Articles.no_categorie = Categories.no_categorie AND no_article = ?";
+	public static final String ARTICLE_SQL_INSERT = "INSERT INTO ArticlesVendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user, no_categorie) VALUES (?,?,?,?,?,?,?,(SELECT no_categorie FROM Categories WHERE libelle = ?))";
+	public static final String ARTICLE_SQL_UPDATE = "UPDATE ArticlesVendus SET nom_article = ? , description = ? , date_debut_encheres = ? , date_fin_encheres = ? , prix_initial = ? , prix_vente = ? , no_user = ? , no_categorie = (SELECT no_categorie FROM Categories WHERE libelle = ?)  WHERE no_article = ?";
+	public static final String ARTICLE_SQL_DELETE = "DELETE FROM ArticlesVendus WHERE no_article = ?";
+	public static final String ARTICLE_SQL_SELECTALL = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie";
+	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND no_article = ?";
 
 	@Override
 	public List<Article> selectAll() throws DALException {
@@ -71,8 +72,16 @@ public class ArticleDAOimplJDBC implements DAO<Article> {
 			stmt.setString(2, article.getDescription());
 			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en java.sql.Date
 			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en java.sql.Date
-			stmt.setInt(5, article.getPrixInit());
-			stmt.setInt(6, article.getPrixVente());
+			if (article.getPrixInit() != null) {
+				stmt.setInt(5, article.getPrixInit());
+			} else {
+				stmt.setNull(6, Types.INTEGER);
+			}
+			if (article.getPrixVente() != null) {
+				stmt.setInt(6, article.getPrixVente());
+			} else {
+				stmt.setNull(6, Types.INTEGER);
+			}
 			stmt.setInt(7, article.getOwnerId());
 			stmt.setString(8, article.getCategorie());
 			stmt.setInt(9, article.getNoArticle());
@@ -108,8 +117,16 @@ public class ArticleDAOimplJDBC implements DAO<Article> {
 			stmt.setString(2, article.getDescription());
 			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en java.sql.Date
 			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en java.sql.Date
-			stmt.setInt(5, article.getPrixInit());
-			stmt.setInt(6, article.getPrixVente());
+			if (article.getPrixInit() != null) {
+				stmt.setInt(5, article.getPrixInit());
+			} else {
+				stmt.setNull(6, Types.INTEGER);
+			}
+			if (article.getPrixVente() != null) {
+				stmt.setInt(6, article.getPrixVente());
+			} else {
+				stmt.setNull(6, Types.INTEGER);
+			}
 			stmt.setInt(7, article.getOwnerId());
 			stmt.setString(8, article.getCategorie());
 			

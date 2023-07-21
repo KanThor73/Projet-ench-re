@@ -52,7 +52,6 @@ public class NewAccountServlet extends HttpServlet {
 				userMgr.insert(newUser); // ajout de l'utilisateur
 				int id = userMgr.getId(pseudo); // récupération de l'id
 				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
-				getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
 				response.sendRedirect("Index"); // retourne à l'accueil si bon déroulement
 			} catch (DALException e) {
 				request.setAttribute("msgErreur","Problème d'accès aux données");

@@ -79,7 +79,7 @@ public class ArticleManager {
 			throw new BLLException("prix incompatibles");
 		} else if (userMgr.selectByID(article.getOwnerId()) == null) { // potentielle DALException
 			throw new BLLException("utilisateur inexistant");
-		} else if(catMgr.check(article.getCategorie())) { // potentielle DALException
+		} else if(!catMgr.check(article.getCategorie())) { // potentielle DALException
 			throw new BLLException("catégorie inexistante");
 		}
 	}
