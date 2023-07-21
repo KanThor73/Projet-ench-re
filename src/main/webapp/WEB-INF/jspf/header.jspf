@@ -13,7 +13,7 @@
     <div class= nav>
     <a href="#">ENCHERES</a>
     <div class="separator"></div>
-    <a href="#">VENDRE</a>
+    <a href="<%=request.getContextPath()%>/Vente">VENDRE</a>
     <div class="separator"></div>
     <a href="<%=request.getContextPath()%>/Profil?id=<%=id%>">MON PROFIL</a>
     <div class="separator"></div>

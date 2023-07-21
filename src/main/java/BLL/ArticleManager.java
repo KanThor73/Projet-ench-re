@@ -81,6 +81,6 @@ public class ArticleManager {
 			throw new BLLException("utilisateur inexistant");
 		} else if(catMgr.check(article.getCategorie())) { // potentielle DALException
 			throw new BLLException("catégorie inexistante");
-		} 
+		}
 	}
 }
