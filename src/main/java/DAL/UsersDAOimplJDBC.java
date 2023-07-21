@@ -23,6 +23,8 @@ public class UsersDAOimplJDBC implements UserDAO {
 	public static final String USER_SQL_CHECKPSEUDO = "SELECT COUNT(*) AS cnt FROM Users WHERE pseudo = ?";
 	public static final String USER_SQL_CHECKMAIL = "SELECT COUNT(*) AS cnt FROM Users WHERE email = ?";
 	public static final String USER_SQL_CHECKMDP = "SELECT COUNT(*) AS cnt FROM Users WHERE pseudo = ? AND mot_de_passe = ?";
+	public static final String USER_SQL_SELECTBYPSEUDO = "SELECT * FROM Users WHERE pseudo = ?";
+	
 	
 	//Selectionner tout les utilisateurs
 	@Override
@@ -54,6 +56,30 @@ public class UsersDAOimplJDBC implements UserDAO {
 			
 			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_SELECTBYID);
 			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				return new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
+						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
+						rs.getInt("administrateur"));
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
+	}
+	
+	//Selectionner un utilisateur par son pseudo
+	@Override
+	public User selectByPseudo(String pseudo) throws DALException{
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_SELECTBYPSEUDO);
+			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {

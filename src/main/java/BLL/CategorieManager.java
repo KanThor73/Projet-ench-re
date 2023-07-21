@@ -7,13 +7,13 @@ import DAL.CategorieDAO;
 import Exceptions.DALException;
 
 public class CategorieManager {
-	
+
 	private CategorieDAO catDAO = Factory.getCategorieDAO(); 
 	
 	/*********************
 	 * Pattern singleton *
 	 *********************/
-	
+
 	private static CategorieManager instance;
 	
 	private CategorieManager() {
@@ -27,19 +27,20 @@ public class CategorieManager {
 		}
 		return instance;
 	}
-	
+
 	/******************
 	 * Logique métier *
 	 ******************/
-	
+
 	public void insert(String name) throws DALException {
 		catDAO.insert(name);
 	}
-	
+
 	public void delete(String name) throws DALException {
 		catDAO.delete(name);
 	}
 	
+	// Ne pas toucher c'est a Sami
 	public void deleteAll() throws DALException {
 		catDAO.deleteAll();
 	}

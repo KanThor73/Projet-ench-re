@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.credit{
+	display: flex;
+	justify-content: start;
+}
+
+h3{
+	font-size: 4rem;
+	margin: 2rem 0rem;
+	text-align: center;
+	background: linear-gradient(var(--gradiantGold));
+	border-radius: 1rem;
+	padding: 1rem;
+	box-shadow: var(--box_shadow);
+}

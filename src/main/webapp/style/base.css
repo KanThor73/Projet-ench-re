@@ -60,8 +60,6 @@ header a {
 
 .nav{
 	display: flex;
-	
-	
 }
 
 .separator {
@@ -88,4 +86,32 @@ img {
 
 .errorBox{
 	color: red;
+	margin-top: 2rem;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.msgBox{
+	color:var(--dark);
+	margin-top: 2rem;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.mgR-2{
+	margin-right: 2rem;
+}
+
+.mgL-2{
+	margin-left: 2rem;
+}
+
+.mgT-2{
+	margin-top: 2rem;
+}
+
+.mgB-2{
+	margin-bottom: 2rem;
 }

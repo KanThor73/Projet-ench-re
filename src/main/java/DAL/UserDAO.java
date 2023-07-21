@@ -10,6 +10,8 @@ public interface UserDAO {
 	public List<User> selectAll() throws DALException;
 
 	public User selectByID(int id) throws DALException;
+	
+	public User selectByPseudo(String pseudo) throws DALException;
 
 	public void update(User t) throws DALException;
 

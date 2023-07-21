@@ -12,15 +12,8 @@ public class BLLException extends Exception {
 		super(message);
 	}
 
-	public BLLException(String message, Throwable e) {
-		super(message, e);
-	}
-
 	public String getMessage() {
-		return "BLLException - " + super.getMessage();
-	}
-	
-	public String getSuperMessage() {
 		return super.getMessage();
 	}
+
 }

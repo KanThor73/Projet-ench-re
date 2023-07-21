@@ -57,9 +57,9 @@
 							</div>
 						</div> <!-- formBody / Corps formulaire -->
 						<div class="formFooter">
-							<input type="submit" value="Créer">
+							<input type="submit" value="CREER">
 							<div class="button">
-								<a href="<%=request.getContextPath()%>">Annuler</a>
+								<a href="<%=request.getContextPath()%>">ANNULER</a>
 							</div>
 						</div>
 					</div>

@@ -5,14 +5,16 @@
 <head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/newAccount.css" rel="stylesheet">
+<link href="style/editProfil.css" rel="stylesheet">
 <title>Modifier Profil</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<main>
 		<div class="container">
-			<h2>Modifier profil</h2>
-			<form action="<%=request.getContextPath()%>/Modifier" method="post">
+			<h3>Modifier profil</h3>
+			<form action="<%=request.getContextPath()%>/EditProfileServlet"
+				method="post">
 				<div class="formContainer">
 					<div class="formBody">
 						<div class="formFragment">
@@ -50,13 +52,24 @@
 								name="ville" id="ville" size="30" value="${ville }" required>
 						</div>
 						<div class="formFragment">
-							<label for="mdp">Mot de passe : </label> <input type="password"
-								name="mdp" id="mdp" size="30" required>
+							<label for="mdp">Mot de passe actuel: </label> <input
+								type="password" placeholder="${mdps}" name="mdp" id="mdp"
+								size="30" required>
+						</div>
+						<div class="formFragment"></div>
+						<div class="formFragment">
+							<label for="mdp1">Nouveau mot de passe : </label> <input
+								type="password" name="mdp1" id="mdp1" size="30">
 						</div>
 						<div class="formFragment">
 							<label for="mdp2">Confirmation : </label> <input type="password"
-								name="mdp2" id="mdp2" size="30" required>
+								name="mdp2" id="mdp2" size="30">
 						</div>
+						<div class="formFragment credit">
+							<label class="mgR-2" for="credit">Credit : </label> <label
+								for="credit">${credit}</label>
+						</div>
+						<div class="formFragment"></div>
 					</div>
 					<!-- formBody / Corps formulaire -->
 					<div class="formFooter">
@@ -65,9 +78,21 @@
 					</div>
 				</div>
 			</form>
+			<%
+			if (request.getParameter("msgErreur")!= "") {
+			%>
+			<div class="msgBox">
+				<p>${msg}</p>
+			</div>
+			<%
+			} else {
+			%>
 			<div class="errorBox">
 				<p>${msgErreur}</p>
 			</div>
+			<%
+			}
+			%>
 		</div>
 	</main>
 </body>

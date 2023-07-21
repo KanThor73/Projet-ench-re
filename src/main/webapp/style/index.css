@@ -14,7 +14,7 @@ h1{
 	background: linear-gradient(var(--gradiantGold));
 	border-radius: 1rem;
 	padding: 1rem;
-	 box-shadow: var(--box_shadow);
+	box-shadow: var(--box_shadow);
 }
 
 h2,
