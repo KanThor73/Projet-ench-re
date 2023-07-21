@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="BLL.UserManager"%>
 <%@ page import="BO.User"%>
+<%@ page import="BLL.CategorieManager"%>
+<%@ page import="BLL.ArticleManager"%>
+<%@ page import="BO.Article"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,12 +27,14 @@
 					<input type="text" name="recherche"
 						placeholder="Le nom de l'article contient" />
 					<div class="cate_container">
-						<label for="categorie">Catégorie :</label> <select id="categorie"
-							name="categorie">
-							<option value="Informatique">Informatique</option>
-							<option value="Ameublement">Ameublement</option>
-							<option value="Vêtement">Vêtement</option>
-							<option value="SportEtLoisir">Sport et loisir</option>
+						<label for="categorie">Catégorie :</label>
+						<select name="categorie" id="categorie" size="1">
+						<%
+						CategorieManager catMgr = CategorieManager.getInstanceOf();
+						for (String cat : catMgr.selectAll()) {
+						%>
+							<option value="<%=cat%>"><%=cat%></option>
+						<%}%>
 						</select>
 					</div>
 				</div>
@@ -38,54 +43,38 @@
 				</div>
 			</form>
 			<div class="encheres">
+			<%
+			ArticleManager articleMgr = ArticleManager.getInstanceOf();
+			UserManager userMgr = UserManager.getInstanceOf();
+			for (Article art : articleMgr.selectAll()) {
+			%>
 				<div class="encadrer">
 					<img src="#" alt="img1" />
 					<div class="infos">
-						<h4>PC gamer pour travailler</h4>
+						<h4><%=art.getNom()%></h4>
 						<div class="prix">
 							<p>
-								<strong>Prix :</strong> 210 Points
+								<strong>Prix :</strong> <%=(art.getPrixVente() == null) ? art.getPrixInit() : art.getPrixVente()%>
 							</p>
 						</div>
 						<div class="enchere">
 							<p>
-								<strong>Fin de l'enchère :</strong> 20 juillet 2023
+								<strong>Fin de l'enchère :</strong> <%=art.getDateFin().toLocaleString()%>
 							</p>
 						</div>
 						<div class="vendeur">
 							<p>
-								<strong>Vendeur :</strong><a href="#"></a> JOJO 44
+								<%
+								User user = userMgr.selectByID(art.getOwnerId());
+								int idSeller = user.getNoUser();
+								String pseudoSeller = user.getPseudo();
+								%>
+								<strong>Vendeur :</strong><a href="<%=request.getContextPath()%>/Profil?id=<%=idSeller%>"><%=pseudoSeller%></a>
 							</p>
 						</div>
 					</div>
 				</div>
-				<div class="encadrer">
-					<img src="#" alt="image2" />
-					<div class="infos">
-						<h4>Rocket stove pour riz et pâtes</h4>
-						<div class="prix">
-							<p>
-								<strong>Prix :</strong> 185 points
-							</p>
-						</div>
-						<div class="enchere">
-							<p>
-								<strong>Fin de l'enchère :</strong> 21 juillet 2023
-							</p>
-						</div>
-						<form class="vendeur">
-							<%
-							int id = 1;
-							UserManager userManager = UserManager.getInstanceOf();
-							User user = userManager.selectByID(id);
-							%>
-							<p>
-								<strong>Vendeur :</strong><a
-									href="<%=request.getContextPath()%>/Profil?id=<%=id%>"><%=user.getPseudo()%></a>
-							</p>
-						</form>
-					</div>
-				</div>
+				<%}%>
 			</div>
 		</div>
 	</div>

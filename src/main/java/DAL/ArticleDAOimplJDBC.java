@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import BO.Article;
@@ -29,9 +30,22 @@ public class ArticleDAOimplJDBC implements DAO<Article> {
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
-				articles.add(new Article(rs.getInt("no_article"), rs.getString("nom"), rs.getString("description"),
-							rs.getString("categorie"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
-							rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("owner_id")));
+				int noArticle = rs.getInt("no_article");
+				String nom = rs.getString("nom_article");
+				String desc = rs.getString("description");
+				String cat = rs.getString("categorie");
+				Date dateDebut = rs.getDate("date_debut_encheres");
+				Date dateFin = rs.getDate("date_fin_encheres");
+				Integer prixInit = Integer.valueOf(rs.getInt("prix_initial"));
+				if (rs.wasNull()) { // si la dernière colonne lue est nulle
+					prixInit = null;
+				}
+				Integer prixVente = Integer.valueOf(rs.getInt("prix_vente"));
+				if (rs.wasNull()) { // si la dernière colonne lue est nulle
+					prixVente = null;
+				}
+				int ownerId = rs.getInt("no_user");
+				articles.add(new Article(noArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixVente, ownerId));
 			}
 			return articles;
 			
@@ -50,9 +64,23 @@ public class ArticleDAOimplJDBC implements DAO<Article> {
 			ResultSet rs = stmt.executeQuery();
 			
 			if (rs.next()) {
-				return new Article(rs.getInt("no_article"), rs.getString("nom"), rs.getString("description"),
-							rs.getString("categorie"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
-							rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("owner_id"));
+				int noArticle = rs.getInt("no_article");
+				String nom = rs.getString("nom_article");
+				String desc = rs.getString("description");
+				String cat = rs.getString("categorie");
+				Date dateDebut = rs.getDate("date_debut_encheres");
+				Date dateFin = rs.getDate("date_fin_encheres");
+				Integer prixInit = Integer.valueOf(rs.getInt("prix_initial"));
+				if (rs.wasNull()) { // si la dernière colonne lue est nulle
+					prixInit = null;
+				}
+				Integer prixVente = Integer.valueOf(rs.getInt("prix_vente"));
+				if (rs.wasNull()) { // si la dernière colonne lue est nulle
+					prixVente = null;
+				}
+				int ownerId = rs.getInt("no_user");
+				
+				return new Article(noArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixVente, ownerId);
 			} else {
 				return null;
 			}

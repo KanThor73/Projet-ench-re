@@ -8,7 +8,6 @@
     <%} else { // recuperer l'id ici
         UserManager userMgr = UserManager.getInstanceOf();
         int id = Integer.parseInt(session.getAttribute("id").toString()); // conversion en entier
-        User user = userMgr.selectByID(id);
     %>
     <div class= nav>
     <a href="#">ENCHERES</a>
