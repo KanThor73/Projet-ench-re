@@ -1,39 +1,124 @@
 package DAL;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import BO.Article;
+import Exceptions.DALException;
 
-public class ArticleDAOimplJDBC implements DAO<Article>{
+public class ArticleDAOimplJDBC implements DAO<Article> {
+	
+	// declaration des constantes pour les requetes SQL
+
+	public static final String ARTICLE_SQL_INSERT = "INSERT INTO Articles (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user, no_categorie) VALUES (?,?,?,?,?,?,?,(SELECT no_categorie from CATEGORIES WHERE libelle = ?))";
+	public static final String ARTICLE_SQL_UPDATE = "UPDATE Articles SET nom_article = ? , description = ? , date_debut_encheres = ? , date_fin_encheres = ? , prix_initial = ? , prix_vente = ? , no_user = ? , no_categorie = (SELECT no_categorie from CATEGORIES WHERE libelle = ?)  WHERE no_article = ?";
+	public static final String ARTICLE_SQL_DELETE = "DELETE FROM Articles WHERE no_article = ?";
+	public static final String ARTICLE_SQL_SELECTALL = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM Articles JOIN Categories WHERE Articles.no_categorie = Categories.no_categorie";
+	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM Articles JOIN Categories WHERE Articles.no_categorie = Categories.no_categorie AND no_article = ?";
 
 	@Override
-	public List<Article> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Article> selectAll() throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			List<Article> articles = new ArrayList<>();
+			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_SELECTALL);
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				articles.add(new Article(rs.getInt("no_article"), rs.getString("nom"), rs.getString("description"),
+							rs.getString("categorie"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+							rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("owner_id")));
+			}
+			return articles;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
 	}
 
 	@Override
-	public Article selectByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Article selectByID(int id) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_SELECTBYID);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				return new Article(rs.getInt("no_article"), rs.getString("nom"), rs.getString("description"),
+							rs.getString("categorie"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+							rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("owner_id"));
+			} else {
+				throw new DALException("identifiant d'article incorrect");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
 	}
 
 	@Override
-	public void update(Article t) {
-		// TODO Auto-generated method stub
-		
+	public void update(Article article) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_UPDATE);
+			stmt.setString(1, article.getNom());
+			stmt.setString(2, article.getDescription());
+			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en java.sql.Date
+			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en java.sql.Date
+			stmt.setInt(5, article.getPrixInit());
+			stmt.setInt(6, article.getPrixVente());
+			stmt.setInt(7, article.getOwnerId());
+			stmt.setString(8, article.getCategorie());
+			stmt.setInt(9, article.getNoArticle());
+			
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
 	}
 
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int id) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_DELETE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
 	}
 
 	@Override
-	public void insert(Article t) {
-		// TODO Auto-generated method stub
-		
+	public void insert(Article article) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(ARTICLE_SQL_INSERT);
+
+			stmt.setString(1, article.getNom());
+			stmt.setString(2, article.getDescription());
+			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en java.sql.Date
+			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en java.sql.Date
+			stmt.setInt(5, article.getPrixInit());
+			stmt.setInt(6, article.getPrixVente());
+			stmt.setInt(7, article.getOwnerId());
+			stmt.setString(8, article.getCategorie());
+			
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
 	}
 
 }

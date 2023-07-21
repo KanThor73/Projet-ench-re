@@ -126,7 +126,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_UPDATE);
+			PreparedStatement stmt = cnx.prepareStatement(USER_SQL_DELETE);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
 

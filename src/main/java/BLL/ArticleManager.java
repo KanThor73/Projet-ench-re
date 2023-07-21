@@ -5,6 +5,8 @@ import java.util.List;
 import BO.Article;
 import DAL.DAO;
 import DAL.Factory;
+import Exceptions.BLLException;
+import Exceptions.DALException;
 
 public class ArticleManager {
 
@@ -33,25 +35,25 @@ public class ArticleManager {
 	 ******************/
 	
 	// ajouter un article
-	public void insert(Article article) {
+	public void insert(Article article) throws DALException {
 		
 		control(article); // vérifie que les éléments soient en adéquation avec la bdd
 		
-		articleDAO.insert(article); // ajoute l'utilisateur à la bdd TODO pas d'exception à try ?
+		articleDAO.insert(article); // ajoute l'article à la bdd TODO pas d'exception à try ?
 	}
 	
 	// modifier un article
-	public void update(Article article) {
+	public void update(Article article) throws DALException {
 		articleDAO.update(article);
 	}
 	
 	// récupérer tous les articles
-	public List<Article> selectAll(){
+	public List<Article> selectAll() throws DALException {
 		return articleDAO.selectAll();
 	}
 
 	// récupérer un article par son ID
-	public Article selectByID(int id){
+	public Article selectByID(int id) throws DALException {
 		return articleDAO.selectByID(id);
 	}
 	
