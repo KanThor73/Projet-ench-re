@@ -9,115 +9,57 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
-<<<<<<< HEAD
-		<main>
-			<div class="container">
-				<h2>Créer un compte</h2>
-				<form action="<%=request.getContextPath()%>/CreerCompte" method="post">
-					<div class="formContainer">
-						<div class="formBody">
-							<div class="formFragment">
-								<label for="pseudo">Pseudo : </label>
-								<input type="text" name="pseudo" id="pseudo" size="30" required autofocus="autofocus">
-							</div>
-							<div class="formFragment">
-								<label for="nom">Nom : </label>
-								<input type="text" name="nom" id="id" size="30" required>
-							</div>
-							<div class="formFragment">
-								<label for="prenom">Prénom : </label>
-								<input type="text" name="prenom" id="prenom" size="30" required>
-							</div>
-							<div class="formFragment">
-								<label for="email">Email : </label>
-								<input type="email" name="email" id="email" size="30" required>
-							</div>
-							<div class="formFragment">
-								<label for="telephone">Téléphone : </label>
-								<input type="text" name="telephone" id="telephone" size="30">
-							</div>
-							<div class="formFragment">
-								<label for="rue">Rue : </label>
-								<input type="text" name="rue" id="rue" size="30" required>
-							</div>
-							<div class="formFragment">
-								<label for="postal">Code postal : </label>
-								<input type="text" name="postal" id="postal" size="30" required>
-							</div>
-							<div class="formFragment">
-								<label for="ville">Ville : </label>
-								<input type="text" name="ville" id="ville" size="30" required>
-							</div>
-							<div class="formFragment">
-								<label for="mdp">Mot de passe : </label>
-								<input type="password" name="mdp" id="mdp" size="30" required>
-							</div>
-							<div class="formFragment">
-								<label for="mdp2">Confirmation : </label>
-								<input type="password" name="mdp2" id="mdp2" size="30" required>
-							</div>
-						</div> <!-- formBody / Corps formulaire -->
-						<div class="formFooter">
-							<input type="submit" value="CREER">
-							<div class="button">
-								<a href="<%=request.getContextPath()%>">ANNULER</a>
-							</div>
-=======
 	<main>
 		<div class="container">
 			<h2>Créer un compte</h2>
-			<form action="<%=request.getContextPath()%>/CreerCompte"
-				method="post">
+			<form action="<%=request.getContextPath()%>/CreerCompte" method="post">
 				<div class="formContainer">
 					<div class="formBody">
 						<div class="formFragment">
-							<label for="pseudo">Pseudo : </label> <input type="text"
-								name="pseudo" id="pseudo" size="30" required
-								autofocus="autofocus">
+							<label for="pseudo">Pseudo : </label>
+							<input type="text" name="pseudo" id="pseudo" size="30" required autofocus="autofocus">
 						</div>
 						<div class="formFragment">
-							<label for="nom">Nom : </label> <input type="text" name="nom"
-								id="id" size="30" required>
+							<label for="nom">Nom : </label>
+							<input type="text" name="nom" id="id" size="30" required>
 						</div>
 						<div class="formFragment">
-							<label for="prenom">Prénom : </label> <input type="text"
-								name="prenom" id="prenom" size="30" required>
+							<label for="prenom">Prénom : </label>
+							<input type="text" name="prenom" id="prenom" size="30" required>
 						</div>
 						<div class="formFragment">
-							<label for="email">Email : </label> <input type="email"
-								name="email" id="email" size="30" required>
+							<label for="email">Email : </label>
+							<input type="email" name="email" id="email" size="30" required>
 						</div>
 						<div class="formFragment">
-							<label for="telephone">Téléphone : </label> <input type="text"
-								name="telephone" id="telephone" size="30">
+							<label for="telephone">Téléphone : </label>
+							<input type="text" name="telephone" id="telephone" size="30">
 						</div>
 						<div class="formFragment">
-							<label for="rue">Rue : </label> <input type="text" name="rue"
-								id="rue" size="30" required>
+							<label for="rue">Rue : </label>
+							<input type="text" name="rue" id="rue" size="30" required>
 						</div>
 						<div class="formFragment">
-							<label for="postal">Code postal : </label> <input type="text"
-								name="postal" id="postal" size="30" required>
+							<label for="postal">Code postal : </label>
+							<input type="text" name="postal" id="postal" size="30" required>
 						</div>
 						<div class="formFragment">
-							<label for="ville">Ville : </label> <input type="text"
-								name="ville" id="ville" size="30" required>
+							<label for="ville">Ville : </label>
+							<input type="text" name="ville" id="ville" size="30" required>
 						</div>
 						<div class="formFragment">
-							<label for="mdp">Mot de passe : </label> <input type="password"
-								name="mdp" id="mdp" size="30" required>
+							<label for="mdp">Mot de passe : </label>
+							<input type="password" name="mdp" id="mdp" size="30" required>
 						</div>
 						<div class="formFragment">
-							<label for="mdp2">Confirmation : </label> <input type="password"
-								name="mdp2" id="mdp2" size="30" required>
+							<label for="mdp2">Confirmation : </label>
+							<input type="password" name="mdp2" id="mdp2" size="30" required>
 						</div>
-					</div>
-					<!-- formBody / Corps formulaire -->
+					</div> <!-- formBody / Corps formulaire -->
 					<div class="formFooter">
 						<input type="submit" value="Créer">
 						<div class="button">
 							<a href="<%=request.getContextPath()%>">Annuler</a>
->>>>>>> 0285c140260e8ca6934c435010d2457f6ca1d80f
 						</div>
 					</div>
 				</div>
