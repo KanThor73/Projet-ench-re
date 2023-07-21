@@ -1,6 +1,4 @@
-%@ page language="java" contentType="text/html; charset=UTF-8"
-
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
@@ -42,7 +40,7 @@ pageEncoding="UTF-8"%>
 
 						<div class="formFragment">
 
-							<label for="prenom">Prénom : </label> <input type="text"
+							<label for="prenom">PrÃ©nom : </label> <input type="text"
 								name="prenom" id="prenom" size="30" value="${prenom }" required>
 
 						</div>
@@ -56,7 +54,7 @@ pageEncoding="UTF-8"%>
 
 						<div class="formFragment">
 
-							<label for="telephone">Téléphone : </label> <input type="text"
+							<label for="telephone">TÃ©lÃ©phone : </label> <input type="text"
 								name="telephone" id="telephone" size="30" value="${telephone }">
 
 						</div>
