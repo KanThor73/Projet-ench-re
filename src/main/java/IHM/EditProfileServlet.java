@@ -20,20 +20,19 @@ public class EditProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int idUser = Integer.parseInt(request.getParameter("id"));
-		
 
 		try {
 			User user = userManager.selectByID(idUser);
-			
+
 			// transforme le mot de passe en * ==> non hackable depuis le web
 			String mdpClair = user.getMotDePasse();
 			StringBuilder sb = new StringBuilder();
-			for (int i=0; i<mdpClair.length();i++) {
+			for (int i = 0; i < mdpClair.length(); i++) {
 				sb.append("*");
 			}
-			
-			//envoie les valeur des inputs a la jsp pour le preremplissage
-			
+
+			// envoie les valeur des inputs a la jsp pour le preremplissage
+
 			request.setAttribute("id", user.getNoUser());
 			request.setAttribute("pseudo", user.getPseudo());
 			request.setAttribute("nom", user.getNom());
@@ -45,68 +44,82 @@ public class EditProfileServlet extends HttpServlet {
 			request.setAttribute("ville", user.getVille());
 			request.setAttribute("mdps", sb.toString());
 			request.setAttribute("credit", String.valueOf(user.getCredit()));
-			
+
 		} catch (DALException e) {
 			e.printStackTrace();
-			request.setAttribute("msgErreur",e.getMessage());
+			request.setAttribute("msgErreur", e.getMessage());
 		}
-
 
 		request.getRequestDispatcher("/WEB-INF/JSP/EditProfile.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//recuperer le nouveau mot de passe et sa confirmation
+		// recuperer le nouveau mot de passe et sa confirmation
 		UserManager userMg = UserManager.getInstanceOf();
-		
+
 		String mdp = request.getParameter("mdp");// mot de passe actuel de l'utilisateur ==> utilise pour la suppression
 		String mdp1 = request.getParameter("mdp1");
 		String mdp2 = request.getParameter("mdp2");
 		String pseudo = request.getParameter("pseudo");
-		
-		if (request.getParameter("update") != null) {
-			
-			if(mdp1.isEmpty() && mdp2.isEmpty() || mdp1 == mdp2 && mdp1 != mdp) {// tester si l'utilisateur veut changer son mdp ou pas et tester si le mot de passe a changer est identique a sa confirmation et different de l'ancien
-				//recuperer les valeurs a mofifiees saisies par l'ulisateur et les valeurs non modifiees
-				String nom = request.getParameter("nom");
-				String prenom = request.getParameter("prenom");
-				String email = request.getParameter("email");
-				String tel = request.getParameter("telephone");
-				String rue = request.getParameter("rue");
-				String cp = request.getParameter("postal");
-				String ville = request.getParameter("ville");
 
-				// a modifier quand nous auront la servlet index avec l'id de session
-				
-				try {
+		if (request.getParameter("update") != null) { // l'utilisateur a clique sur modifier
+
+			// tester si l'utilisateur veut changer son mdp ou pas et tester si le mot de
+			// passe a changer est identique a sa confirmation et different de l'ancien
+
+			// recuperer les valeurs a mofifiees saisies par l'ulisateur et les valeurs non
+			// modifiees
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String email = request.getParameter("email");
+			String tel = request.getParameter("telephone");
+			String rue = request.getParameter("rue");
+			String cp = request.getParameter("postal");
+			String ville = request.getParameter("ville");
+
+			// a modifier quand nous auront la servlet index avec l'id de session
+
+			try {
+				if (mdp1.isEmpty() && mdp2.isEmpty()) { // l'utilisateur ne veut pas modifier son mdps
 					User user1 = userMg.selectByPseudo(pseudo);
-					User user2 = new User((user1.getNoUser()),pseudo,nom,prenom,email,tel,rue,cp,ville,mdp,user1.getCredit(),(user1.estAdministrateur() ? 1 : 0));
+					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp,
+							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
 					userMg.update(user2);
-				} catch (DALException e) {
-					e.printStackTrace();
-					request.setAttribute("msgErreur",e.getMessage());
+					request.setAttribute("msg", "Profil modifie avec succes!");
+				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1 == mdp2 && mdp1 != mdp) {// l'utilisateur veut modifier son mdps et qu'il remplit les conditions
+					User user1 = userMg.selectByPseudo(pseudo);
+					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp1,
+							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
+					userMg.update(user2);
+					request.setAttribute("msg", "Profil modifie avec succes!");
+				} else if (!mdp1.isEmpty() && mdp2.isEmpty() || mdp1.isEmpty() && !mdp2.isEmpty()) {
+					request.setAttribute("msgErreur",
+							"Attention - Le mot de passe et sa confirmation doivent etre identique");
+				} else if (mdp1 != mdp2) {
+					request.setAttribute("msgErreur",
+							"Attention - Le mot de passe et sa confirmation doivent etre identique");
+				} else if (mdp1 == mdp) {
+					request.setAttribute("msgErreur",
+							"Attention - Le nouveau mot de passe doit etre different de l'ancien");
 				}
-				
-				request.setAttribute("msg","Profil modifie avec succes!");
-			}else if (mdp1 != mdp2){
-				request.setAttribute("msgErreur","Attention - Le mot de passe et sa confirmation doivent etre identique");
-			}else if (mdp1 == mdp){
-				request.setAttribute("msgErreur","Attention - Le nouveau mot de passe doit etre different de l'ancien");
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("msgErreur", e.getMessage());
 			}
-			
-		} else if (request.getParameter("delete") != null) {
-			
-			if(mdp != null && mdp != "") {
+		} else if (request.getParameter("delete") != null) {// l'utilisateur a clique sur supprimer
+
+			if (mdp != null && mdp != "") {// tester le mdp pour autoriser la suppression
 				try {
 					User user1 = userMg.selectByPseudo(pseudo);
 					userMg.delete(user1.getNoUser());
-					request.setAttribute("msg","Profil supprime avec succes!");
-//					response.sendRedirect()
+					request.setAttribute("msg", "Profil supprime avec succes!");
+					response.sendRedirect("/WEB-INF/index.jsp");
 				} catch (DALException e) {
 					e.printStackTrace();
-					request.setAttribute("msgErreur",e.getMessage());
-					request.setAttribute("msg","Impossible de supprime ce profil, veuillez vous rapprocher d'un administrateur.");
+					request.setAttribute("msgErreur", e.getMessage());
+					request.setAttribute("msg",
+							"Impossible de supprime ce profil, veuillez vous rapprocher d'un administrateur.");
 				}
 			}
 

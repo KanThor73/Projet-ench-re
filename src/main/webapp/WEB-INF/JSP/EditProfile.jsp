@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <html>
@@ -108,30 +108,25 @@
 					</div>
 				</div>
 			</form>
-			<%
- 				if (request.getParameter("msg") != null || request.getParameter("msg") != "") {
-			%>
-			<div class="msgBox">
-				<p>${msg}</p>
-			</div>
-			<%
-			} else if (request.getParameter("msgErreur") != null || request.getParameter("msgErreur") != ""){
-			%>
-			<div class="errorBox">
-				<p>${msgErreur}</p>
-			</div>
-			<%
-			} else {
-			%>
-			<div class="holdBox">
-				<p>HOLDBOX</p>
-			</div>
-			<%}%>
-
+			<c:choose>
+				<c:when test="${msg != null}">
+					<div class="msgBox">
+						<p>${msg}</p>
+					</div>
+				</c:when>
+				<c:when test="${msgErreur != null}">
+					<div class="errorBox">
+						<p>${msgErreur}</p>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="holdBox">
+						<p>HOLDBOX</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
-
 	</main>
-
 </body>
 
 </html>
