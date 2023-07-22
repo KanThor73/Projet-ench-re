@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import BLL.UserManager;
 import BO.User;
 import Exceptions.DALException;
@@ -19,7 +19,11 @@ public class EditProfileServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int idUser = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		int idUser = (int)session.getAttribute("id");
+		
+//		int idUser = Integer.parseInt(request.getParameter("id"));
+		
 
 		try {
 			User user = userManager.selectByID(idUser);
@@ -124,7 +128,7 @@ public class EditProfileServlet extends HttpServlet {
 			}
 
 		}
-		request.getRequestDispatcher("/WEB-INF/JSP/EditProfile.jsp").forward(request, response);
+		doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et afficher tous les champs
 	}
 
 }
