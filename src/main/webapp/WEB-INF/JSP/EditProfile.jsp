@@ -27,7 +27,7 @@
 
 							<label for="pseudo">Pseudo : </label> <input type="text"
 								name="pseudo" id="pseudo" size="30" required
-								autofocus="autofocus" value="<%=request.getParameter("msg") != null || request.getParameter("msgErreur") != null? request.getParameter("pseudo"):request.getParameter("pseudo")%>">
+								autofocus="autofocus" value="${pseudo}">
 
 						</div>
 
