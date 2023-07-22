@@ -92,7 +92,7 @@ public class EditProfileServlet extends HttpServlet {
 			}else if (mdp1 != mdp2){
 				request.setAttribute("msgErreur","Attention - Le mot de passe et sa confirmation doivent etre identique");
 			}else if (mdp1 == mdp){
-				request.setAttribute("msgErreur","Attention - Le nouveau mopt de passe doit etre different de l'ancien");
+				request.setAttribute("msgErreur","Attention - Le nouveau mot de passe doit etre different de l'ancien");
 			}
 			
 		} else if (request.getParameter("delete") != null) {
@@ -106,6 +106,7 @@ public class EditProfileServlet extends HttpServlet {
 				} catch (DALException e) {
 					e.printStackTrace();
 					request.setAttribute("msgErreur",e.getMessage());
+					request.setAttribute("msg","Impossible de supprime ce profil, veuillez vous rapprocher d'un administrateur.");
 				}
 			}
 

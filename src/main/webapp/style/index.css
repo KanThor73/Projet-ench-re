@@ -147,14 +147,12 @@ strong {
 }
 
 input[name="search"] {
-	padding: 4rem 8rem;
+	padding: 3rem 6rem;
 	border-radius: 1rem;
 	transition: 0.5s ease-out;
 }
 
 input[name="search"]:hover {
-	color: var(--background);
-	background: linear-gradient(var(--gradiantgray));
 	box-shadow: var(--box_shadowWhite);
 	cursor: pointer;
 }

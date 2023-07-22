@@ -53,6 +53,10 @@ header a {
 	letter-spacing: 0.3rem;
 }
 
+.deco{
+	font-size: 2rem;
+}
+
 input[type="submit"] {
 	border-radius: 0.5rem;
 	padding: 1rem;
