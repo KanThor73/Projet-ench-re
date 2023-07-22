@@ -82,7 +82,7 @@
 						</div>
 
 						<div class="formFragment">
-							<label for="mdp">Mot de passe actuel: </label> <input type="password" placeholder="${mdps}" name="mdp" id="mdp" size="30" required>
+							<label for="mdp">Mot de passe actuel: </label> <input type="password" placeholder="${mdps}" name="mdp" id="mdp" size="30">
 						</div>
 						<div class="formFragment"></div>
 						<div class="formFragment">
@@ -103,8 +103,9 @@
 					<!-- formBody / Corps formulaire -->
 
 					<div class="formFooter">
-						<input type="submit" value="MODIFIER" name="update"> <input
-							type="submit" value="SUPPRIMER" name="delete">
+						<input type="submit" value="MODIFIER" name="update"> 
+						<input type="submit" value="SUPPRIMER" name="delete">
+						<input type="submit" value="ANNULER" name="cancel"> 
 					</div>
 				</div>
 			</form>

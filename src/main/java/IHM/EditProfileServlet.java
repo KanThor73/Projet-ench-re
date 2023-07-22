@@ -20,10 +20,9 @@ public class EditProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		int idUser = (int)session.getAttribute("id");
-		
+		int idUser = (int) session.getAttribute("id");
+
 //		int idUser = Integer.parseInt(request.getParameter("id"));
-		
 
 		try {
 			User user = userManager.selectByID(idUser);
@@ -87,11 +86,19 @@ public class EditProfileServlet extends HttpServlet {
 			try {
 				if (mdp1.isEmpty() && mdp2.isEmpty()) { // l'utilisateur ne veut pas modifier son mdps
 					User user1 = userMg.selectByPseudo(pseudo);
-					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp,
-							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
-					userMg.update(user2);
-					request.setAttribute("msg", "Profil modifie avec succes!");
-				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1 == mdp2 && mdp1 != mdp) {// l'utilisateur veut modifier son mdps et qu'il remplit les conditions
+					if (user1.getMotDePasse() == mdp) {// verif mdps
+						User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp,
+								user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
+						userMg.update(user2);
+						request.setAttribute("msg", "Profil modifie avec succes!");
+					} else {
+						request.setAttribute("msgErreur",
+								"Attention - Le mot de passe est obligatoire pour la modification");
+					}
+				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1 == mdp2 && mdp1 != mdp) {// l'utilisateur veut
+																								// modifier son mdps et
+																								// qu'il remplit les
+																								// conditions
 					User user1 = userMg.selectByPseudo(pseudo);
 					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp1,
 							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
@@ -111,14 +118,18 @@ public class EditProfileServlet extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("msgErreur", e.getMessage());
 			}
+			doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et
+										// afficher tous les champs
 		} else if (request.getParameter("delete") != null) {// l'utilisateur a clique sur supprimer
 
 			if (mdp != null && mdp != "") {// tester le mdp pour autoriser la suppression
 				try {
 					User user1 = userMg.selectByPseudo(pseudo);
-					userMg.delete(user1.getNoUser());
-					request.setAttribute("msg", "Profil supprime avec succes!");
-					response.sendRedirect("/WEB-INF/index.jsp");
+					if (user1.getMotDePasse() == mdp) { // verif mdps
+						userMg.delete(user1.getNoUser());
+						request.setAttribute("msg", "Profil supprime avec succes!");
+						getServletContext().getNamedDispatcher("Index").forward(request, response);
+					}
 				} catch (DALException e) {
 					e.printStackTrace();
 					request.setAttribute("msgErreur", e.getMessage());
@@ -127,8 +138,11 @@ public class EditProfileServlet extends HttpServlet {
 				}
 			}
 
+			doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et
+										// afficher tous les champs
+		} else if (request.getParameter("cancel") != null) {// annulation des modifs
+			getServletContext().getNamedDispatcher("Index").forward(request, response);
 		}
-		doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et afficher tous les champs
 	}
 
 }
