@@ -36,7 +36,7 @@
 
 			</div>
 		</div>
-	</div>
+	</div> 
 	<div class="formFooter">
 		<%
 		if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) { // profil du user connecté
