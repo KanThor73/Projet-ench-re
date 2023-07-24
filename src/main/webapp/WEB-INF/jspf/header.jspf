@@ -10,7 +10,7 @@
         int id = Integer.parseInt(session.getAttribute("id").toString()); // conversion en entier
     %>
     <div class= nav>
-    <a href="<%=request.getContextPath()%>/Auction">ENCHERES</a>
+    <a href="#">ENCHERES</a>
     <div class="separator"></div>
     <a href="<%=request.getContextPath()%>/Vente">VENDRE</a>
     <div class="separator"></div>
