@@ -71,5 +71,5 @@ CREATE TABLE Retraits (
 	ville			VARCHAR(30) NOT NULL,
 	
 	CONSTRAINT retrait_pk PRIMARY KEY (no_article),
-	CONSTRAINT retrait_article_fk FOREIGN KEY (no_article) REFERENCES ArticlesVendus (no_article)
+	CONSTRAINT retrait_article_fk FOREIGN KEY (no_article) REFERENCES ArticlesVendus (no_article) ON DELETE CASCADE
 );
