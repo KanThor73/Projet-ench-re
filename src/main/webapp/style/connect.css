@@ -21,6 +21,7 @@ body {
   border-radius: 2rem;
   background: linear-gradient(var(--gradiantGold));
   box-shadow: var(--box_shadow);
+  margin-bottom: 3rem;
 }
 
 form {

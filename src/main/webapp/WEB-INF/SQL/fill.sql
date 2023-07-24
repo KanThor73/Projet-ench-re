@@ -32,4 +32,5 @@ INSERT INTO ArticlesVendus VALUES
 (default, "bonheur", "encore à définir", "1000-01-01", "9999-12-31", null, null, 6, 6),
 (default, "bonheur", "bon pour admirer mon sou porte-bonheur pendant une journée", "2023-07-24", "2023-07-31", 5000, null, 5, 5),
 (default, "PC antique", "permet tout de même de faire tourner Linux", "2023-07-24", "2023-07-31", 15, null, 3, 2),
-(default, "écran à CSS instantané", "tout ce dont vous pourriez rêver", "2023-07-24", "2023-07-31", 1400, null, 1, 2);
+(default, "écran à CSS instantané", "tout ce dont vous pourriez rêver", "2023-07-24", "2023-07-31", 1400, null, 1, 2),
+(default, "Petit poussin", "il est jaune", "2023-07-24", "2023-07-31", 9, null, 3, 1)
