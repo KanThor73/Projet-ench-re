@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import BLL.UserManager;
 import BO.User;
 import Exceptions.DALException;
@@ -19,8 +18,7 @@ public class EditProfileServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		int idUser = (int) session.getAttribute("id");
+		int idUser = (int) request.getSession().getAttribute("id");
 
 		try {
 			User user = userManager.selectByID(idUser);

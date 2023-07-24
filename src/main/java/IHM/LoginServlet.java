@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import BLL.UserManager;
 import Exceptions.DALException;
@@ -26,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		// Récupération des paramètres du formulaire de connect.jsp
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");

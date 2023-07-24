@@ -16,7 +16,7 @@ public class SeeUserServlet extends HttpServlet {
 	private UserManager userManager = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idUser = Integer.parseInt(request.getParameter("id"));
+		int idUser = (int) request.getSession().getAttribute("id");
 		
 		try {
 			User user = userManager.selectByID(idUser);
