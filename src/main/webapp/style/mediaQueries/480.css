@@ -1,0 +1,8 @@
+@charset "UTF-8";
+							/************************   	MOBILE      ****************************/
+	/* INDEX */
+.encheres {
+	display:grid;
+	grid:
+    auto-flow auto / 1fr;
+}
