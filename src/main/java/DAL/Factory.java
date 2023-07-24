@@ -1,7 +1,5 @@
 package DAL;
 
-import BO.Article;
-
 public class Factory {
 
 	public static UserDAO getUserDAO() {
