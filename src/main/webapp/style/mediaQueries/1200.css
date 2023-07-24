@@ -1,6 +1,6 @@
 @charset "UTF-8";
                      /************************  	LARGE DESKTOP      ****************************/
-
+	/* INDEX */
 .encheres {
 	grid: auto-flow auto / repeat(4,1fr);
 }
