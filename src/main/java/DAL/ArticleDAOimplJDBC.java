@@ -12,7 +12,7 @@ import BO.Article;
 import Exceptions.DALException;
 
 public class ArticleDAOimplJDBC implements ArticleDAO {
-	
+
 	// declaration des constantes pour les requetes SQL
 
 	public static final String ARTICLE_SQL_INSERT = "INSERT INTO ArticlesVendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user, no_categorie) VALUES (?,?,?,?,?,?,?,(SELECT no_categorie FROM Categories WHERE libelle = ?))";
@@ -21,15 +21,16 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	public static final String ARTICLE_SQL_SELECTALL = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie";
 	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND no_article = ?";
 	public static final String ARTICLE_SQL_SELECTBYCAT = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND libelle = ?";
-	
+	public static final String RETRAIT_SQL_LAST_COLUMN = "SELECT MAX(no_article) AS nextID FROM ArticlesVendus;";
+
 	@Override
 	public List<Article> selectAll() throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			List<Article> articles = new ArrayList<>();
 			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_SELECTALL);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int noArticle = rs.getInt("no_article");
 				String nom = rs.getString("nom_article");
@@ -49,7 +50,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 				articles.add(new Article(noArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixVente, ownerId));
 			}
 			return articles;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("problème de connexion aux données");
@@ -59,11 +60,11 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	@Override
 	public Article selectByID(int id) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_SELECTBYID);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			if (rs.next()) {
 				int noArticle = rs.getInt("no_article");
 				String nom = rs.getString("nom_article");
@@ -80,12 +81,12 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 					prixVente = null;
 				}
 				int ownerId = rs.getInt("no_user");
-				
+
 				return new Article(noArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixVente, ownerId);
 			} else {
 				return null;
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("problème de connexion aux données");
@@ -95,12 +96,14 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	@Override
 	public void update(Article article) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_UPDATE);
 			stmt.setString(1, article.getNom());
 			stmt.setString(2, article.getDescription());
-			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en java.sql.Date
-			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en java.sql.Date
+			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en
+																					// java.sql.Date
+			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en
+																				// java.sql.Date
 			if (article.getPrixInit() != null) {
 				stmt.setInt(5, article.getPrixInit());
 			} else {
@@ -114,7 +117,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 			stmt.setInt(7, article.getOwnerId());
 			stmt.setString(8, article.getCategorie());
 			stmt.setInt(9, article.getNoArticle());
-			
+
 			stmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -144,8 +147,10 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 
 			stmt.setString(1, article.getNom());
 			stmt.setString(2, article.getDescription());
-			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en java.sql.Date
-			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en java.sql.Date
+			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en
+																					// java.sql.Date
+			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en
+																				// java.sql.Date
 			if (article.getPrixInit() != null) {
 				stmt.setInt(5, article.getPrixInit());
 			} else {
@@ -158,7 +163,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 			}
 			stmt.setInt(7, article.getOwnerId());
 			stmt.setString(8, article.getCategorie());
-			
+
 			stmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -170,12 +175,12 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	@Override
 	public List<Article> selectByCategory(String categorie) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			
+
 			List<Article> articles = new ArrayList<>();
 			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_SELECTBYCAT);
 			stmt.setString(1, categorie);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int noArticle = rs.getInt("no_article");
 				String nom = rs.getString("nom_article");
@@ -195,11 +200,29 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 				articles.add(new Article(noArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixVente, ownerId));
 			}
 			return articles;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("problème de connexion aux données");
 		}
 	}
 
+	@Override
+	public int getNextNoArticle() throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(RETRAIT_SQL_LAST_COLUMN);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				return (rs.getInt("nextID")); // retourne le no_article du dernier article importe et ajoute 1
+			} else {
+				throw new DALException("problème de connexion aux données");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
+	}
 }

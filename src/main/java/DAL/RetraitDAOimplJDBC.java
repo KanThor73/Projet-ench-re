@@ -12,6 +12,8 @@ public class RetraitDAOimplJDBC implements RetraitDAO {
 	public static final String RETRAIT_SQL_SELECTBYID = "SELECT * FROM retraits WHERE no_article = ?";
 	public static final String RETRAIT_SQL_DELETE = "DELETE FROM retraits WHERE no_article = ?";
 
+	// creation de l'udpate
+
 	@Override
 	public Retrait selectByIdArticle(int id) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
