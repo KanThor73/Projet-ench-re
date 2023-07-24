@@ -72,5 +72,19 @@
     <servlet-name>NewArticle</servlet-name>
     <url-pattern>/Vente</url-pattern>
   </servlet-mapping>
+  
+  <!-- Enchere -->
+  <servlet>
+  	<servlet-name>Auction</servlet-name>
+  	<servlet-class>IHM.AuctionServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AuctionJSP</servlet-name>
+    <jsp-file>/WEB-INF/JSP/Auction.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Auction</servlet-name>
+    <url-pattern>/Auction</url-pattern>
+  </servlet-mapping>
 
 </web-app>

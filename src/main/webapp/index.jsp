@@ -49,15 +49,15 @@
 			try {
 				ArticleManager articleMgr = ArticleManager.getInstanceOf();
 				UserManager userMgr = UserManager.getInstanceOf();
-				List<Article> articles = (request.getParameter("cat") == null) ?
+				List<Article> articles = (request.getParameter("categorie") == null) ?
 										articleMgr.selectAll() :
-										articleMgr.selectByCategory(request.getParameter("cat"));
+										articleMgr.selectByCategory(request.getParameter("categorie"));
 				for (Article art : articles) {
 			%>
 				<div class="encadrer">
 					<img src="img/imgArticle.svg" alt="img1" />
 					<div class="infos">
-						<h4><%=art.getNom()%></h4>
+						<a href="<%=request.getContextPath()%>/Auction"><h4><%=art.getNom()%></h4></a>
 						<div class="prix">
 							<p>
 								<strong>Prix :</strong> <%=(art.getPrixVente() == null) ? art.getPrixInit() : art.getPrixVente()%>
