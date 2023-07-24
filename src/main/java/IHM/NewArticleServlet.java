@@ -3,25 +3,41 @@ package IHM;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.Date;
-import java.util.Locale;
-
+import BLL.ArticleManager;
+import BLL.UserManager;
 import BO.Article;
+import BO.User;
 import Exceptions.BLLException;
 import Exceptions.DALException;
-import BLL.ArticleManager;
 
 public class NewArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleManager articleMgr = ArticleManager.getInstanceOf();
+	private UserManager userManager = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = (int)request.getSession().getAttribute("id");
+		
+		// recuperer les infos user pour preremplir les champs
+		try {
+			User user = userManager.selectByID(id);
+			
+			request.setAttribute("rue",user.getRue());
+			request.setAttribute("codePostal",user.getCodePostal());
+			request.setAttribute("ville",user.getVille());
+			
+		} catch (DALException e) {
+			e.printStackTrace();
+			request.setAttribute("msgErreur","Problème d'accès aux données");
+		}
 		getServletContext().getNamedDispatcher("NewArticleJSP").forward(request, response);
 	}
 
@@ -45,10 +61,10 @@ public class NewArticleServlet extends HttpServlet {
 			articleMgr.insert(newArticle); // ajout de l'utilisateur
 			response.sendRedirect("/ProjetEnchere");// retourne à l'accueil si bon déroulement
 			
-			// TODO traiter rue, code postal, et ville
-			/*String rue = request.getParameter("rue");
+			// traiter rue, code postal, et ville
+			String rue = request.getParameter("rue");
 			String codePostal = request.getParameter("codePostal");
-			String ville = request.getParameter("ville");*/
+			String ville = request.getParameter("ville");
 			
 		} catch (ParseException e) {
 			request.setAttribute("msgErreur","Problème de formattage des dates");

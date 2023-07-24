@@ -58,17 +58,17 @@
 						
 						<div class="formFragment">
 							<label for="rue">Rue : </label>
-							<input type="text" name="rue" id="rue" size="30" required>
+							<input type="text" name="rue" id="rue" size="30" value="${rue}" required>
 						</div>
 						
 						<div class="formFragment">
 							<label for="codePostal">Code Postal : </label>
-							<input type="text" name="codePostal" id="codePostal" size="30" required>
+							<input type="text" name="codePostal" id="codePostal" size="30" value="${codePostal}" required>
 						</div>
 						
 						<div class="formFragment">
 							<label for="ville">Ville : </label>
-							<input type="text" name="ville" id="ville" size="30" required>
+							<input type="text" name="ville" id="ville" size="30" value="${ville}" required>
 						</div>
 					</div>
 					<div class="formFooter">
