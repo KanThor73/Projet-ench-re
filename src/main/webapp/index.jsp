@@ -49,9 +49,9 @@
 			try {
 				ArticleManager articleMgr = ArticleManager.getInstanceOf();
 				UserManager userMgr = UserManager.getInstanceOf();
-				List<Article> articles = (request.getParameter("cat") == null) ?
+				List<Article> articles = (request.getParameter("categorie") == null) ?
 										articleMgr.selectAll() :
-										articleMgr.selectByCategory(request.getParameter("cat"));
+										articleMgr.selectByCategory(request.getParameter("categorie"));
 				for (Article art : articles) {
 			%>
 				<div class="encadrer">
