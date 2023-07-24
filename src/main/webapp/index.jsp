@@ -55,7 +55,7 @@
 				for (Article art : articles) {
 			%>
 				<div class="encadrer">
-					<img src="#" alt="img1" />
+					<img src="img/imgArticle.svg" alt="img1" />
 					<div class="infos">
 						<h4><%=art.getNom()%></h4>
 						<div class="prix">

@@ -43,7 +43,7 @@ public class NewArticleServlet extends HttpServlet {
 			Article newArticle = new Article(nom, description, categorie, dateDebut, dateFin, prixInit, id);
 						
 			articleMgr.insert(newArticle); // ajout de l'utilisateur
-			getServletContext().getNamedDispatcher("Index").forward(request, response); // retourne à l'accueil si bon déroulement
+			response.sendRedirect("/ProjetEnchere");// retourne à l'accueil si bon déroulement
 			
 			// TODO traiter rue, code postal, et ville
 			/*String rue = request.getParameter("rue");

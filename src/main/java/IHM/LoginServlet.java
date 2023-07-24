@@ -30,12 +30,12 @@ public class LoginServlet extends HttpServlet {
 		// Récupération des paramètres du formulaire de connect.jsp
 		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
-		
+
 		try {
 			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe coïncident
 				int id = userMgr.getId(login); // récupération de l'id
 				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
-				getServletContext().getNamedDispatcher("Index").forward(request, response); // retour à l'index
+				response.sendRedirect("/ProjetEnchere"); // retour à l'index
 			} else {
 				if (userMgr.checkPseudo(login)) { // si le login est correct
 					request.setAttribute("msgErreur","Mot de passe incorrect");
