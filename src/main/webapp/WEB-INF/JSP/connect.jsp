@@ -32,7 +32,9 @@
 							<input type="checkbox" id="remember" name="remember" />
 							<label for="remember">Se souvenir de moi</label>
 						</div>
-						<a href="#">Mot de passe oublié</a>
+						<div class="button" id="littleButton">
+							<a href="#">Mot de passe oublié</a>
+						</div>
 					</div>
 				</div>
 			</form>

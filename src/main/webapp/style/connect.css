@@ -17,6 +17,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
+  border-radius: 2rem;
+  background: linear-gradient(var(--gradiantGold));
+  box-shadow: var(--box_shadow);
 }
 
 form {
@@ -27,6 +31,30 @@ input[type="submit"] {
   margin: 1rem 0 0 1rem;
   height: 3rem;
   width: 5rem;
+}
+
+.button {
+	border-radius: 0.5rem;
+	padding: 1rem;
+	font-weight: 600;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
+	cursor: pointer; 
+	transition: 0.5s ease-out;
+}
+
+.button:hover {
+	text-shadow: var(--text_shadow);
+	box-shadow: var(--box_shadowWhite);
+}
+
+.button a {
+	color: black;
+}
+
+#littleButton a {
+	font-weight: 500;
+	font-size: 1.5rem;
 }
 
 label {
@@ -60,7 +88,7 @@ input {
 
 .cnx {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 4rem 0rem;
 }
