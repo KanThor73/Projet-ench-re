@@ -100,6 +100,12 @@ strong {
 	background: linear-gradient(var(--gradiantGold));
 	box-shadow: var(--box_shadow);
 	margin: 0rem;
+	transition: 0.5s ease-out;
+}
+
+.encadrer:hover{
+	box-shadow: var(--box_shadowWhite);
+	transform: scale(1.1);
 }
 
 .encadrer img {
@@ -107,9 +113,6 @@ strong {
 	height: 10rem;
 	margin-right: 2rem;
 	margin-bottom: 1rem;
-	border: 0.2rem solid black;
-	border-radius: 1rem;
-	box-shadow: var(--box_shadow);
 }
 
 .encadrer .prix, .encadrer .enchere, .encadrer .vendeur {
