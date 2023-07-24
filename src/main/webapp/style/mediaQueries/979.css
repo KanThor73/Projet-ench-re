@@ -1,0 +1,7 @@
+@charset "UTF-8";
+										/************************  	MID DESKTOP      ****************************/
+.encheres {
+	display:grid;
+	grid:
+    auto-flow auto / repeat(3,1fr);
+}

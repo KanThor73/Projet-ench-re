@@ -29,8 +29,9 @@ h3 {
 }
 
 h4 {
-	font-size: 2rem;
-	text-decoration: underline;
+	font-size: 2.5rem;
+	text-align: center;
+	margin-bottom: 1.5rem;
 }
 
 p {
@@ -58,7 +59,6 @@ strong {
 
 .container {
 	margin: 0rem 5rem;
-	max-width:1260px;
 }
 
 .search-bar {
@@ -91,26 +91,25 @@ strong {
 
 .encadrer {
 	display: flex;
-	flex:50%;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-around;
-	height: 27rem;
-	width: 50rem;
-	padding: 1rem;
+	padding: 4rem 2rem;
 	border: 1px solid;
 	border-radius: 1rem;
-	background: var(--background);
+	background: linear-gradient(var(--gradiantGold));
 	box-shadow: var(--box_shadow);
-	margin: 0rem 5rem;
+	margin: 0rem;
 }
 
 .encadrer img {
 	width: 10rem;
 	height: 10rem;
+	margin-right: 2rem;
 	margin-bottom: 1rem;
 	border: 0.2rem solid black;
 	border-radius: 1rem;
+	box-shadow: var(--box_shadow);
 }
 
 .encadrer .prix, .encadrer .enchere, .encadrer .vendeur {
@@ -163,15 +162,10 @@ input[name="recherche"] {
 }
 
 .encheres {
-	display: flex;
-	flex-wrap:wrap;
-	justify-content: space-around;
+	display: grid;
+	margin-top: 3rem;
 	border-radius: 1rem;
-	border: 1px solid black;
-	margin: 2rem 0rem;
-	padding: 3rem;
-	background: linear-gradient(var(--gradiantGold));
-	box-shadow: var(--box_shadow);
+	grid-gap: 2rem;
 }
 
 .cate_container {

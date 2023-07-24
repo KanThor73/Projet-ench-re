@@ -22,8 +22,6 @@ public class EditProfileServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int idUser = (int) session.getAttribute("id");
 
-//		int idUser = Integer.parseInt(request.getParameter("id"));
-
 		try {
 			User user = userManager.selectByID(idUser);
 

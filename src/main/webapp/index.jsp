@@ -13,6 +13,7 @@
 <head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/index.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/jspf/mediaQueries.jspf"%>
 <title>Les objets sont nos amis</title>
 </head>
 <body>

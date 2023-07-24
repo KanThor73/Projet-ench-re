@@ -1,0 +1,4 @@
+<link rel="stylesheet" media="only screen and (min-width:1200px)" href="style/mediaQueries/1200.css" />
+<link rel="stylesheet" media="only screen and (min-width:980px) and (max-width:1199px)" href="style/mediaQueries/979.css" />
+<link rel="stylesheet" media="only screen and (min-width:767px) and (max-width:979px)" href="style/mediaQueries/767.css" />
+<link rel="stylesheet" media="only screen and (min-width:480px) and (max-width:766px)" href="style/mediaQueries/480.css" />
