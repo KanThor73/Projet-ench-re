@@ -47,7 +47,7 @@ CREATE TABLE ArticlesVendus (
 	no_categorie			INT NOT NULL,
 	
 	CONSTRAINT article_pk PRIMARY KEY (no_article),
-	CONSTRAINT article_user_fk FOREIGN KEY (no_user) REFERENCES Users (no_user),
+	CONSTRAINT article_user_fk FOREIGN KEY (no_user) REFERENCES Users (no_user) ON UPDATE RESTRICT ON DELETE CASCADE,
 	CONSTRAINT article_categorie_fk FOREIGN KEY (no_categorie) REFERENCES Categories (no_categorie)
 );
 
