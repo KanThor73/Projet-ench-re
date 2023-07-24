@@ -50,7 +50,6 @@ public class EditProfileServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("msgErreur", e.getMessage());
 		}
-
 		request.getRequestDispatcher("/WEB-INF/JSP/EditProfile.jsp").forward(request, response);
 	}
 
@@ -84,7 +83,9 @@ public class EditProfileServlet extends HttpServlet {
 			try {
 				if (mdp1.isEmpty() && mdp2.isEmpty()) { // l'utilisateur ne veut pas modifier son mdps
 					User user1 = userMg.selectByPseudo(pseudo);
-					if (user1.getMotDePasse() == mdp) {// verif mdps
+					System.out.println(user1.getMotDePasse());
+					System.out.println(mdp);
+					if (user1.getMotDePasse().equals(mdp)) {// verif mdps
 						User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp,
 								user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
 						userMg.update(user2);
@@ -93,7 +94,7 @@ public class EditProfileServlet extends HttpServlet {
 						request.setAttribute("msgErreur",
 								"Attention - Le mot de passe est obligatoire pour la modification");
 					}
-				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1 == mdp2 && mdp1 != mdp) {// l'utilisateur veut
+				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1.equals(mdp2) && !mdp1.equals(mdp)) {// l'utilisateur veut
 																								// modifier son mdps et
 																								// qu'il remplit les
 																								// conditions
@@ -123,10 +124,10 @@ public class EditProfileServlet extends HttpServlet {
 			if (mdp != null && mdp != "") {// tester le mdp pour autoriser la suppression
 				try {
 					User user1 = userMg.selectByPseudo(pseudo);
-					if (user1.getMotDePasse() == mdp) { // verif mdps
+					if (user1.getMotDePasse().equals(mdp)) { // verif mdps
 						userMg.delete(user1.getNoUser());
 						request.setAttribute("msg", "Profil supprime avec succes!");
-						getServletContext().getNamedDispatcher("Index").forward(request, response);
+						response.sendRedirect("/ProjetEnchere");
 					}
 				} catch (DALException e) {
 					e.printStackTrace();
@@ -139,7 +140,7 @@ public class EditProfileServlet extends HttpServlet {
 			doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et
 										// afficher tous les champs
 		} else if (request.getParameter("cancel") != null) {// annulation des modifs
-			getServletContext().getNamedDispatcher("Index").forward(request, response);
+			response.sendRedirect("/ProjetEnchere");
 		}
 	}
 

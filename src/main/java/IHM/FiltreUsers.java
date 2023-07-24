@@ -41,3 +41,8 @@ public class FiltreUsers implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
 }
+
+
+// creer variable de session id si util refuse cookie
+// recuperer jsessionID
+// tester si l'un ou l'autre est present pour autoriser acces
