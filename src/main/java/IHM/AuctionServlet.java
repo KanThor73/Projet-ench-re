@@ -35,9 +35,9 @@ public class AuctionServlet extends HttpServlet {
 		        request.setAttribute("cat", article.getCategorie());
 		        request.setAttribute("prixVente", article.getPrixVente());
 		        request.setAttribute("dateFin", article.getDateFin());
-		       
-
-		       
+		        
+		        
+		        
 		        request.getRequestDispatcher("/Auction.jsp").forward(request, response);
 		    } catch (DALException e) {
 		        e.printStackTrace();

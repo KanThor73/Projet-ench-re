@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/Auction.css" rel="stylesheet" />
 <meta charset="UTF-8">
