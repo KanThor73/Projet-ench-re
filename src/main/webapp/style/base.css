@@ -27,6 +27,8 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: sticky;
+	top: 0px;
 	padding: 0.5rem;
 	padding-right: 3rem;
 	border-bottom-left-radius: 1rem;
