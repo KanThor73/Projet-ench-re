@@ -74,6 +74,13 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	public void insert(Auction t) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+			
+			stmt.setInt(1, t.getNoUtilisateur());
+			stmt.setInt(2, t.getNoArticle());
+			stmt.setDate(3, new java.sql.Date(t.getDateEnchere().getTime()));
+			stmt.setInt(4, t.getMontantEnchere());
+			
+			stmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
