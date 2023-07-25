@@ -48,12 +48,24 @@ public class AuctionManager {
 		auctionDAO.delete(idUser, idArticle);
 	}
 	
+	public void deleteByUser(int idUser) throws DALException {
+		auctionDAO.deleteByUser(idUser);
+	}
+	
+	public void deleteByArticle(int idArticle) throws DALException {
+		auctionDAO.deleteByArticle(idArticle);
+	}
+	
 	public List<Auction> selectAll() throws DALException {
 		return auctionDAO.selectAll();
 	}
 	
 	public Auction selectByUser(int idUser) throws DALException {
 		return auctionDAO.selectByUser(idUser);
+	}
+	
+	public Auction selectByArticle(int idArticle) throws DALException {
+		return auctionDAO.selectByArticle(idArticle);
 	}
 	
 	/********************

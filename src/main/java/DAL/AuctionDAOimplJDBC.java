@@ -8,7 +8,6 @@ import java.util.Date;
 
 import java.sql.Connection;
 
-
 import BO.Auction;
 import Exceptions.DALException;
 
@@ -30,7 +29,6 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			List<Auction> auctions = new ArrayList<>();
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_SELECTALL);
 			ResultSet rs = stmt.executeQuery();
-			
 			
 			while (rs.next()) {
 				int idUser = rs.getInt("no_user");
@@ -54,7 +52,6 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	public void update(Auction t) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
-
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_UPDATE);
 			
 			stmt.setDate(1, new java.sql.Date(t.getDateEnchere().getTime()));
@@ -133,9 +130,6 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			}else {
 				throw new DALException("Problème de connexion aux données");
 			}
-			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
@@ -150,11 +144,7 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			stmt.setInt(1,  idUser);
 			stmt.setInt(2, idArticle);
 			
-			
-			
 			ResultSet rs = stmt.executeQuery();
-			
-			
 			
 			if(rs.next()) {
 			
@@ -188,7 +178,6 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
 		}
- 
 	}
 
 	@Override
@@ -203,7 +192,6 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
 		}
-
 	}
 
 	@Override
