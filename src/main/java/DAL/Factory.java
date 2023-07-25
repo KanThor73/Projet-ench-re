@@ -17,4 +17,8 @@ public class Factory {
 	public static RetraitDAO getRetraitDAO() {
 		return new RetraitDAOimplJDBC();
 	}
+	
+	public static AuctionDAO getAuctionDAO() {
+		return new AuctionDAOimplJDBC();
+	}
 }
