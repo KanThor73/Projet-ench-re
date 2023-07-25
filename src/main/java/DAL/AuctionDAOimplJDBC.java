@@ -15,6 +15,7 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	public static final String AUCTION_SQL_SELECTALL = "SELECT * FROM Encheres";
 	public static final String AUCTION_SQL_SELECTBYUSER = "SELECT * FROM Encheres WHERE no_user = ?";
 	public static final String AUCTION_SQL_SELECTBYARTICLE = "SELECT * FROM Encheres WHERE no_article = ?";
+	public static final String AUCTION_SQL_SELECTBYID = "SELECT * FROM Encheres WHERE no_user = ? AND no_article = ?";
 	public static final String AUCTION_SQL_UPDATE = "UPDATE Encheres SET date_enchere = ?, montant_enchere = ? WHERE no_user = ? AND no_article = ?";
 	public static final String AUCTION_SQL_DELETEBYUSER = "DELETE FROM Encheres WHERE no_user = ?";
 	public static final String AUCTION_SQL_DELETEBYARTICLE = "DELETE FROM Encheres where no_article = ?";
