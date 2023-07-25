@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="BLL.ArticleManager"%>
+<%@ page import="BO.Article"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,24 +12,26 @@
 </head>
 <body>
     <%@ include file="/WEB-INF/jspf/header.jspf"%>
-
+	<%int id = 1;
+	ArticleManager articleMgr = ArticleManager.getInstanceOf();
+	Article article = articleMgr.selectByID(id);%>
     <div class="container">
         <h1>Details vente</h1>
 
-        <div class="FormCntainer">
+        <div class="FormContainer">
             <div class="FormBody">
                 <div class="FormFragment">
-                    <label for="nom-article">Articles : ${nom}</label>
+                    <label for="nom-article">Article : </label> <%=article.getNom()%>
                     <div class="FormFragment">
-                        <label for="Description">Description : ${desc}</label>
+                        <label for="Description">Description : <%=article.getDescription()%></label>
                         <div class="FormFragment">
-                            <label for="catégories">Catégories : ${cat}</label>
+                            <label for="catégories">Catégorie : ${article.getCategorie()}</label>
                             <div class="FormFragment">
                                 <label for="Meilleur_Offres">Meilleur offre :</label>
                                 <div class="FormFragment">
-                                    <label for="Mise_A_Prix">Mise à prix :  ${prixVente}</label>
+                                    <label for="Mise_A_Prix">Mise à prix : </label>
                                     <div class="FormFragment">
-                                        <label for="Fin_enchère">Fin de l'enchère : ${dateFin}</label>
+                                        <label for="Fin_enchère">Fin de l'enchère : ${article.getDateFin().toLocaleString()}</label>
                                         
                                     </div>
                                 </div>
