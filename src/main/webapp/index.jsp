@@ -60,12 +60,12 @@
 						<a href="<%=request.getContextPath()%>/Auction?id=<%=art.getNoArticle()%>"><h4><%=art.getNom()%></h4></a>
 						<div class="prix">
 							<p>
-								<strong>Prix :</strong> <%=(art.getPrixVente() == null) ? art.getPrixInit() : art.getPrixVente()%>
+								<strong>Prix : </strong> <%=(art.getPrixVente() == null) ? art.getPrixInit() : art.getPrixVente()%>
 							</p>
 						</div>
 						<div class="enchere">
 							<p>
-								<strong>Fin de l'enchère :</strong> <%=art.getDateFin().toString()%>
+								<strong>Fin de l'enchère : </strong> <%=art.getDateFin().toString()%>
 							</p>
 						</div>
 						<div class="vendeur">
@@ -75,7 +75,7 @@
 								int idSeller = user.getNoUser();
 								String pseudoSeller = user.getPseudo();
 								%>
-								<strong>Vendeur :</strong><a href="<%=request.getContextPath()%>/Profil?id=<%=idSeller%>"><%=pseudoSeller%></a>
+								<strong>Vendeur : </strong><a href="<%=request.getContextPath()%>/Profil?id=<%=idSeller%>"><%=pseudoSeller%></a>
 							</p>
 						</div>
 					</div>

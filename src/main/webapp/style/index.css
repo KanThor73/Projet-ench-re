@@ -192,3 +192,8 @@ select {
 	border-radius: 1rem;
 	padding-left: 2rem;
 }
+
+a {
+	font-size: 1.5rem;
+	color: var(--dark-purple);
+}
