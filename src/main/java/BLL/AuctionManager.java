@@ -52,6 +52,10 @@ public class AuctionManager {
 		return auctionDAO.selectAll();
 	}
 	
+	/********************
+	 * Méthodes privées *
+	 ********************/
+	
 	private void control(Auction auct) throws BLLException {
 		// TODO
 	}
