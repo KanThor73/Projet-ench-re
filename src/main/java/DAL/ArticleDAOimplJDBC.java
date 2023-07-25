@@ -21,7 +21,8 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	public static final String ARTICLE_SQL_SELECTALL = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie";
 	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND no_article = ?";
 	public static final String ARTICLE_SQL_SELECTBYCAT = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND libelle = ?";
-	public static final String RETRAIT_SQL_LAST_COLUMN = "SELECT MAX(no_article) AS nextID FROM ArticlesVendus;";
+	public static final String ARTICLE_SQL_LAST_COLUMN = "SELECT MAX(no_article) AS nextID FROM ArticlesVendus;";
+	
 
 	@Override
 	public List<Article> selectAll() throws DALException {
@@ -211,7 +212,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	public int getNextNoArticle() throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			PreparedStatement stmt = cnx.prepareStatement(RETRAIT_SQL_LAST_COLUMN);
+			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_LAST_COLUMN);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
@@ -219,6 +220,44 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 			} else {
 				throw new DALException("problème de connexion aux données");
 			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
+	}
+
+	@Override
+	public List<Article> selectDynamic(String requete, String[] parameters) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			List<Article> articles = new ArrayList<>();
+
+			PreparedStatement stmt = cnx.prepareStatement(requete);
+			for (int i = 0; i < parameters.length; i++) {
+				stmt.setString(i+1, parameters[i]);
+			}
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				int noArticle = rs.getInt("no_article");
+				String nom = rs.getString("nom_article");
+				String desc = rs.getString("description");
+				String cat = rs.getString("categorie");
+				Date dateDebut = rs.getDate("date_debut_encheres");
+				Date dateFin = rs.getDate("date_fin_encheres");
+				Integer prixInit = Integer.valueOf(rs.getInt("prix_initial"));
+				if (rs.wasNull()) { // si la dernière colonne lue est nulle
+					prixInit = null;
+				}
+				Integer prixVente = Integer.valueOf(rs.getInt("prix_vente"));
+				if (rs.wasNull()) { // si la dernière colonne lue est nulle
+					prixVente = null;
+				}
+				int ownerId = rs.getInt("no_user");
+				articles.add(new Article(noArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixVente, ownerId));
+			}
+			return articles;
 
 		} catch (Exception e) {
 			e.printStackTrace();

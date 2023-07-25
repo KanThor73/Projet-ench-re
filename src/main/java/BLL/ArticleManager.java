@@ -63,6 +63,11 @@ public class ArticleManager {
 		return articleDAO.selectByCategory(cat);
 	}
 	
+	// récupérer tous les articles d'une catégorie
+	public List<Article> selectDynamic(String requete, String[] parameters) throws DALException {
+		return articleDAO.selectDynamic(requete, parameters);
+	}
+	
 	// récupérer l'id du prochain article 
 	public int getNextNoArticle() throws DALException {
 		return articleDAO.getNextNoArticle();
