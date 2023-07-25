@@ -50,17 +50,19 @@ public class AuctionServlet extends HttpServlet {
 			
 			if (request.getSession().getAttribute("id") != null) { // utilisateur connecté
 				int sessionId = Integer.parseInt(request.getSession().getAttribute("id").toString());
-				request.setAttribute("droits", sessionId == idOwner ? "proprio" : "user");
+				System.out.println(sessionId + " " + idOwner);
+				System.out.println((sessionId == idOwner));
+				request.setAttribute((sessionId == idOwner) ? "proprio" : "user", "true");
 			} else {
-				request.setAttribute("droits", "visiteur");
+				request.setAttribute("visiteur", "true");
 			}
 			request.setAttribute("id", request.getParameter("id"));
 			request.setAttribute("nom", article.getNom());
 			request.setAttribute("desc", article.getDescription());
 			request.setAttribute("cat", article.getCategorie());
-			request.setAttribute("bestOffer", maxEnchere != null ? maxEnchere.getMontantEnchere() : 0);
-			request.setAttribute("bestOfferer", user != null ? user.getPseudo() : "");
-			request.setAttribute("prixVente", article.getPrixInit() != null ? article.getPrixInit() : 0);
+			request.setAttribute("bestOffer", (maxEnchere != null) ? maxEnchere.getMontantEnchere() : 0);
+			request.setAttribute("bestOfferer", (user != null) ? user.getPseudo() : "");
+			request.setAttribute("prixVente", (article.getPrixInit() != null) ? article.getPrixInit() : 0);
 			request.setAttribute("dateFin", article.getDateFin().toString());
 
 		} catch (DALException e) {

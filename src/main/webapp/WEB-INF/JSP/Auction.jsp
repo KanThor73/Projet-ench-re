@@ -27,7 +27,7 @@
                 <% if (request.getParameter("bestOfferer") != "") {%>
                 <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
                 <% }
-                if (request.getAttribute("droits").toString().equals("user")) {%>
+                if (request.getAttribute("user") != null) {%>
                 <form action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
                 	<input type="number" name="relance" id="relance" value="${bestOffer}" min="${bestOffer}" step="1">
                 </form>
@@ -40,9 +40,9 @@
                 <label for="Fin_enchère">Fin de l'enchère : ${dateFin})</label>
             </div>
             
-            <% if (request.getAttribute("droits").toString().equals("proprio")) { // vérifier la date %>
-            <div class="footer">
-            	Modifier
+            <% if (request.getAttribute("proprio") != null) { // vérifier la date %>
+            <div class="fragment">
+            	<label>Modifier</label>
             </div>
             <%}%>
         </div>
