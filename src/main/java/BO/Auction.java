@@ -1,70 +1,63 @@
 package BO;
+
 import java.util.Date;
 
 public class Auction {
 	private int noUtilisateur;
 	private int noArticle;
-	private Date DateEnchere;
+	private Date dateEnchere;
 	private int montantEnchere;
-	
-	
 
+	public Auction() {
 
-public Auction(){
-	
-}
+	}
 
-public Auction (int noUtilisateur, int noArticle, Date DateEnchere, int montantEnchere) {
-	
-	this.noUtilisateur = noUtilisateur;
-	this.noArticle = noArticle;
-	this.DateEnchere = DateEnchere;
-	this.montantEnchere = montantEnchere;
-	
-}
+	public Auction(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere) {
 
-public int getnoUtilisateur() {
-	return noUtilisateur;
-}
+		this.noUtilisateur = noUtilisateur;
+		this.noArticle = noArticle;
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
 
-public void setnoUtilisateur(int noUtilisateur) {
-	this.noUtilisateur = noUtilisateur;
-}
+	}
 
-public int getnoArticle() {
-	return noArticle;
-}
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
 
-public void setnoArticles(int noArticle) {
-	this.noArticle = noArticle;
-	
-}
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
 
-public Date getDateEnchere() {
-	return DateEnchere;
-}
+	public int getNoArticle() {
+		return noArticle;
+	}
 
-public void setDateEnchere(Date DateEnchere) {
-	this.DateEnchere  = DateEnchere;
-}
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
 
-public int getmontantEnchere() {
-	return montantEnchere;
-	
-}
+	}
 
-public void setmontantEnchere(int montantEnchere) {
-	this.montantEnchere = montantEnchere;
-}
+	public Date getDateEnchere() {
+		return dateEnchere;
+	}
 
-public String toString() {
-	return "Enchere{" +
-            "noUtilisateur=" + noUtilisateur +
-            ", noArticle=" + noArticle +
-            ", dateEnchere=" + DateEnchere +
-            ", montantEnchere=" + montantEnchere +
-            '}';
-}
+	public void setDateEnchere(Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
+	}
 
+	public int getMontantEnchere() {
+		return montantEnchere;
+
+	}
+
+	public void setMontantEnchere(int montantEnchere) {
+		this.montantEnchere = montantEnchere;
+	}
+
+	public String toString() {
+		return "Enchere{" + "noUtilisateur=" + noUtilisateur + ", noArticle=" + noArticle + ", dateEnchere="
+				+ dateEnchere + ", montantEnchere=" + montantEnchere + '}';
+	}
 
 }
