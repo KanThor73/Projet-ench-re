@@ -11,7 +11,7 @@ import BO.Auction;
 import Exceptions.DALException;
 
 public class AuctionDAOimplJDBC implements AuctionDAO {
-	
+
 	public static final String AUCTION_SQL_SELECTALL = "SELECT * FROM Encheres";
 	public static final String AUCTION_SQL_SELECTBYUSER = "SELECT * FROM Encheres WHERE no_user = ?";
 	public static final String AUCTION_SQL_SELECTBYARTICLE = "SELECT * FROM Encheres WHERE no_article = ?";
@@ -24,38 +24,16 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 
 	@Override
 	public List<Auction> selectAll() throws DALException {
-		  try (Connection cnx = ConnectionProvider.getConnection()) {
-	            List<Auction> auctions = new ArrayList<>();
-	            PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_SELECTALL);
-	            ResultSet rs = stmt.executeQuery();
-
-		  } catch (Exception e) {
-				e.printStackTrace();
-				throw new DALException("problème de connexion aux données");
-			}
-		  return null;
-
-	          	
-
-		  }
-	
-	       
-	            
-	@Override
-	public Auction selectByID(int id) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-
-			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_SELECTBYID);
-			stmt.setInt(1, id);
+			List<Auction> auctions = new ArrayList<>();
+			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_SELECTALL);
 			ResultSet rs = stmt.executeQuery();
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DALException("problème de connexion aux données");
+			throw new DALException("Problème de connexion aux données");
 		}
-		
-		
 	}
-	
 
 	@Override
 	public void update(Auction t) throws DALException {
@@ -64,36 +42,87 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_UPDATE);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DALException("problème de connexion aux données");
+			throw new DALException("Problème de connexion aux données");
 		}
-		}
-	
-
-	@Override
-	public void delete(int id) throws DALException {
-		try (Connection cnx = ConnectionProvider.getConnection()) {
-
-			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_DELETE);
-			stmt.setInt(1, id);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new DALException("problème de connexion aux données");
-		}
-		}
-
-	
+	}
 
 	@Override
 	public void insert(Auction t) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DALException("problème de connexion aux données");
+			throw new DALException("Problème de connexion aux données");
 		}
 
 	}
 
+	@Override
+	public Auction selectByUser(int id) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("Problème de connexion aux données");
+		}
 	}
 
+	@Override
+	public Auction selectByArticle(int id) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("Problème de connexion aux données");
+		}
+	}
+
+	@Override
+	public Auction selectByID(int idUser, int idArticle) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("Problème de connexion aux données");
+		}
+	}
+
+	@Override
+	public void deleteByUser(int id) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("Problème de connexion aux données");
+		}
+
+	}
+
+	@Override
+	public void deleteByArticle(int id) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("Problème de connexion aux données");
+		}
+
+	}
+
+	@Override
+	public void delete(int idUser, int idArticle) throws DALException {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("Problème de connexion aux données");
+		}
+	}
+}
