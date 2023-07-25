@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import BLL.ArticleManager;
 import BLL.UserManager;
+import BLL.RetraitManager;
 import BO.Article;
 import BO.User;
+import BO.Retrait;
 import Exceptions.BLLException;
 import Exceptions.DALException;
 
@@ -22,6 +24,7 @@ public class NewArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleManager articleMgr = ArticleManager.getInstanceOf();
 	private UserManager userManager = UserManager.getInstanceOf();
+	private RetraitManager retraitManager = RetraitManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = (int)request.getSession().getAttribute("id");
@@ -55,16 +58,23 @@ public class NewArticleServlet extends HttpServlet {
 			Date dateFin = formatter.parse(request.getParameter("dateFin"));
 			
 			int id = Integer.parseInt(request.getSession().getAttribute("id").toString()); // récupération de l'id du user connecté
-			
+			System.out.println(categorie);
 			Article newArticle = new Article(nom, description, categorie, dateDebut, dateFin, prixInit, id);
 						
 			articleMgr.insert(newArticle); // ajout de l'utilisateur
-			response.sendRedirect("/ProjetEnchere");// retourne à l'accueil si bon déroulement
 			
-			// traiter rue, code postal, et ville
+			// creation du retrait
 			String rue = request.getParameter("rue");
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
+			
+			System.out.println(articleMgr.getNextNoArticle());
+			
+			Retrait retrait = new Retrait(articleMgr.getNextNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
+			retraitManager.insert(retrait);
+			
+			response.sendRedirect("/ProjetEnchere");// retourne à l'accueil si bon déroulement
+			
 			
 		} catch (ParseException e) {
 			request.setAttribute("msgErreur","Problème de formattage des dates");

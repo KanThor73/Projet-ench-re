@@ -16,4 +16,6 @@ public interface ArticleDAO {
 	// Méthodes spécifiques à Article
 	
 	public List<Article> selectByCategory(String cat) throws DALException;
+	
+	public int getNextNoArticle() throws DALException;// recup prochain no pour ajoute de retrait
 }

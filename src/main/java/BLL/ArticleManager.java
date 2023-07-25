@@ -63,6 +63,11 @@ public class ArticleManager {
 		return articleDAO.selectByCategory(cat);
 	}
 	
+	// récupérer l'id du prochain article 
+	public int getNextNoArticle() throws DALException {
+		return articleDAO.getNextNoArticle();
+	}
+	
 	/*************
 	 * Controles *
 	 *************/
