@@ -2,7 +2,7 @@ package BO;
 
 import java.util.Date;
 
-public class Auction {
+public class Auction implements Comparable<Auction> {
 	
 	private int noUtilisateur;
 	private int noArticle;
@@ -52,5 +52,10 @@ public class Auction {
 	public String toString() {
 		return "Enchere{" + "noUtilisateur=" + noUtilisateur + ", noArticle=" + noArticle + ", dateEnchere="
 				+ dateEnchere + ", montantEnchere=" + montantEnchere + '}';
+	}
+
+	@Override
+	public int compareTo(Auction o) {
+		return montantEnchere - o.getMontantEnchere();
 	}
 }

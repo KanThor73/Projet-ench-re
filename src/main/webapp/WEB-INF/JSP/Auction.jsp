@@ -1,11 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="BLL.ArticleManager"%>
-<%@ page import="BLL.AuctionManager"%>
-<%@ page import="BO.Article"%>
-<%@ page import="BO.Auction"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.Date"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,35 +10,41 @@
 </head>
 <body>
     <%@ include file="/WEB-INF/jspf/header.jspf"%>
-	<%
-	int id = 1;
-	ArticleManager articleMgr = ArticleManager.getInstanceOf();
-	Article article = articleMgr.selectByID(id);
-	
-	AuctionManager auctionMgr = AuctionManager.getInstanceOf();
-	List<Auction> auctions = auctionMgr.selectByArticle(id);
-	%>
     <div class="container">
         <h1>Details vente</h1>
         <div class="sub-container">
-                <div class="fragment">
-                    <label for="nom-article">Article : <%=article.getNom()%></label>
-                </div>
-                <div class="fragment">
-               	    <label for="Description">Description : <%=article.getDescription()%></label>
-               	</div>
-                <div class="fragment">
-                    <label for="catégories">Catégorie : <%=article.getCategorie()%></label>
-                </div>
-                <div class="fragment">
-                    <label for="Meilleur_Offres">Meilleur offre :</label>
-                </div>
-                <div class="fragment">
-                    <label for="Mise_A_Prix">Mise à prix : </label>
-                </div>
-                <div class="fragment">
-                    <label for="Fin_enchère">Fin de l'enchère : <%=article.getDateFin().toString()%></label>
-                </div>                 
+            <div class="fragment">
+                <label for="nom-article">Article : ${nom}</label>
+            </div>
+            <div class="fragment">
+           	    <label for="Description">Description : ${desc}</label>
+           	</div>
+            <div class="fragment">
+                <label for="catégories">Catégorie :${cat}</label>
+            </div>
+            <div class="fragment">
+                <label for="Meilleur_Offres">Meilleur offre : ${bestOffer}</label>
+                <% if (request.getParameter("bestOfferer") != "") {%>
+                <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
+                <% }
+                if (request.getAttribute("droits").toString().equals("user")) {%>
+                <form action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
+                	<input type="number" name="relance" id="relance" value="${bestOffer}" min="${bestOffer}" step="1">
+                </form>
+                <%}%>
+            </div>
+            <div class="fragment">
+                <label for="Mise_A_Prix">Mise à prix : ${prixVente}</label>
+            </div>
+            <div class="fragment">
+                <label for="Fin_enchère">Fin de l'enchère : ${dateFin})</label>
+            </div>
+            
+            <% if (request.getAttribute("droits").toString().equals("proprio")) { // vérifier la date %>
+            <div class="footer">
+            	Modifier
+            </div>
+            <%}%>
         </div>
     </div>
 

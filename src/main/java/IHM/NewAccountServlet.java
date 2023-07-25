@@ -52,7 +52,7 @@ public class NewAccountServlet extends HttpServlet {
 				userMgr.insert(newUser); // ajout de l'utilisateur
 				int id = userMgr.getId(pseudo); // récupération de l'id
 				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
-				response.sendRedirect("/"); // retourne à l'accueil si bon déroulement
+				response.sendRedirect("/ProjetEnchere"); // retourne à l'accueil si bon déroulement
 			} catch (DALException e) {
 				request.setAttribute("msgErreur","Problème d'accès aux données");
 				getServletContext().getNamedDispatcher("NewAccountJSP").forward(request, response);
