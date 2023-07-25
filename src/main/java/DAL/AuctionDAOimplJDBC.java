@@ -109,7 +109,10 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	@Override
 	public void deleteByUser(int id) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_DELETEBYUSER);
+			
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,8 +124,11 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	@Override
 	public void deleteByArticle(int id) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
-
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_DELETEBYARTICLE);
+			
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
@@ -133,7 +139,12 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	@Override
 	public void delete(int idUser, int idArticle) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_DELETE);
+			
+			stmt.setInt(1, idUser);
+			stmt.setInt(2, idArticle);
+			
+			stmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
