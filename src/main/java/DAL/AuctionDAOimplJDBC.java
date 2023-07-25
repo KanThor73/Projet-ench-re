@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 import BO.Article;
 import BO.Auction;
@@ -26,9 +26,13 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	            List<Auction> auctions = new ArrayList<>();
 	            PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_SELECTALL);
 	            ResultSet rs = stmt.executeQuery();
-	          		
+		  } catch (Exception e) {
+				e.printStackTrace();
+				throw new DALException("problème de connexion aux données");
+			}
+		  return null;
 		  }
-	}
+	
 	       
 	            
 	            
@@ -42,17 +46,26 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_SELECTBYID);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
+		return null;
 		
 	}
-	}
+	
 
 	@Override
 	public void update(Auction t) throws DALException, BLLException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_UPDATE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
 		}
-	}
+		}
+	
 
 	@Override
 	public void delete(int id) throws DALException {
@@ -61,17 +74,24 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_DELETE);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
 		}
 
-	}
+	
 
 	@Override
 	public void insert(Auction t) throws DALException, BLLException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
-
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
 
 	}
 
 	}
-}
+
