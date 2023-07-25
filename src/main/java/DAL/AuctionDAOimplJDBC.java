@@ -86,23 +86,24 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	}
 
 	@Override
-	public Auction selectByUser(int id) throws DALException {
+	public List<Auction> selectByUser(int id) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_SELECTBYUSER);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 
-			if (rs.next()) { // il y a une ligne dans le ResultSet
+			List<Auction> auctions = new ArrayList<Auction>();
+			while (rs.next()) {
 				int idUser = rs.getInt("no_user");
 				int idArticle = rs.getInt("no_article");
 				Date date = rs.getDate("date_enchere");
 				int montant = rs.getInt("montant_enchere");
 
-				return new Auction(idUser, idArticle, date, montant); // on retourne une nouvelle instance
+				auctions.add(new Auction(idUser, idArticle, date, montant));
 
-			} else { // on ne trouve rien
-				throw new DALException("Enchère ou article inexistant");
 			}
+			return auctions;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
@@ -110,25 +111,23 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	}
 
 	@Override
-	public Auction selectByArticle(int id) throws DALException {
+	public List<Auction> selectByArticle(int id) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_SELECTBYARTICLE);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			List<Auction> auctions = new ArrayList<Auction>();
+			while (rs.next()) {
 
 				int idUser = rs.getInt("no_user");
 				int idArticle = rs.getInt("no_article");
 				Date date = rs.getDate("date_enchere");
 				int montant = rs.getInt("montant_enchere");
 
-				Auction auction = new Auction(idUser, idArticle, date, montant);
-
-				return auction;
-			} else {
-				throw new DALException("Problème de connexion aux données");
+				auctions.add(new Auction(idUser, idArticle, date, montant));
 			}
+			return auctions;
 
 		} catch (Exception e) {
 			e.printStackTrace();
