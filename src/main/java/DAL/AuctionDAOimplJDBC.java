@@ -30,7 +30,20 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			List<Auction> auctions = new ArrayList<>();
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_SELECTALL);
 			ResultSet rs = stmt.executeQuery();
-			return null;
+			
+			
+			while (rs.next()) {
+				int idUser = rs.getInt("no_user");
+				int idArticle = rs.getInt("no_article");
+				Date date = rs.getDate("date_enchere");
+				int montant = rs.getInt("montant_enchere");
+				
+				Auction auction = new Auction(idUser, idArticle, date, montant);
+				auctions.add(auction);
+			}
+			
+			return auctions;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
@@ -40,8 +53,17 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	@Override
 	public void update(Auction t) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
 
 			PreparedStatement stmt = cnx.prepareStatement(AUCTION_SQL_UPDATE);
+			
+			stmt.setDate(1, new java.sql.Date(t.getDateEnchere().getTime()));
+			stmt.setInt(2, t.getMontantEnchere());
+			stmt.setInt(3, t.getNoUtilisateur());
+			stmt.setInt(4, t.getNoArticle());
+			
+			stmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
@@ -87,7 +109,15 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	@Override
 	public Auction selectByArticle(int id) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_SELECTBYARTICLE);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			int idUser = rs.getInt("no_user");
+			int idArticle = rs.getInt("no_article");
+			Date date = rs.getDate("date_enchere");
+			int montant = rs.getInt("montant_enchere");
+			
 			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
