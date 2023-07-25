@@ -25,13 +25,13 @@
                     <div class="FormFragment">
                         <label for="Description">Description : <%=article.getDescription()%></label>
                         <div class="FormFragment">
-                            <label for="catégories">Catégorie : ${article.getCategorie()}</label>
+                            <label for="catégories">Catégorie : <%=article.getCategorie()%></label>
                             <div class="FormFragment">
                                 <label for="Meilleur_Offres">Meilleur offre :</label>
                                 <div class="FormFragment">
                                     <label for="Mise_A_Prix">Mise à prix : </label>
                                     <div class="FormFragment">
-                                        <label for="Fin_enchère">Fin de l'enchère : ${article.getDateFin().toLocaleString()}</label>
+                                        <label for="Fin_enchère">Fin de l'enchère : <%= article.getDateFin().toLocaleString()%></label>
                                         
                                     </div>
                                 </div>
