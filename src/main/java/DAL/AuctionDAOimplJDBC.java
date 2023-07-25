@@ -113,12 +113,22 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			
-			int idUser = rs.getInt("no_user");
-			int idArticle = rs.getInt("no_article");
-			Date date = rs.getDate("date_enchere");
-			int montant = rs.getInt("montant_enchere");
+			if(rs.next()) {
+				
+				int idUser = rs.getInt("no_user");
+				int idArticle = rs.getInt("no_article");
+				Date date = rs.getDate("date_enchere");
+				int montant = rs.getInt("montant_enchere");
+				
+				Auction auction = new Auction(idUser, idArticle, date, montant);
+				
+				return auction;
+			}else {
+				throw new DALException("Problème de connexion aux données");
+			}
 			
-			return null;
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
