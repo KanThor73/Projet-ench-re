@@ -13,7 +13,7 @@
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/Auction.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>Enchère</title>
+<title> Enchère</title>
 </head>
 <body>
     <%@ include file="/WEB-INF/jspf/header.jspf"%>
