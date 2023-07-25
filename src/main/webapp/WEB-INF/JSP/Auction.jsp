@@ -19,7 +19,7 @@
 	Article article = articleMgr.selectByID(id);
 	
 	AuctionManager auctionMgr = AuctionManager.getInstanceOf();
-	Auction auction = auctionMgr.selectByUser(id);%>
+	Auction auction = auctionMgr.selectByArticle(id);%>
 	<%=auction.getMontantEnchere()%>
     <div class="container">
         <h1>Details vente</h1>

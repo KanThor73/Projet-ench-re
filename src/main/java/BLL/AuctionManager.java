@@ -60,11 +60,11 @@ public class AuctionManager {
 		return auctionDAO.selectAll();
 	}
 	
-	public Auction selectByUser(int idUser) throws DALException {
+	public List<Auction> selectByUser(int idUser) throws DALException {
 		return auctionDAO.selectByUser(idUser);
 	}
 	
-	public Auction selectByArticle(int idArticle) throws DALException {
+	public List<Auction> selectByArticle(int idArticle) throws DALException {
 		return auctionDAO.selectByArticle(idArticle);
 	}
 	
