@@ -44,12 +44,16 @@ public class AuctionManager {
 		auctionDAO.update(auct);
 	}
 
-	public void delete(int id) throws DALException {
-		auctionDAO.delete(id);
+	public void delete(int idUser, int idArticle) throws DALException {
+		auctionDAO.delete(idUser, idArticle);
 	}
 	
 	public List<Auction> selectAll() throws DALException {
 		return auctionDAO.selectAll();
+	}
+	
+	public Auction selectByUser(int idUser) throws DALException {
+		return auctionDAO.selectByUser(idUser);
 	}
 	
 	/********************

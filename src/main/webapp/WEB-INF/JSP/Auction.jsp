@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="BLL.ArticleManager"%>
+<%@ page import="BLL.AuctionManager"%>
 <%@ page import="BO.Article"%>
+<%@ page import="BO.Auction"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,11 @@
     <%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<%int id = 1;
 	ArticleManager articleMgr = ArticleManager.getInstanceOf();
-	Article article = articleMgr.selectByID(id);%>
+	Article article = articleMgr.selectByID(id);
+	
+	AuctionManager auctionMgr = AuctionManager.getInstanceOf();
+	Auction auction = auctionMgr.selectByUser(id);%>
+	<%=auction.getMontantEnchere()%>
     <div class="container">
         <h1>Details vente</h1>
 

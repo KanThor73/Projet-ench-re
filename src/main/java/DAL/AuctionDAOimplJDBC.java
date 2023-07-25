@@ -4,8 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import java.sql.Connection;
+
 
 import BO.Auction;
 import Exceptions.DALException;
@@ -61,8 +63,21 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	@Override
 	public Auction selectByUser(int id) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
-			return null;
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_SELECTBYUSER);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) { // il y a une ligne dans le ResultSet
+				int idUser = rs.getInt("no_user");
+				int idArticle = rs.getInt("no_article");
+				Date date = rs.getDate("date_enchere");
+				int montant = rs.getInt("montant_enchere");
+				
+				return new Auction(idUser, idArticle, date, montant); // on retourne une nouvelle instance
+				
+			} else { // on ne trouve rien
+				throw new DALException("Enchère ou article inexistant");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
