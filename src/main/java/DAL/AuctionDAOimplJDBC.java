@@ -83,7 +83,6 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
 		}
-
 	}
 
 	@Override

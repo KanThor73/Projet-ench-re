@@ -68,6 +68,10 @@ public class AuctionManager {
 		return auctionDAO.selectByArticle(idArticle);
 	}
 	
+	public Auction selectByID(int idUser, int idArticle) throws DALException {
+		return auctionDAO.selectByID(idUser, idArticle);
+	}
+	
 	/********************
 	 * Méthodes privées *
 	 ********************/
