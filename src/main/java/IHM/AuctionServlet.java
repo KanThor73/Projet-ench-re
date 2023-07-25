@@ -15,7 +15,6 @@ import BLL.UserManager;
 import BO.User;
 import Exceptions.DALException;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

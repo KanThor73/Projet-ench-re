@@ -30,6 +30,7 @@
                 if (request.getAttribute("user") != null) {%>
                 <form action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
                 	<input type="number" name="relance" id="relance" value="${bestOffer}" min="${bestOffer}" step="1">
+                	<!-- TODO bouton submit -->
                 </form>
                 <%}%>
             </div>
@@ -40,7 +41,7 @@
                 <label for="Fin_enchère">Fin de l'enchère : ${dateFin})</label>
             </div>
             
-            <% if (request.getAttribute("proprio") != null) { // vérifier la date %>
+            <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
             <div class="fragment">
             	<label>Modifier</label>
             </div>
