@@ -138,8 +138,31 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 	@Override
 	public Auction selectByID(int idUser, int idArticle) throws DALException {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_INSERT);
-			return null;
+			PreparedStatement stmt = connection.prepareStatement(AUCTION_SQL_SELECTBYID);
+			
+			stmt.setInt(1,  idUser);
+			stmt.setInt(2, idArticle);
+			
+			
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			
+			
+			if(rs.next()) {
+			
+				int idUser1 = rs.getInt("no_user");
+				int idArticle1 = rs.getInt("no_article");
+				Date date = rs.getDate("date_enchere");
+				int montant = rs.getInt("montant_enchere");
+				
+				Auction auction = new Auction(idUser1, idArticle1, date, montant);
+				return auction;
+			} else {
+				throw new DALException("Problème de connexion aux données");
+				
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
@@ -158,7 +181,7 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
 		}
-
+ 
 	}
 
 	@Override

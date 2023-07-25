@@ -8,9 +8,8 @@ public class Auction {
 	private Date dateEnchere;
 	private int montantEnchere;
 
-	public Auction() {
 
-	}
+
 
 	public Auction(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere) {
 
