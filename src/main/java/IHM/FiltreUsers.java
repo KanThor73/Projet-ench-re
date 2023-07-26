@@ -25,17 +25,23 @@ public class FiltreUsers implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		final long TIME_OF_CONNECTION = 5*60*1000; // duree max de connection
 		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
+		
+		long connectionTime = Long.parseLong(session.getAttribute(connectionTime)); // recupere la date de la derniere connection
 
-		if (session.getAttribute("id") == null) {
-			// laisse l'utilisateur sur la meme page s'il n''est pas connecte
-			httpResponse.sendRedirect("IndexServlet");
-		}else {			
+		boolean canBeConnect = (connectionTime - System.currentTimeMillis()) < TIME_OF_CONNECTION ? true : false; // renvoie un bool en focntion de la duree de connection
+		
+		
+		if (session.getAttribute("id") == null || canBeConnect == false) {
+			httpResponse.sendRedirect("IndexServlet");// laisse l'utilisateur sur la meme page s'il n''est pas connecte
+			session.setAttribute("id", null);
+		}else {
 			chain.doFilter(httpRequest, httpResponse);
-		}	
+		}
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

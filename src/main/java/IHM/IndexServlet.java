@@ -25,6 +25,10 @@ public class IndexServlet extends HttpServlet {
 		try {
 			List<String> categories = catMgr.selectAll();
 			request.setAttribute("categories", categories);
+			
+			List<Article> listeArticles = articleMgr.selectAll();// recupere tous les articles pour le premier affichage
+			request.setAttribute("articles", listeArticles);
+			if(listeArticles.size() == 0 || listeArticles == null) {request.setAttribute("msg", "Aucun element ne correspond a vos criteres de recherche");}
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
@@ -41,25 +45,29 @@ public class IndexServlet extends HttpServlet {
 		System.out.println(catForSelectArt); 
 		try {
 			String cat = String.valueOf(catMgr.selectNoByCAT(request.getParameter("categorie")));
+			
 			if (catForSelectArt.equals("aucune") && searchString.equals("") || searchString == null) {
-				System.out.println("if0");
 				List<Article> listeArticles = articleMgr.selectAll();// fonctionne avec le libelle
 				request.setAttribute("articles", listeArticles);
 				if(listeArticles.size() == 0 || listeArticles == null) {request.setAttribute("msg", "Aucun element ne correspond a vos criteres de recherche");}
+				
 			}
+			
 			else if (!searchString.equals("") && searchString != null && !cat.equals("") && cat != null && catMgr.check(catForSelectArt)) { // recherche par categorie et mot clef
-				System.out.println("if 1");
+
 				String requete = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND ArticlesVendus.no_categorie = ? AND nom_article LIKE CONCAT('%', ?, '%');";
 				List<Article> listeArticles = articleMgr.selectDynamic(requete, new String[] { cat, searchString });
 				request.setAttribute("articles", listeArticles);
 				if(listeArticles.size() == 0 || listeArticles == null) {request.setAttribute("msg", "Aucun element ne correspond a vos criteres de recherche");}
+				
 			} else if (searchString.equals("") || searchString == null && !cat.equals("") && cat != null) { // recherche par categorie uniquement
-				System.out.println("if 2");
+
 				List<Article> listeArticles = articleMgr.selectByCategory(catForSelectArt);// fonctionne avec le libelle
 				request.setAttribute("articles", listeArticles);
 				if(listeArticles.size() == 0 || listeArticles == null) {request.setAttribute("msg", "Aucun element ne correspond a vos criteres de recherche");}
+				
 			} else if (!searchString.equals("") && searchString != null && !catMgr.check(catForSelectArt)) {// recherche par mot clefs uniquement
-				System.out.println("if 3");
+
 				String requete = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND nom_article LIKE CONCAT('%', ?, '%');";
 				List<Article> listeArticles = articleMgr.selectDynamic(requete, new String[] {searchString});
 				request.setAttribute("articles", listeArticles);

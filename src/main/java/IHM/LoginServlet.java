@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import BLL.UserManager;
 import Exceptions.DALException;
@@ -21,11 +22,14 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String connectionTime = String.valueOf(System.currentTimeMillis());
+		HttpSession session = request.getSession();
 		
 		// Récupération des paramètres du formulaire de connect.jsp
 		String mdps = request.getParameter("password");
@@ -34,8 +38,10 @@ public class LoginServlet extends HttpServlet {
 		try {
 			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe coïncident
 				int id = userMgr.getId(login); // récupération de l'id
-				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
+				session.setAttribute("id", id); // set up de l'id, id non null = connecté
 				response.sendRedirect("IndexServlet"); // retour à l'index
+				session.setAttribute("connectionTime", connectionTime);
+				
 			} else {
 				if (userMgr.checkPseudo(login)) { // si le login est correct
 					request.setAttribute("msgErreur","Mot de passe incorrect");
