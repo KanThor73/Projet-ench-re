@@ -54,11 +54,5 @@
             <%}%>
         </div>
     </div>
-      <div class="auction-button">
-            
-            <button>Enchérir</button>
-            
-            </div>
-
 </body>
 </html>
