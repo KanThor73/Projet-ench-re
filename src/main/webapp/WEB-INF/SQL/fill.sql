@@ -33,4 +33,15 @@ INSERT INTO ArticlesVendus VALUES
 (default, "bonheur", "bon pour admirer mon sou porte-bonheur pendant une journée", "2023-07-24", "2023-07-31", 5000, null, 5, 5),
 (default, "PC antique", "permet tout de même de faire tourner Linux", "2023-07-24", "2023-07-31", 15, null, 3, 2),
 (default, "écran à CSS instantané", "tout ce dont vous pourriez rêver", "2023-07-24", "2023-07-31", 1400, null, 1, 2),
-(default, "Petit poussin", "il est jaune", "2023-07-24", "2023-07-31", 9, null, 3, 1)
+(default, "Petit poussin", "il est jaune", "2023-07-24", "2023-07-31", 9, null, 3, 1);
+
+INSERT INTO Retraits VALUES
+(1, "Gare de Lyon", "75000", "Paris"),
+(2, "Gare de Lyon", "75000", "Paris"),
+(3, "Gare de Lyon", "75000", "Paris"),
+(4, "Gare de Lyon", "75000", "Paris"),
+(5, "Gare de Lyon", "75000", "Paris"),
+(6, "Gare de Lyon", "75000", "Paris"),
+(7, "Gare de Lyon", "75000", "Paris"),
+(8, "Gare de Lyon", "75000", "Paris"),
+(9, "Gare de Lyon", "75000", "Paris");
