@@ -25,14 +25,16 @@
 			<h1>Liste des enchères</h1>
 		</div>
 		<div class="container">
+		<div>
 			<h3>Filtres :</h3>
 			<form class="command" action="IndexServlet" method="post">
 				<div class="categories">
 					<input type="text" name="recherche"
 						placeholder="Le nom de l'article contient" />
 					<div class="cate_container">
-						<label for="categorie">Catégorie :</label> 
-						<select name="categorie" id="cat" size="1">
+						<label for="categorie">Catégorie :</label> <select
+							name="categorie" id="cat" size="1">
+							<option value="aucune" selected>aucune</option>
 							<c:forEach var="categorie" items="${categories}">
 								<option value="${categorie}">${categorie}</option>
 							</c:forEach>
@@ -43,6 +45,24 @@
 					<input type="submit" value="Rechercher" name="search" />
 				</div>
 			</form>
+				<c:choose>
+					<c:when test="${msg != null}">
+						<div class="msgBox">
+							<p>${msg}</p>
+						</div>
+					</c:when>
+					<c:when test="${msgErreur != null}">
+						<div class="errorBox">
+							<p>${msgErreur}</p>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="holdBox">
+							<p>HOLDBOX</p>
+						</div>
+					</c:otherwise>
+				</c:choose>
+		</div>
 			<div class="encheres">
 				<c:forEach var="article" items="${articles}">
 					<div class="encadrer">
