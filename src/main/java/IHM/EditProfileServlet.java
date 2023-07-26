@@ -131,7 +131,7 @@ public class EditProfileServlet extends HttpServlet {
 					e.printStackTrace();
 					request.setAttribute("msgErreur", e.getMessage());
 					request.setAttribute("msg",
-							"Impossible de supprime ce profil, veuillez vous rapprocher d'un administrateur.");
+							"Impossible de supprimer ce profil, veuillez vous rapprocher d'un administrateur.");
 				}
 			}
 

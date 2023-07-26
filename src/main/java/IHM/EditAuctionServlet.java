@@ -62,24 +62,25 @@ public class EditAuctionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		int ownerId = (int) request.getSession().getAttribute("id");
+		int idArticle = Integer.parseInt(request.getParameter("id"));
+		
+		Article article = null;
+		try {
+			article = articleMgr.selectByID(idArticle);
+		} catch (DALException e2) {
+			e2.printStackTrace();
+			request.setAttribute("msgErreur", e2.getMessage());
+			doGet(request, response); // affiche la jsp
+			return;
+		}
+		if (ownerId != article.getOwnerId()) { // usurpateur !
+			response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
+		}
+		
 		// ENREGISTRER update
 		if (request.getParameter("register") != null) {
-			int ownerId = (int) request.getSession().getAttribute("id");
-			int idArticle = Integer.parseInt(request.getParameter("id"));
-			
-			Article article = null;
-			try {
-				article = articleMgr.selectByID(idArticle);
-			} catch (DALException e2) {
-				e2.printStackTrace();
-				request.setAttribute("msgErreur", e2.getMessage());
-				doGet(request, response); // affiche la jsp
-				return;
-			}
-			if (ownerId != article.getOwnerId()) { // usurpateur
-				response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
-			}
 			
 			String nom = request.getParameter("nom");
 			String desc = request.getParameter("desc");
@@ -104,6 +105,7 @@ public class EditAuctionServlet extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 			
+			// créations d'objets avec les même id que ceux dans la bdd
 			Article art = new Article(idArticle, nom, desc, cat, dateDebut, dateFin, prixInit, null, ownerId);
 			Retrait ret = new Retrait(idArticle, rue, codePostal, ville);
 			
@@ -115,8 +117,6 @@ public class EditAuctionServlet extends HttpServlet {
 			}
 		} else if (request.getParameter("delete") != null) { // suppression
 			
-			int idArticle = Integer.parseInt(request.getParameter("id"));
-			
 			try {
 				articleMgr.delete(idArticle);
 				response.sendRedirect("IndexServlet");
@@ -124,6 +124,8 @@ public class EditAuctionServlet extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("msgErreur", e.getMessage());
 			}
+		} else { // usurpateur !
+			response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
 		}
 		
 		doGet(request, response); // affiche la jsp
