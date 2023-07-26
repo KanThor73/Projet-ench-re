@@ -21,7 +21,6 @@
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<div class="sub-contain">
 		<div class="title">
-			>
 			<h1>Liste des enchères</h1>
 		</div>
 		<div class="container">

@@ -18,12 +18,15 @@
 	border-radius: 0.3rem;
 	border-width: 0.3rem;
 	font-size: 3rem;
+	padding: 0.5rem;
 }
 
 .sub-container {
-	background: linear-gradient(var(- -gradiantGold));
-	box-shadow: var(- -box_shadow);
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
 	border-radius: 1rem;
+	padding: 1.5rem;
+	margin-top: 2rem;
 }
 
 h1 {
@@ -31,8 +34,8 @@ h1 {
 	margin: 0rem;
 	margin-bottom: 2rem;
 	text-align: center;
-	background: linear-gradient(var(- -gradiantGold));
+	background: linear-gradient(var(--gradiantGold));
 	border-radius: 1rem;
 	padding: 1rem;
-	box-shadow: var(- -box_shadow);
+	box-shadow: var(--box_shadow);
 }
