@@ -92,7 +92,12 @@ public class AuctionServlet extends HttpServlet {
 		Auction auction = new Auction(idUser, idArticle, maintenant, relance);
 		
 		try {
-			auctionMgr.insert(auction); // ajout de l'enchère
+			Auction auctionCheck = auctionMgr.selectByID(idUser, idArticle);
+			if (auctionCheck != null) { // déjà une enchère de ce (user, article) dans la bdd
+				auctionMgr.update(auction); // update de l'enchère
+			} else {
+				auctionMgr.insert(auction); // ajout de l'enchère
+			}
 		} catch (Exception e) { // DAL ou BLL
 			e.printStackTrace();
 			request.setAttribute("msgErreur", e.getMessage());
