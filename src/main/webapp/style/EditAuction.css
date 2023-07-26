@@ -7,11 +7,17 @@
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+	
 }
+.container .sub-container{
+	background: linear-gradient(var(--gradiantGold));
+}
+
 
 .fragment {
 	width: 100%;
 	padding: 10px;
+	
 }
 
 .fragment label, .fragment input {
@@ -28,14 +34,16 @@
 	margin: 0rem;
 	margin-bottom: 2rem;
 	text-align: center;
-	background: linear-gradient(var(- -gradiantGold));
+	background: linear-gradient(var(--gradiantGold));
 	border-radius: 1rem;
 	padding: 1rem;
-	box-shadow: var(- -box_shadow);
+	box-shadow: var(--box_shadow);
 }
 
-formFooter{
-	align-items: center;
-	margin-left: 10rem;
+.formFooter{
+	text-align: center;
+    margin-top: 2rem;
+    font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
