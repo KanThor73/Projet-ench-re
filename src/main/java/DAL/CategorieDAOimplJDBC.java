@@ -99,7 +99,7 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 				int noCategorie = rs.getInt("no_categorie");
 				return noCategorie;
 			} else {
-				return 0;
+				throw new DALException("catégorie inexistante");
 			}
 
 		} catch (Exception e) {
