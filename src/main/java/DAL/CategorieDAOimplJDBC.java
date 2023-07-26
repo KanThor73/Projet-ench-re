@@ -18,7 +18,7 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 	public static final String CAT_SQL_DELETE = "DELETE FROM Categories WHERE libelle = ?";
 	public static final String CAT_SQL_SELECTALL = "SELECT libelle FROM Categories";
 	public static final String CAT_SQL_SELECTBYLIBELLE = "SELECT count(*) AS cnt FROM Categories WHERE libelle = ?";
-	public static final String CAT_SQL_SELECT_NO_CAT = "SELECT no_categorie FROM categories WHERE libelle = ?;";
+	public static final String CAT_SQL_SELECT_NO_CAT = "SELECT no_categorie FROM Categories WHERE libelle = ?;";
 	
 	@Override
 	public void insert(String name) throws DALException {

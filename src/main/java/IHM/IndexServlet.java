@@ -67,6 +67,7 @@ public class IndexServlet extends HttpServlet {
 			}
 		} catch (DALException e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 			request.setAttribute("msgErreur", "Impossible de satisfaire votre requete");
 		}
 		doGet(request, response);
