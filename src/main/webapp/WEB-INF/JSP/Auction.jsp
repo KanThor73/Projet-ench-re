@@ -25,12 +25,14 @@
             <div class="fragment">
                 <label for="Meilleur_Offres">Meilleur offre : ${bestOffer}</label>
                 <% if (request.getParameter("bestOfferer") != "") {%>
+                <div class="fragment">
                 <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
                 <% }
                 if (request.getAttribute("user") != null) {%>
                 <form action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
                 	<input type="number" name="relance" id="relance" value="${bestOffer}" min="${bestOffer}" step="1">
-                	<!-- TODO bouton submit -->
+                	</div>
+                	 <!-- TODO bouton submit -->
                 </form>
                 <%}%>
             </div>
@@ -41,6 +43,7 @@
                 <label for="Fin_enchère">Fin de l'enchère : ${dateFin})</label>
             </div>
             
+          
             <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
             <div class="fragment">
             	<label>Modifier</label>
@@ -48,6 +51,11 @@
             <%}%>
         </div>
     </div>
+      <div class="auction-button">
+            
+            <button>Enchérir</button>
+            
+            </div>
 
 </body>
 </html>

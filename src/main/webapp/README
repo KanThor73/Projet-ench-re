@@ -11,3 +11,5 @@ creation servlet index
 passer le bouton modifier en condition dans le profil
 
 renvoyer l'utilisateur sur la page de connexion s'il n'est pas connecte et qu'il essaye d'avoir acces a une page restreinte
+
+userMgr dans index pour recuperer pseudo dans article

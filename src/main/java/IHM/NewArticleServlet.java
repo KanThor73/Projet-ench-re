@@ -45,6 +45,7 @@ public class NewArticleServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			request.setCharacterEncoding("UTF-8");
 		
 		try {
 			// Récupération des paramètres du formulaire de newAccount.jsp
@@ -73,7 +74,7 @@ public class NewArticleServlet extends HttpServlet {
 			Retrait retrait = new Retrait(articleMgr.getNextNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
 			retraitManager.insert(retrait);
 			
-			response.sendRedirect("/");// retourne à l'accueil si bon déroulement
+			response.sendRedirect("IndexServlet");// retourne à l'accueil si bon déroulement
 			
 			
 		} catch (ParseException e) {
