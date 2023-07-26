@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
-<link href="style/Auction.css" rel="stylesheet" />
+<link href="style/EditAuction.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>Modifier une enchère</title>
 </head>
