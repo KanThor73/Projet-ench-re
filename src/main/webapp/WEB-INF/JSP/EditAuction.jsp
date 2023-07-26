@@ -34,17 +34,17 @@
 
 				</div>
 
-				<div class="formFragment">
-							<label for="cat">Catégorie </label>
-							<select name="cat" id="cat" value="${cat}" size="1">
-							<%
-							CategorieManager catMgr = CategorieManager.getInstanceOf();
-							for (String cat : catMgr.selectAll()) {
-							%>
-								<option value="<%=cat%>"><%=cat%></option>
-							<%}%>
-							</select>
-						</div>
+				<div class="fragment">
+					<label for="cat">Catégorie </label>
+					<select name="cat" id="cat" size="1">
+					<%
+					CategorieManager catMgr = CategorieManager.getInstanceOf();
+					for (String cat : catMgr.selectAll()) {
+					%>
+						<option value="<%=cat%>" <%=cat.equals(request.getAttribute("cat").toString()) ? "selected" : ""%>><%=cat%></option>
+					<%}%>
+					</select>
+				</div>
 
 				<div class="fragment">
 					<label for="prixInit">Prix initial : </label>

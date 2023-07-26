@@ -25,9 +25,9 @@ public class EditAuctionServlet extends HttpServlet {
 		// recuperation ID de l'enchère a modifier
 
 		String idString = request.getParameter("id");
+		int id = Integer.parseInt(idString);
 		if (idString != null && !idString.isEmpty()) {
 			try {
-				int id = Integer.parseInt(idString);
 				Article article = articleMgr.selectByID(id);
 				Retrait retrait = retraitMgr.selectByID(id);
 
@@ -48,12 +48,12 @@ public class EditAuctionServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 				request.setAttribute("msgErreur", e.getMessage());
+				response.sendRedirect("Auction?id="+id+"");
 			} catch (DALException e) {
 				e.printStackTrace();
+				response.sendRedirect("Auction?id="+id+"");
 			}
 		}
-
-		request.getRequestDispatcher("/WEB-INF/JSP/EditAuction.jsp").forward(request, response);
 	}
 
 	@SuppressWarnings("unused")
