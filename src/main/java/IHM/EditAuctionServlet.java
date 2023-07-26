@@ -65,6 +65,19 @@ public class EditAuctionServlet extends HttpServlet {
 		
 		int ownerId = (int) request.getSession().getAttribute("id");
 		int idArticle = Integer.parseInt(request.getParameter("id"));
+		
+		Article article = null;
+		try {
+			article = articleMgr.selectByID(idArticle);
+		} catch (DALException e2) {
+			e2.printStackTrace();
+			request.setAttribute("msgErreur", e2.getMessage());
+			doGet(request, response); // affiche la jsp
+		}
+		if (ownerId != article.getOwnerId()) { // usurpateur
+			response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
+		}
+		
 		String nom = request.getParameter("nom");
 		String desc = request.getParameter("desc");
 		String cat = request.getParameter("cat");
