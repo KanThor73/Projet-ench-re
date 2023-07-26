@@ -10,4 +10,5 @@ public interface CategorieDAO {
 	public void delete(String name) throws DALException;
 	public List<String> selectAll() throws DALException;
 	public boolean check(String name) throws DALException;
+	public int selectNoByCAT(String categorie) throws DALException;
 }

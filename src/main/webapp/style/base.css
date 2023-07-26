@@ -20,6 +20,7 @@ body {
 	flex-direction: column;
 	background: url(../img/pexels-todd-trapani-1420440.jpg) center center/cover;
 	background-attachment: fixed;
+	overflow: auto;
 }
 
 /* Header */

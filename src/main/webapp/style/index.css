@@ -61,6 +61,7 @@ strong {
 
 .container {
 	margin: 0rem 5rem;
+	width: 90vw;
 }
 
 .search-bar {
@@ -196,4 +197,30 @@ select {
 a {
 	font-size: 1.5rem;
 	color: var(--dark-purple);
+}
+
+.errorBox{
+
+	color: red;
+	margin-top: 2rem;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 600;
+	background: linear-gradient(var(--gradiantGold));
+	border: 1px solid black;
+	border-radius: 0.5rem;
+	padding: 1rem;
+}
+
+.msgBox{
+
+	color:var(--dark);
+	margin-top: 2rem;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 600;
+	background: linear-gradient(var(--gradiantGold));
+	border: 1px solid;
+	border-radius: 0.5rem;
+	padding: 1rem;
 }

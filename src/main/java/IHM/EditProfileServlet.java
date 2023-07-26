@@ -125,7 +125,7 @@ public class EditProfileServlet extends HttpServlet {
 					if (user1.getMotDePasse().equals(mdp)) { // verif mdps
 						userMg.delete(user1.getNoUser());
 						request.setAttribute("msg", "Profil supprime avec succes!");
-						response.sendRedirect("/ProjetEnchere");
+						response.sendRedirect("IndexServlet");
 					}
 				} catch (DALException e) {
 					e.printStackTrace();
@@ -138,7 +138,7 @@ public class EditProfileServlet extends HttpServlet {
 			doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et
 										// afficher tous les champs
 		} else if (request.getParameter("cancel") != null) {// annulation des modifs
-			response.sendRedirect("/ProjetEnchere");
+			response.sendRedirect("IndexServlet");
 		}
 	}
 

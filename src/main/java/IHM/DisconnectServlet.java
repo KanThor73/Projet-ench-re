@@ -14,7 +14,7 @@ public class DisconnectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("id");
-		response.sendRedirect("/ProjetEnchere");
+		response.sendRedirect("IndexServlet");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

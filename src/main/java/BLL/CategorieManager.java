@@ -47,4 +47,9 @@ public class CategorieManager {
 	public boolean check(String name) throws DALException {
 		return catDAO.check(name);
 	}
+	
+	public int selectNoByCAT(String categorie) throws DALException {
+		return catDAO.selectNoByCAT(categorie);
+	}
+	
 }
