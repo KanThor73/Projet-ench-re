@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="BLL.CategorieManager"%>
-
 <!DOCTYPE html>
 <html>
 <head>

@@ -25,7 +25,6 @@ public class IndexServlet extends HttpServlet {
 		try {
 			List<String> categories = catMgr.selectAll();
 			request.setAttribute("categories", categories);
-			
 			List<Article> listeArticles = articleMgr.selectAll();// recupere tous les articles pour le premier affichage
 			request.setAttribute("articles", listeArticles);
 			if(listeArticles.size() == 0 || listeArticles == null) {request.setAttribute("msg", "Aucun element ne correspond a vos criteres de recherche");}
@@ -42,8 +41,11 @@ public class IndexServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");// gere les caracteres avec accents
 		String searchString = request.getParameter("recherche");
 		String catForSelectArt = request.getParameter("categorie");// recuperation libelle
-		System.out.println(catForSelectArt); 
+		
+
 		try {
+			List<String> categories = catMgr.selectAll();
+			request.setAttribute("categories", categories);
 			String cat = String.valueOf(catMgr.selectNoByCAT(request.getParameter("categorie")));
 			
 			if (catForSelectArt.equals("aucune") && searchString.equals("") || searchString == null) {
@@ -75,8 +77,9 @@ public class IndexServlet extends HttpServlet {
 			}
 		} catch (DALException e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 			request.setAttribute("msgErreur", "Impossible de satisfaire votre requete");
 		}
-		doGet(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 }
