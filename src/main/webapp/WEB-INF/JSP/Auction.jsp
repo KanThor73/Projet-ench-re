@@ -27,23 +27,25 @@
             <div class="fragment">
                 <label for="Mise_A_Prix">Mise à prix : ${prixVente}</label>
             </div>
-            <div class="fragment">
-            	<%
-            	if (!request.getAttribute("bestOfferer").toString().equals("")) {
-            	%>
-	                <label for="Meilleur_Offres">Meilleur offre : ${bestOffer}</label>
-		            <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
-            	<%
-            	}
-                if (request.getAttribute("user") != null) {
-                %>
-                	<label>Votre solde : ${solde}</label>
+           	<%
+           	if (!request.getAttribute("bestOfferer").toString().equals("")) {
+           	%>
+           	<div class="fragment">
+                <label for="Meilleur_Offres">Meilleur offre : ${bestOffer}</label>
+	            <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
+            </div>
+           	<%
+           	}
+               if (request.getAttribute("user") != null) {
+               %>
+               <div class="fragment">
+	               	<label>Votre solde : ${solde}</label>
 	                <form action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
 	                	<input type="number" name="relance" id="relance" value="${bestOffer+1}" min="${bestOffer+1}" step="1">
 	                	<input type="submit" value="Enchérir">
 	                </form>
-                <%}%>
-            </div>
+                </div>
+               <%}%>
             <div class="fragment">
                 <label for="Fin_enchère">Fin de l'enchère : ${dateFin}</label>
             </div>

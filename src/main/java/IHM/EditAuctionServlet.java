@@ -62,52 +62,68 @@ public class EditAuctionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		int ownerId = (int) request.getSession().getAttribute("id");
-		int idArticle = Integer.parseInt(request.getParameter("id"));
-		
-		Article article = null;
-		try {
-			article = articleMgr.selectByID(idArticle);
-		} catch (DALException e2) {
-			e2.printStackTrace();
-			request.setAttribute("msgErreur", e2.getMessage());
-			doGet(request, response); // affiche la jsp
-		}
-		if (ownerId != article.getOwnerId()) { // usurpateur
-			response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
-		}
-		
-		String nom = request.getParameter("nom");
-		String desc = request.getParameter("desc");
-		String cat = request.getParameter("cat");
-		int prixInit = Integer.parseInt(request.getParameter("prixInit"));
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateDebut = null;
-		Date dateFin = null;
-		try {
-			dateDebut = sdf.parse(request.getParameter("dateDebut"));
-			dateFin = sdf.parse(request.getParameter("dateFin"));
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-			request.setAttribute("msgErreur", "Problème de dates"); // ne devrait pas arriver
+
+		// ENREGISTRER update
+		if (request.getParameter("register") != null) {
+			int ownerId = (int) request.getSession().getAttribute("id");
+			int idArticle = Integer.parseInt(request.getParameter("id"));
 			
-			doGet(request, response); // affiche la jsp
-		}
-		
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("codePostal");
-		String ville = request.getParameter("ville");
-		
-		Article art = new Article(idArticle, nom, desc, cat, dateDebut, dateFin, prixInit, null, ownerId);
-		Retrait ret = new Retrait(idArticle, rue, codePostal, ville);
-		
-		try {
-			articleMgr.update(art);
-			retraitMgr.update(ret);
-		} catch (Exception e) { // DAL ou BLL
-			request.setAttribute("msgErreur", e.getMessage());
+			Article article = null;
+			try {
+				article = articleMgr.selectByID(idArticle);
+			} catch (DALException e2) {
+				e2.printStackTrace();
+				request.setAttribute("msgErreur", e2.getMessage());
+				doGet(request, response); // affiche la jsp
+				return;
+			}
+			if (ownerId != article.getOwnerId()) { // usurpateur
+				response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
+			}
+			
+			String nom = request.getParameter("nom");
+			String desc = request.getParameter("desc");
+			String cat = request.getParameter("cat");
+			int prixInit = Integer.parseInt(request.getParameter("prixInit"));
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date dateDebut = null;
+			Date dateFin = null;
+			try {
+				dateDebut = sdf.parse(request.getParameter("dateDebut"));
+				dateFin = sdf.parse(request.getParameter("dateFin"));
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+				request.setAttribute("msgErreur", "Problème de dates"); // ne devrait pas arriver
+				
+				doGet(request, response); // affiche la jsp
+				return;
+			}
+			
+			String rue = request.getParameter("rue");
+			String codePostal = request.getParameter("codePostal");
+			String ville = request.getParameter("ville");
+			
+			Article art = new Article(idArticle, nom, desc, cat, dateDebut, dateFin, prixInit, null, ownerId);
+			Retrait ret = new Retrait(idArticle, rue, codePostal, ville);
+			
+			try {
+				articleMgr.update(art);
+				retraitMgr.update(ret);
+			} catch (Exception e) { // DAL ou BLL
+				request.setAttribute("msgErreur", e.getMessage());
+			}
+		} else if (request.getParameter("delete") != null) { // suppression
+			
+			int idArticle = Integer.parseInt(request.getParameter("id"));
+			
+			try {
+				articleMgr.delete(idArticle);
+				response.sendRedirect("IndexServlet");
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("msgErreur", e.getMessage());
+			}
 		}
 		
 		doGet(request, response); // affiche la jsp

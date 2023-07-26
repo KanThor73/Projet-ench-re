@@ -57,7 +57,7 @@ public class AuctionServlet extends HttpServlet {
 			if (maxEnchere != null) {
 				mise = maxEnchere.getMontantEnchere();
 			} else {
-				mise = article.getPrixInit();
+				mise = article.getPrixInit() != null ? article.getPrixInit() : 0;
 			}
 			
 			if (request.getSession().getAttribute("id") != null) { // utilisateur connecté
