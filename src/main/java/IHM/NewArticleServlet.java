@@ -45,6 +45,7 @@ public class NewArticleServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			request.setCharacterEncoding("UTF-8");
 		
 		try {
 			// Récupération des paramètres du formulaire de newAccount.jsp

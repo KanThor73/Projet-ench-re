@@ -23,6 +23,7 @@ public class AuctionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			request.setCharacterEncoding("UTF-8");
 
 		int articleId = Integer.parseInt(request.getParameter("id"));
 
@@ -66,7 +67,7 @@ public class AuctionServlet extends HttpServlet {
 
 		} catch (DALException e) {
 			e.printStackTrace();
-			response.sendRedirect("/ProjetEnchere"); // retourne à l'accueil
+			response.sendRedirect("IndexServlet"); // retourne à l'accueil
 		}
 		
 		getServletContext().getNamedDispatcher("AuctionJSP").forward(request, response);
