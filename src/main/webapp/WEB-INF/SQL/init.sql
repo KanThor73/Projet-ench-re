@@ -55,7 +55,7 @@ CREATE TABLE ArticlesVendus (
 CREATE TABLE Encheres (
 	no_user			INT NOT NULL,
 	no_article		INT NOT NULL,
-	date_enchere	DATETIME NOT NULL,
+	date_enchere	DATE NOT NULL,
 	montant_enchere	INT NOT NULL,
 	
 	CONSTRAINT enchere_pk PRIMARY KEY (no_user, no_article),
