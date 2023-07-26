@@ -31,8 +31,6 @@ public class EditAuctionServlet extends HttpServlet {
 					// Envoyer les informations de l'enchère à la JSP de modification
 					request.setAttribute("id", auction.getNoArticle());
 					request.setAttribute("nom", auction.getNoUtilisateur());
-					request.setAttribute("desc", auction.getDescription());
-					request.setAttribute("cat", auction.getCategorie());
 					
 
 					request.getRequestDispatcher("/WEB-INF/JSP/EditAuction.jsp").forward(request, response);

@@ -6,12 +6,10 @@ public class Auction implements Comparable<Auction> {
 	
 	private int noUtilisateur;
 	private int noArticle;
-	private int Description;
-	private int Categorie;
 	private Date dateEnchere;
 	private int montantEnchere;
 
-	public Auction(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere) {
+	public Auction(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere, int Description, int Categorie, int Rue, int codePostal, int Ville) {
 
 		this.noUtilisateur = noUtilisateur;
 		this.noArticle = noArticle;
@@ -35,21 +33,6 @@ public class Auction implements Comparable<Auction> {
 		this.noArticle = noArticle;
 	}
 	
-	public int getDescription() {
-		return Description;
-	}
-	
-	public void setdescription(int Description) {
-		this.Description = Description;
-	}
-	
-	public int getCategorie() {
-		return Categorie;
-	}
-	
-	public void setCategorie(int Categorie) {
-		this.Categorie = Categorie;
-	}
 
 	public Date getDateEnchere() {
 		return dateEnchere;
