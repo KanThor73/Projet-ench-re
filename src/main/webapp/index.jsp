@@ -68,7 +68,7 @@
 					<div class="encadrer">
 						<img src="img/imgArticle.svg" alt="img1" />
 						<div class="infos">
-							<a href="<%=request.getContextPath()%>/Auction"><h4>${article.getNom()}</h4></a>
+							<a href="<%=request.getContextPath()%>/Auction?id=${article.getNoArticle()}"><h4>${article.getNom()}</h4></a>
 							<div class="prix">
 								<p>
 									<strong>Prix :</strong>${article.getPrixVente() == null ? artitcle.getPrixInit() : article.getPrixVente()}
