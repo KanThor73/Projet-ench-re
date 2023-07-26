@@ -15,7 +15,6 @@ import BLL.AuctionManager;
 import BO.Auction;
 import BLL.UserManager;
 import BO.User;
-import Exceptions.BLLException;
 import Exceptions.DALException;
 
 import java.util.Collections;
@@ -94,7 +93,7 @@ public class AuctionServlet extends HttpServlet {
 		
 		try {
 			auctionMgr.insert(auction); // ajout de l'enchère
-		} catch (Exception e) {
+		} catch (Exception e) { // DAL ou BLL
 			e.printStackTrace();
 			request.setAttribute("msgErreur", e.getMessage());
 		}

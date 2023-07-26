@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +46,19 @@
             <div class="fragment">
                 <label for="Fin_enchère">Fin de l'enchère : ${dateFin}</label>
             </div>
+            
+			<c:choose>
+				<c:when test="${msgErreur != null}">
+					<div class="errorBox">
+						<p>${msgErreur}</p>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="holdBox">
+						<p>HOLDBOX</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
             
             <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
             <div class="fragment">
