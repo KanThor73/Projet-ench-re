@@ -49,7 +49,7 @@ public class NewArticleServlet extends HttpServlet {
 		
 		try {
 			// Récupération des paramètres du formulaire de newAccount.jsp
-			String nom = request.getParameter("nomArticle").toUpperCase();// plus classe en maj dans le css
+			String nom = request.getParameter("nomArticle");
 			String description = request.getParameter("description");
 			String categorie = request.getParameter("categorie");
 			int prixInit = Integer.parseInt(request.getParameter("prixInit"));
