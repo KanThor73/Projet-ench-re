@@ -6,6 +6,8 @@ public class Auction implements Comparable<Auction> {
 	
 	private int noUtilisateur;
 	private int noArticle;
+	private int Description;
+	private int Categorie;
 	private Date dateEnchere;
 	private int montantEnchere;
 
@@ -31,6 +33,22 @@ public class Auction implements Comparable<Auction> {
 
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
+	}
+	
+	public int getDescription() {
+		return Description;
+	}
+	
+	public void setdescription(int Description) {
+		this.Description = Description;
+	}
+	
+	public int getCategorie() {
+		return Categorie;
+	}
+	
+	public void setCategorie(int Categorie) {
+		this.Categorie = Categorie;
 	}
 
 	public Date getDateEnchere() {
