@@ -84,21 +84,34 @@ public class AuctionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int idUser = Integer.parseInt(request.getSession().getAttribute("id").toString());
-		int idArticle = Integer.parseInt(request.getParameter("id"));
-		int relance = Integer.parseInt(request.getParameter("relance"));
-		Date maintenant = Date.from(Instant.now());
-		
-		Auction auction = new Auction(idUser, idArticle, maintenant, relance);
-		
 		try {
+			List<Auction> allAuctions = auctionMgr.selectAll();
+			Auction lastAuction = Collections.max(allAuctions); // récupération de la dernière enchère
+			
+			int idUser = Integer.parseInt(request.getSession().getAttribute("id").toString());
+			int idArticle = Integer.parseInt(request.getParameter("id"));
+			int relance = Integer.parseInt(request.getParameter("relance")); // seulement la différence
+			Date maintenant = Date.from(Instant.now());
+			
+			Auction auction = new Auction(idUser, idArticle, maintenant, relance);
+			
 			Auction auctionCheck = auctionMgr.selectByID(idUser, idArticle);
 			if (auctionCheck != null) { // déjà une enchère de ce (user, article) dans la bdd
-				auctionMgr.update(auction); // update de l'enchère
+				auctionMgr.update(auction); // controle et update de l'enchère
 			} else {
-				auctionMgr.insert(auction); // ajout de l'enchère
+				auctionMgr.insert(auction); // controle et ajout de l'enchère
 			}
-		} catch (Exception e) { // DAL ou BLL
+			
+			User newOfferer = userMgr.selectByID(auction.getNoUtilisateur());
+			newOfferer.changeCredit(-relance); // retrait du crédit, potentielle BOException
+			userMgr.update(newOfferer); // update en bdd
+			
+			// si tout s'est bien passé, on crédite l'ancien bestOfferer
+			User lastOfferer = userMgr.selectByID(lastAuction.getNoUtilisateur());
+			lastOfferer.changeCredit(lastAuction.getMontantEnchere());
+			userMgr.update(lastOfferer);
+			
+		} catch (Exception e) { // DAL, BLL ou BO
 			e.printStackTrace();
 			request.setAttribute("msgErreur", e.getMessage());
 		}
