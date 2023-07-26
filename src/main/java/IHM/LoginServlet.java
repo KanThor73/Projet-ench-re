@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import BLL.UserManager;
 import Exceptions.DALException;
@@ -36,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe coïncident
 				int id = userMgr.getId(login); // récupération de l'id
 				request.getSession().setAttribute("id", id); // set up de l'id, id non null = connecté
-				response.sendRedirect("/ProjetEnchere"); // retour à l'index
+				response.sendRedirect("IndexServlet"); // retour à l'index
 			} else {
 				if (userMgr.checkPseudo(login)) { // si le login est correct
 					request.setAttribute("msgErreur","Mot de passe incorrect");

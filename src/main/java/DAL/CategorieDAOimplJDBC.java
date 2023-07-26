@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import BO.Article;
 import Exceptions.DALException;
 
 public class CategorieDAOimplJDBC implements CategorieDAO {
@@ -16,6 +18,7 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 	public static final String CAT_SQL_DELETE = "DELETE FROM Categories WHERE libelle = ?";
 	public static final String CAT_SQL_SELECTALL = "SELECT libelle FROM Categories";
 	public static final String CAT_SQL_SELECTBYLIBELLE = "SELECT count(*) AS cnt FROM Categories WHERE libelle = ?";
+	public static final String CAT_SQL_SELECT_NO_CAT = "SELECT no_categorie FROM categories WHERE libelle = ?;";
 	
 	@Override
 	public void insert(String name) throws DALException {
@@ -78,6 +81,27 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 				throw new DALException("problème de connexion aux données");
 			}
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
+	}
+	
+	@Override
+	public int selectNoByCAT(String categorie) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(CAT_SQL_SELECT_NO_CAT);
+			stmt.setString(1, categorie);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				int noCategorie = rs.getInt("no_categorie");
+				return noCategorie;
+			} else {
+				return 0;
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("problème de connexion aux données");

@@ -40,7 +40,7 @@ public class AuctionServlet extends HttpServlet {
 			if (!auctions.isEmpty()) {
 				maxEnchere = Collections.max(auctions);
 			}
-			
+
 			User user = null;
 			if (maxEnchere != null) {
 				int idEnchere = maxEnchere.getNoUtilisateur();

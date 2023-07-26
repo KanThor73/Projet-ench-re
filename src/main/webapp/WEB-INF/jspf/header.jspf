@@ -1,7 +1,7 @@
 <%@ page import="BO.User"%>
 <%@ page import="BLL.UserManager"%>
 <header>
-    <a href="<%=request.getContextPath()%>"><img class="logo"
+    <a href="IndexServlet"><img class="logo"
         src="img/LogoTest7.svg" alt="logo_Enchere" />ENI-ENCHERES</a>
     <%if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
     %><a class="deco" href="<%=request.getContextPath()%>/Connexion">INSCRIPTION / CONNEXION</a>

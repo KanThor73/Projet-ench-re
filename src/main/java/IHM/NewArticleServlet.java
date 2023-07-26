@@ -73,7 +73,7 @@ public class NewArticleServlet extends HttpServlet {
 			Retrait retrait = new Retrait(articleMgr.getNextNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
 			retraitManager.insert(retrait);
 			
-			response.sendRedirect("/");// retourne à l'accueil si bon déroulement
+			response.sendRedirect("IndexServlet");// retourne à l'accueil si bon déroulement
 			
 			
 		} catch (ParseException e) {
