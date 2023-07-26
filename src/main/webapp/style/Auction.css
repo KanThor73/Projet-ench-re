@@ -54,13 +54,14 @@ h1{
 	justify-content: center;
 	height:100%;
 	align-items: center;
+	margin-top: 3rem;
 	
 }
 .auction-button button{
 	 font-size: 20px;
      padding: 10px 20px;
      background: linear-gradient(var(--gradiantGold));
-     padding: 0,5rem;
+     
      
 	
 }
