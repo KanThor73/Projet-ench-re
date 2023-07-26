@@ -7,34 +7,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import BLL.AuctionManager;
-import BO.Auction;
+import BLL.ArticleManager;
+import BO.Article;
+import BLL.RetraitManager;
+import BO.Retrait;
 import Exceptions.DALException;
 
-@WebServlet("/EditAuctionServlet")
+@WebServlet("/Editer")
 public class EditAuctionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private AuctionManager auctionManager = AuctionManager.getInstanceOf();
+	private ArticleManager articleMgr = ArticleManager.getInstanceOf();
+	private RetraitManager retraitMgr = RetraitManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		// recuperation ID de l'enchère a modifier
 
-		String idAuctionString = request.getParameter("id");
-		if (idAuctionString != null && !idAuctionString.isEmpty()) {
+		String idString = request.getParameter("id");
+		if (idString != null && !idString.isEmpty()) {
 			try {
-				int idAuction = Integer.parseInt(idAuctionString);
-				Auction auction = auctionManager.selectByID(idAuction, idAuction);
+				int id = Integer.parseInt(idString);
+				Article article = articleMgr.selectByID(id);
+				Retrait retrait = retraitMgr.selectByID(id);
 
-				if (auction != null) {
+				if (article != null) {
 					// Envoyer les informations de l'enchère à la JSP de modification
-					request.setAttribute("id", auction.getNoArticle());
-					request.setAttribute("nom", auction.getNoUtilisateur());
+					request.setAttribute("nom", article.getNom());
+					request.setAttribute("desc", article.getDescription());
+					request.setAttribute("cat", article.getCategorie());
+					request.setAttribute("prixInit", article.getPrixInit() != null ? article.getPrixInit() : 0);
+					request.setAttribute("dateDebut", article.getDateDebut());
+					request.setAttribute("dateFin", article.getDateFin());
+					request.setAttribute("rue", retrait.getRue());
+					request.setAttribute("codePostal", retrait.getCode_postal());
+					request.setAttribute("ville", retrait.getVille());
 					
-
 					request.getRequestDispatcher("/WEB-INF/JSP/EditAuction.jsp").forward(request, response);
-					return;
 				}
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -56,8 +65,6 @@ public class EditAuctionServlet extends HttpServlet {
 		String newDesc = request.getParameter("desc");
 		String newCat = request.getParameter("cat");
 		
-
 		doGet(request, response);
 	}
-
 }
