@@ -63,6 +63,9 @@ public class AuctionServlet extends HttpServlet {
 			if (request.getSession().getAttribute("id") != null) { // utilisateur connecté
 				int sessionId = Integer.parseInt(request.getSession().getAttribute("id").toString());
 				request.setAttribute((sessionId == idOwner) ? "proprio" : "user", "true");
+				
+				User thisUser = userMgr.selectByID(sessionId);
+				request.setAttribute("solde", thisUser.getCredit());
 			}
 			request.setAttribute("id", request.getParameter("id"));
 			request.setAttribute("nom", article.getNom());
@@ -85,15 +88,25 @@ public class AuctionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		try {
-			List<Auction> allAuctions = auctionMgr.selectAll();
-			Auction lastAuction = Collections.max(allAuctions); // récupération de la dernière enchère
-			
 			int idUser = Integer.parseInt(request.getSession().getAttribute("id").toString());
 			int idArticle = Integer.parseInt(request.getParameter("id"));
-			int relance = Integer.parseInt(request.getParameter("relance")); // seulement la différence
+			int relance = Integer.parseInt(request.getParameter("relance"));
 			Date maintenant = Date.from(Instant.now());
 			
 			Auction auction = new Auction(idUser, idArticle, maintenant, relance);
+			
+			User newOfferer = userMgr.selectByID(auction.getNoUtilisateur());
+			newOfferer.changeCredit(-relance); // retrait du crédit, potentielle BOException
+			
+			User lastOfferer = null;
+			List<Auction> allAuctions = auctionMgr.selectByArticle(idArticle);
+			if (!allAuctions.isEmpty()) {
+				Auction lastAuction = Collections.max(allAuctions); // récupération de la dernière enchère
+				
+				// on crédite l'ancien bestOfferer
+				lastOfferer = userMgr.selectByID(lastAuction.getNoUtilisateur());
+				lastOfferer.changeCredit(lastAuction.getMontantEnchere());
+			}
 			
 			Auction auctionCheck = auctionMgr.selectByID(idUser, idArticle);
 			if (auctionCheck != null) { // déjà une enchère de ce (user, article) dans la bdd
@@ -102,14 +115,11 @@ public class AuctionServlet extends HttpServlet {
 				auctionMgr.insert(auction); // controle et ajout de l'enchère
 			}
 			
-			User newOfferer = userMgr.selectByID(auction.getNoUtilisateur());
-			newOfferer.changeCredit(-relance); // retrait du crédit, potentielle BOException
-			userMgr.update(newOfferer); // update en bdd
-			
-			// si tout s'est bien passé, on crédite l'ancien bestOfferer
-			User lastOfferer = userMgr.selectByID(lastAuction.getNoUtilisateur());
-			lastOfferer.changeCredit(lastAuction.getMontantEnchere());
-			userMgr.update(lastOfferer);
+			// si tout s'est bien passé, on commit les crédits en bdd
+			userMgr.update(newOfferer);
+			if (lastOfferer != null) {
+				userMgr.update(lastOfferer);
+			}
 			
 		} catch (Exception e) { // DAL, BLL ou BO
 			e.printStackTrace();

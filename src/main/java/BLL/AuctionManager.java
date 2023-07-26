@@ -86,25 +86,24 @@ public class AuctionManager {
 		// vérification de l'article
 		Article art = articleMgr.selectByID(auct.getNoArticle()); // potentielle DALException
 		
-		// vérification du propriétaire
+		// vérification de l'utilisateur
 		if (auct.getNoUtilisateur() == art.getOwnerId()) {
 			throw new BLLException("impossible d'enchérir sur ses propres biens");
 		}
+		List<Auction> auctions = selectByArticle(auct.getNoArticle());
+		Auction bestOffer = auctions.isEmpty() ? null : Collections.max(auctions);
+		if (bestOffer != null && auct.getNoUtilisateur() == bestOffer.getNoUtilisateur()) {
+			throw new BLLException("vous avez déjà enchéri");
+		}
+		
+		// vérification du montant
+				if (bestOffer != null && auct.getMontantEnchere() < bestOffer.getMontantEnchere()) {
+					throw new BLLException("montant non valide");
+				}
 		
 		// vérification de la date
 		if (auct.getDateEnchere().before(art.getDateDebut()) || auct.getDateEnchere().after(art.getDateFin())) {
 			throw new BLLException("les enchères ne sont pas en cours");
-		}
-		
-		List<Auction> auctions = selectByArticle(auct.getNoArticle());
-		Auction maxEnchere = null;
-		if (!auctions.isEmpty()) {
-			maxEnchere = Collections.max(auctions);
-			
-			// vérification du montant
-			if (auct.getMontantEnchere() < maxEnchere.getMontantEnchere()) {
-				throw new BLLException("montant non valide");
-			}
 		}
 	}
 }

@@ -37,6 +37,7 @@
             	}
                 if (request.getAttribute("user") != null) {
                 %>
+                	<label>Votre solde : ${solde}</label>
 	                <form action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
 	                	<input type="number" name="relance" id="relance" value="${bestOffer+1}" min="${bestOffer+1}" step="1">
 	                	<input type="submit" value="Enchérir">
