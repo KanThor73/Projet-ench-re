@@ -31,7 +31,7 @@ public class FiltreUsers implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		
-		long connectionTime = Long.parseLong(session.getAttribute(connectionTime)); // recupere la date de la derniere connection
+		long connectionTime = Long.parseLong(session.getAttribute("connectionTime").toString()); // recupere la date de la derniere connection
 
 		boolean canBeConnect = (connectionTime - System.currentTimeMillis()) < TIME_OF_CONNECTION ? true : false; // renvoie un bool en focntion de la duree de connection
 		
