@@ -59,7 +59,6 @@ public class NewArticleServlet extends HttpServlet {
 			Date dateFin = formatter.parse(request.getParameter("dateFin"));
 			
 			int id = Integer.parseInt(request.getSession().getAttribute("id").toString()); // récupération de l'id du user connecté
-			System.out.println(categorie);
 			Article newArticle = new Article(nom, description, categorie, dateDebut, dateFin, prixInit, id);
 						
 			articleMgr.insert(newArticle); // ajout de l'utilisateur
@@ -68,8 +67,6 @@ public class NewArticleServlet extends HttpServlet {
 			String rue = request.getParameter("rue");
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
-			
-			System.out.println(articleMgr.getNextNoArticle());
 			
 			Retrait retrait = new Retrait(articleMgr.getNextNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
 			retraitManager.insert(retrait);

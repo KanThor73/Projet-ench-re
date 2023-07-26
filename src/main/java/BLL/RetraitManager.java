@@ -47,6 +47,13 @@ public class RetraitManager {
 	public Retrait selectByID(int id) throws DALException {
 		return retraitDAO.selectByIdArticle(id);
 	}
+	
+	// update
+	public void update(Retrait retrait) throws BLLException, DALException {
+		
+		control(retrait);
+		retraitDAO.update(retrait);
+	}
 
 	/*************
 	 * CONTROLES *
@@ -56,12 +63,12 @@ public class RetraitManager {
 
 		if (retrait == null) {
 			throw new BLLException("utilisateur");
-		} else if (retrait.getRue() == null || retrait.getRue().isEmpty()) {
+		} else if (retrait.getRue() == null || retrait.getRue().isEmpty() || retrait.getRue().length() > 30) {
 			throw new BLLException("saisie incorrecte de la rue");
 		} else if (retrait.getCode_postal() == null || retrait.getCode_postal().isEmpty()
-				|| !(retrait.getCode_postal().length() == 5)) {// verifier qu'il s'agit bien d'un code postal
+				|| retrait.getCode_postal().length() != 5) {
 			throw new BLLException("saisie incorrecte du code postal");
-		} else if (retrait.getVille() == null || retrait.getVille().isEmpty()) {
+		} else if (retrait.getVille() == null || retrait.getVille().isEmpty() || retrait.getVille().length() > 30) {
 			throw new BLLException("saisie incorrecte de la ville");
 		}
 	}

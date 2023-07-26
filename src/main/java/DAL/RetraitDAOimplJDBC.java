@@ -11,7 +11,7 @@ public class RetraitDAOimplJDBC implements RetraitDAO {
 	public static final String RETRAIT_SQL_INSERT = "INSERT INTO Retraits (no_article,rue,code_postal,ville) VALUES (?,?,?,?)";
 	public static final String RETRAIT_SQL_SELECTBYID = "SELECT * FROM Retraits WHERE no_article = ?";
 	public static final String RETRAIT_SQL_DELETE = "DELETE FROM Retraits WHERE no_article = ?";
-
+	public static final String RETRAIT_SQL_UPDATE = "UPDATE Retraits SET rue = ?, code_postal = ?, ville = ? WHERE no_article = ?";
 	// creation de l'udpate
 
 	@Override
@@ -67,4 +67,21 @@ public class RetraitDAOimplJDBC implements RetraitDAO {
 
 	}
 
+	@Override
+	public void update(Retrait retrait) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(RETRAIT_SQL_UPDATE);
+			stmt.setString(1, retrait.getRue());
+			stmt.setString(2, retrait.getCode_postal());
+			stmt.setString(3, retrait.getVille());
+			stmt.setInt(4, retrait.getNo_article());
+			
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
+	}
 }

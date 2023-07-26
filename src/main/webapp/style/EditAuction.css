@@ -36,7 +36,7 @@ h1 {
 	box-shadow: var(- -box_shadow);
 }
 
-textarea {
+textarea, select {
 	font-size: 1.5rem;
 }
 
