@@ -9,7 +9,7 @@ public class Auction implements Comparable<Auction> {
 	private Date dateEnchere;
 	private int montantEnchere;
 
-	public Auction(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere, int Description, int Categorie, int Rue, int codePostal, int Ville) {
+	public Auction(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere) {
 
 		this.noUtilisateur = noUtilisateur;
 		this.noArticle = noArticle;

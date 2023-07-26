@@ -20,6 +20,7 @@
 	border-width: 0.3rem;
 	font-size: 3rem;
 	padding: 0.5rem;
+	
 	}
 	
 	h1 {
@@ -31,5 +32,10 @@
 	border-radius: 1rem;
 	padding: 1rem;
 	box-shadow: var(- -box_shadow);
+}
+
+formFooter{
+	align-items: center;
+	margin-left: 10rem;
 }
 
