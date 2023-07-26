@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="BLL.ArticleManager"%>
-<%@ page import="BO.Article"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,38 +6,46 @@
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/Auction.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>Enchère</title>
+<title> Enchère</title>
 </head>
 <body>
     <%@ include file="/WEB-INF/jspf/header.jspf"%>
-	<%int id = 1;
-	ArticleManager articleMgr = ArticleManager.getInstanceOf();
-	Article article = articleMgr.selectByID(id);%>
     <div class="container">
         <h1>Details vente</h1>
-
-        <div class="FormContainer">
-            <div class="FormBody">
-                <div class="FormFragment">
-                    <label for="nom-article">Article : </label> <%=article.getNom()%>
-                    <div class="FormFragment">
-                        <label for="Description">Description : <%=article.getDescription()%></label>
-                        <div class="FormFragment">
-                            <label for="catégories">Catégorie : <%=article.getCategorie()%></label>
-                            <div class="FormFragment">
-                                <label for="Meilleur_Offres">Meilleur offre :</label>
-                                <div class="FormFragment">
-                                    <label for="Mise_A_Prix">Mise à prix : </label>
-                                    <div class="FormFragment">
-                                        <label for="Fin_enchère">Fin de l'enchère : <%= article.getDateFin().toLocaleString()%></label>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="sub-container">
+            <div class="fragment">
+                <label for="nom-article">Article : ${nom}</label>
             </div>
+            <div class="fragment">
+           	    <label for="Description">Description : ${desc}</label>
+           	</div>
+            <div class="fragment">
+                <label for="catégories">Catégorie :${cat}</label>
+            </div>
+            <div class="fragment">
+                <label for="Meilleur_Offres">Meilleur offre : ${bestOffer}</label>
+                <% if (request.getParameter("bestOfferer") != "") {%>
+                <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
+                <% }
+                if (request.getAttribute("user") != null) {%>
+                <form action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
+                	<input type="number" name="relance" id="relance" value="${bestOffer}" min="${bestOffer}" step="1">
+                	<!-- TODO bouton submit -->
+                </form>
+                <%}%>
+            </div>
+            <div class="fragment">
+                <label for="Mise_A_Prix">Mise à prix : ${prixVente}</label>
+            </div>
+            <div class="fragment">
+                <label for="Fin_enchère">Fin de l'enchère : ${dateFin})</label>
+            </div>
+            
+            <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
+            <div class="fragment">
+            	<label>Modifier</label>
+            </div>
+            <%}%>
         </div>
     </div>
 

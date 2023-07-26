@@ -2,15 +2,12 @@ package BO;
 
 import java.util.Date;
 
-public class Auction {
+public class Auction implements Comparable<Auction> {
+	
 	private int noUtilisateur;
 	private int noArticle;
 	private Date dateEnchere;
 	private int montantEnchere;
-
-	public Auction() {
-
-	}
 
 	public Auction(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere) {
 
@@ -18,7 +15,6 @@ public class Auction {
 		this.noArticle = noArticle;
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
-
 	}
 
 	public int getNoUtilisateur() {
@@ -35,7 +31,6 @@ public class Auction {
 
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
-
 	}
 
 	public Date getDateEnchere() {
@@ -48,7 +43,6 @@ public class Auction {
 
 	public int getMontantEnchere() {
 		return montantEnchere;
-
 	}
 
 	public void setMontantEnchere(int montantEnchere) {
@@ -60,4 +54,8 @@ public class Auction {
 				+ dateEnchere + ", montantEnchere=" + montantEnchere + '}';
 	}
 
+	@Override
+	public int compareTo(Auction o) {
+		return montantEnchere - o.getMontantEnchere();
+	}
 }
