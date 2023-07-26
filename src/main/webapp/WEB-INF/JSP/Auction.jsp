@@ -43,9 +43,7 @@
                 <label for="Fin_enchère">Fin de l'enchère : ${dateFin})</label>
             </div>
             
-            <div class="auction-button">
-            
-            </div>
+          
             <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
             <div class="fragment">
             	<label>Modifier</label>
@@ -53,6 +51,11 @@
             <%}%>
         </div>
     </div>
+      <div class="auction-button">
+            
+            <button>Enchérir</button>
+            
+            </div>
 
 </body>
 </html>

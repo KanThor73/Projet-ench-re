@@ -26,6 +26,7 @@
   border-width: 0.3rem;
   font-size: 3rem;
   align-items: center;
+  
 }
 
 .sub-container{
@@ -34,8 +35,8 @@
 	border-radius: 1rem;
 	align-items: center;
 	
-	
-}
+	}
+
 
 h1{
 	font-size: 3rem;
@@ -46,4 +47,20 @@ h1{
 	border-radius: 1rem;
 	padding: 1rem;
 	box-shadow: var(--box_shadow);
+}
+
+.auction-button{
+	display: flex;
+	justify-content: center;
+	height:100%;
+	align-items: center;
+	
+}
+.auction-button button{
+	 font-size: 20px;
+     padding: 10px 20px;
+     background: linear-gradient(var(--gradiantGold));
+     padding: 0,5rem;
+     
+	
 }
