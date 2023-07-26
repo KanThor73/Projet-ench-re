@@ -6,12 +6,6 @@ public class Auction implements Comparable<Auction> {
 	
 	private int noUtilisateur;
 	private int noArticle;
-	private String Description;
-	private String Categorie;
-	private int meilleurOffre;
-	private int meilleurOffrant;
-	private int prixVente;
-	private Date dateFin;
 	private Date dateEnchere;
 	private int montantEnchere;
 
@@ -37,53 +31,6 @@ public class Auction implements Comparable<Auction> {
 
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
-	}
-	public String getDescrition() {
-		return Description;
-	}
-	
-	public void setDescrition(String Description) {
-		this.Description = Description;
-	}
-	
-	public String getCategorie() {
-		return Categorie;
-	}
-	
-	public void setCategorie(String Categorie) {
-		this.Categorie = Categorie;
-	}
-	
-	public int getmeilleurOffre() {
-		return meilleurOffre;
-	}
-	
-	public void setmeilleurOffre(int meilleurOffre) {
-		this.meilleurOffre = meilleurOffre;
-	}
-	
-	public int getmeilleurOffrant() {
-		return meilleurOffrant;
-	}
-	
-	public void setmeilleurOffrant(int meilleurOffrant) {
-		this.meilleurOffrant = meilleurOffrant;
-	}
-	
-	public int getprixVente() {
-		return prixVente;
-	}
-	
-	public void setprixVente(int prixVente) {
-		this.prixVente = prixVente;
-	}
-	
-	public Date dateFin() {
-		return dateFin;
-	}
-	
-	public void setdateFin(Date dateFin) {
-		this.dateFin = dateFin;
 	}
 
 	public Date getDateEnchere() {

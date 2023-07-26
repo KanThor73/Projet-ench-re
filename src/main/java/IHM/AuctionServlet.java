@@ -1,6 +1,8 @@
 package IHM;
 
 import java.io.IOException;
+import java.time.Instant;
+
 import javax.servlet.ServletException;
 
 import javax.servlet.http.HttpServlet;
@@ -13,13 +15,18 @@ import BLL.AuctionManager;
 import BO.Auction;
 import BLL.UserManager;
 import BO.User;
+import Exceptions.BLLException;
 import Exceptions.DALException;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
 
 public class AuctionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ArticleManager articleMgr = ArticleManager.getInstanceOf();
+	private AuctionManager auctionMgr = AuctionManager.getInstanceOf();
+	private UserManager userMgr = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,11 +35,6 @@ public class AuctionServlet extends HttpServlet {
 		int articleId = Integer.parseInt(request.getParameter("id"));
 
 		try {
-
-			ArticleManager articleMgr = ArticleManager.getInstanceOf();
-			AuctionManager auctionMgr = AuctionManager.getInstanceOf();
-			UserManager userMgr = UserManager.getInstanceOf();
-			
 			// Article et id propriétaire
 			Article article = articleMgr.selectByID(articleId);
 			int idOwner = article.getOwnerId();
@@ -82,6 +84,21 @@ public class AuctionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		
+		int idUser = Integer.parseInt(request.getSession().getAttribute("id").toString());
+		int idArticle = Integer.parseInt(request.getParameter("id"));
+		int relance = Integer.parseInt(request.getParameter("relance"));
+		Date maintenant = Date.from(Instant.now());
+		
+		Auction auction = new Auction(idUser, idArticle, maintenant, relance);
+		
+		try {
+			auctionMgr.insert(auction); // ajout de l'enchère
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("msgErreur", e.getMessage());
+		}
+		
+		doGet(request, response); // retour sur la même page
 	}
 }
