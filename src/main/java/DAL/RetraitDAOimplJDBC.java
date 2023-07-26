@@ -8,9 +8,9 @@ import BO.Retrait;
 import Exceptions.DALException;
 
 public class RetraitDAOimplJDBC implements RetraitDAO {
-	public static final String RETRAIT_SQL_INSERT = "INSERT INTO retraits (no_article,rue,code_postal,ville) VALUES (?,?,?,?)";
-	public static final String RETRAIT_SQL_SELECTBYID = "SELECT * FROM retraits WHERE no_article = ?";
-	public static final String RETRAIT_SQL_DELETE = "DELETE FROM retraits WHERE no_article = ?";
+	public static final String RETRAIT_SQL_INSERT = "INSERT INTO Retraits (no_article,rue,code_postal,ville) VALUES (?,?,?,?)";
+	public static final String RETRAIT_SQL_SELECTBYID = "SELECT * FROM Retraits WHERE no_article = ?";
+	public static final String RETRAIT_SQL_DELETE = "DELETE FROM Retraits WHERE no_article = ?";
 
 	// creation de l'udpate
 
