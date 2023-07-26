@@ -30,8 +30,7 @@
             	if (!request.getAttribute("bestOfferer").toString().equals("")) {
             	%>
 	                <label for="Meilleur_Offres">Meilleur offre : ${bestOffer}</label>
-		                <div class="fragment">
-		                <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
+		            <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
             	<%
             	}
                 if (request.getAttribute("user") != null) {
@@ -46,7 +45,6 @@
                 <label for="Fin_enchère">Fin de l'enchère : ${dateFin}</label>
             </div>
             
-          
             <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
             <div class="fragment">
             	<label>Modifier</label>
