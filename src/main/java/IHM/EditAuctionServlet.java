@@ -32,7 +32,7 @@ public class EditAuctionServlet extends HttpServlet {
 		}
 		
 		int id = Integer.parseInt(request.getParameter("id")); // recuperation ID de l'enchère a modifier
-		System.out.println(id);
+		
 		try {
 			Article article = articleMgr.selectByID(id);
 			Retrait retrait = retraitMgr.selectByID(id);
@@ -60,7 +60,6 @@ public class EditAuctionServlet extends HttpServlet {
 		}
 	}
 
-	@SuppressWarnings({ "unused", "deprecation" })
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -76,7 +75,7 @@ public class EditAuctionServlet extends HttpServlet {
 		Date dateFin = null;
 		try {
 			dateDebut = sdf.parse(request.getParameter("dateDebut"));
-			dateFin = sdf.parse(request.getParameter("dateDebut"));
+			dateFin = sdf.parse(request.getParameter("dateFin"));
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 			request.setAttribute("msgErreur", "Problème de dates"); // ne devrait pas arriver
