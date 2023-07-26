@@ -80,5 +80,5 @@
     <servlet-name>Auction</servlet-name>
     <url-pattern>/Auction</url-pattern>
   </servlet-mapping>
-
+  
 </web-app>
