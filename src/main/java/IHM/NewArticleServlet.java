@@ -54,7 +54,7 @@ public class NewArticleServlet extends HttpServlet {
 			String categorie = request.getParameter("categorie");
 			int prixInit = Integer.parseInt(request.getParameter("prixInit"));
 		
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 			Date dateDebut = formatter.parse(request.getParameter("dateDebut"));
 			Date dateFin = formatter.parse(request.getParameter("dateFin"));
 			
