@@ -126,8 +126,13 @@ public class EditAuctionServlet extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("msgErreur", e.getMessage());
 			}
+		} else if (request.getParameter("comeback") != null) {
+			
+			response.sendRedirect("Auction?id=" + idArticle); // retour à la vue de l'article
+			return;
 		} else { // usurpateur !
 			response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
+			return;
 		}
 		
 		doGet(request, response); // affiche la jsp
