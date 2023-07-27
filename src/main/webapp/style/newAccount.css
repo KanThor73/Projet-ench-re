@@ -55,7 +55,15 @@ h2 {
 	transform: scale(1.1);
 }
 
-
+.button a {
+	border: 1px solid #000;
+	font-size: 2rem;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
+	color: black;
+	border-radius: 0,7rem;
+	transform: scale(1.1);
+}
 
 .errorBox {
 	margin-top: 2rem;
