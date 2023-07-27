@@ -30,7 +30,7 @@ INSERT INTO ArticlesVendus VALUES
 (default, "lit en bois", "lit de l'ère victorienne, retrouvé dans les décombres de la guerre", "2023-07-24", "2023-08-15", 1000, 1000, 6, 6),
 (default, "chaussettes d'hiver", "elles auraient appartenu à un grand barbu généreux", "2023-07-24", "2023-12-25", 120, 120, 6, 7),
 (default, "machine à écrire", "provient du Klondike", "2023-06-24", "2023-08-12", 600, 600, 5, 2),
-(default, "bonheur", "encore à définir", "1000-01-01", "9999-12-31", null, null, 6, 6),
+(default, "bonheur", "encore à définir", "1000-01-01", "9999-12-31", 0, 0, 6, 6),
 (default, "bonheur", "bon pour admirer mon sou porte-bonheur pendant une journée", "2023-07-24", "2023-07-31", 5000, 5000, 5, 5),
 (default, "PC antique", "permet tout de même de faire tourner Linux", "2023-07-24", "2023-07-31", 15, 15, 3, 2),
 (default, "écran à CSS instantané", "tout ce dont vous pourriez rêver", "2023-07-24", "2023-07-31", 1400, 1400, 1, 2),
