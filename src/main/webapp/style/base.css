@@ -49,15 +49,35 @@ header a {
 	font-weight: 700;
 	border: 0.3rem red;
 	color: var(--dark);
-	margin: 0px;
-	padding: 0px 1rem 0px 1rem;
+	margin: 0rem;
+	padding: 0rem 1rem 0rem 1rem;
 	text-decoration: none;
 	transition: 0.5s ease-out;
 	letter-spacing: 0.3rem;
 }
 
+a[id=deco] {
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	margin-left: 1rem;
+	border: 1px solid black;
+	transition: 0.5s ease-out;
+}
+
+a[id=deco]:hover {
+	box-shadow: var(--box_shadowWhite);
+}
+
 .deco{
 	font-size: 2rem;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	border: 1px solid black;
+	transition: 0.5s ease-out;
+}
+
+.deco:hover{
+	box-shadow: var(--box_shadowWhite);
 }
 
 input[type="submit"] {

@@ -2,22 +2,26 @@
 <%@ page import="BLL.UserManager"%>
 <script src="JS/gestionDeconnexion.js"></script>
 <header>
-    <a href="IndexServlet"><img class="logo"
-        src="img/LogoTest7.svg" alt="logo_Enchere" />ENI-ENCHERES</a>
-    <%if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
-    %><a class="deco" href="<%=request.getContextPath()%>/Connexion">INSCRIPTION / CONNEXION</a>
-    <%} else { // recuperer l'id ici
-        UserManager userMgr = UserManager.getInstanceOf();
-        int id = (int) session.getAttribute("id"); // conversion en entier
-    %>
-    <div class= nav>
-    <a href="<%=request.getContextPath()%>/IndexServlet">ENCHERES</a>
-    <div class="separator"></div>
-    <a href="<%=request.getContextPath()%>/Vente">VENDRE</a>
-    <div class="separator"></div>
-    <a href="<%=request.getContextPath()%>/Profil?id=<%=id%>">MON PROFIL</a>
-    <div class="separator"></div>
-    <a href="<%=request.getContextPath()%>/Deconnexion">DECONNEXION</a>
-    </div>
-    <%}%>
+	<a href="IndexServlet"><img class="logo" src="img/LogoTest7.svg"
+		alt="logo_Enchere" />ENI-ENCHERES</a>
+	<%
+	if (request.getSession().getAttribute("id") == null) { // utilisateur connecté
+	%><a class="deco" href="<%=request.getContextPath()%>/Connexion">INSCRIPTION
+		/ CONNEXION</a>
+	<%
+	} else { // recuperer l'id ici
+	UserManager userMgr = UserManager.getInstanceOf();
+	int id = (int) session.getAttribute("id"); // conversion en entier
+	%>
+	<div class=nav>
+		<a href="<%=request.getContextPath()%>/IndexServlet">ENCHERES</a>
+		<div class="separator"></div>
+		<a href="<%=request.getContextPath()%>/Vente">VENDRE</a>
+		<div class="separator"></div>
+		<a href="<%=request.getContextPath()%>/Profil?id=<%=id%>">MON
+			PROFIL</a> <a id="deco" href="<%=request.getContextPath()%>/Deconnexion">DECONNEXION</a>
+	</div>
+	<%
+	}
+	%>
 </header>
