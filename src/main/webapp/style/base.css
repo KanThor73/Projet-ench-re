@@ -147,3 +147,6 @@ img {
 .mgB-2{
 	margin-bottom: 2rem;
 }
+input[id="isActif"]{
+	display:none;
+}

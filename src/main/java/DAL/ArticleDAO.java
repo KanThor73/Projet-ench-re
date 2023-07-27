@@ -20,4 +20,6 @@ public interface ArticleDAO {
 	public int getMaxNoArticle() throws DALException;// recup prochain no pour ajoute de retrait
 	
 	public List<Article> selectDynamic(String requete, String[] parameters) throws DALException ; // recup la liste des article adapte aux champs saisis
+	
+	public String getPseudoByNoUser(int noUser) throws DALException; // recupere le pseudo
 }

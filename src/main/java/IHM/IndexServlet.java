@@ -1,6 +1,7 @@
 package IHM;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import BLL.ArticleManager;
 import BLL.CategorieManager;
@@ -19,13 +21,15 @@ public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArticleManager articleMgr = ArticleManager.getInstanceOf();
 	CategorieManager catMgr = CategorieManager.getInstanceOf();
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		try {
 			List<String> categories = catMgr.selectAll();
 			request.setAttribute("categories", categories);
 			List<Article> listeArticles = articleMgr.selectAll();// recupere tous les articles pour le premier affichage
+
 			request.setAttribute("articles", listeArticles);
 			if(listeArticles.size() == 0 || listeArticles == null) {request.setAttribute("msg", "Aucun element ne correspond a vos criteres de recherche");}
 		} catch (DALException e) {
@@ -33,13 +37,13 @@ public class IndexServlet extends HttpServlet {
 		}
 		request.setCharacterEncoding("UTF-8");
 
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/JSP/indexMain.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");// gere les caracteres avec accents
-		String searchString = request.getParameter("recherche");
+		String searchString = request.getParameter("recherche").trim(); //retire les espace en trop
 		String catForSelectArt = request.getParameter("categorie");// recuperation libelle
 		
 
@@ -83,6 +87,6 @@ public class IndexServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 			request.setAttribute("msgErreur", "Impossible de satisfaire votre requête");
 		}
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/JSP/indexMain.jsp").forward(request, response);
 	}
 }

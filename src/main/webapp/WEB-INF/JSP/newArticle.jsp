@@ -83,5 +83,6 @@
 			</div>
 		</div>
 	</main>
+	<input type="text" id="isActif" value="1" name="isActif">
 </body>
 </html>
