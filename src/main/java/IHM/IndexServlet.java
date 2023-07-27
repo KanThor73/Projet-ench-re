@@ -39,7 +39,7 @@ public class IndexServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");// gere les caracteres avec accents
-		String searchString = request.getParameter("recherche");
+		String searchString = request.getParameter("recherche").trim();
 		String catForSelectArt = request.getParameter("categorie");// recuperation libelle
 		
 
