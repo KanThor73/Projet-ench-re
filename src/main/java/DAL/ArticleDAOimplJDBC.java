@@ -209,7 +209,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	}
 
 	@Override
-	public int getNextNoArticle() throws DALException {
+	public int getMaxNoArticle() throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_LAST_COLUMN);

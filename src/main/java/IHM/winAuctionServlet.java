@@ -34,6 +34,7 @@ public class winAuctionServlet extends HttpServlet {
 		
 		try {
 			Article article = articleMgr.selectByID(id); // récupération de l'article concerné
+			// TODO check la date
 			List<Auction> auctions = auctionMgr.selectByArticle(id); // récupération des enchères effectuées sur cet article
 			
 			if (auctions.isEmpty() && sessionId == article.getOwnerId()) { // si aucune enchère n'a été faite et vue du proprio
@@ -85,6 +86,7 @@ public class winAuctionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// TODO rediriger les personnes non concernées
+		// TODO check la date
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		

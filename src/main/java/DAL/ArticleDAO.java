@@ -17,7 +17,7 @@ public interface ArticleDAO {
 	
 	public List<Article> selectByCategory(String cat) throws DALException;
 	
-	public int getNextNoArticle() throws DALException;// recup prochain no pour ajoute de retrait
+	public int getMaxNoArticle() throws DALException;// recup prochain no pour ajoute de retrait
 	
 	public List<Article> selectDynamic(String requete, String[] parameters) throws DALException ; // recup la liste des article adapte aux champs saisis
 }

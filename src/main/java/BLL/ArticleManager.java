@@ -74,8 +74,8 @@ public class ArticleManager {
 	}
 	
 	// récupérer l'id du prochain article 
-	public int getNextNoArticle() throws DALException {
-		return articleDAO.getNextNoArticle();
+	public int getMaxNoArticle() throws DALException {
+		return articleDAO.getMaxNoArticle();
 	}
 	
 	/*************

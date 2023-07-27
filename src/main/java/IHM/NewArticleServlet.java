@@ -68,7 +68,7 @@ public class NewArticleServlet extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 			
-			Retrait retrait = new Retrait(articleMgr.getNextNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
+			Retrait retrait = new Retrait(articleMgr.getMaxNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
 			retraitManager.insert(retrait);
 			
 			response.sendRedirect("IndexServlet");// retourne à l'accueil si bon déroulement
@@ -79,6 +79,14 @@ public class NewArticleServlet extends HttpServlet {
 			getServletContext().getNamedDispatcher("NewArticleJSP").forward(request, response);
 		} catch (DALException e) {
 			request.setAttribute("msgErreur","Problème d'accès aux données");
+			
+			try {
+				int idArticle = articleMgr.getMaxNoArticle();
+				articleMgr.delete(idArticle); // au cas où l'article ait été ajouté sans le retrait
+			} catch (DALException e1) {
+				request.setAttribute("msgErreur","C'est la merde, appelez un admin.");
+			}
+			
 			getServletContext().getNamedDispatcher("NewArticleJSP").forward(request, response);
 		} catch (BLLException e) {
 			request.setAttribute("msgErreur", e.getMessage());
