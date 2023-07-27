@@ -9,3 +9,5 @@ renvoyer l'utilisateur sur la page de connexion s'il n'est pas connecte et qu'il
 seulement changer le redirect du filtre ?
 
 vérifier qu'on ne puisse pas modif un article dont la date de début est passée
+
+tester que la date de debut nest pas arrivée quand on crée un article
