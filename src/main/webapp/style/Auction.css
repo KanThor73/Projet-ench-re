@@ -80,7 +80,7 @@ input[type="submit"] {
 }
 
 .edit-button {
-    display: inline-block;
+    display: flex;
     background-color: rgb(128, 128, 128);
     color: #fff;
     border: none;
@@ -89,12 +89,17 @@ input[type="submit"] {
     text-decoration: none;
     cursor: pointer;
     border-radius: 4px;
+    font-size: 2rem;
+    margin-left: 38rem;
+    margin-top: 3rem;
 }
 
 .edit-button a {
     color: #fff;
     text-decoration: none;
     font-size: 2rem;
+   
+   	
 }
 
 .edit-button:hover {
