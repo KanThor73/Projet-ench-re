@@ -107,13 +107,13 @@ public class EditProfileServlet extends HttpServlet {
 					request.setAttribute("msg", "Profil modifie avec succes!");
 				} else if (!mdp1.isEmpty() && mdp2.isEmpty() || mdp1.isEmpty() && !mdp2.isEmpty()) {
 					request.setAttribute("msgErreur",
-							"Attention - Le mot de passe et sa confirmation doivent etre identique");
+							"Attention - Le mot de passe et sa confirmation doivent être identiques");
 				} else if (mdp1 != mdp2) {
 					request.setAttribute("msgErreur",
-							"Attention - Le mot de passe et sa confirmation doivent etre identique");
+							"Attention - Le mot de passe et sa confirmation doivent être identiques");
 				} else if (mdp1 == mdp) {
 					request.setAttribute("msgErreur",
-							"Attention - Le nouveau mot de passe doit etre different de l'ancien");
+							"Attention - Le nouveau mot de passe doit être différent de l'ancien");
 				}
 			} catch (DALException e) {
 				e.printStackTrace();
