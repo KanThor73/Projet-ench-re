@@ -93,6 +93,11 @@ public class AuctionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		if (request.getSession().getAttribute("id") == null) { // utilisateur non connecté, usurpateur
+			response.sendRedirect("Connexion"); // ciao !
+			return;
+		}
+		
 		try {
 			int idUser = Integer.parseInt(request.getSession().getAttribute("id").toString());
 			int idArticle = Integer.parseInt(request.getParameter("id"));

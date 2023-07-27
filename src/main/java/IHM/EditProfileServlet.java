@@ -11,13 +11,14 @@ import BLL.UserManager;
 import BO.User;
 import Exceptions.DALException;
 
-@WebServlet("/EditProfileServlet")
+@WebServlet("/EditerProfil")
 public class EditProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserManager userManager = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int idUser = (int) request.getSession().getAttribute("id");
 
 		try {
@@ -54,6 +55,7 @@ public class EditProfileServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		// recuperer le nouveau mot de passe et sa confirmation
 		UserManager userMg = UserManager.getInstanceOf();
 

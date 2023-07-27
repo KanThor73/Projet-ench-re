@@ -25,6 +25,7 @@ public class NewAccountServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		// Récupération des paramètres du formulaire de newAccount.jsp
 		String pseudo = request.getParameter("pseudo");
