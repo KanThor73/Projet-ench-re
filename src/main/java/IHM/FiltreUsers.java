@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebFilter(urlPatterns = {"/Vente","/Profil"}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
+@WebFilter(urlPatterns = {"/Vente","/Profil", "/FinEncheres"}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
 		DispatcherType.FORWARD, DispatcherType.ERROR })// renseigner des que les pages sont faite
 
 public class FiltreUsers implements Filter {
