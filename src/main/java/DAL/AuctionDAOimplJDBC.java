@@ -103,7 +103,7 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 
 			}
 			return auctions;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("Problème de connexion aux données");
@@ -155,8 +155,7 @@ public class AuctionDAOimplJDBC implements AuctionDAO {
 				Auction auction = new Auction(idUser1, idArticle1, date, montant);
 				return auction;
 			} else {
-				throw new DALException("Problème de connexion aux données");
-
+				return null;
 			}
 
 		} catch (Exception e) {

@@ -1,5 +1,6 @@
 package BLL;
 
+import java.util.Collections;
 import java.util.List;
 
 import DAL.AuctionDAO;
@@ -8,10 +9,14 @@ import Exceptions.DALException;
 import Exceptions.BLLException;
 import BO.Auction;
 
+import BO.Article; // pour comparer les dates de l'enchere et de l'article
+
 public class AuctionManager {
 	
 	private AuctionDAO auctionDAO = Factory.getAuctionDAO();
-
+	
+	private ArticleManager articleMgr = ArticleManager.getInstanceOf(); // pour comparer les dates de l'enchere et de l'article
+	
 	/*********************
 	 * Pattern singleton *
 	 *********************/
@@ -76,7 +81,29 @@ public class AuctionManager {
 	 * Méthodes privées *
 	 ********************/
 	
-	private void control(Auction auct) throws BLLException {
-		// TODO
+	private void control(Auction auct) throws BLLException, DALException {
+
+		// vérification de l'article
+		Article art = articleMgr.selectByID(auct.getNoArticle()); // potentielle DALException
+		
+		// vérification de l'utilisateur
+		if (auct.getNoUtilisateur() == art.getOwnerId()) {
+			throw new BLLException("impossible d'enchérir sur ses propres biens");
+		}
+		List<Auction> auctions = selectByArticle(auct.getNoArticle());
+		Auction bestOffer = auctions.isEmpty() ? null : Collections.max(auctions);
+		if (bestOffer != null && auct.getNoUtilisateur() == bestOffer.getNoUtilisateur()) {
+			throw new BLLException("vous avez déjà enchéri");
+		}
+		
+		// vérification du montant
+				if (bestOffer != null && auct.getMontantEnchere() < bestOffer.getMontantEnchere()) {
+					throw new BLLException("montant non valide");
+				}
+		
+		// vérification de la date
+		if (auct.getDateEnchere().before(art.getDateDebut()) || auct.getDateEnchere().after(art.getDateFin())) {
+			throw new BLLException("les enchères ne sont pas en cours");
+		}
 	}
 }

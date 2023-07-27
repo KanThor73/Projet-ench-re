@@ -68,9 +68,14 @@ public class ArticleManager {
 		return articleDAO.selectDynamic(requete, parameters);
 	}
 	
+	// supprimer un article de la bdd depuis son id
+	public void delete(int id) throws DALException {
+		articleDAO.delete(id);
+	}
+	
 	// récupérer l'id du prochain article 
-	public int getNextNoArticle() throws DALException {
-		return articleDAO.getNextNoArticle();
+	public int getMaxNoArticle() throws DALException {
+		return articleDAO.getMaxNoArticle();
 	}
 	
 	public String getPseudoByNoUser(int noUser) throws DALException{

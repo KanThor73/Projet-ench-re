@@ -13,4 +13,6 @@ public interface RetraitDAO {
 
 	public void insert(Retrait t) throws DALException;
 	
+	public void update(Retrait t) throws DALException;
+	
 }

@@ -48,19 +48,19 @@ CREATE TABLE ArticlesVendus (
 	
 	CONSTRAINT article_pk PRIMARY KEY (no_article),
 	CONSTRAINT article_user_fk FOREIGN KEY (no_user) REFERENCES Users (no_user) ON DELETE CASCADE,
-	CONSTRAINT article_categorie_fk FOREIGN KEY (no_categorie) REFERENCES Categories (no_categorie)
+	CONSTRAINT article_categorie_fk FOREIGN KEY (no_categorie) REFERENCES Categories (no_categorie) ON DELETE CASCADE
 );
 
 /* TABLE Encheres */
 CREATE TABLE Encheres (
 	no_user			INT NOT NULL,
 	no_article		INT NOT NULL,
-	date_enchere	DATETIME NOT NULL,
+	date_enchere	DATE NOT NULL,
 	montant_enchere	INT NOT NULL,
 	
 	CONSTRAINT enchere_pk PRIMARY KEY (no_user, no_article),
-	CONSTRAINT enchere_user_fk FOREIGN KEY (no_user) REFERENCES Users (no_user),
-	CONSTRAINT enchere_article_fk FOREIGN KEY (no_article) REFERENCES ArticlesVendus (no_article)
+	CONSTRAINT enchere_user_fk FOREIGN KEY (no_user) REFERENCES Users (no_user) ON DELETE CASCADE,
+	CONSTRAINT enchere_article_fk FOREIGN KEY (no_article) REFERENCES ArticlesVendus (no_article) ON DELETE CASCADE
 );
 
 /* TABLE Retraits */

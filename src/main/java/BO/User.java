@@ -1,5 +1,7 @@
 package BO;
 
+import Exceptions.BOException;
+
 public class User {
 	
 	private int noUser;
@@ -131,6 +133,13 @@ public class User {
     // Credit
     public int getCredit() {
         return credit;
+    }
+    public void changeCredit(int credit) throws BOException {
+    	this.credit += credit;
+    	if (this.credit < 0) {
+    		this.credit -= credit; // annulation
+    		throw new BOException("solde insuffisant");
+    	}
     }
     
     // Administrateur

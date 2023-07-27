@@ -1,6 +1,8 @@
 package IHM;
 
 import java.io.IOException;
+import java.time.Instant;
+
 import javax.servlet.ServletException;
 
 import javax.servlet.http.HttpServlet;
@@ -17,9 +19,13 @@ import Exceptions.DALException;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
 
 public class AuctionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ArticleManager articleMgr = ArticleManager.getInstanceOf();
+	private AuctionManager auctionMgr = AuctionManager.getInstanceOf();
+	private UserManager userMgr = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,53 +34,104 @@ public class AuctionServlet extends HttpServlet {
 		int articleId = Integer.parseInt(request.getParameter("id"));
 
 		try {
-
-			ArticleManager articleMgr = ArticleManager.getInstanceOf();
-			AuctionManager auctionMgr = AuctionManager.getInstanceOf();
-			UserManager userMgr = UserManager.getInstanceOf();
-			
+			// Article et id propriétaire
 			Article article = articleMgr.selectByID(articleId);
 			int idOwner = article.getOwnerId();
 			
+			// Si date passée, renvoie sur winAuction / FinEncheres
+			if (article.getDateFin().before(Date.from(Instant.now()))) {
+				response.sendRedirect("FinEncheres?id=" + articleId);
+				return;
+			}
+			
+			// Liste des enchères et plus grande enchère
 			List<Auction> auctions = auctionMgr.selectByArticle(articleId);
 			Auction maxEnchere = null;
 			if (!auctions.isEmpty()) {
 				maxEnchere = Collections.max(auctions);
 			}
-
+			
+			// Plus grand offrant
 			User user = null;
 			if (maxEnchere != null) {
 				int idEnchere = maxEnchere.getNoUtilisateur();
 				user = userMgr.selectByID(idEnchere);
 			}
 			
+			// Mise minimale
+			int mise = 0;
+			if (maxEnchere != null) {
+				mise = maxEnchere.getMontantEnchere();
+			} else {
+				mise = article.getPrixInit() != null ? article.getPrixInit() : 0;
+			}
+			
 			if (request.getSession().getAttribute("id") != null) { // utilisateur connecté
 				int sessionId = Integer.parseInt(request.getSession().getAttribute("id").toString());
-				System.out.println(sessionId + " " + idOwner);
-				System.out.println((sessionId == idOwner));
 				request.setAttribute((sessionId == idOwner) ? "proprio" : "user", "true");
-			} else {
-				request.setAttribute("visiteur", "true");
+				
+				User thisUser = userMgr.selectByID(sessionId);
+				request.setAttribute("solde", thisUser.getCredit());
 			}
 			request.setAttribute("id", request.getParameter("id"));
 			request.setAttribute("nom", article.getNom());
 			request.setAttribute("desc", article.getDescription());
 			request.setAttribute("cat", article.getCategorie());
-			request.setAttribute("bestOffer", (maxEnchere != null) ? maxEnchere.getMontantEnchere() : 0);
-			request.setAttribute("bestOfferer", (user != null) ? user.getPseudo() : "");
+			request.setAttribute("bestOffer", mise);
+			request.setAttribute("bestOfferer", (user != null) ? user.getPseudo() : new String(""));
 			request.setAttribute("prixVente", (article.getPrixInit() != null) ? article.getPrixInit() : 0);
 			request.setAttribute("dateFin", article.getDateFin().toString());
+			
+			getServletContext().getNamedDispatcher("AuctionJSP").forward(request, response);
 
 		} catch (DALException e) {
 			e.printStackTrace();
 			response.sendRedirect("IndexServlet"); // retourne à l'accueil
 		}
-		
-		getServletContext().getNamedDispatcher("AuctionJSP").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		
+		try {
+			int idUser = Integer.parseInt(request.getSession().getAttribute("id").toString());
+			int idArticle = Integer.parseInt(request.getParameter("id"));
+			int relance = Integer.parseInt(request.getParameter("relance"));
+			Date maintenant = Date.from(Instant.now());
+			
+			Auction auction = new Auction(idUser, idArticle, maintenant, relance);
+			
+			User newOfferer = userMgr.selectByID(auction.getNoUtilisateur());
+			newOfferer.changeCredit(-relance); // retrait du crédit, potentielle BOException
+			
+			User lastOfferer = null;
+			List<Auction> allAuctions = auctionMgr.selectByArticle(idArticle);
+			if (!allAuctions.isEmpty()) {
+				Auction lastAuction = Collections.max(allAuctions); // récupération de la dernière enchère
+				
+				// on crédite l'ancien bestOfferer
+				lastOfferer = userMgr.selectByID(lastAuction.getNoUtilisateur());
+				lastOfferer.changeCredit(lastAuction.getMontantEnchere());
+			}
+			
+			Auction auctionCheck = auctionMgr.selectByID(idUser, idArticle);
+			if (auctionCheck != null) { // déjà une enchère de ce (user, article) dans la bdd
+				auctionMgr.update(auction); // controle et update de l'enchère
+			} else {
+				auctionMgr.insert(auction); // controle et ajout de l'enchère
+			}
+			
+			// si tout s'est bien passé, on commit les crédits en bdd
+			userMgr.update(newOfferer);
+			if (lastOfferer != null) {
+				userMgr.update(lastOfferer);
+			}
+			
+		} catch (Exception e) { // DAL, BLL ou BO
+			e.printStackTrace();
+			request.setAttribute("msgErreur", e.getMessage());
+		}
+		
+		doGet(request, response); // retour sur la même page
 	}
 }

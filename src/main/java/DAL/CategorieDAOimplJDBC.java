@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import BO.Article;
 import Exceptions.DALException;
 
 public class CategorieDAOimplJDBC implements CategorieDAO {
@@ -99,7 +97,7 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 				int noCategorie = rs.getInt("no_categorie");
 				return noCategorie;
 			} else {
-				return 0;
+				throw new DALException("catégorie inexistante");
 			}
 
 		} catch (Exception e) {

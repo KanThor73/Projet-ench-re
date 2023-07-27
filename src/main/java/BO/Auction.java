@@ -32,6 +32,7 @@ public class Auction implements Comparable<Auction> {
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
 	}
+	
 
 	public Date getDateEnchere() {
 		return dateEnchere;

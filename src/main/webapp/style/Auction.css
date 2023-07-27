@@ -1,12 +1,11 @@
 @import url("base.css");
 
 .fragment {
- 
-  width: 100%; 
-  padding: 10px; 
+	width: 100%;
+	padding: 10px;
 }
 
-.container{
+.container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -24,7 +23,8 @@
 	border-radius: 0.3rem;
 	border-width: 0.3rem;
 	font-size: 3rem;
-	padding: 0.5rem;
+	padding: 0.1rem;
+	
 }
 
 .sub-container {
@@ -37,30 +37,32 @@
 	background-position: center;
 	align-items: center;
 	margin-top: 3rem;
-
+	
 }
 
-
-.fragment label,
-.fragment input {
-  border: 1px solid rgb(0, 0, 0);	
-  border-radius: 0.3rem;
-  border-width: 0.3rem;
-  font-size: 3rem;
-  align-items: center;
-  
+.fragment label, .fragment input {
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 0.3rem;
+	border-width: 0.3rem;
+	font-size: 3rem;
+	align-items: center;
 }
 
-.sub-container{
+.sub-container {
 	background: linear-gradient(var(--gradiantGold));
 	box-shadow: var(--box_shadow);
 	border-radius: 1rem;
 	align-items: center;
 	
-	}
+	
+}
 
+form {
+	display: flex;
+	justify-content: space-between;
+}
 
-h1{
+h1 {
 	font-size: 3rem;
 	margin: 0rem;
 	margin-bottom: 2rem;
@@ -69,24 +71,32 @@ h1{
 	border-radius: 1rem;
 	padding: 1rem;
 	box-shadow: var(--box_shadow);
-<<<<<<< HEAD
-=======
 }
 
-.auction-button{
-	display: flex;
-	justify-content: center;
-	height:100%;
-	align-items: center;
-	margin-top: 3rem;
-	
+input[type="submit"] {
+	font-size: 20px;
+	background: linear-gradient(var(--gradiantGold));
+	margin-left: 2rem;
 }
-.auction-button button{
-	 font-size: 20px;
-     padding: 10px 20px;
-     background: linear-gradient(var(--gradiantGold));
-     
-     
-	
->>>>>>> aacf4b0804b43c464376bb514676e1ec6ea0f647
+
+.edit-button {
+    display: inline-block;
+    background-color: rgb(128, 128, 128);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.edit-button a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.edit-button:hover {
+    background-color: rgb(0, 0, 0);
 }

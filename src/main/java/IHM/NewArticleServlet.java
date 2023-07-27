@@ -49,17 +49,16 @@ public class NewArticleServlet extends HttpServlet {
 		
 		try {
 			// Récupération des paramètres du formulaire de newAccount.jsp
-			String nom = request.getParameter("nomArticle").toUpperCase();// plus classe en maj dans le css
+			String nom = request.getParameter("nomArticle");
 			String description = request.getParameter("description");
 			String categorie = request.getParameter("categorie");
 			int prixInit = Integer.parseInt(request.getParameter("prixInit"));
 		
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 			Date dateDebut = formatter.parse(request.getParameter("dateDebut"));
 			Date dateFin = formatter.parse(request.getParameter("dateFin"));
 			
 			int id = Integer.parseInt(request.getSession().getAttribute("id").toString()); // récupération de l'id du user connecté
-			System.out.println(categorie);
 			Article newArticle = new Article(nom, description, categorie, dateDebut, dateFin, prixInit, id);
 						
 			articleMgr.insert(newArticle); // ajout de l'utilisateur
@@ -69,19 +68,24 @@ public class NewArticleServlet extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 			
-			System.out.println(articleMgr.getNextNoArticle());
-			
-			Retrait retrait = new Retrait(articleMgr.getNextNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
+			Retrait retrait = new Retrait(articleMgr.getMaxNoArticle(),rue,codePostal,ville); //creation d'un nouveau retrait
 			retraitManager.insert(retrait);
 			
 			response.sendRedirect("IndexServlet");// retourne à l'accueil si bon déroulement
-			
 			
 		} catch (ParseException e) {
 			request.setAttribute("msgErreur","Problème de formattage des dates");
 			getServletContext().getNamedDispatcher("NewArticleJSP").forward(request, response);
 		} catch (DALException e) {
 			request.setAttribute("msgErreur","Problème d'accès aux données");
+			
+			try {
+				int idArticle = articleMgr.getMaxNoArticle();
+				articleMgr.delete(idArticle); // au cas où l'article ait été ajouté sans le retrait
+			} catch (DALException e1) {
+				request.setAttribute("msgErreur","C'est la merde, appelez un admin.");
+			}
+			
 			getServletContext().getNamedDispatcher("NewArticleJSP").forward(request, response);
 		} catch (BLLException e) {
 			request.setAttribute("msgErreur", e.getMessage());

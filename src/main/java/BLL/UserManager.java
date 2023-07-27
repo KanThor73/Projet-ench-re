@@ -116,7 +116,7 @@ public class UserManager {
 		} else if (user.getRue() == null || user.getRue().isEmpty() || user.getRue().length() > 30) {
 			throw new BLLException("saisie incorrecte de la rue");
 		} else if (user.getCodePostal() == null || user.getCodePostal().isEmpty()
-				|| user.getCodePostal().length() > 10) {
+				|| user.getCodePostal().length() != 5) {
 			throw new BLLException("saisie incorrecte du code postal");
 		} else if (user.getVille() == null || user.getVille().isEmpty() || user.getVille().length() > 30) {
 			throw new BLLException("saisie incorrecte de la ville");

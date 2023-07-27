@@ -11,8 +11,12 @@ creation servlet index
 passer le bouton modifier en condition dans le profil
 
 
-ATTENTION erreur 500 lors de la suppression de compte si on ne tape que son mdp actuel
+ATTENTION erreur 500 lors de la suppression de compte si on ne tape que son nouveau mdp
 
 renvoyer l'utilisateur sur la page de connexion s'il n'est pas connecte et qu'il essaye d'avoir acces a une page restreinte
 
 userMgr dans index pour recuperer pseudo dans article
+
+BUG suppression user
+
+on ne peut pas supprimer d'article où il y a déjà des enchères

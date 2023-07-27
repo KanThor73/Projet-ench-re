@@ -12,15 +12,11 @@
 	<div class="user-container">
 		<div class="user-infos">
 			<%
-			if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) {
+			if (session.getAttribute("id") != null && session.getAttribute("id").toString().equals(request.getAttribute("id").toString())) {
 			%>
 			<h3>MON PROFIL</h3>
 			<%
 			} else {
-			int id = Integer.parseInt(request.getParameter("id"));
-			UserManager userManager = UserManager.getInstanceOf();
-			User user = userManager.selectByID(id);
-			String pseudo = user.getPseudo();
 			%>
 			<h3>PROFIL DE ${pseudo}</h3>
 			<%
@@ -33,21 +29,24 @@
 					: ${telephone}</label> <label for="rue">Rue : ${rue}</label> <label
 					for="codePostal">Code Postal : ${codePostal}</label> <label
 					for="ville">Ville : ${ville}</label>
+				
+				<%
+				if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) {
+				%>
+				<label for="credit">Credit : ${credit}</label>
+				<%
+				}
+				%>
 
 			</div>
 		</div>
 	</div> 
 	<div class="formFooter">
 		<%
-		if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) { // profil du user connecté
+		if (session.getAttribute("id") != null && session.getAttribute("id").toString().equals(request.getAttribute("id").toString())) { // profil du user connecté
 		%>
 		<form class="vendeur">
-			<%
-			int id = Integer.parseInt(request.getParameter("id"));
-			UserManager userManager = UserManager.getInstanceOf();
-			User user = userManager.selectByID(id);
-			%>
-			<a href="<%=request.getContextPath()%>/EditProfileServlet?id=<%=id%>">MODIFIER</a>
+			<a href="<%=request.getContextPath()%>/EditProfileServlet?id=<%=request.getParameter("id")%>">MODIFIER</a>
 		</form>
 		<%
 		}

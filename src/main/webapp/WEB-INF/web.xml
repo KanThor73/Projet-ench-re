@@ -25,7 +25,7 @@
     <url-pattern>/Connexion</url-pattern>
   </servlet-mapping>
   
-  <!-- Creer Compte -->
+  <!-- Creer compte -->
   <servlet>
     <servlet-name>NewAccount</servlet-name>
     <servlet-class>IHM.NewAccountServlet</servlet-class>
@@ -39,7 +39,7 @@
     <url-pattern>/CreerCompte</url-pattern>
   </servlet-mapping>
   
-  <!-- Afficher Profil -->
+  <!-- Affichage profil -->
   <servlet>
     <servlet-name>SeeUser</servlet-name>
     <servlet-class>IHM.SeeUserServlet</servlet-class>
@@ -53,10 +53,10 @@
     <url-pattern>/Profil</url-pattern>
   </servlet-mapping>
   
-  <!-- Nouvelle vente -->
+  <!-- Vendre article -->
   <servlet>
-  	<servlet-name>NewArticle</servlet-name>
-  	<servlet-class>IHM.NewArticleServlet</servlet-class>
+    <servlet-name>NewArticle</servlet-name>
+    <servlet-class>IHM.NewArticleServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>NewArticleJSP</servlet-name>
@@ -67,10 +67,10 @@
     <url-pattern>/Vente</url-pattern>
   </servlet-mapping>
   
-  <!-- Enchere -->
+  <!-- Enchérir -->
   <servlet>
-  	<servlet-name>Auction</servlet-name>
-  	<servlet-class>IHM.AuctionServlet</servlet-class>
+    <servlet-name>Auction</servlet-name>
+    <servlet-class>IHM.AuctionServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AuctionJSP</servlet-name>
@@ -80,5 +80,18 @@
     <servlet-name>Auction</servlet-name>
     <url-pattern>/Auction</url-pattern>
   </servlet-mapping>
-
+  
+  <!-- Fin enchères -->
+  <servlet>
+    <servlet-name>WinAuction</servlet-name>
+    <servlet-class>IHM.winAuctionServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>WinAuctionJSP</servlet-name>
+    <jsp-file>/WEB-INF/JSP/winAuction.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WinAuction</servlet-name>
+    <url-pattern>/FinEncheres</url-pattern>
+  </servlet-mapping>
 </web-app>

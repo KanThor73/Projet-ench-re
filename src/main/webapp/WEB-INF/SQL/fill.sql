@@ -11,7 +11,7 @@ INSERT INTO Users VALUES
 (default, "JB", "SABOURIN", "Jean-Baptiste", "j.b11@hotmail.fr", null, "3, rue du satellite", "-10000", "Moon", "mdp", 10000, 1),
 (default, "SamDwarf", "GROLLEAU", "Sami", "sami.grolleau@mailo.com", null, "le grand arbre", "---", "Forêt du Sahel", "topsecret", 10000, 1),
 (default, "LuckyLuke", "LUKE", "Lucky", "dontjoinme@texas.com", null, "somewhere", "USA", "Lonely", "lonely", 3500, 0),
-(default, "MacPicsou", "PICSOU", "Balthazar", "riche@donaldville.fr", null, "domaine picsou", "-64000", "Donaldville", "dollar", 2147483647, 0),
+(default, "MacPicsou", "PICSOU", "Balthazar", "riche@donaldville.fr", null, "domaine picsou", "-64000", "Donaldville", "dollar", 1147483647, 0),
 (default, "AbbePierre", "GROUÈS", "Henri", "abbepierre@emmaus-france.org", null, "boulevard de Port-Royal", "75005", "Paris", "merci", 0, 0);
 
 INSERT INTO Categories (libelle) VALUES
@@ -33,4 +33,15 @@ INSERT INTO ArticlesVendus VALUES
 (default, "bonheur", "bon pour admirer mon sou porte-bonheur pendant une journée", "2023-07-24", "2023-07-31", 5000, null, 5, 5),
 (default, "PC antique", "permet tout de même de faire tourner Linux", "2023-07-24", "2023-07-31", 15, null, 3, 2),
 (default, "écran à CSS instantané", "tout ce dont vous pourriez rêver", "2023-07-24", "2023-07-31", 1400, null, 1, 2),
-(default, "Petit poussin", "il est jaune", "2023-07-24", "2023-07-31", 9, null, 3, 1)
+(default, "Petit poussin", "il est jaune", "2023-07-24", "2023-07-31", 9, null, 3, 1);
+
+INSERT INTO Retraits VALUES
+(1, "Gare de Lyon", "75000", "Paris"),
+(2, "Gare de Lyon", "75000", "Paris"),
+(3, "Gare de Lyon", "75000", "Paris"),
+(4, "Gare de Lyon", "75000", "Paris"),
+(5, "Gare de Lyon", "75000", "Paris"),
+(6, "Gare de Lyon", "75000", "Paris"),
+(7, "Gare de Lyon", "75000", "Paris"),
+(8, "Gare de Lyon", "75000", "Paris"),
+(9, "Gare de Lyon", "75000", "Paris");
