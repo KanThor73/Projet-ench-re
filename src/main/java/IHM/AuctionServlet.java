@@ -99,6 +99,13 @@ public class AuctionServlet extends HttpServlet {
 			int relance = Integer.parseInt(request.getParameter("relance"));
 			Date maintenant = Date.from(Instant.now());
 			
+			// test de la date
+			Article article = articleMgr.selectByID(idArticle);
+			if (maintenant.after(article.getDateFin())) { // si on essaye d'enréchir après la fin
+				response.sendRedirect("IndexServlet"); // ciao
+				return;
+			}
+			
 			Auction auction = new Auction(idUser, idArticle, maintenant, relance);
 			
 			User newOfferer = userMgr.selectByID(auction.getNoUtilisateur());
@@ -128,7 +135,6 @@ public class AuctionServlet extends HttpServlet {
 			}
 			
 			// on update le prix vente de l'article dans la bdd
-			Article article = articleMgr.selectByID(idArticle);
 			article.setPrixVente(relance);
 			articleMgr.update(article);
 			
