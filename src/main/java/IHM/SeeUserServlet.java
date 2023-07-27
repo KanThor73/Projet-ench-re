@@ -35,6 +35,11 @@ public class SeeUserServlet extends HttpServlet {
 			request.setAttribute("codePostal", user.getCodePostal());
 			request.setAttribute("ville", user.getVille());
 			
+			// si page perso de la personne connecté
+			if (request.getSession().getAttribute("id") != null && idUser == (int) request.getSession().getAttribute("id")) {
+				request.setAttribute("credit", user.getCredit());
+			}
+			
 			getServletContext().getNamedDispatcher("SeeUserJSP").forward(request,response);
 		} catch (DALException e) { // problème de connexion à la bdd
 			getServletContext().getNamedDispatcher("Index").forward(request,response); // retour à l'index

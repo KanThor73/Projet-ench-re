@@ -1,7 +1,6 @@
 package IHM;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 
 import javax.servlet.ServletException;
