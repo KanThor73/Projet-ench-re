@@ -24,7 +24,7 @@ public class IndexServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
 			List<String> categories = catMgr.selectAll();
 			request.setAttribute("categories", categories);
@@ -37,7 +37,7 @@ public class IndexServlet extends HttpServlet {
 		}
 		request.setCharacterEncoding("UTF-8");
 
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/JSP/indexMain.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -84,6 +84,6 @@ public class IndexServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 			request.setAttribute("msgErreur", "Impossible de satisfaire votre requete");
 		}
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/JSP/indexMain.jsp").forward(request, response);
 	}
 }

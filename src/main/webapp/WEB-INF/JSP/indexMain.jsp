@@ -14,7 +14,6 @@
 <head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/index.css" rel="stylesheet" />
-<script src="JS/launchIndexServlet.js"></script>
 <%@ include file="/WEB-INF/jspf/mediaQueries.jspf"%>
 <title>Les objets sont nos amis</title>
 </head>

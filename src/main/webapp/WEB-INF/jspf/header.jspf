@@ -1,5 +1,6 @@
 <%@ page import="BO.User"%>
 <%@ page import="BLL.UserManager"%>
+<script src="JS/gestionDeconnexion.js"></script>
 <header>
     <a href="IndexServlet"><img class="logo"
         src="img/LogoTest7.svg" alt="logo_Enchere" />ENI-ENCHERES</a>

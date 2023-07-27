@@ -5,6 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/connect.css" rel="stylesheet" />
+<script src="JS/gestionDeconnexion.js"></script>
 <title>Connexion</title>
 </head>
 <body>
