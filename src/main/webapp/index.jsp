@@ -14,6 +14,7 @@
 <head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
 <link href="style/index.css" rel="stylesheet" />
+<script src="JS/gestionDeconnexion.js"></script>
 <%@ include file="/WEB-INF/jspf/mediaQueries.jspf"%>
 <title>Les objets sont nos amis</title>
 </head>
@@ -21,7 +22,7 @@
 	<%@ include file="/WEB-INF/jspf/header.jspf"%>
 	<div class="sub-contain">
 		<div class="title">
-			<h1>Liste des enchères</h1>
+			<h1 id="h1">Liste des enchères</h1>
 		</div>
 		<div class="container">
 		<div>
@@ -81,7 +82,7 @@
 							<div class="vendeur">
 								<p>
 									<strong>Vendeur : </strong><a
-										href="<%=request.getContextPath()%>/Profil?id=${article.getOwnerId()}">${article.getOwnerId()}</a>
+										href="<%=request.getContextPath()%>/Profil?id=${article.getOwnerId()}">${article.getPseudo()}</a>
 								</p>
 							</div>
 						</div>

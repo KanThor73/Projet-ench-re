@@ -2,7 +2,12 @@ package BO;
 
 import java.util.Date;
 
+import BLL.ArticleManager;
+import Exceptions.DALException;
+
 public class Article {
+	
+	ArticleManager articleMgr = ArticleManager.getInstanceOf();
 	
 	private int noArticle;
 	private String nom;
@@ -16,6 +21,7 @@ public class Article {
 	private Integer prixVente; // peut être null
 	
 	private int ownerId;
+	private String pseudo;
 	
 	// constructer sans noArticle ni prixVente, utilisé quand créé par l'utilisateur
 	public Article(String nom, String description, String categorie, Date dateDebut, Date dateFin, Integer prixInit, int ownerId) {
@@ -28,6 +34,8 @@ public class Article {
 		setPrixInit(prixInit);
 		setPrixVente(null);
 		setOwnerId(ownerId);
+		setPseudo();
+		
 	}
 	
 	// constructer avec noArticle et prixVente, utilisé lors de la lecture de la bdd
@@ -42,6 +50,7 @@ public class Article {
 			setPrixInit(prixInit);
 			setPrixVente(prixVente);
 			setOwnerId(ownerId);
+			setPseudo();
 		}
 	
     /*
@@ -49,6 +58,20 @@ public class Article {
      * Il n'y a un setter que lorsque la donnée est modifiable après la création de l'objet
      */
 	
+	// Pseudo
+	void setPseudo() {
+		try {
+			this.pseudo = articleMgr.getPseudoByNoUser(ownerId);
+		} catch (DALException e) {
+			new DALException("Impossible de recuperer le proprietaire de l'article");
+			e.printStackTrace();
+		}
+	}
+	
+	public String getPseudo() {
+		return pseudo;
+	}
+		
 	// No article
 	public int getNoArticle() {
 		return noArticle;

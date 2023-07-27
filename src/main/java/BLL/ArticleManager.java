@@ -73,6 +73,10 @@ public class ArticleManager {
 		return articleDAO.getNextNoArticle();
 	}
 	
+	public String getPseudoByNoUser(int noUser) throws DALException{
+		return articleDAO.getPseudoByNoUser(noUser);
+	};
+	
 	/*************
 	 * Controles *
 	 *************/

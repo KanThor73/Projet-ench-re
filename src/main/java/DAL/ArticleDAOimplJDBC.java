@@ -22,7 +22,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND no_article = ?";
 	public static final String ARTICLE_SQL_SELECTBYCAT = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND libelle = ?";
 	public static final String ARTICLE_SQL_LAST_COLUMN = "SELECT MAX(no_article) AS nextID FROM ArticlesVendus;";
-	
+	public static final String ARTICLE_SQL_SELECT_PSEUDOBY_NOUSER = "SELECT pseudo FROM Users JOIN Articlesvendus WHERE ArticlesVendus.no_user = Users.no_user AND Users.no_user = ?";
 
 	@Override
 	public List<Article> selectAll() throws DALException {
@@ -258,6 +258,27 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 				articles.add(new Article(noArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixVente, ownerId));
 			}
 			return articles;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALException("problème de connexion aux données");
+		}
+	}
+	
+	@Override
+	public String getPseudoByNoUser(int noUser) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_SELECT_PSEUDOBY_NOUSER);
+			stmt.setInt(1, noUser);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				String pseudo = rs.getString("pseudo");
+				return pseudo;
+			} else {
+				return null;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
