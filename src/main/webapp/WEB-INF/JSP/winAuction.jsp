@@ -6,16 +6,19 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/jspf/meta.jspf"%>
+<link href="style/WinAuction.css" rel="stylesheet">
 <title>Fin d'enchères</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
-	
+	<div class="center-content">
+	<div class="container">
 	<c:choose>
 		<c:when test="${delete != null}">
 			<div class="msgBox">
 				<p>
 					La date de fin d'enchère de votre article est dépassée.<br>
+					<br>
 					Aucun acheteur, votre article va être retiré.
 				</p>
 				<form action="<%=request.getContextPath()%>/FinEncheres?id=<%=request.getParameter("id")%>" method="post">
@@ -27,6 +30,7 @@
 			<div class="msgBox">
 				<p>
 					La date de fin d'enchères est atteinte.<br>
+					<br>
 					En attente du retrait par ${contactPseudo}.
 				</p>
 			</div>
@@ -39,6 +43,7 @@
 			<div class="msgBox">
 				<p>
 					Vous avez remporté cette enchère !<br>
+					<br>
 					Veuillez retirer l'article à : ${rue}, ${codePostal} ${ville}.<br>
 				</p>
 				
@@ -53,15 +58,19 @@
 		</c:when>
 		<c:otherwise>
 			<div class="msgBox">
+			
 				<p>
-					Vous ne pouvez pas voir ce contenu<br>
-					<a href="<%=request.getContextPath()%>/IndexServlet">Retour</a>
-				</p>
+					Retournez a l'accueil<br>
+					<div class="button-back">
+					<a href="<%=request.getContextPath()%>/IndexServlet">Retour</a></div>
+					</p>
+					
 			</div>
 		</c:otherwise>
 	</c:choose>
-	
-	<c:choose>
+	</div>
+	</div>
+	<c:choose> 
 		<c:when test="${msgErreur != null}">
 			<div class="errorBox">
 				<p>${msgErreur}</p>
