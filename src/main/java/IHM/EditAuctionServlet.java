@@ -26,6 +26,7 @@ public class EditAuctionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 
 		if (request.getParameter("id") == null) {
 			response.sendRedirect("IndexServlet");
@@ -62,6 +63,7 @@ public class EditAuctionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		int ownerId = (int) request.getSession().getAttribute("id");
 		int idArticle = Integer.parseInt(request.getParameter("id"));
@@ -106,7 +108,7 @@ public class EditAuctionServlet extends HttpServlet {
 			String ville = request.getParameter("ville");
 			
 			// créations d'objets avec les même id que ceux dans la bdd
-			Article art = new Article(idArticle, nom, desc, cat, dateDebut, dateFin, prixInit, null, ownerId);
+			Article art = new Article(idArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixInit, ownerId);
 			Retrait ret = new Retrait(idArticle, rue, codePostal, ville);
 			
 			try {
@@ -124,8 +126,13 @@ public class EditAuctionServlet extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("msgErreur", e.getMessage());
 			}
+		} else if (request.getParameter("comeback") != null) {
+			
+			response.sendRedirect("Auction?id=" + idArticle); // retour à la vue de l'article
+			return;
 		} else { // usurpateur !
 			response.sendRedirect("Auction?id=" + idArticle); // retourne à la vue de l'article
+			return;
 		}
 		
 		doGet(request, response); // affiche la jsp

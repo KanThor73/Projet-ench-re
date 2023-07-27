@@ -64,7 +64,9 @@
             
             <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
             <div class="fragment">
+            <div class="button-edit">
             	<button class="edit-button"><a href="<%=request.getContextPath()%>/Editer?id=${id}">Modifier</a></button>
+            	</div>
             </div>
             <%}%>
         </div>

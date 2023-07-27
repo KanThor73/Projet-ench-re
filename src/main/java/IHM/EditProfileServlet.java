@@ -148,5 +148,4 @@ public class EditProfileServlet extends HttpServlet {
 			response.sendRedirect("IndexServlet");
 		}
 	}
-
 }

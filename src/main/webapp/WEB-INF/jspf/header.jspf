@@ -8,10 +8,10 @@
     %><a class="deco" href="<%=request.getContextPath()%>/Connexion">INSCRIPTION / CONNEXION</a>
     <%} else { // recuperer l'id ici
         UserManager userMgr = UserManager.getInstanceOf();
-        int id = (int)Integer.parseInt(session.getAttribute("id").toString()); // conversion en entier
+        int id = (int) session.getAttribute("id"); // conversion en entier
     %>
     <div class= nav>
-    <a href="#">ENCHERES</a>
+    <a href="<%=request.getContextPath()%>/IndexServlet">ENCHERES</a>
     <div class="separator"></div>
     <a href="<%=request.getContextPath()%>/Vente">VENDRE</a>
     <div class="separator"></div>

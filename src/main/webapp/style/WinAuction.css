@@ -12,10 +12,14 @@
 	   background: linear-gradient(var(--gradiantGold));
 	   box-shadow: var(--box_shadow);
 	   border-radius: 0.5rem;
+	   
+   }
+   .msgBox p {
+	   padding: 2rem;
    }
    
 input[type="submit"]{
-	  margin-top: 2rem;
+	  margin-top: 4rem;
    }
    
     input[type="submit"]:hover {
@@ -23,10 +27,16 @@ input[type="submit"]{
        
     }
     
+.contact{
+	margin-bottom: 10rem;
+	font-size: 20px;
+	justify-content: center;
+	margin-left: 2rem;
+}
+    
  .button-back a{
 	color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-size: 2rem;
+    text-decoration: none; 
     border-radius: 0.5rem;
 	border-width: 0.5rem;
   

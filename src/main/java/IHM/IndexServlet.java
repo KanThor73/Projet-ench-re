@@ -1,7 +1,6 @@
 package IHM;
 
 import java.io.IOException;
-
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import BLL.ArticleManager;
 import BLL.CategorieManager;
@@ -45,7 +43,6 @@ public class IndexServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");// gere les caracteres avec accents
 		String searchString = request.getParameter("recherche").trim(); //retire les espace en trop
 		String catForSelectArt = request.getParameter("categorie");// recuperation libelle
-		
 
 		try {
 			List<String> categories = catMgr.selectAll();
@@ -60,9 +57,7 @@ public class IndexServlet extends HttpServlet {
 				if(listeArticles == null || listeArticles.size() == 0) {
 					request.setAttribute("msg", "Aucun élément ne correspond a vos criteres de recherche");
 				}
-			}
-			
-			else if (searchString != null && !searchString.equals("") && !cat.equals("") && cat != null && catMgr.check(catForSelectArt)) { // recherche par categorie et mot clef
+			} else if (searchString != null && !searchString.equals("") && !cat.equals("") && cat != null && catMgr.check(catForSelectArt)) { // recherche par categorie et mot clef
 
 				String requete = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND ArticlesVendus.no_categorie = ? AND nom_article LIKE CONCAT('%', ?, '%');";
 				List<Article> listeArticles = articleMgr.selectDynamic(requete, new String[] { cat, searchString });
@@ -82,6 +77,7 @@ public class IndexServlet extends HttpServlet {
 				request.setAttribute("articles", listeArticles);
 				if(listeArticles == null || listeArticles.size() == 0) {request.setAttribute("msg", "Aucun element ne correspond a vos criteres de recherche");}
 			}
+			
 		} catch (DALException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
