@@ -26,6 +26,7 @@ public class EditAuctionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 
 		if (request.getParameter("id") == null) {
 			response.sendRedirect("IndexServlet");
@@ -62,6 +63,7 @@ public class EditAuctionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		int ownerId = (int) request.getSession().getAttribute("id");
 		int idArticle = Integer.parseInt(request.getParameter("id"));

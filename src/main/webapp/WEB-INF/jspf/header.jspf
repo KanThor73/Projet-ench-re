@@ -8,7 +8,7 @@
     %><a class="deco" href="<%=request.getContextPath()%>/Connexion">INSCRIPTION / CONNEXION</a>
     <%} else { // recuperer l'id ici
         UserManager userMgr = UserManager.getInstanceOf();
-        int id = Integer.parseInt(session.getAttribute("id").toString()); // conversion en entier
+        int id = (int) session.getAttribute("id"); // conversion en entier
     %>
     <div class= nav>
     <a href="#">ENCHERES</a>
