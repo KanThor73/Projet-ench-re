@@ -71,7 +71,7 @@
 							<a href="<%=request.getContextPath()%>/Auction?id=${article.getNoArticle()}"><h4>${article.getNom()}</h4></a>
 							<div class="prix">
 								<p>
-									<strong>Prix : </strong>${article.getPrixVente() == null ? article.getPrixInit() : article.getPrixVente()}
+									<strong>Prix : </strong>${prix.get(article)}
 								</p>
 							</div>
 							<div class="enchere">

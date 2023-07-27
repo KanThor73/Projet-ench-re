@@ -127,6 +127,11 @@ public class AuctionServlet extends HttpServlet {
 				userMgr.update(lastOfferer);
 			}
 			
+			// on update le prix vente de l'article dans la bdd
+			Article article = articleMgr.selectByID(idArticle);
+			article.setPrixVente(relance);
+			articleMgr.update(article);
+			
 		} catch (Exception e) { // DAL, BLL ou BO
 			e.printStackTrace();
 			request.setAttribute("msgErreur", e.getMessage());

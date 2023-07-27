@@ -108,7 +108,7 @@ public class EditAuctionServlet extends HttpServlet {
 			String ville = request.getParameter("ville");
 			
 			// créations d'objets avec les même id que ceux dans la bdd
-			Article art = new Article(idArticle, nom, desc, cat, dateDebut, dateFin, prixInit, null, ownerId);
+			Article art = new Article(idArticle, nom, desc, cat, dateDebut, dateFin, prixInit, prixInit, ownerId);
 			Retrait ret = new Retrait(idArticle, rue, codePostal, ville);
 			
 			try {

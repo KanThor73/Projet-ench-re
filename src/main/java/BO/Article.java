@@ -32,7 +32,7 @@ public class Article {
 		setDateDebut(dateDebut);
 		setDateFin(dateFin);
 		setPrixInit(prixInit);
-		setPrixVente(null);
+		setPrixVente(prixInit); // set up le premier prix vente égal au prix init
 		setOwnerId(ownerId);
 		setPseudo();
 		
@@ -129,7 +129,7 @@ public class Article {
 	public Integer getPrixVente() {
 		return prixVente;
 	}
-	void setPrixVente(Integer prix) {
+	public void setPrixVente(Integer prix) {
 		prixVente = prix;
 	}
 	
