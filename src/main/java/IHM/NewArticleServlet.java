@@ -73,7 +73,6 @@ public class NewArticleServlet extends HttpServlet {
 			
 			response.sendRedirect("IndexServlet");// retourne à l'accueil si bon déroulement
 			
-			
 		} catch (ParseException e) {
 			request.setAttribute("msgErreur","Problème de formattage des dates");
 			getServletContext().getNamedDispatcher("NewArticleJSP").forward(request, response);

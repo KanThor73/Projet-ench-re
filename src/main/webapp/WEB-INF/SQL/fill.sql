@@ -11,7 +11,7 @@ INSERT INTO Users VALUES
 (default, "JB", "SABOURIN", "Jean-Baptiste", "j.b11@hotmail.fr", null, "3, rue du satellite", "-10000", "Moon", "mdp", 10000, 1),
 (default, "SamDwarf", "GROLLEAU", "Sami", "sami.grolleau@mailo.com", null, "le grand arbre", "---", "Forêt du Sahel", "topsecret", 10000, 1),
 (default, "LuckyLuke", "LUKE", "Lucky", "dontjoinme@texas.com", null, "somewhere", "USA", "Lonely", "lonely", 3500, 0),
-(default, "MacPicsou", "PICSOU", "Balthazar", "riche@donaldville.fr", null, "domaine picsou", "-64000", "Donaldville", "dollar", 2147483647, 0),
+(default, "MacPicsou", "PICSOU", "Balthazar", "riche@donaldville.fr", null, "domaine picsou", "-64000", "Donaldville", "dollar", 1147483647, 0),
 (default, "AbbePierre", "GROUÈS", "Henri", "abbepierre@emmaus-france.org", null, "boulevard de Port-Royal", "75005", "Paris", "merci", 0, 0);
 
 INSERT INTO Categories (libelle) VALUES
