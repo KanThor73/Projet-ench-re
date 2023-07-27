@@ -41,6 +41,7 @@ public class AuctionServlet extends HttpServlet {
 			// Si date passée, renvoie sur winAuction / FinEncheres
 			if (article.getDateFin().before(Date.from(Instant.now()))) {
 				response.sendRedirect("FinEncheres?id=" + articleId);
+				return;
 			}
 			
 			// Liste des enchères et plus grande enchère
