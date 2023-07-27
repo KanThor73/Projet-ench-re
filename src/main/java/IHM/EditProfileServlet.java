@@ -104,7 +104,7 @@ public class EditProfileServlet extends HttpServlet {
 					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp1,
 							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
 					userMg.update(user2);
-					request.setAttribute("msg", "Profil modifie avec succes!");
+					request.setAttribute("msg", "Profil modifie avec succès !");
 				} else if (!mdp1.isEmpty() && mdp2.isEmpty() || mdp1.isEmpty() && !mdp2.isEmpty()) {
 					request.setAttribute("msgErreur",
 							"Attention - Le mot de passe et sa confirmation doivent être identiques");

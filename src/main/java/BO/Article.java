@@ -37,7 +37,6 @@ public class Article {
 		setPrixVente(prixInit); // set up le premier prix vente égal au prix init
 		setOwnerId(ownerId);
 		setPseudo();
-
 	}
 
 	// constructer avec noArticle et prixVente, utilisé lors de la lecture de la bdd

@@ -105,5 +105,4 @@ public class CategorieDAOimplJDBC implements CategorieDAO {
 			throw new DALException("problème de connexion aux données");
 		}
 	}
-
 }

@@ -51,5 +51,4 @@ public class CategorieManager {
 	public int selectNoByCAT(String categorie) throws DALException {
 		return catDAO.selectNoByCAT(categorie);
 	}
-	
 }

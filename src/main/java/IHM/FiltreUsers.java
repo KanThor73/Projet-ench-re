@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 @WebFilter(urlPatterns = {"/Vente", "/Editer", "/EditerProfil", "/Profil", "/FinEncheres"}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
 		DispatcherType.FORWARD, DispatcherType.ERROR })// renseigner des que les pages sont faite
 
@@ -41,10 +40,9 @@ public class FiltreUsers implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
+		
 	}
 }
-
-
 
 // creer variable de session id si util refuse cookie
 // recuperer jsessionID

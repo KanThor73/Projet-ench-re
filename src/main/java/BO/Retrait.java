@@ -51,5 +51,4 @@ public class Retrait {
 		return "Retrait [no_article=" + no_article + ", rue=" + rue + ", code_postal=" + code_postal + ", ville="
 				+ ville + "]";
 	}
-
 }

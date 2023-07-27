@@ -151,5 +151,4 @@ public class winAuctionServlet extends HttpServlet {
 			getServletContext().getNamedDispatcher("WinAuctionJSP").forward(request, response); // affiche la jsp
 		}
 	}
-
 }
