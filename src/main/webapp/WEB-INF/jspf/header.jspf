@@ -11,7 +11,7 @@
         int id = (int) session.getAttribute("id"); // conversion en entier
     %>
     <div class= nav>
-    <a href="#">ENCHERES</a>
+    <a href="<%=request.getContextPath()%>/IndexServlet">ENCHERES</a>
     <div class="separator"></div>
     <a href="<%=request.getContextPath()%>/Vente">VENDRE</a>
     <div class="separator"></div>
