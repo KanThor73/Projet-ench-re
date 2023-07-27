@@ -22,7 +22,7 @@
            	    <label for="Description">Description : ${desc}</label>
            	</div>
             <div class="fragment">
-                <label for="catégories">Catégorie :${cat}</label>
+                <label for="catégories">Catégorie : ${cat}</label>
             </div>
             <div class="fragment">
                 <label for="Mise_A_Prix">Mise à prix : ${prixVente}</label>
@@ -65,7 +65,7 @@
             
             <% if (request.getAttribute("proprio") != null) { // vérifier la date dans la servlet %>
             <div class="fragment">
-            	<label><a href="<%=request.getContextPath()%>/Editer?id=${id}">Modifier</a></label>
+            	<button class="edit-button"><a href="<%=request.getContextPath()%>/Editer?id=${id}">Modifier</a></button>
             </div>
             <%}%>
         </div>
