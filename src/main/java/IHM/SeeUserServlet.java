@@ -42,9 +42,9 @@ public class SeeUserServlet extends HttpServlet {
 			
 			getServletContext().getNamedDispatcher("SeeUserJSP").forward(request,response);
 		} catch (DALException e) { // problème de connexion à la bdd
-			getServletContext().getNamedDispatcher("Index").forward(request,response); // retour à l'index
+			response.sendRedirect("IndexServlet"); // retour à l'index
 		} catch (IHMException e) { // requête d'un utilisateur inexistant
-			getServletContext().getNamedDispatcher("Index").forward(request,response); // retour à l'index
+			response.sendRedirect("IndexServlet"); // retour à l'index
 		}
 	}
 

@@ -33,7 +33,7 @@
 					<div class="cate_container">
 						<label for="categorie">Catégorie :</label> <select
 							name="categorie" id="cat" size="1">
-							<option value="aucune" selected>aucune</option>
+							<option value="toutes" selected>toutes</option>
 							<c:forEach var="categorie" items="${categories}">
 								<option value="${categorie}">${categorie}</option>
 							</c:forEach>
