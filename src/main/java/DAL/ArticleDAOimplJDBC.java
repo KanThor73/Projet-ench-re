@@ -22,7 +22,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND no_article = ?";
 	public static final String ARTICLE_SQL_SELECTBYCAT = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND libelle = ?";
 	public static final String ARTICLE_SQL_LAST_COLUMN = "SELECT MAX(no_article) AS nextID FROM ArticlesVendus;";
-	public static final String ARTICLE_SQL_SELECT_PSEUDOBY_NOUSER = "SELECT pseudo FROM Users JOIN Articlesvendus WHERE ArticlesVendus.no_user = Users.no_user AND Users.no_user = ?";
+	public static final String ARTICLE_SQL_SELECT_PSEUDOBY_NOUSER = "SELECT pseudo FROM Users JOIN ArticlesVendus WHERE ArticlesVendus.no_user = Users.no_user AND Users.no_user = ?";
 
 	@Override
 	public List<Article> selectAll() throws DALException {
