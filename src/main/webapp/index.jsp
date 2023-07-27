@@ -33,7 +33,7 @@
 					<div class="cate_container">
 						<label for="categorie">Catégorie :</label> <select
 							name="categorie" id="cat" size="1">
-							<option value="aucune" selected>aucune</option>
+							<option value="toutes" selected>toutes</option>
 							<c:forEach var="categorie" items="${categories}">
 								<option value="${categorie}">${categorie}</option>
 							</c:forEach>
@@ -70,7 +70,7 @@
 							<a href="<%=request.getContextPath()%>/Auction?id=${article.getNoArticle()}"><h4>${article.getNom()}</h4></a>
 							<div class="prix">
 								<p>
-									<strong>Prix : </strong>${article.getPrixVente() == null ? artitcle.getPrixInit() : article.getPrixVente()}
+									<strong>Prix : </strong>${article.getPrixVente() == null ? article.getPrixInit() : article.getPrixVente()}
 								</p>
 							</div>
 							<div class="enchere">
