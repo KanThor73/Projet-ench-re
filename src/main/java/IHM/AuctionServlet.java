@@ -38,6 +38,11 @@ public class AuctionServlet extends HttpServlet {
 			Article article = articleMgr.selectByID(articleId);
 			int idOwner = article.getOwnerId();
 			
+			// Si date passée, renvoie sur winAuction / FinEncheres
+			if (article.getDateFin().before(Date.from(Instant.now()))) {
+				response.sendRedirect("FinEncheres?id=" + articleId);
+			}
+			
 			// Liste des enchères et plus grande enchère
 			List<Auction> auctions = auctionMgr.selectByArticle(articleId);
 			Auction maxEnchere = null;
