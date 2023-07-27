@@ -1,9 +1,5 @@
 empêcher les personnes connectées de retourner sur /Connexion ou /CreerCompte ! (seulement les JSP)
 
-renvoyer l'utilisateur sur la page de connexion s'il n'est pas connecte et qu'il essaye d'avoir acces a une page restreinte
-seulement changer le redirect du filtre ?
-
-
 vérifier qu'on ne puisse pas modif un article dont la date de début est passée
 
 tester que la date de debut nest pas arrivée quand on crée un article
@@ -11,6 +7,8 @@ tester que la date de debut nest pas arrivée quand on crée un article
 
 penser à mettre des redirect partout où il faut
 
+
+vérifier qu'un pseudo et mail sont uniques parmi tous les utilisateurs
 
 hash les mdp
 

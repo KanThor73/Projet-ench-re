@@ -16,6 +16,7 @@ public class SeeUserServlet extends HttpServlet {
 	private UserManager userManager = UserManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int idUser = Integer.parseInt(request.getParameter("id"));
 		
 		try {

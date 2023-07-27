@@ -27,6 +27,7 @@ public class NewArticleServlet extends HttpServlet {
 	private RetraitManager retraitManager = RetraitManager.getInstanceOf();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int id = (int)request.getSession().getAttribute("id");
 		
 		// recuperer les infos user pour preremplir les champs
