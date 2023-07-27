@@ -1,5 +1,6 @@
 package BO;
 
+import java.time.Instant;
 import java.util.Date;
 
 import BLL.ArticleManager;
@@ -122,6 +123,10 @@ public class Article {
 
 	void setDateFin(Date date) {
 		dateFin = date;
+	}
+	
+	public String isEnded() {
+		return dateFin.before(Date.from(Instant.now())) ? "Enchères terminées" : "";
 	}
 
 	// Prix initial
