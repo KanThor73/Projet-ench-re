@@ -85,13 +85,21 @@ public class winAuctionServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// TODO rediriger les personnes non concernées
 		// TODO check la date
+		int sessionId = (int) request.getSession().getAttribute("id");
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		try {
+			Article article = articleMgr.selectByID(id);
+			int ownerId = article.getOwnerId();
+			
 			if (request.getParameter("noAuction") != null) {
+				
+				if (sessionId != ownerId) { // pas le proprio
+					response.sendRedirect("IndexServlet"); // ciao
+					return;
+				}
 				
 				articleMgr.delete(id);
 				
@@ -100,7 +108,11 @@ public class winAuctionServlet extends HttpServlet {
 				List<Auction> auctions = auctionMgr.selectByArticle(id); // récupération des enchères
 				Auction maxAuction = Collections.max(auctions); // récupération de la plus haute enchère
 				
-				Article article = articleMgr.selectByID(id);
+				if (sessionId != maxAuction.getNoUtilisateur()) { // pas le gagnant
+					response.sendRedirect("IndexServlet"); // ciao
+					return;
+				}
+				
 				User proprio = userMgr.selectByID(article.getOwnerId());
 				
 				try {
