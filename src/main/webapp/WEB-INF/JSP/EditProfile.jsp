@@ -82,7 +82,7 @@
 						</div>
 
 						<div class="formFragment">
-							<label for="mdp">Mot de passe actuel: </label> <input type="password" placeholder="${mdps}" name="mdp" id="mdp" size="30">
+							<label for="mdp">Mot de passe actuel: </label> <input type="password" placeholder="${mdp}" name="mdp" id="mdp" size="30">
 						</div>
 						<div class="formFragment"></div>
 						<div class="formFragment">

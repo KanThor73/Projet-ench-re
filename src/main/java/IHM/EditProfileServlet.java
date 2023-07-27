@@ -25,9 +25,10 @@ public class EditProfileServlet extends HttpServlet {
 
 			// transforme le mot de passe en * ==> non hackable depuis le web
 			String mdpClair = user.getMotDePasse();
+
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < mdpClair.length(); i++) {
-				sb.append("*");
+				sb.append("* ");
 			}
 
 			// envoie les valeur des inputs a la jsp pour le preremplissage
@@ -41,7 +42,7 @@ public class EditProfileServlet extends HttpServlet {
 			request.setAttribute("rue", user.getRue());
 			request.setAttribute("codePostal", user.getCodePostal());
 			request.setAttribute("ville", user.getVille());
-			request.setAttribute("mdps", sb.toString());
+			request.setAttribute("mdp", sb.toString());
 			request.setAttribute("credit", String.valueOf(user.getCredit()));
 
 		} catch (DALException e) {
@@ -92,10 +93,11 @@ public class EditProfileServlet extends HttpServlet {
 						request.setAttribute("msgErreur",
 								"Attention - Le mot de passe est obligatoire pour la modification");
 					}
-				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1.equals(mdp2) && !mdp1.equals(mdp)) {// l'utilisateur veut
-																								// modifier son mdps et
-																								// qu'il remplit les
-																								// conditions
+				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1.equals(mdp2) && !mdp1.equals(mdp)) {// l'utilisateur
+																											// veut
+					// modifier son mdps et
+					// qu'il remplit les
+					// conditions
 					User user1 = userMg.selectByPseudo(pseudo);
 					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp1,
 							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
@@ -118,25 +120,30 @@ public class EditProfileServlet extends HttpServlet {
 			doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et
 										// afficher tous les champs
 		} else if (request.getParameter("delete") != null) {// l'utilisateur a clique sur supprimer
+			try {
 
-			if (mdp != null && mdp != "") {// tester le mdp pour autoriser la suppression
-				try {
-					User user1 = userMg.selectByPseudo(pseudo);
-					if (user1.getMotDePasse().equals(mdp)) { // verif mdps
-						userMg.delete(user1.getNoUser());
-						request.setAttribute("msg", "Profil supprime avec succes!");
-						response.sendRedirect("IndexServlet");
-					}
-				} catch (DALException e) {
-					e.printStackTrace();
-					request.setAttribute("msgErreur", e.getMessage());
-					request.setAttribute("msg",
-							"Impossible de supprimer ce profil, veuillez vous rapprocher d'un administrateur.");
+				User user1 = userMg.selectByPseudo(pseudo);
+
+				if (mdp != null && (user1.getMotDePasse()).equals(mdp) && (mdp1 == null || mdp1.equals("")) && (mdp2 == null || mdp2.equals(""))) { // verif mdps
+					userMg.delete(user1.getNoUser());
+					request.getSession().setAttribute("id", null);
+					response.sendRedirect("IndexServlet");
+				} else if (mdp == null || mdp.equals("") || !(user1.getMotDePasse()).equals(mdp)) {
+					request.setAttribute("msgErreur",
+							"Attention - Le nouveau mot de passe est obligatoire pour la suppression");
+					doGet(request, response);
+				} else if ((mdp1 != null || !mdp1.equals("")) && (mdp2 != null || !mdp2.equals(""))) {
+					request.setAttribute("msgErreur",
+							"Attention - Modification du mot de passe impossible pour la suppression");
+					doGet(request, response);
 				}
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("msgErreur", e.getMessage());
+				request.setAttribute("msg",
+						"Impossible de supprimer ce profil, veuillez vous rapprocher d'un administrateur.");
 			}
 
-			doGet(request, response); // renvoie dans la methode doGet pour mettre a jour les champs modifies et
-										// afficher tous les champs
 		} else if (request.getParameter("cancel") != null) {// annulation des modifs
 			response.sendRedirect("IndexServlet");
 		}
