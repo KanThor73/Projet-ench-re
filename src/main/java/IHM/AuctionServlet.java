@@ -106,7 +106,7 @@ public class AuctionServlet extends HttpServlet {
 			
 			// test de la date
 			Article article = articleMgr.selectByID(idArticle);
-			if (maintenant.after(article.getDateFin())) { // si on essaye d'enréchir après la fin
+			if (maintenant.before(article.getDateDebut()) || maintenant.after(article.getDateFin())) { // si on essaye d'enréchir en dehors des dates
 				response.sendRedirect("IndexServlet"); // ciao
 				return;
 			}
