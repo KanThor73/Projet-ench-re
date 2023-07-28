@@ -152,7 +152,6 @@ public class AuctionServlet extends HttpServlet {
 			}
 			
 			// on update le prix vente de l'article dans la bdd
-			System.out.println("relance : " + relance);
 			article.setPrixVente(relance);
 			articleMgr.update(article);
 			
