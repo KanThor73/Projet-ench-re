@@ -85,13 +85,13 @@ public class EditProfileServlet extends HttpServlet {
 				int id = (int) request.getSession().getAttribute("id");
 				User user1 = userMg.selectByID(id);
 				
-				if (pseudo != user1.getPseudo() && userMg.checkPseudo(pseudo)) { // si le pseudo est déjà pris
+				if (!pseudo.equals(user1.getPseudo()) && userMg.checkPseudo(pseudo)) { // si le pseudo est déjà pris
 					request.setAttribute("msgErreur", "Pseudo déjà utilisé");
 					doGet(request, response);
 					return;
 				}
 				
-				if (email != user1.getEmail() && userMg.checkEmail(email)) { // si l'email est déjà pris
+				if (!email.equals(user1.getEmail()) && userMg.checkEmail(email)) { // si l'email est déjà pris
 					request.setAttribute("msgErreur", "Email déjà utilisé");
 					doGet(request, response);
 					return;
