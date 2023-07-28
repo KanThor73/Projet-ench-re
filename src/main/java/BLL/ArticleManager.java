@@ -39,6 +39,11 @@ public class ArticleManager {
 	// ajouter un article
 	public void insert(Article article) throws BLLException, DALException {
 		
+		// controle spécifique à la création
+		if (article.getDateDebut().before(Date.from(Instant.now()))) {
+			throw new BLLException("Date incorrecte");
+		}
+		
 		control(article); // vérifie que les éléments soient en adéquation avec la bdd
 		articleDAO.insert(article);
 	}
@@ -101,8 +106,6 @@ public class ArticleManager {
 			throw new BLLException("Saisie incorrecte de la description");
 		} else if (article.getDateDebut().after(article.getDateFin())) {
 			throw new BLLException("Dates incompatibles");
-		} else if (article.getDateDebut().before(Date.from(Instant.now()))) {
-			throw new BLLException("Date incorrecte");
 		} else if (article.getPrixInit() != null && article.getPrixVente() != null && (article.getPrixInit().compareTo(article.getPrixVente()) > 0)) {
 			throw new BLLException("Prix incompatibles");
 		} else if (userMgr.selectByID(article.getOwnerId()) == null) { // potentielle DALException

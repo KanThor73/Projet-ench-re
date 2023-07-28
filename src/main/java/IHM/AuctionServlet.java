@@ -103,6 +103,7 @@ public class AuctionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		if (request.getSession().getAttribute("id") == null) { // utilisateur non connecté, usurpateur
 			response.sendRedirect("Connexion"); // ciao !
@@ -151,6 +152,7 @@ public class AuctionServlet extends HttpServlet {
 			}
 			
 			// on update le prix vente de l'article dans la bdd
+			System.out.println("relance : " + relance);
 			article.setPrixVente(relance);
 			articleMgr.update(article);
 			
