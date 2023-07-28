@@ -41,10 +41,10 @@ public class UserManager {
 
 		// vérifie que le pseudo et l'email ne soient pas déjà dans la bdd
 		if (checkPseudo(user.getPseudo())) {
-			throw new BLLException("pseudo déjà utilisé");
+			throw new BLLException("Pseudo déjà utilisé");
 		}
 		if (checkEmail(user.getEmail())) {
-			throw new BLLException("email déjà utilisé");
+			throw new BLLException("Email déjà utilisé");
 		}
 
 		userDAO.insert(user); // ajoute l'utilisateur à la bdd TODO pas d'exception à try ?

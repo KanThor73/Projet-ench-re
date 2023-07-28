@@ -78,9 +78,9 @@
 				</div>
 
 				<div class="formFooter">
-					<input type="submit" value="Enregistrer" name="register">
-					<input type="submit" value="Retour" name="comeback">
-					<input type="submit" value="Supprimer" name="delete">
+					<input type="submit" value="MODIFIER" name="register">
+					<input type="submit" value="SUPPRIMER" name="delete">
+					<input type="submit" value="QUITTER" name="comeback">
 				</div>
 			</form>
 			

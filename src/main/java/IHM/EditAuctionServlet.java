@@ -3,6 +3,7 @@ package IHM;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,6 +72,13 @@ public class EditAuctionServlet extends HttpServlet {
 		Article article = null;
 		try {
 			article = articleMgr.selectByID(idArticle);
+			
+			// test de la date
+			if (article.getDateDebut().before(Date.from(Instant.now()))) { // si on essaye de modifier un article dont les enchères ont débuté
+				request.setAttribute("msgErreur", "Modification impossible, les enchères sont engagées");
+				doGet(request, response); // affiche la jsp
+				return;
+			}
 		} catch (DALException e2) {
 			e2.printStackTrace();
 			request.setAttribute("msgErreur", e2.getMessage());

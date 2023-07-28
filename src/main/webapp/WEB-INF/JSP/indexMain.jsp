@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="BLL.UserManager"%>
-<%@ page import="BO.User"%>
-<%@ page import="BLL.CategorieManager"%>
-<%@ page import="BLL.ArticleManager"%>
-<%@ page import="BO.Article"%>
-<%@ page import="Exceptions.DALException"%>
-<%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
 <html>
@@ -75,7 +68,8 @@
 							</div>
 							<div class="enchere">
 								<p>
-									<strong>Fin de l'enchère : </strong>${article.getDateFin()}
+									<strong>Fin de l'enchère : </strong>${article.getDateFin()}<br>
+									${article.isEnded()}
 								</p>
 							</div>
 							<div class="vendeur">

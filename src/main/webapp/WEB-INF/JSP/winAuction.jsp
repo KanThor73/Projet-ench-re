@@ -58,12 +58,13 @@
 		</c:when>
 		<c:otherwise>
 			<div class="msgBox">
-			
 				<p>
-					Retournez a l'accueil<br>
-					<div class="button-back">
-					<a href="<%=request.getContextPath()%>/IndexServlet">Retour</a></div>
-					</p>
+					Un problème est survenu, veuillez retourner à l'accueil<br>
+				</p>
+				
+				<div class="button-back">
+				<a href="<%=request.getContextPath()%>/IndexServlet">Retour</a>
+				</div>
 					
 			</div>
 		</c:otherwise>

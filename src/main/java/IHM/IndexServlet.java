@@ -22,7 +22,8 @@ public class IndexServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		
 		try {
 			List<String> categories = catMgr.selectAll();
 			request.setAttribute("categories", categories);
@@ -33,16 +34,15 @@ public class IndexServlet extends HttpServlet {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		request.setCharacterEncoding("UTF-8");
 
 		request.getRequestDispatcher("WEB-INF/JSP/indexMain.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");// gere les caracteres avec accents
-		String searchString = request.getParameter("recherche").trim(); //retire les espace en trop
-		String catForSelectArt = request.getParameter("categorie");// recuperation libelle
+		request.setCharacterEncoding("UTF-8");// gère les caractères avec accents
+		String searchString = request.getParameter("recherche").trim(); //retire les espaces en trop
+		String catForSelectArt = request.getParameter("categorie");// récupération libelle
 
 		try {
 			List<String> categories = catMgr.selectAll();

@@ -1,5 +1,7 @@
 package BLL;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import BO.Article;
@@ -94,17 +96,19 @@ public class ArticleManager {
 		if (article == null) {
 			throw new BLLException("article");
 		} else if (article.getNom() == null || article.getNom().isEmpty() || article.getNom().length() > 30) {
-			throw new BLLException("saisie incorrecte du nom");
+			throw new BLLException("Saisie incorrecte du nom");
 		} else if(article.getDescription() == null || article.getDescription().length() > 300) {
-			throw new BLLException("saisie incorrecte de la description");
+			throw new BLLException("Saisie incorrecte de la description");
 		} else if (article.getDateDebut().after(article.getDateFin())) {
-			throw new BLLException("dates incompatibles");
+			throw new BLLException("Dates incompatibles");
+		} else if (article.getDateDebut().before(Date.from(Instant.now()))) {
+			throw new BLLException("Date incorrecte");
 		} else if (article.getPrixInit() != null && article.getPrixVente() != null && (article.getPrixInit().compareTo(article.getPrixVente()) > 0)) {
-			throw new BLLException("prix incompatibles");
+			throw new BLLException("Prix incompatibles");
 		} else if (userMgr.selectByID(article.getOwnerId()) == null) { // potentielle DALException
-			throw new BLLException("utilisateur inexistant");
+			throw new BLLException("Utilisateur inexistant");
 		} else if(!catMgr.check(article.getCategorie())) { // potentielle DALException
-			throw new BLLException("catégorie inexistante");
+			throw new BLLException("Catégorie inexistante");
 		}
 	}
 }

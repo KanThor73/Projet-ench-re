@@ -46,7 +46,7 @@
 		if (session.getAttribute("id") != null && session.getAttribute("id").toString().equals(request.getAttribute("id").toString())) { // profil du user connecté
 		%>
 		<form class="vendeur">
-			<a href="<%=request.getContextPath()%>/EditProfileServlet?id=<%=request.getParameter("id")%>">MODIFIER</a>
+			<a href="<%=request.getContextPath()%>/EditerProfil?id=<%=request.getParameter("id")%>">MODIFIER</a>
 		</form>
 		<%
 		}

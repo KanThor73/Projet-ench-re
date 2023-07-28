@@ -17,7 +17,7 @@
 	<main>
 		<div class="container">
 			<h3>Modifier profil</h3>
-			<form action="<%=request.getContextPath()%>/EditProfileServlet"
+			<form action="<%=request.getContextPath()%>/EditerProfil"
 				method="post">
 				<div class="formContainer">
 
@@ -105,7 +105,7 @@
 					<div class="formFooter">
 						<input type="submit" value="MODIFIER" name="update"> 
 						<input type="submit" value="SUPPRIMER" name="delete">
-						<input type="submit" value="ANNULER" name="cancel"> 
+						<input type="submit" value="QUITTER" name="cancel"> 
 					</div>
 				</div>
 			</form>

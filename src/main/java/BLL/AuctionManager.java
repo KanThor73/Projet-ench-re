@@ -88,22 +88,22 @@ public class AuctionManager {
 		
 		// vérification de l'utilisateur
 		if (auct.getNoUtilisateur() == art.getOwnerId()) {
-			throw new BLLException("impossible d'enchérir sur ses propres biens");
+			throw new BLLException("Impossible d'enchérir sur ses propres biens");
 		}
 		List<Auction> auctions = selectByArticle(auct.getNoArticle());
 		Auction bestOffer = auctions.isEmpty() ? null : Collections.max(auctions);
 		if (bestOffer != null && auct.getNoUtilisateur() == bestOffer.getNoUtilisateur()) {
-			throw new BLLException("vous avez déjà enchéri");
+			throw new BLLException("Impossible d'augmenter sa propre enchère");
 		}
 		
 		// vérification du montant
 				if (bestOffer != null && auct.getMontantEnchere() < bestOffer.getMontantEnchere()) {
-					throw new BLLException("montant non valide");
+					throw new BLLException("Montant non valide");
 				}
 		
 		// vérification de la date
 		if (auct.getDateEnchere().before(art.getDateDebut()) || auct.getDateEnchere().after(art.getDateFin())) {
-			throw new BLLException("les enchères ne sont pas en cours");
+			throw new BLLException("Les enchères ne sont pas en cours");
 		}
 	}
 }

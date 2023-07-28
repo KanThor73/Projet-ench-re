@@ -16,7 +16,7 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	// declaration des constantes pour les requetes SQL
 
 	public static final String ARTICLE_SQL_INSERT = "INSERT INTO ArticlesVendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user, no_categorie) VALUES (?,?,?,?,?,?,?,(SELECT no_categorie FROM Categories WHERE libelle = ?))";
-	public static final String ARTICLE_SQL_UPDATE = "UPDATE ArticlesVendus SET nom_article = ? , description = ? , date_debut_encheres = ? , date_fin_encheres = ? , prix_initial = ? , prix_vente = ? , no_user = ? , no_categorie = (SELECT no_categorie FROM Categories WHERE libelle = ?)  WHERE no_article = ?";
+	public static final String ARTICLE_SQL_UPDATE = "UPDATE ArticlesVendus SET nom_article = ? , description = ? , date_debut_encheres = ? , date_fin_encheres = ? , prix_initial = ? , prix_vente = ? , no_user = ? , no_categorie = (SELECT no_categorie FROM Categories WHERE libelle = ?) WHERE no_article = ?";
 	public static final String ARTICLE_SQL_DELETE = "DELETE FROM ArticlesVendus WHERE no_article = ?";
 	public static final String ARTICLE_SQL_SELECTALL = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie";
 	public static final String ARTICLE_SQL_SELECTBYID = "SELECT no_article, nom_article, description, libelle as categorie, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_user FROM ArticlesVendus JOIN Categories WHERE ArticlesVendus.no_categorie = Categories.no_categorie AND no_article = ?";
@@ -97,10 +97,11 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 	@Override
 	public void update(Article article) throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-
+			
 			PreparedStatement stmt = cnx.prepareStatement(ARTICLE_SQL_UPDATE);
 			stmt.setString(1, article.getNom());
 			stmt.setString(2, article.getDescription());
+			
 			stmt.setDate(3, new java.sql.Date(article.getDateDebut().getTime())); // conversion de java.util.Date en
 																					// java.sql.Date
 			stmt.setDate(4, new java.sql.Date(article.getDateFin().getTime())); // conversion de java.util.Date en
@@ -110,17 +111,19 @@ public class ArticleDAOimplJDBC implements ArticleDAO {
 			} else {
 				stmt.setNull(6, Types.INTEGER);
 			}
+			
 			if (article.getPrixVente() != null) {
 				stmt.setInt(6, article.getPrixVente());
 			} else {
 				stmt.setNull(6, Types.INTEGER);
 			}
+			
 			stmt.setInt(7, article.getOwnerId());
 			stmt.setString(8, article.getCategorie());
 			stmt.setInt(9, article.getNoArticle());
-
+			
 			stmt.executeUpdate();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("problème de connexion aux données");

@@ -1,6 +1,8 @@
 package IHM;
 
 import java.io.IOException;
+import java.time.Instant;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,7 @@ import Exceptions.DALException;
 import Exceptions.BOException;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class winAuctionServlet extends HttpServlet {
@@ -34,7 +37,13 @@ public class winAuctionServlet extends HttpServlet {
 		
 		try {
 			Article article = articleMgr.selectByID(id); // récupération de l'article concerné
-			// TODO check la date
+			
+			// test de la date
+			if (Date.from(Instant.now()).before(article.getDateFin())) { // tentative d'accès avant la fin de l'enchère
+				response.sendRedirect("Auction?id=" + id); // retourne à l'affichage de l'article
+				return;
+			}
+			
 			List<Auction> auctions = auctionMgr.selectByArticle(id); // récupération des enchères effectuées sur cet article
 			
 			if (auctions.isEmpty() && sessionId == article.getOwnerId()) { // si aucune enchère n'a été faite et vue du proprio
@@ -85,13 +94,26 @@ public class winAuctionServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// TODO rediriger les personnes non concernées
-		// TODO check la date
+		int sessionId = (int) request.getSession().getAttribute("id");
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		try {
+			Article article = articleMgr.selectByID(id);
+			
+			// test de la date
+			if (Date.from(Instant.now()).before(article.getDateFin())) { // tentative d'accès avant la fin de l'enchère
+				response.sendRedirect("Auction?id=" + id); // retourne à l'affichage de l'article
+				return;
+			}
+			
 			if (request.getParameter("noAuction") != null) {
+				
+				int ownerId = article.getOwnerId();
+				if (sessionId != ownerId) { // pas le proprio
+					response.sendRedirect("IndexServlet"); // ciao
+					return;
+				}
 				
 				articleMgr.delete(id);
 				
@@ -100,7 +122,11 @@ public class winAuctionServlet extends HttpServlet {
 				List<Auction> auctions = auctionMgr.selectByArticle(id); // récupération des enchères
 				Auction maxAuction = Collections.max(auctions); // récupération de la plus haute enchère
 				
-				Article article = articleMgr.selectByID(id);
+				if (sessionId != maxAuction.getNoUtilisateur()) { // pas le gagnant
+					response.sendRedirect("IndexServlet"); // ciao
+					return;
+				}
+				
 				User proprio = userMgr.selectByID(article.getOwnerId());
 				
 				try {

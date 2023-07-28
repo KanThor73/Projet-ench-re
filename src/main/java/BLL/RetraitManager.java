@@ -64,12 +64,12 @@ public class RetraitManager {
 		if (retrait == null) {
 			throw new BLLException("utilisateur");
 		} else if (retrait.getRue() == null || retrait.getRue().isEmpty() || retrait.getRue().length() > 30) {
-			throw new BLLException("saisie incorrecte de la rue");
+			throw new BLLException("Saisie incorrecte de la rue");
 		} else if (retrait.getCode_postal() == null || retrait.getCode_postal().isEmpty()
 				|| retrait.getCode_postal().length() != 5) {
-			throw new BLLException("saisie incorrecte du code postal");
+			throw new BLLException("Saisie incorrecte du code postal");
 		} else if (retrait.getVille() == null || retrait.getVille().isEmpty() || retrait.getVille().length() > 30) {
-			throw new BLLException("saisie incorrecte de la ville");
+			throw new BLLException("Saisie incorrecte de la ville");
 		}
 	}
 }

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebFilter(urlPatterns = {"/Vente","/Profil"}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
+@WebFilter(urlPatterns = {"/Vente", "/Editer", "/EditerProfil", "/Profil", "/FinEncheres"}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
 		DispatcherType.FORWARD, DispatcherType.ERROR })// renseigner des que les pages sont faite
 
 public class FiltreUsers implements Filter {
@@ -33,7 +33,7 @@ public class FiltreUsers implements Filter {
 //		System.out.println(isActif);
 		if (session.getAttribute("id") == null) {
 
-			httpResponse.sendRedirect("IndexServlet");// laisse l'utilisateur sur la meme page s'il n''est pas connecte
+			httpResponse.sendRedirect("Connexion");// laisse l'utilisateur sur la meme page s'il n''est pas connecte
 			session.removeAttribute("id");
 		}else {
 			chain.doFilter(httpRequest, httpResponse);
