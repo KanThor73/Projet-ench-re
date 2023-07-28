@@ -82,10 +82,23 @@ public class EditProfileServlet extends HttpServlet {
 			// a modifier quand nous auront la servlet index avec l'id de session
 
 			try {
+				int id = (int) request.getSession().getAttribute("id");
+				User user1 = userMg.selectByID(id);
+				
+				if (pseudo != user1.getPseudo() && userMg.checkPseudo(pseudo)) { // si le pseudo est déjà pris
+					request.setAttribute("msgErreur", "Pseudo déjà utilisé");
+					doGet(request, response);
+					return;
+				}
+				
+				if (email != user1.getEmail() && userMg.checkEmail(email)) { // si l'email est déjà pris
+					request.setAttribute("msgErreur", "Email déjà utilisé");
+					doGet(request, response);
+					return;
+				}
+				
+				
 				if (mdp1.isEmpty() && mdp2.isEmpty()) { // l'utilisateur ne veut pas modifier son mdps
-					User user1 = userMg.selectByPseudo(pseudo);
-					System.out.println(user1.getMotDePasse());
-					System.out.println(mdp);
 					if (user1.getMotDePasse().equals(mdp)) {// verif mdps
 						User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp,
 								user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
@@ -93,14 +106,13 @@ public class EditProfileServlet extends HttpServlet {
 						request.setAttribute("msg", "Profil modifie avec succes!");
 					} else {
 						request.setAttribute("msgErreur",
-								"Attention - Le mot de passe est obligatoire pour la modification");
+								"Attention - Erreur de mot de passe");
 					}
 				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1.equals(mdp2) && !mdp1.equals(mdp)) {// l'utilisateur
 																											// veut
 					// modifier son mdps et
 					// qu'il remplit les
 					// conditions
-					User user1 = userMg.selectByPseudo(pseudo);
 					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp1,
 							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
 					userMg.update(user2);
@@ -124,7 +136,8 @@ public class EditProfileServlet extends HttpServlet {
 		} else if (request.getParameter("delete") != null) {// l'utilisateur a clique sur supprimer
 			try {
 
-				User user1 = userMg.selectByPseudo(pseudo);
+				int id = (int) request.getSession().getAttribute("id");
+				User user1 = userMg.selectByID(id);
 
 				if (mdp != null && (user1.getMotDePasse()).equals(mdp) && (mdp1 == null || mdp1.equals("")) && (mdp2 == null || mdp2.equals(""))) { // verif mdps
 					userMg.delete(user1.getNoUser());
@@ -134,7 +147,7 @@ public class EditProfileServlet extends HttpServlet {
 					request.setAttribute("msgErreur",
 							"Attention - Le nouveau mot de passe est obligatoire pour la suppression");
 					doGet(request, response);
-				} else if ((mdp1 != null || !mdp1.equals("")) && (mdp2 != null || !mdp2.equals(""))) {
+				} else if ((mdp1 != null && !mdp1.equals("")) || (mdp2 != null && !mdp2.equals(""))) {
 					request.setAttribute("msgErreur",
 							"Attention - Modification du mot de passe impossible pour la suppression");
 					doGet(request, response);
