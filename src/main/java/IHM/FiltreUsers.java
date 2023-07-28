@@ -29,7 +29,6 @@ public class FiltreUsers implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 
-//		System.out.println(isActif);
 		if (session.getAttribute("id") == null) {
 
 			httpResponse.sendRedirect("Connexion"); // va à la page de connexion
