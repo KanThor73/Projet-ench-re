@@ -19,11 +19,11 @@
 }
 
 .fragment label, .fragment input {
-	border: 1px solid rgb(0, 0, 0);
-	border-radius: 0.3rem;
+	
+	
 	border-width: 0.3rem;
 	font-size: 3rem;
-	padding: 0.1rem;
+	padding: 0.5rem;
 	
 }
 
@@ -41,8 +41,8 @@
 }
 
 .fragment label, .fragment input {
-	border: 1px solid rgb(0, 0, 0);
-	border-radius: 0.3rem;
+	
+	
 	border-width: 0.3rem;
 	font-size: 3rem;
 	align-items: center;
@@ -80,17 +80,13 @@ input[type="submit"] {
 }
 
 .edit-button {
-    display: flex;
-    background-color: rgb(128, 128, 128);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 2rem;
-    margin-top: 3rem;
+   border-radius: 0.5rem;
+	padding: 1rem;
+	font-weight: 600;
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
+	cursor: pointer; 
+	transition: 0.5s ease-out;
 }
 
 .button-edit{
@@ -109,5 +105,6 @@ input[type="submit"] {
 }
 
 .edit-button:hover {
-    background-color: rgb(0, 0, 0);
+    text-shadow: var(--text_shadow);
+	box-shadow: var(--box_shadowWhite);
 }
