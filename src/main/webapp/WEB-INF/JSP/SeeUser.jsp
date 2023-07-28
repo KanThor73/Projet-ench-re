@@ -23,17 +23,17 @@
 			}
 			%>
 			<div class="container">
-				<label for="pseudo">Pseudo : ${pseudo}</label> <label for="nom">Nom
-					: ${nom}</label> <label for="prenom">Prénom : ${prenom}</label> <label
-					for="email">Email : ${email}</label> <label for="telephone">Téléphone
-					: ${telephone}</label> <label for="rue">Rue : ${rue}</label> <label
-					for="codePostal">Code Postal : ${codePostal}</label> <label
-					for="ville">Ville : ${ville}</label>
+				<label for="pseudo"><strong>Pseudo : </strong>${pseudo}</label> <label for="nom"><strong>Nom
+					: </strong>${nom}</label> <label for="prenom"><strong>Prénom : </strong>${prenom}</label> <label
+					for="email"><strong>Email : </strong>${email}</label> <label for="telephone"><strong>Téléphone
+					: </strong>${telephone}</label> <label for="rue"><strong>Rue : </strong>${rue}</label> <label
+					for="codePostal"><strong>Code Postal : </strong>${codePostal}</label> <label
+					for="ville"><strong>Ville : </strong>${ville}</label>
 				
 				<%
 				if (session.getAttribute("id") != null && session.getAttribute("id") == request.getAttribute("id")) {
 				%>
-				<label for="credit">Credit : ${credit}</label>
+				<label for="credit"><strong>Credit : </strong>${credit}</label>
 				<%
 				}
 				%>

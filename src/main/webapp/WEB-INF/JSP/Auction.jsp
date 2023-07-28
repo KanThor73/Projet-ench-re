@@ -15,30 +15,30 @@
         <h1>Details vente</h1>
         <div class="sub-container">
             <div class="fragment">
-                <label for="nom-article">Article : ${nom}</label>
+                <label for="nom-article"><strong>Article : </strong>${nom}</label>
             </div>
             <div class="fragment">
-           	    <label for="Description">Description : ${desc}</label>
+           	    <label for="Description"><strong>Description : </strong>${desc}</label>
            	</div>
             <div class="fragment">
-                <label for="catégories">Catégorie : ${cat}</label>
+                <label for="catégories"><strong>Catégorie : </strong>${cat}</label>
             </div>
             <div class="fragment">
-                <label for="Mise_A_Prix">Mise à prix : ${prixVente}</label>
+                <label for="Mise_A_Prix"><strong>Mise à prix : </strong>${prixVente}</label>
             </div>
            	<%
            	if (!request.getAttribute("bestOfferer").toString().equals("")) {
            	%>
            	<div class="fragment">
-                <label for="Meilleur_Offres">Meilleur offre : ${bestOffer}</label>
-	            <label for="Meilleur_Offrant">Offrant : ${bestOfferer}</label>
+                <label for="Meilleur_Offres"><strong>Meilleur offre : </strong>${bestOffer}</label>
+	            <label for="Meilleur_Offrant"><strong>Offrant : </strong>${bestOfferer}</label>
             </div>
            	<%
            	}
                if (request.getAttribute("user") != null) {
                %>
                <div class="fragment solde">
-	               	<label>Votre solde : ${solde}</label>
+	               	<label><strong>Votre solde : </strong>${solde}</label>
 	                <form class="solde" action="<%=request.getContextPath()%>/Auction?id=${id}" method="post">
 	                	<input type="number" name="relance" id="relance" value="${bestOffer+1}" min="${bestOffer+1}" step="1">
 	                	<input type="submit" value="Enchérir">
@@ -46,7 +46,7 @@
                 </div>
                <%}%>
             <div class="fragment">
-                <label for="Fin_enchère">Fin de l'enchère : ${dateFin}</label>
+                <label for="Fin_enchère"><strong>Fin de l'enchère : </strong>${dateFin}</label>
             </div>
             
 			<c:choose>

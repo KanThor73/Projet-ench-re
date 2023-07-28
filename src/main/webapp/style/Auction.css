@@ -38,7 +38,8 @@ form {
 	padding: 2rem;
 	border-radius: 1rem;
 	padding: 2rem;
-	margin-top: 3rem;
+	margin-top: 1rem;
+	margin-bottom: 3rem;
 	display: flex;
 	flex-direction:column;
 	align-items: center;
@@ -70,6 +71,7 @@ input[type="submit"] {
 	background: linear-gradient(var(--gradiantGold));
 	margin-left: 2rem;
 	border-radius: 1rem;
+	margin-top: 2rem;
 }
 
 input[type="number"]{
@@ -104,4 +106,8 @@ input[type="number"]{
 .edit-button:hover {
     text-shadow: var(--text_shadow);
 	box-shadow: var(--box_shadowWhite);
+}
+
+strong {
+	font-size: 2rem;
 }
