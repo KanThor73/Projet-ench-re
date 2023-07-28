@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import BLL.UserManager;
 import BO.User;
 import Exceptions.DALException;
+import Util.Hashing;
 
 @WebServlet("/EditerProfil")
 public class EditProfileServlet extends HttpServlet {
@@ -63,6 +64,13 @@ public class EditProfileServlet extends HttpServlet {
 		String mdp1 = request.getParameter("mdp1");
 		String mdp2 = request.getParameter("mdp2");
 		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String tel = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String cp = request.getParameter("postal");
+		String ville = request.getParameter("ville");
 
 		if (request.getParameter("update") != null) { // l'utilisateur a clique sur modifier
 
@@ -71,38 +79,27 @@ public class EditProfileServlet extends HttpServlet {
 
 			// recuperer les valeurs a mofifiees saisies par l'ulisateur et les valeurs non
 			// modifiees
-			String nom = request.getParameter("nom");
-			String prenom = request.getParameter("prenom");
-			String email = request.getParameter("email");
-			String tel = request.getParameter("telephone");
-			String rue = request.getParameter("rue");
-			String cp = request.getParameter("postal");
-			String ville = request.getParameter("ville");
 
 			// a modifier quand nous auront la servlet index avec l'id de session
 
 			try {
+				User user1 = userMg.selectByPseudo(pseudo);
+				String[] mdpTab = Hashing.hashPassword(mdp);// hashing
 				if (mdp1.isEmpty() && mdp2.isEmpty()) { // l'utilisateur ne veut pas modifier son mdps
-					User user1 = userMg.selectByPseudo(pseudo);
-					System.out.println(user1.getMotDePasse());
-					System.out.println(mdp);
-					if (user1.getMotDePasse().equals(mdp)) {// verif mdps
-						User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp,
-								user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
+//					System.out.println(user1.getMotDePasse());
+//					System.out.println(mdp);
+					if (Hashing.ckeckPassword(user1.getMotDePasse(), mdpTab[0], user1.getSalt())) {// verif mdps
+						User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdpTab[0],
+								user1.getCredit(), (user1.estAdministrateur() ? 1 : 0),mdpTab[1]);
 						userMg.update(user2);
 						request.setAttribute("msg", "Profil modifie avec succes!");
 					} else {
 						request.setAttribute("msgErreur",
 								"Attention - Le mot de passe est obligatoire pour la modification");
 					}
-				} else if (!mdp1.isEmpty() && !mdp2.isEmpty() && mdp1.equals(mdp2) && !mdp1.equals(mdp)) {// l'utilisateur
-																											// veut
-					// modifier son mdps et
-					// qu'il remplit les
-					// conditions
-					User user1 = userMg.selectByPseudo(pseudo);
-					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdp1,
-							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0));
+				} else if (Hashing.ckeckPassword(user1.getMotDePasse(), mdpTab[0], user1.getSalt()) && !mdp1.isEmpty() && !mdp2.isEmpty() && mdp1.equals(mdp2) && !mdp1.equals(mdp)) {// si l'utilisateur veut modifier son mdps et qu'il remplit les conditions
+					User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, mdpTab[0],
+							user1.getCredit(), (user1.estAdministrateur() ? 1 : 0),mdpTab[1]);
 					userMg.update(user2);
 					request.setAttribute("msg", "Profil modifie avec succes!");
 				} else if (!mdp1.isEmpty() && mdp2.isEmpty() || mdp1.isEmpty() && !mdp2.isEmpty()) {
@@ -123,14 +120,14 @@ public class EditProfileServlet extends HttpServlet {
 										// afficher tous les champs
 		} else if (request.getParameter("delete") != null) {// l'utilisateur a clique sur supprimer
 			try {
-
+				
 				User user1 = userMg.selectByPseudo(pseudo);
-
+				
 				if (mdp != null && (user1.getMotDePasse()).equals(mdp) && (mdp1 == null || mdp1.equals("")) && (mdp2 == null || mdp2.equals(""))) { // verif mdps
 					userMg.delete(user1.getNoUser());
 					request.getSession().setAttribute("id", null);
 					response.sendRedirect("IndexServlet");
-				} else if (mdp == null || mdp.equals("") || !(user1.getMotDePasse()).equals(mdp)) {
+				} else if (mdp == null || mdp.equals("") || Hashing.ckeckPassword(user1.getMotDePasse(), mdp, user1.getSalt())) {
 					request.setAttribute("msgErreur",
 							"Attention - Le nouveau mot de passe est obligatoire pour la suppression");
 					doGet(request, response);

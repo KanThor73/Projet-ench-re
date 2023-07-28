@@ -16,11 +16,12 @@ public class User {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
+	private String salt;
 	
 
 	// Constructeur sans noUser ni credit, utilisé lorsque créé par l'utilisateur
     public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal,
-            String ville, String motDePasse, boolean administrateur) {
+            String ville, String motDePasse, boolean administrateur,String salt) {
         this.pseudo = pseudo;
         this.nom = nom;
         this.prenom = prenom;
@@ -32,11 +33,12 @@ public class User {
         setMotDePasse(motDePasse);
         this.credit = 0;
         setAdministrateur(administrateur);
+        this.salt = salt;
     }
     
     // Constructeur avec noUser et credit, utilisé lors de la lecture de la bdd
     public User(int noUser, String pseudo, String nom, String prenom, String email, String telephone, String rue,
-            String codePostal, String ville, String motDePasse, int credit, int administrateur) {
+            String codePostal, String ville, String motDePasse, int credit, int administrateur,String salt) {
     	this.noUser = noUser;
     	this.pseudo = pseudo;
         this.nom = nom;
@@ -49,12 +51,20 @@ public class User {
         setMotDePasse(motDePasse);
         this.credit = credit;
         setAdministrateur(administrateur == 1); // convert l'entier en booléen
+        this.salt = salt;
     }
     
-    /*
+	/*
      * Accesseurs
      * Il n'y a un setter que lorsque la donnée est modifiable après la création de l'objet
      */
+    // salt
+    public String getSalt() {
+        return salt;
+    }
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
     
     // No User
     public int getNoUser() {

@@ -121,7 +121,7 @@ public class UserManager {
 		} else if (user.getVille() == null || user.getVille().isEmpty() || user.getVille().length() > 30) {
 			throw new BLLException("saisie incorrecte de la ville");
 		} else if (user.getMotDePasse() == null || user.getMotDePasse().isEmpty()
-				|| user.getMotDePasse().length() > 40) {
+				|| user.getMotDePasse().length() > 70) {
 			throw new BLLException("saisie incorrecte du mot de passe");
 		}
 	}

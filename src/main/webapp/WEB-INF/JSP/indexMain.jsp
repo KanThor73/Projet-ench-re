@@ -74,8 +74,7 @@
 							</div>
 							<div class="vendeur">
 								<p>
-									<strong>Vendeur : </strong><a
-										href="<%=request.getContextPath()%>/Profil?id=${article.getOwnerId()}">${article.getPseudo()}</a>
+									<strong>Vendeur : </strong><a href="<%=request.getContextPath()%>/Profil?id=${article.getOwnerId()}">${article.getPseudo()}</a>
 								</p>
 							</div>
 						</div>
@@ -86,4 +85,3 @@
 	</div>
 </body>
 </html>
-

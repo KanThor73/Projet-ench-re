@@ -14,8 +14,8 @@ public class UsersDAOimplJDBC implements UserDAO {
 	
 	// declaration des constantes pour les requetes SQL
 
-	public static final String USER_SQL_INSERT = "INSERT INTO Users (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String USER_SQL_UPDATE = "UPDATE Users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,code_postal = ? ,ville = ? ,mot_de_passe = ? ,credit = ? ,administrateur = ? WHERE no_user = ?";
+	public static final String USER_SQL_INSERT = "INSERT INTO Users (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,salt) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String USER_SQL_UPDATE = "UPDATE Users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,code_postal = ? ,ville = ? ,mot_de_passe = ? ,credit = ? ,administrateur = ?, salt = ? WHERE no_user = ?";
 	public static final String USER_SQL_DELETE = "DELETE FROM Users WHERE no_user = ?";
 	public static final String USER_SQL_SELECTALL = "SELECT * FROM Users";
 	public static final String USER_SQL_SELECTBYID = "SELECT * FROM Users WHERE no_user = ?";
@@ -37,13 +37,14 @@ public class UsersDAOimplJDBC implements UserDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
+				
 				users.add(new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
-						rs.getInt("administrateur")));
+						rs.getInt("administrateur"),rs.getString("salt")));
 			}
 			return users;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALException("problème de connexion aux données");
@@ -63,7 +64,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 				return new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
-						rs.getInt("administrateur"));
+						rs.getInt("administrateur"),rs.getString("salt"));
 			} else {
 				return null;
 			}
@@ -87,7 +88,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 				return new User(rs.getInt("no_user"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
-						rs.getInt("administrateur"));
+						rs.getInt("administrateur"),rs.getString("salt"));
 			} else {
 				return null;
 			}
@@ -118,6 +119,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(9, user.getMotDePasse());
 			stmt.setInt(10, user.getCredit());
 			stmt.setInt(11, user.estAdministrateur() ? 1 : 0); // convertit le booléen en entier
+			stmt.setString(12, user.getSalt());
 			
 			stmt.executeUpdate();
 
@@ -150,6 +152,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setInt(10, user.getCredit());
 			stmt.setInt(11, user.estAdministrateur() ? 1 : 0); // convertit le booléen en entier
 			stmt.setInt(12, user.getNoUser());
+			stmt.setString(13, user.getSalt());
 
 			stmt.executeUpdate();
 

@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import BLL.UserManager;
+import BO.User;
 import Exceptions.DALException;
+import Util.Hashing;
 
 /*
  * TODO empêcher un utilisateur connecté de venir ici
@@ -33,10 +35,11 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// Récupération des paramètres du formulaire de connect.jsp
-		String mdps = request.getParameter("password");
 		String login = request.getParameter("username");
 
 		try {
+			User user = userMgr.selectByPseudo(login);
+			String mdps = Hashing.hashPasswordToCompare(request.getParameter("password"), user.getSalt());
 			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe coïncident
 				int id = userMgr.getId(login); // récupération de l'id
 				session.setAttribute("id", id); // set up de l'id, id non null = connecté
