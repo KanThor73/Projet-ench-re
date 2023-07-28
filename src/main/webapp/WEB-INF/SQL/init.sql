@@ -18,13 +18,15 @@ CREATE TABLE Users (
 	mot_de_passe	VARCHAR(40) NOT NULL, /* Plus de 32 pour les personnes utilisant des gestionnaires de mdp */
 	credit			INT NOT NULL,
 	administrateur	INT NOT NULL, /* c'est un booléen 0 ou 1 */
+	salt VARCHAR(60) NOT NULL, /* clef pour le dehachage */
 
 	CONSTRAINT user_pk PRIMARY KEY (no_user)
 );
 
 /* Users default Values */
 ALTER TABLE Users
-ALTER credit SET DEFAULT 0;
+ALTER credit SET DEFAULT 0,
+ALTER salt SET DEFAULT 1;
 
 /* TABLE Categories */
 CREATE TABLE Categories (
