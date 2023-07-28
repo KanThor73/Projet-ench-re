@@ -8,8 +8,8 @@
 }
 
 .container {
-	background: linear-gradient(var(- -gradiantGold));
-	box-shadow: var(- -box_shadow);
+	background: linear-gradient(var(--gradiantGold));
+	box-shadow: var(--box_shadow);
 	border-radius: 0.5rem;
 }
 
@@ -27,9 +27,15 @@ input[type="submit"]:hover {
 
 .contact {
 	margin-bottom: 10rem;
-	font-size: 20px;
+	font-size: 3rem;
 	justify-content: center;
 	margin-left: 2rem;
+}
+
+.contact a{
+	color:black;
+	text-decoration: none;
+	font-size: 2rem;
 }
 
 .button-back a {
