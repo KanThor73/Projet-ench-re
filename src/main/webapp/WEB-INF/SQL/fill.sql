@@ -26,16 +26,16 @@ INSERT INTO Categories (libelle) VALUES
 ("accessoires");
 
 INSERT INTO ArticlesVendus VALUES
-(default, "brindille mâchée", "elle me suit depuis 40 ans", "2023-07-24", "2023-07-31", 20, 20, 4, 1),
-(default, "lit en bois", "lit de l'ère victorienne, retrouvé dans les décombres de la guerre", "2023-07-24", "2023-08-15", 1000, 1000, 6, 6),
-(default, "chaussettes d'hiver", "elles auraient appartenu à un grand barbu généreux", "2023-07-24", "2023-12-25", 120, 120, 6, 7),
-(default, "machine à écrire", "provient du Klondike", "2023-06-24", "2023-08-12", 600, 600, 5, 2),
-(default, "bonheur", "encore à définir", "1000-01-01", "9999-12-31", 0, 0, 6, 6),
-(default, "bonheur", "bon pour admirer mon sou porte-bonheur pendant une journée", "2023-07-24", "2023-07-31", 5000, 5000, 5, 5),
-(default, "PC antique", "permet tout de même de faire tourner Linux", "2023-07-24", "2023-07-31", 15, 15, 3, 2),
-(default, "écran à CSS instantané", "tout ce dont vous pourriez rêver", "2023-07-24", "2023-07-31", 1400, 1400, 1, 2),
-(default, "Petit poussin", "il est jaune", "2023-07-24", "2023-07-31", 9, 9, 3, 1),
-(default, "Talkie-walkie", "portée de 20.000km, pratique pour vos déplacements quotidiens.", "2023-07-26", "2023-07-27", 100, 100, 7, 2),
+(default, "Brindille mâchée", "Elle me suit depuis 40 ans", "2023-07-24", "2023-07-31", 20, 20, 4, 1),
+(default, "Lit en bois", "Lit de l'ère victorienne, retrouvé dans les décombres de la guerre", "2023-07-24", "2023-08-15", 1000, 1000, 6, 6),
+(default, "Chaussettes d'hiver", "Elles auraient appartenu à un grand barbu généreux", "2023-07-24", "2023-12-25", 120, 120, 6, 7),
+(default, "Machine à écrire", "Provient du Klondike", "2023-06-24", "2023-08-12", 600, 600, 5, 2),
+(default, "Bonheur", "Encore à définir", "1000-01-01", "9999-12-31", 0, 0, 6, 6),
+(default, "Bonheur", "Bon pour admirer mon sou porte-bonheur pendant une journée", "2023-07-24", "2023-07-31", 5000, 5000, 5, 5),
+(default, "PC antique", "Permet tout de même de faire tourner Linux", "2023-07-24", "2023-07-31", 15, 15, 3, 2),
+(default, "Écran à CSS instantané", "Tout ce dont vous pourriez rêver !", "2023-07-24", "2023-07-31", 1400, 1400, 1, 2),
+(default, "Petit poussin", "Il est jaune", "2023-07-24", "2023-07-31", 9, 9, 3, 1),
+(default, "Talkie-walkie", "Portée de 20.000km, pratique pour vos déplacements quotidiens.", "2023-07-26", "2023-07-27", 100, 100, 7, 2),
 (default, "Costard du bayou", "Propre", "2023-07-26", "2023-07-27", 430, 2000, 7, 7);
 
 INSERT INTO Retraits VALUES

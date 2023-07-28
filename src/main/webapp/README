@@ -1,6 +1,3 @@
-empêcher les personnes connectées de retourner sur /Connexion ou /CreerCompte ! (seulement les JSP)
-
-
 penser à mettre des redirect partout où il faut
 
 
@@ -8,10 +5,3 @@ hash les mdp
 
 
 se souvenir de moi
-
-
-vérifier qu'un pseudo et mail sont uniques parmi tous les utilisateurs (lors de la modification d'un profil)
-
-Je me suis connecté avec je profil "JB", je suis allé dans "modifier mon profil",
-et j'ai tapé [pseudo=thib, mdp=mdps] (ça fonctionne pas avec le mdp de JB),
-et ça a copié la plupart des infos de JB dans le profil de thib

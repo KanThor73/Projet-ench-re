@@ -37,7 +37,6 @@ public class Article {
 		setPrixVente(prixInit); // set up le premier prix vente égal au prix init
 		setOwnerId(ownerId);
 		setPseudo();
-
 	}
 
 	// constructer avec noArticle et prixVente, utilisé lors de la lecture de la bdd
@@ -126,7 +125,8 @@ public class Article {
 	}
 	
 	public String isEnded() {
-		return dateFin.before(Date.from(Instant.now())) ? "Enchères terminées" : "";
+		return dateFin.before(Date.from(Instant.now())) ? "Enchères terminées" : 
+			(dateDebut.after(Date.from(Instant.now())) ? "Enchères à venir" : "");
 	}
 
 	// Prix initial

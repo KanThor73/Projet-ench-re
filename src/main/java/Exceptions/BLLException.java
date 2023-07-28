@@ -15,5 +15,4 @@ public class BLLException extends Exception {
 	public String getMessage() {
 		return super.getMessage();
 	}
-
 }

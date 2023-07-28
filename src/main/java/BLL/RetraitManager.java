@@ -9,6 +9,7 @@ import Exceptions.DALException;
 public class RetraitManager {
 
 	private RetraitDAO retraitDAO = Factory.getRetraitDAO();
+	
 	/*********************
 	 * Pattern singleton *
 	 *********************/

@@ -17,7 +17,6 @@ public class User {
 	private int credit;
 	private boolean administrateur;
 	private String salt;
-	
 
 	// Constructeur sans noUser ni credit, utilisé lorsque créé par l'utilisateur
     public User(String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal,
@@ -167,5 +166,4 @@ public class User {
                 + ville + ", motDePasse=" + motDePasse + ", credit=" + credit + ", administrateur=" + administrateur
                 + "]";
     }
-	
 }

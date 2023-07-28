@@ -64,7 +64,6 @@ public class RetraitDAOimplJDBC implements RetraitDAO {
 			e.printStackTrace();
 			throw new DALException("problème de connexion aux données");
 		}
-
 	}
 
 	@Override

@@ -93,7 +93,7 @@ public class UserManager {
 		return userDAO.checkPseudo(pseudo);
 	}
 
-	private boolean checkEmail(String email) throws DALException { // l'email est-il présent dans la bdd ?
+	public boolean checkEmail(String email) throws DALException { // l'email est-il présent dans la bdd ?
 		return userDAO.checkEmail(email);
 	}
 

@@ -20,11 +20,9 @@
 
 .fragment label, .fragment input {
 	
-	
 	border-width: 0.3rem;
 	font-size: 3rem;
 	padding: 0.5rem;
-	
 }
 
 .sub-container {
@@ -37,7 +35,6 @@
 	background-position: center;
 	align-items: center;
 	margin-top: 3rem;
-	
 }
 
 .fragment label, .fragment input {
@@ -53,8 +50,6 @@
 	box-shadow: var(--box_shadow);
 	border-radius: 1rem;
 	align-items: center;
-	
-	
 }
 
 form {
@@ -101,7 +96,6 @@ input[type="submit"] {
     font-size: 2rem;
     display: flex;
     align-items: center;
-   	
 }
 
 .edit-button:hover {

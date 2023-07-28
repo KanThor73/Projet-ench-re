@@ -38,6 +38,17 @@ public class AuctionServlet extends HttpServlet {
 			Article article = articleMgr.selectByID(articleId);
 			int idOwner = article.getOwnerId();
 			
+			// Si enchères non commencées, renvoie sur index si pas le proprio
+			if (article.getDateDebut().after(Date.from(Instant.now()))) {
+				if (request.getSession().getAttribute("id") != null) { // utilisateur connecté
+					int sessionId = (int) request.getSession().getAttribute("id");
+					if (sessionId != idOwner) {
+						response.sendRedirect("IndexServlet");
+						return;
+					}
+				}
+			}
+			
 			// Si date passée, renvoie sur winAuction / FinEncheres
 			if (article.getDateFin().before(Date.from(Instant.now()))) {
 				response.sendRedirect("FinEncheres?id=" + articleId);
@@ -67,7 +78,7 @@ public class AuctionServlet extends HttpServlet {
 			}
 			
 			if (request.getSession().getAttribute("id") != null) { // utilisateur connecté
-				int sessionId = Integer.parseInt(request.getSession().getAttribute("id").toString());
+				int sessionId = (int) request.getSession().getAttribute("id");
 				request.setAttribute((sessionId == idOwner) ? "proprio" : "user", "true");
 				
 				User thisUser = userMgr.selectByID(sessionId);
@@ -92,6 +103,7 @@ public class AuctionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		if (request.getSession().getAttribute("id") == null) { // utilisateur non connecté, usurpateur
 			response.sendRedirect("Connexion"); // ciao !
@@ -106,7 +118,7 @@ public class AuctionServlet extends HttpServlet {
 			
 			// test de la date
 			Article article = articleMgr.selectByID(idArticle);
-			if (maintenant.after(article.getDateFin())) { // si on essaye d'enréchir après la fin
+			if (maintenant.before(article.getDateDebut()) || maintenant.after(article.getDateFin())) { // si on essaye d'enréchir en dehors des dates
 				response.sendRedirect("IndexServlet"); // ciao
 				return;
 			}
