@@ -117,6 +117,8 @@ public class winAuctionServlet extends HttpServlet {
 				
 				articleMgr.delete(id);
 				
+				response.sendRedirect("IndexServlet"); // retour à l'accueil (un peu barbare)
+				
 			} else if (request.getParameter("auction") != null) {
 				
 				List<Auction> auctions = auctionMgr.selectByArticle(id); // récupération des enchères
