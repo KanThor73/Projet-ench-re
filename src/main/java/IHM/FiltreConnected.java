@@ -14,10 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/Vente", "/Editer", "/EditerProfil", "/Profil", "/FinEncheres"}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
+/**
+ * Servlet Filter implementation class FiltreConnected
+ */
+@WebFilter(urlPatterns = {"/Connexion", "/CreerCompte"}, dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.INCLUDE,
 		DispatcherType.FORWARD, DispatcherType.ERROR })// renseigner des que les pages sont faite
-
-public class FiltreUsers implements Filter {
+public class FiltreConnected implements Filter {
 
 	public void destroy() {
 	}
@@ -29,10 +31,9 @@ public class FiltreUsers implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 
-//		System.out.println(isActif);
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("id") != null) { // si la personne est connectée
 
-			httpResponse.sendRedirect("Connexion"); // va à la page de connexion
+			httpResponse.sendRedirect("IndexServlet"); // retourne au menu
 		}else {
 			chain.doFilter(httpRequest, httpResponse);
 		}
@@ -41,8 +42,5 @@ public class FiltreUsers implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		
 	}
-}
 
-// creer variable de session id si util refuse cookie
-// recuperer jsessionID
-// tester si l'un ou l'autre est present pour autoriser acces
+}

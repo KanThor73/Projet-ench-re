@@ -1,7 +1,3 @@
-empêcher les personnes connectées de retourner sur /Connexion ou /CreerCompte ! (seulement les JSP)
-créer filtre inverse au filtre Users
-
-
 penser à mettre des redirect partout où il faut
 
 
