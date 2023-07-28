@@ -1,0 +1,89 @@
+@import url("base.css");
+
+main {
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: linear-gradient(var(--gradiantGold));
+    box-shadow: var(--box_shadow);
+}
+
+label{
+    margin-right: 2rem;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.backDark{
+    background: var(--background);
+    border-radius: 0.5rem;}
+
+h2 {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.formContainer {
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formBody {
+    display: flex;
+    flex-flow: column nowrap;
+    
+    align-items: space-between;
+    padding: 1rem;
+}
+
+.formFragment {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+
+.formFooter {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+
+.button {
+    font-size: 2rem;
+}
+
+.button:hover {
+    text-shadow: var(--text_shadow);
+    box-shadow: var(--box_shadowWhite);
+}
+
+.button a {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-weight: 600;
+    background: linear-gradient(var(--gradiantGold));
+    box-shadow: var(--box_shadow);
+    cursor: pointer; 
+    transition: 0.5s ease-out;
+    color: black;
+    text-decoration: none;
+    
+}
+
+
+.errorBox {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
