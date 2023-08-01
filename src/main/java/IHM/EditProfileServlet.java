@@ -96,8 +96,7 @@ public class EditProfileServlet extends HttpServlet {
 
 					if (Hashing.ckeckPassword(user1.getMotDePasse(), mdp)) {// verif mdps
 						
-						User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville,
-								user1.getMotDePasse(), user1.getCredit(), (user1.estAdministrateur() ? 1 : 0), user1.getSalt());
+						User user2 = new User((user1.getNoUser()), pseudo, nom, prenom, email, tel, rue, cp, ville, user1.getMotDePasse(), user1.getCredit(), (user1.estAdministrateur() ? 1 : 0), user1.getSalt());
 
 						userMg.update(user2);
 						request.setAttribute("msg", "Profil modifie avec succes!");
@@ -139,15 +138,14 @@ public class EditProfileServlet extends HttpServlet {
 
 				int id = (int) request.getSession().getAttribute("id");
 				User user1 = userMg.selectByID(id);
-				if (mdp != null && (user1.getMotDePasse()).equals(mdp) && (mdp1 == null || mdp1.equals(""))
+				if (mdp != null && Hashing.ckeckPassword(user1.getMotDePasse(), mdp) && (mdp1 == null || mdp1.equals(""))
 						&& (mdp2 == null || mdp2.equals(""))) { // verif mdps
 					userMg.delete(user1.getNoUser());
 					request.getSession().setAttribute("id", null);
 					response.sendRedirect("IndexServlet");
-				} else if (mdp == null || mdp.equals("")
-						|| Hashing.ckeckPassword(user1.getMotDePasse(), mdp)) {
+				} else if (mdp == null || mdp.equals("") || !Hashing.ckeckPassword(user1.getMotDePasse(), mdp)) {
 					request.setAttribute("msgErreur",
-							"Attention - Le nouveau mot de passe est obligatoire pour la suppression");
+							"Attention - Mot de passe incorrect");
 					doGet(request, response);
 				} else if ((mdp1 != null && !mdp1.equals("")) || (mdp2 != null && !mdp2.equals(""))) {
 					request.setAttribute("msgErreur",

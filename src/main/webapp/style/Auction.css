@@ -1,9 +1,5 @@
 @import url("base.css");
 
-.fragment {
-	width: 100%;
-	padding: 10px;
-}
 
 .container {
 	display: flex;
@@ -14,8 +10,7 @@
 }
 
 .fragment {
-	width: 100%;
-	padding: 10px;
+	padding: 1rem;
 }
 
 .fragment label, .fragment input {
@@ -23,6 +18,17 @@
 	border-width: 0.3rem;
 	font-size: 3rem;
 	padding: 0.5rem;
+}
+form {
+	margin-top: 2rem;
+	
+}
+
+.solde{
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	
 }
 
 .sub-container {
@@ -32,9 +38,11 @@
 	padding: 2rem;
 	border-radius: 1rem;
 	padding: 2rem;
-	background-position: center;
+	margin-top: 1rem;
+	margin-bottom: 3rem;
+	display: flex;
+	flex-direction:column;
 	align-items: center;
-	margin-top: 3rem;
 }
 
 .fragment label, .fragment input {
@@ -45,17 +53,7 @@
 	align-items: center;
 }
 
-.sub-container {
-	background: linear-gradient(var(--gradiantGold));
-	box-shadow: var(--box_shadow);
-	border-radius: 1rem;
-	align-items: center;
-}
 
-form {
-	display: flex;
-	justify-content: space-between;
-}
 
 h1 {
 	font-size: 3rem;
@@ -72,6 +70,13 @@ input[type="submit"] {
 	font-size: 20px;
 	background: linear-gradient(var(--gradiantGold));
 	margin-left: 2rem;
+	border-radius: 1rem;
+	margin-top: 2rem;
+}
+
+input[type="number"]{
+	border-radius: 1rem;
+	background: var(--background);
 }
 
 .edit-button {
@@ -101,4 +106,8 @@ input[type="submit"] {
 .edit-button:hover {
     text-shadow: var(--text_shadow);
 	box-shadow: var(--box_shadowWhite);
+}
+
+strong {
+	font-size: 2rem;
 }

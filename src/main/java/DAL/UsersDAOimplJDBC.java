@@ -151,8 +151,8 @@ public class UsersDAOimplJDBC implements UserDAO {
 			stmt.setString(9, user.getMotDePasse());
 			stmt.setInt(10, user.getCredit());
 			stmt.setInt(11, user.estAdministrateur() ? 1 : 0); // convertit le booléen en entier
-			stmt.setInt(12, user.getNoUser());
-			stmt.setString(13, user.getSalt());
+			stmt.setString(12, user.getSalt());
+			stmt.setInt(13, user.getNoUser());
 
 			stmt.executeUpdate();
 

@@ -7,6 +7,7 @@ import DAL.UserDAO;
 import DAL.Factory;
 import Exceptions.BLLException;
 import Exceptions.DALException;
+import Util.Hashing;
 
 public class UserManager {
 
@@ -86,7 +87,12 @@ public class UserManager {
 	 *************/
 
 	public boolean checkMdp(String pseudo, String mdp) throws DALException { // le mdp est-il correct ?
-		return userDAO.checkMdp(pseudo, mdp);
+		User user = userDAO.selectByPseudo(pseudo);
+		if(user == null) {
+			return false;
+		}
+		String mdpHash = Hashing.hashPasswordToCompare(mdp, user.getSalt());
+		return userDAO.checkMdp(pseudo, mdpHash);
 	}
 
 	public boolean checkPseudo(String pseudo) throws DALException { // le pseudo est-il présent dans la bdd ?

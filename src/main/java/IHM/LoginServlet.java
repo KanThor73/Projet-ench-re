@@ -31,27 +31,18 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String connectionTime = String.valueOf(System.currentTimeMillis());
 		HttpSession session = request.getSession();
 		
 		// Récupération des paramètres du formulaire de connect.jsp
 		String login = request.getParameter("username");
-
+		String mdps = request.getParameter("password");
 		try {
-			User user = userMgr.selectByPseudo(login);
-			String mdps = Hashing.hashPasswordToCompare(request.getParameter("password"), user.getSalt());
 			if (userMgr.checkMdp(login, mdps)) { // si pseudo et mot de passe coïncident
 				int id = userMgr.getId(login); // récupération de l'id
 				session.setAttribute("id", id); // set up de l'id, id non null = connecté
-				response.sendRedirect("IndexServlet"); // retour à l'index
-				session.setAttribute("connectionTime", connectionTime);
-				
+				response.sendRedirect("IndexServlet"); // retour à l'index				
 			} else {
-				if (userMgr.checkPseudo(login)) { // si le login est correct
-					request.setAttribute("msgErreur","Mot de passe incorrect");
-				} else {
-					request.setAttribute("msgErreur","Utilisateur inconnu, veuillez créer un compte");
-				}
+				request.setAttribute("msgErreur","Erreur d'identifiants");
 				getServletContext().getNamedDispatcher("ConnectJSP").forward(request, response); // retourne à la connexion
 			}
 		} catch (DALException e) {

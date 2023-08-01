@@ -136,7 +136,7 @@ img {
 
 .msgBox{
 	color:var(--dark);
-	margin-top: 2rem;
+	margin-top: 1rem;
 	text-align: center;
 	font-size: 3rem;
 	font-weight: 600;
