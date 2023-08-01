@@ -7,13 +7,13 @@
 USE TrocEncheres;
 
 INSERT INTO Users VALUES
-(default, "thib", "JACQUET", "Thibault", "thib@gmail.com", "0657483946", "evergreen terass", "73260", "Moutiers", "2a$10$3uzOt06A40lsMSQfPzThLO5DGh2hp3OzDf2x8Wjanv1C0npV/AUEa", 10000, 1,2a$10$3uzOt06A40lsMSQfPzThLO),
-(default, "JB", "SABOURIN", "Jean-Baptiste", "j.b11@hotmail.fr", null, "3, rue du satellite", "-1000", "Moon", "2a$10$XDQAqgWKXesQS3slgH0TJ.NE.cuk9wOb7dqNr0TouAqJQqeWjHjCG", 10000, 2a$10$XDQAqgWKXesQS3slgH0TJ.),
-(default, "SamDwarf", "GROLLEAU", "Sami", "sami.grolleau@mailo.com", null, "le grand arbre", "-----", "Forêt du Sahel", "2a$10$xMpaexPZUGqKphXyrUgyze.FMeYdU.EDbZdie.GWo1nHSOhl1PQLy", 10000, 1,2a$10$xMpaexPZUGqKphXyrUgyze),
-(default, "LuckyLuke", "LUKE", "Lucky", "dontjoinme@texas.com", null, "somewhere", "-USA-", "Lonely", "2a$10$0pGjkIMtpacyFiieGWV1befP6K5x0B6BJQGahXQbg4e4WfXUn6sx6", 3500, 0,2a$10$0pGjkIMtpacyFiieGWV1be),
-(default, "MacPicsou", "PICSOU", "Balthazar", "riche@donaldville.fr", null, "domaine picsou", "-6400", "Donaldville", "2a$10$Sh8skT4h3XWM5TC8pY3yT.rCGiyaVPJn7ufCo2WQwoTx5fToZhBUC", 1147483647, 0,2a$10$Sh8skT4h3XWM5TC8pY3yT.),
-(default, "AbbePierre", "GROUÈS", "Henri", "abbepierre@emmaus-france.org", null, "boulevard de Port-Royal", "75005", "Paris", "2a$10$nepMyJmxxXkn3BpTBYHSSeb3ecr6JzZyqKn1BUeS8HZq8mSg3.H6C", 0, 0,2a$10$nepMyJmxxXkn3BpTBYHSSe),
-(default, "HommePressé", "DÉSIR", "Noir", "secretariat@megacorp.com", null, "tout le temps", "00000", "Partout", "2a$10$oGKMsYA7OkXmjEeJO/WSr.W2D7zOfSK4mtc7db1neGVYh8qNAZdAK", 50000, 0,2a$10$oGKMsYA7OkXmjEeJO/WSr.);
+(default, "thib", "JACQUET", "Thibault", "thib@gmail.com", "0657483946", "evergreen terass", "73260", "Moutiers", "$2a$10$3uzOt06A40lsMSQfPzThLO5DGh2hp3OzDf2x8Wjanv1C0npV/AUEa", 10000, 1,"$2a$10$3uzOt06A40lsMSQfPzThLO"),
+(default, "JB", "SABOURIN", "Jean-Baptiste", "j.b11@hotmail.fr", null, "3, rue du satellite", "-1000", "Moon", "$2a$10$XDQAqgWKXesQS3slgH0TJ.NE.cuk9wOb7dqNr0TouAqJQqeWjHjCG", 10000,1, "$2a$10$XDQAqgWKXesQS3slgH0TJ."),
+(default, "SamDwarf", "GROLLEAU", "Sami", "sami.grolleau@mailo.com", null, "le grand arbre", "-----", "Forêt du Sahel", "$2a$10$xMpaexPZUGqKphXyrUgyze.FMeYdU.EDbZdie.GWo1nHSOhl1PQLy", 10000, 1,"$2a$10$xMpaexPZUGqKphXyrUgyze"),
+(default, "LuckyLuke", "LUKE", "Lucky", "dontjoinme@texas.com", null, "somewhere", "-USA-", "Lonely", "$2a$10$0pGjkIMtpacyFiieGWV1befP6K5x0B6BJQGahXQbg4e4WfXUn6sx6", 3500, 0,"$2a$10$0pGjkIMtpacyFiieGWV1be"),
+(default, "MacPicsou", "PICSOU", "Balthazar", "riche@donaldville.fr", null, "domaine picsou", "-6400", "Donaldville", "$2a$10$Sh8skT4h3XWM5TC8pY3yT.rCGiyaVPJn7ufCo2WQwoTx5fToZhBUC", 1147483647, 0,"$2a$10$Sh8skT4h3XWM5TC8pY3yT."),
+(default, "AbbePierre", "GROUÈS", "Henri", "abbepierre@emmaus-france.org", null, "boulevard de Port-Royal", "75005", "Paris", "$2a$10$nepMyJmxxXkn3BpTBYHSSeb3ecr6JzZyqKn1BUeS8HZq8mSg3.H6C", 0, 0,"$2a$10$nepMyJmxxXkn3BpTBYHSSe"),
+(default, "HommePressé", "DÉSIR", "Noir", "secretariat@megacorp.com", null, "tout le temps", "00000", "Partout", "$2a$10$oGKMsYA7OkXmjEeJO/WSr.W2D7zOfSK4mtc7db1neGVYh8qNAZdAK", 50000, 0,"$2a$10$oGKMsYA7OkXmjEeJO/WSr.");
 
 INSERT INTO Categories (libelle) VALUES
 ("jardinage"),

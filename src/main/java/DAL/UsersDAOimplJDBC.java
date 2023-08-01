@@ -15,7 +15,7 @@ public class UsersDAOimplJDBC implements UserDAO {
 	// declaration des constantes pour les requetes SQL
 
 	public static final String USER_SQL_INSERT = "INSERT INTO Users (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,salt) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String USER_SQL_UPDATE = "UPDATE Users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,code_postal = ? ,ville = ? ,mot_de_passe = ? ,credit = ? ,administrateur = ?, salt = ? WHERE no_user = ?";
+	public static final String USER_SQL_UPDATE = "UPDATE Users SET pseudo = ? ,nom = ? ,prenom = ? ,email = ? ,telephone = ? ,rue = ? ,code_postal = ? ,ville = ? ,mot_de_passe = ? ,credit = ? ,administrateur = ? ,salt = ? WHERE no_user = ?";
 	public static final String USER_SQL_DELETE = "DELETE FROM Users WHERE no_user = ?";
 	public static final String USER_SQL_SELECTALL = "SELECT * FROM Users";
 	public static final String USER_SQL_SELECTBYID = "SELECT * FROM Users WHERE no_user = ?";

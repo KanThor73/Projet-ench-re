@@ -13,18 +13,16 @@ public class Hashing {
 		return new String[] { hashedPassword, salt };
 	}
 
-	public static boolean ckeckPassword(String hashedPasswordBDD, String UserPassword, String UserSalt) {// renvoie true si le mdp et le meme que dans la bdd
+	public static boolean ckeckPassword(String hashedPasswordBDD, String UserPassword) {// renvoie true si le mdp et le meme que dans la bdd
 
 		boolean isOk = false;
-		String newHash = BCrypt.hashpw(UserPassword, UserSalt);
 
-		if (BCrypt.checkpw(newHash, hashedPasswordBDD)) {// compare les deux mdps
+		if (BCrypt.checkpw(UserPassword, hashedPasswordBDD)) {// compare les deux mdps
 			isOk = true;
-		} else {
-			return isOk;
+		}else {
+			isOk = false;
 		}
 		return isOk;
-
 	}
 	
 	public static String hashPasswordToCompare(String UserPassword, String UserSalt) {// renvoie true si le mdp et le meme que dans la bdd
@@ -32,7 +30,5 @@ public class Hashing {
 		String newHash = BCrypt.hashpw(UserPassword, UserSalt);
 
 		return newHash;
-
 	}
-
 }
